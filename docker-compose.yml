@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: ./environment/dev/php
+      args:
+        INSTALL_XDEBUG: ${DOCKER_INSTALL_XDEBUG:-false}
+    container_name: meetup-php
+    working_dir: /application
+    user: ${CURRENT_UID:-1000}
+    volumes:
+      - .:/application
+      - ./environment/dev/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+    networks:
+      - meetup-dev
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    restart: unless-stopped
+
+networks:
+  meetup-dev:
+    driver: bridge
