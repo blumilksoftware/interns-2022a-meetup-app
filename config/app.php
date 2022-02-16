@@ -39,10 +39,10 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Blumilk\Meetup\Core\Providers\AppServiceProvider::class,
         Blumilk\Meetup\Core\Providers\AuthServiceProvider::class,
         Blumilk\Meetup\Core\Providers\EventServiceProvider::class,
         Blumilk\Meetup\Core\Providers\RouteServiceProvider::class,
+        Blumilk\Meetup\Core\Providers\TelescopeServiceProvider::class,
     ],
     "aliases" => Facade::defaultAliases()->toArray(),
 ];

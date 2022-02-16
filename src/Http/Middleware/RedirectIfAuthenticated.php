@@ -4,21 +4,27 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Middleware;
 
-use Blumilk\Meetup\Core\Providers\RouteServiceProvider;
 use Closure;
+use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Redirector;
 use Symfony\Component\HttpFoundation\Response;
 
 class RedirectIfAuthenticated
 {
+    public function __construct(
+        protected Redirector $redirector,
+        protected AuthManager $authManager,
+    ) {
+    }
+
     public function handle(Request $request, Closure $next, ...$guards): Response
     {
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+            if ($this->authManager->guard($guard)->check()) {
+                return $this->redirector->to(route("home"));
             }
         }
 

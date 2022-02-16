@@ -7,12 +7,10 @@ use Blumilk\Codestyle\Configuration\Defaults\Paths;
 
 $config = new Config(
     paths: new Paths(
-        "app",
-        "bootstrap/app.php",
         "config",
         "database",
         "lang",
-        "routes",
+        "src",
         "tests",
         "ecs.php",
     ),

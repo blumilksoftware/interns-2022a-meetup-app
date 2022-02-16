@@ -4,29 +4,32 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Providers;
 
+use Blumilk\Meetup\Core\Http\Routing\ApiRouting;
+use Blumilk\Meetup\Core\Http\Routing\WebRouting;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public const HOME = "/home";
-
     public function boot(): void
     {
+        /** @var Router $router */
+        $router = $this->app["router"];
+
         $this->configureRateLimiting();
 
-        $this->routes(function (): void {
-            Route::prefix("api")
-                ->middleware("api")
+        $this->routes(function () use ($router): void {
+            $router->middleware("api")
+                ->prefix("api")
                 ->namespace($this->namespace)
-                ->group(base_path("routes/api.php"));
+                ->group(fn() => new ApiRouting($router));
 
-            Route::middleware("web")
+            $router->middleware("web")
                 ->namespace($this->namespace)
-                ->group(base_path("routes/web.php"));
+                ->group(fn() => new WebRouting($router));
         });
     }
 
