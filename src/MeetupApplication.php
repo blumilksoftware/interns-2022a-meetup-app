@@ -14,7 +14,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Bootstrap\LoadConfiguration;
 use Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Facade;
 use Symfony\Component\Console\Input\ArgvInput as Input;
 use Symfony\Component\Console\Output\ConsoleOutput as Output;
 

@@ -3,7 +3,6 @@
   "type": "library",
   "description": "Base for meetup applications.",
   "keywords": [
-    "framework",
     "laravel"
   ],
   "license": "MIT",
