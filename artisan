@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Blumilk\Meetup\Core\MeetupApplication;
+
+require __DIR__ . "/vendor/autoload.php";
+
+$application = new MeetupApplication(__DIR__);
+$status = $application->runConsole();
+
+exit($status);
