@@ -1,22 +1,57 @@
-version: '3.8'
+version: '3'
 
 services:
+  web:
+    image: nginx
+    volumes:
+      - ./:/var/www
+      - ./environment/dev/nginx/nginx.conf:/etc/nginx/conf.d/app.conf
+    ports:
+      - 80:80
+    networks:
+      - meetup-dev
   php:
     build:
       context: ./environment/dev/php
-      args:
-        INSTALL_XDEBUG: ${DOCKER_INSTALL_XDEBUG:-false}
-    container_name: meetup-php
-    working_dir: /application
-    user: ${CURRENT_UID:-1000}
+    working_dir: /var/www
+    environment:
+      - DOCKER=1
     volumes:
-      - .:/application
+      - .:/var/www
       - ./environment/dev/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+    ports:
+      - 9000:9000
     networks:
       - meetup-dev
-    extra_hosts:
-      - host.docker.internal:host-gateway
-    restart: unless-stopped
+    depends_on:
+      - db
+
+  db:
+    image: 'postgres:13'
+    ports:
+      - 5432:5432
+    environment:
+      PGPASSWORD: '${DB_PASSWORD:-secret}'
+      POSTGRES_DB: '${DB_DATABASE}'
+      POSTGRES_USER: '${DB_USERNAME}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+    volumes:
+      - /var/lib/postgresql/data
+    networks:
+      - meetup-dev
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}" ]
+      retries: 3
+      timeout: 5s
+  redis:
+    image: 'redis:6'
+    command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD}"
+    ports:
+      - 6379:6379
+    volumes:
+      - ./storage/redis:/data
+    networks:
+      - meetup-dev
 
 networks:
   meetup-dev:
