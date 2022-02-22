@@ -27,5 +27,4 @@ WORKDIR /var/www
 
 RUN chown -R www-data:www-data /var/www && chmod 755 /var/www
 
-EXPOSE 9000
-CMD ["php-fpm"]
+EXPOSE 8000

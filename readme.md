@@ -1,16 +1,37 @@
 ## Meetup core
 
 ### Development
-Use Artisan helper:
+### Setup app for development
+1. create file ./server.php and paste this content
+```php
+<?php
+$uri = urldecode(
+    parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+);
+
+if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
+    return false;
+}
+
+require_once __DIR__.'/public/index.php';
 ```
-docker-compose run --rm -u "$(id -u):$(id -g)" php php artisan
+2. create files for ./public/index.php and paste this content
+```php
+<?php
+
+use Blumilk\Meetup\Core\MeetupApplication;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$application = new MeetupApplication((string)__DIR__."/../");
+$application->run();
 ```
-### Mac/Linux
+### Run env for Mac/Linux
 1. `$ Make install`
 2. `$ Make start`
 3. `$ Make bash`
 
-### Windows
+### Run env for Windows
 
 1. `docker-compose up`
 2. `docker-compose exec php /bin/bash`
@@ -18,6 +39,8 @@ docker-compose run --rm -u "$(id -u):$(id -g)" php php artisan
 4. `$ cp .env.dist .env`
 5. `$ php artisan key:generate`
 
+### Address where the environment is available
+- `http://localhost/`
 ## All commands
 1. `Make install`
 2. `Make start`

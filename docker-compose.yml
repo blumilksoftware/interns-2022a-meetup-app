@@ -1,15 +1,6 @@
 version: '3'
 
 services:
-  web:
-    image: nginx
-    volumes:
-      - ./:/var/www
-      - ./environment/dev/nginx/nginx.conf:/etc/nginx/conf.d/app.conf
-    ports:
-      - 80:80
-    networks:
-      - meetup-dev
   php:
     build:
       context: ./environment/dev/php
@@ -19,13 +10,13 @@ services:
     volumes:
       - .:/var/www
       - ./environment/dev/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+    entrypoint: sh -c "php artisan serve --host 0.0.0.0"
     ports:
-      - 9000:9000
+      - 80:8000
     networks:
       - meetup-dev
     depends_on:
       - db
-
   db:
     image: 'postgres:13'
     ports:
