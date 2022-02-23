@@ -20,5 +20,3 @@ yarn-error.log
 storage/redis/appendonly.aof
 storage/redis/dump.rdb
 public
-server.php
-public/web.config

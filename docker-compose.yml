@@ -1,9 +1,10 @@
 version: '3'
 
 services:
+
   php:
     build:
-      context: ./environment/dev/php
+      context: environment/dev/php
       args:
         INSTALL_XDEBUG: ${DOCKER_INSTALL_XDEBUG:-false}
     ports:
@@ -13,6 +14,7 @@ services:
     user: ${CURRENT_UID:-1000}
     entrypoint: sh -c "php artisan serve --host 0.0.0.0"
     volumes:
+      -  ./tests/manual/public:/application/public
       - .:/application
       - ./environment/dev/php/php.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
@@ -20,25 +22,7 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
     restart: unless-stopped
-    depends_on:
-      - db
-  db:
-    image: 'postgres:13'
-    ports:
-      - 5432:5432
-    environment:
-      PGPASSWORD: '${DB_PASSWORD:-secret}'
-      POSTGRES_DB: '${DB_DATABASE}'
-      POSTGRES_USER: '${DB_USERNAME}'
-      POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
-    volumes:
-      - /var/lib/postgresql/data
-    networks:
-      - meetup-dev
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}" ]
-      retries: 3
-      timeout: 5s
+
   redis:
     image: 'redis:6'
     command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD}"
