@@ -1,7 +1,8 @@
 install:
-	cp -n .env.dist .env
+	cp -n .env.example .env
 	docker-compose build
 	docker-compose run php composer install
+	docker-compose exec php php artisan key:generate
 
 db-create:
 	docker-compose exec php php artisan migrate
