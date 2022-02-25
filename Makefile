@@ -1,5 +1,5 @@
 install:
-	cp -n .env.example .env
+	cp .env.example .env
 	docker-compose build
 	docker-compose run php composer install
 	docker-compose exec php php artisan key:generate
