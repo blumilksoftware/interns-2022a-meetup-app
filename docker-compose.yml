@@ -8,7 +8,7 @@ services:
       args:
         INSTALL_XDEBUG: ${DOCKER_INSTALL_XDEBUG:-false}
     ports:
-      - 80:8000
+      - ${PHP_PORT}:8000
     container_name: meetup-php
     working_dir: /application
     user: ${CURRENT_UID:-1000}
@@ -27,7 +27,7 @@ services:
     image: 'redis:6'
     command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD}"
     ports:
-      - 6379:6379
+      - ${REDIS_PORT}:6379
     volumes:
       - ./storage/redis:/data
     networks:

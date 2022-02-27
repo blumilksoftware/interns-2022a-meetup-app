@@ -2,9 +2,9 @@
 
 ### Development
 ### Run env for Mac/Linux
-1. `$ Make install`
-2. `$ Make start`
-3. `$ Make bash`
+1. `$ make install`
+2. `$ make start`
+3. `$ make bash`
 
 ### Run env for Windows
 
@@ -17,10 +17,10 @@
 ### Address where the environment is available
 - `http://localhost`
 ## All commands
-1. `Make install`
-2. `Make start`
-3. `Make stop`
-4. `Make phpstan`
-5. `Make cs-check`
-6. `Make cs-fix`
-7. `Make run-tests`
+1. `make install`
+2. `make start`
+3. `make stop`
+4. `make phpstan`
+5. `make cs-check`
+6. `make cs-fix`
+7. `make run-tests`
