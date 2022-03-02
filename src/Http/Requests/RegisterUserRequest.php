@@ -13,7 +13,7 @@ class RegisterUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,8 +26,7 @@ class RegisterUserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'confirm_password' => ['required', 'string', 'min:8'],
+            'password' => ['required', 'string', 'min:8'],
         ];
     }
 }
