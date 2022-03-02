@@ -12,11 +12,13 @@ class WebRouting extends Routing
     {
         $this->router->get("/", fn() => view("welcome"))->name("home");
 
-        $this->router->get("/meetups", [MeetupController::class, "index"])->name("meetups");
-        $this->router->get("/meetups/create", [MeetupController::class, "create"])->name("meetups.create");
-        $this->router->post("/meetups", [MeetupController::class, "store"])->name("meetups");
-        $this->router->get("/meetups/{meetup}/edit", [MeetupController::class, "edit"])->name("meetups.edit");
-        $this->router->put("/meetups/{meetup}", [MeetupController::class, "update"])->name("meetups.update");
-        $this->router->delete("/meetups/{meetup}", [MeetupController::class, "destroy"])->name("meetups.destroy");
+        $this->router->controller(MeetupController::class)->middleware("auth")->group(function () {
+            $this->router->get("/meetups", "index")->name("meetups");
+            $this->router->get("/meetups/create", "create")->name("meetups.create");
+            $this->router->post("/meetups", "store")->name("meetups");
+            $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
+            $this->router->put("/meetups/{meetup}", "update")->name("meetups.update");
+            $this->router->delete("/meetups/{meetup}", "destroy")->name("meetups.destroy");
+        });
     }
 }

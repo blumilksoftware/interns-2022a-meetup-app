@@ -10,7 +10,7 @@
                     @csrf
                     <div>
                         <label for="title">Title:</label>
-                        <input type="text" id="title" name="title" value="{{ $meetup->title }}">
+                        <input type="text" id="title" name="title" value="{{ old('title', $meetup->title) }}">
                         @error('title')
                         <div>
                             {{ $message }}
@@ -19,7 +19,7 @@
                     </div>
                     <div>
                         <label for="description">Description:</label>
-                        <textarea name="description" id="description" cols="30" rows="4">{{ $meetup->description }}</textarea>
+                        <textarea name="description" id="description" cols="30" rows="4">{{ old('description', $meetup->description) }}</textarea>
                         @error('description')
                         <div>
                             {{ $message }}
@@ -28,7 +28,7 @@
                     </div>
                     <div>
                         <label for="date">Date:</label>
-                        <input type="dateTime-local" id="date" name="date" value="{{ $meetup->date->format('Y-m-d\TH:i') }}">
+                        <input type="dateTime-local" id="date" name="date" value="{{ old('date', $meetup->date) }}">
                         @error('date')
                         <div>
                             {{ $message }}
@@ -37,7 +37,7 @@
                     </div>
                     <div>
                         <label for="place">Place:</label>
-                        <input type="text" id="place" name="place" value="{{ $meetup->place }}">
+                        <input type="text" id="place" name="place" value="{{ old('place', $meetup->place) }}">
                         @error('place')
                         <div>
                             {{ $message }}
@@ -46,7 +46,7 @@
                     </div>
                     <div>
                         <label for="language">Language:</label>
-                        <input type="text" id="language" name="language" value="{{ $meetup->language }}">
+                        <input type="text" id="language" name="language" value="{{ old('language', $meetup->language) }}">
                         @error('language')
                         <div>
                             {{ $message }}
