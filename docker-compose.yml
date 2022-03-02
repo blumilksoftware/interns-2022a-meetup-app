@@ -1,15 +1,20 @@
-version: '3.8'
+version: '3'
 
 services:
+
   php:
     build:
-      context: ./environment/dev/php
+      context: environment/dev/php
       args:
         INSTALL_XDEBUG: ${DOCKER_INSTALL_XDEBUG:-false}
+    ports:
+      - ${EXTERNAL_PHP_PORT}:8000
     container_name: meetup-php
     working_dir: /application
     user: ${CURRENT_UID:-1000}
+    entrypoint: sh -c "touch database/database.sqlite && composer install && php artisan key:generate && php artisan serve --host 0.0.0.0"
     volumes:
+      -  ./tests/manual/public:/application/public
       - .:/application
       - ./environment/dev/php/php.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
@@ -17,6 +22,16 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
     restart: unless-stopped
+
+  redis:
+    image: 'redis:6'
+    command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD}"
+    ports:
+      - ${REDIS_PORT}:6379
+    volumes:
+      - ./storage/redis:/data
+    networks:
+      - meetup-dev
 
 networks:
   meetup-dev:
