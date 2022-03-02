@@ -8,7 +8,7 @@ services:
       args:
         INSTALL_XDEBUG: ${DOCKER_INSTALL_XDEBUG:-false}
     ports:
-      - ${PHP_PORT}:8000
+      - ${EXTERNAL_PHP_PORT}:8000
     container_name: meetup-php
     working_dir: /application
     user: ${CURRENT_UID:-1000}
