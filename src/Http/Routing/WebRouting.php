@@ -12,7 +12,7 @@ class WebRouting extends Routing
     {
         $this->router->get("/", fn() => view("welcome"))->name("home");
 
-        $this->router->controller(MeetupController::class)->middleware("auth")->group(function () {
+        $this->router->controller(MeetupController::class)->middleware("auth")->group(function (): void {
             $this->router->get("/meetups", "index")->name("meetups");
             $this->router->get("/meetups/create", "create")->name("meetups.create");
             $this->router->post("/meetups", "store")->name("meetups");
