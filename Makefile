@@ -26,3 +26,6 @@ cs-fix:
 run-tests:
 	docker-compose exec php composer ecs
 	docker-compose exec php composer test
+
+phpstan:
+	docker-compose exec php composer phpstan
