@@ -37,4 +37,3 @@ class LoginController extends Controller
         return response("Logged Out");
     }
 }
-

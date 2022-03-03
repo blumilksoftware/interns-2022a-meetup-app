@@ -14,7 +14,7 @@ class WebRouting extends Routing
     {
         $this->router->get("/", fn() => view("welcome"))->name("home");
 
-        $this->router->get("/auth/register", fn() => view('user.register'))->name("register.form");
+        $this->router->get("/auth/register", fn() => view("user.register"))->name("register.form");
         $this->router->post("/auth/register", [RegisterController::class, "create"])->name("register");
         $this->router->get("/auth/login", fn() => view("user.login"))->name("login.form");
         $this->router->post("/auth/login", [LoginController::class, "login"])->name("login");
@@ -26,4 +26,3 @@ class WebRouting extends Routing
         $this->router->get("/auth/facebook/callback", [SocialiteController::class, "handleFacebookCallback"]);
     }
 }
-

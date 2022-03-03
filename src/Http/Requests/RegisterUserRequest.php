@@ -32,4 +32,3 @@ class RegisterUserRequest extends FormRequest
         ];
     }
 }
-
