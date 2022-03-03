@@ -19,9 +19,9 @@ class RegisterController extends Controller
     {
         $validated = $request->validated();
         $user = User::create([
-            "name" => $request->get('name'),
-            "email" => $request->get('email'),
-            "password" => Hash::make($request->get('password')),
+            "name" => $request->get("name"),
+            "email" => $request->get("email"),
+            "password" => Hash::make($request->get("password")),
         ]);
 
         return response("User created", 201);
