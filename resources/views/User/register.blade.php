@@ -38,8 +38,8 @@
                     @enderror
                 </div>
                 <div>
-                    <label for="confirm_password">confirm_password:</label>
-                    <input type="text" id="confirm_password" name="confirm_password" value="{{ old('confirm_password') }}">
+                    <label for="confirm_password">password_confirmation :</label>
+                    <input type="text" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}">
                     @error('confirm_password')
                     <div>
                         {{ $message }}
