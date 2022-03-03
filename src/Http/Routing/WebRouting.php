@@ -14,9 +14,9 @@ class WebRouting extends Routing
     {
         $this->router->get("/", fn() => view("welcome"))->name("home");
 
-        $this->router->get("/auth/register", fn() => view("user.register"))->name("register.form");
+        $this->router->get("/auth/register", [RegisterController::class, "formPage"])->name("register.form");
         $this->router->post("/auth/register", [RegisterController::class, "create"])->name("register");
-        $this->router->get("/auth/login", fn() => view("user.login"))->name("login.form");
+        $this->router->get("/auth/login", [LoginController::class, "formPage"])->name("login.form");
         $this->router->post("/auth/login", [LoginController::class, "login"])->name("login");
         $this->router->get("/auth/logout", [LoginController::class, "logout"])->middleware("auth:sanctum")->name("logout");
 

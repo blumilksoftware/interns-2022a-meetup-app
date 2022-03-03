@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+    public function formPage()
+    {
+       return view("user.login");
+    }
     public function login(LoginUserRequest $request)
     {
         $validated = $request->validated();

@@ -11,13 +11,17 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+    public function formPage()
+    {
+        return view("user.register");
+    }
     public function create(RegisterUserRequest $request)
     {
         $validated = $request->validated();
         $user = User::create([
-            "name" => $validated["name"],
-            "email" => $validated["email"],
-            "password" => Hash::make($validated["password"]),
+            "name" => $request->get('name'),
+            "email" => $request->get('email'),
+            "password" => Hash::make($request->get('password')),
         ]);
 
         return response("User created", 201);
