@@ -17,4 +17,6 @@ RUN apk --no-cache add \
     zip \
     gd \
     && docker-php-ext-configure \
-    zip \
+    zip
+
+EXPOSE 8000
