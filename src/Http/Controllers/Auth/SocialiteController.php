@@ -46,7 +46,7 @@ class SocialiteController extends Controller
             ]);
         }
 
-        $token = $user->createToken("AccessToken")->plainTextToken;
+        $token = $user->createToken($user->email)->plainTextToken;
         $response = [
             "user" => $user["email"],
             "auth_token" => $token,

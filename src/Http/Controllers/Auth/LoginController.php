@@ -24,7 +24,7 @@ class LoginController extends Controller
             return response("Bad credential", 404);
         }
 
-        $token = $user->createToken("AccessToken")->plainTextToken;
+        $token = $user->createToken($user->email)->plainTextToken;
         $response = [
             "user" => $user["email"],
             "auth_token" => $token,

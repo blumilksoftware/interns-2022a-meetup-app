@@ -18,13 +18,13 @@ class UserTableSeeder extends Seeder
         User::create([
             "name" => "Admin",
             "email" => "admin@test.com",
-            "password" => Hash::make("admin123"),
+            "password" => Hash::make("password"),
         ]);
 
         User::create([
             "name" => $faker->name,
             "email" => $faker->email,
-            "password" => Hash::make("password1"),
+            "password" => Hash::make("password"),
         ]);
     }
 }
