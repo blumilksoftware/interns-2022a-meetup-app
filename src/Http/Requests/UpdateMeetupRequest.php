@@ -8,12 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateMeetupRequest extends FormRequest
 {
-    public function authorize()
-    {
-        return true;
-    }
-
-    public function rules()
+    public function rules(): array
     {
         return [
             "title" => "required",

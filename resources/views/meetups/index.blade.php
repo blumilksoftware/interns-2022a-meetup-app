@@ -16,14 +16,12 @@
                         {{ $meetup->place }}
                         {{ $meetup->language }}
 
-                        @can('change', $meetup)
-                            <a href="{{ route('meetups.edit', $meetup) }}">Edit</a>
-                            <form action="{{ route('meetups.destroy', $meetup) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Delete</button>
-                            </form>
-                        @endcan
+                        <a href="{{ route('meetups.edit', $meetup) }}">Edit</a>
+                        <form action="{{ route('meetups.destroy', $meetup) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
                     </div>
                 @endforeach
 
