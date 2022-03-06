@@ -7,10 +7,12 @@ namespace Blumilk\Meetup\Core\Http\Controllers;
 use Blumilk\Meetup\Core\Http\Requests\StoreMeetupRequest;
 use Blumilk\Meetup\Core\Http\Requests\UpdateMeetupRequest;
 use Blumilk\Meetup\Core\Models\Meetup;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class MeetupController extends Controller
 {
-    public function index(): \Illuminate\Contracts\View\View
+    public function index(): View
     {
         $meetups = Meetup::latest()->with(["user"])->paginate(20);
 
@@ -18,32 +20,32 @@ class MeetupController extends Controller
             ->with("meetups", $meetups);
     }
 
-    public function create(): \Illuminate\Contracts\View\View
+    public function create(): View
     {
         return view("meetups.create");
     }
 
-    public function store(StoreMeetupRequest $request): \Illuminate\Http\RedirectResponse
+    public function store(StoreMeetupRequest $request): RedirectResponse
     {
         $request->user()->meetups()->create($request->validated());
 
         return redirect()->route("meetups");
     }
 
-    public function edit(Meetup $meetup): \Illuminate\Contracts\View\View
+    public function edit(Meetup $meetup): View
     {
         return view("meetups.edit")
             ->with("meetup", $meetup);
     }
 
-    public function update(UpdateMeetupRequest $request, Meetup $meetup): \Illuminate\Http\RedirectResponse
+    public function update(UpdateMeetupRequest $request, Meetup $meetup): RedirectResponse
     {
         $meetup->update($request->validated());
 
         return redirect()->route("meetups");
     }
 
-    public function destroy(Meetup $meetup): \Illuminate\Http\RedirectResponse
+    public function destroy(Meetup $meetup): RedirectResponse
     {
         $meetup->delete();
 
