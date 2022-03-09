@@ -56,4 +56,3 @@ class SocialiteController extends Controller
         return response($response, 201);
     }
 }
-

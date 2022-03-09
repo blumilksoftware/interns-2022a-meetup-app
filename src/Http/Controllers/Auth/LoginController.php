@@ -42,4 +42,3 @@ class LoginController extends Controller
         return view("user.logout");
     }
 }
-

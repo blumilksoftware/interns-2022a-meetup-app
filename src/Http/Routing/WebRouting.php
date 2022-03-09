@@ -38,4 +38,3 @@ class WebRouting extends Routing
         });
     }
 }
-

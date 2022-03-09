@@ -28,4 +28,3 @@ class RegisterController extends Controller
         return view("user.registered");
     }
 }
-
