@@ -3,12 +3,12 @@
 @section('content')
     <div>
         <div>
-            <h1>Register</h1>
+            <h1>Sing Up Page</h1>
             <form action="{{ route('register') }}" method="post">
                 @csrf
                 <div>
-                    <a href="{{ route('login.google') }} ">Sing up with google</a>
-                    <a href="{{ route('login.facebook') }} ">Sing up with Facebook</a>
+                    <a href="{{ route('login.google') }}"><button type="button">Sing up with google</button></a>
+                    <a href="{{ route('login.facebook') }}"><button type="button">Sing up with Facebook</button></a>
                 </div>
                 <div>
                     <label for="email">email:</label>

@@ -7,37 +7,39 @@ namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Http\Requests\LoginUserRequest;
 use Blumilk\Meetup\Core\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Blumilk\Meetup\Core\Services\UserLoginService;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class LoginController extends Controller
 {
-    public function formPage()
+    public function store()
     {
         return view("user.login");
     }
-    public function login(LoginUserRequest $request)
+    public function login(LoginUserRequest $request): Response
     {
         $validated = $request->validated();
         $user = User::where("email", $validated["email"])->first();
-        if (!$user || !Hash::check($validated["password"], $user["password"])) {
-            return response("Bad credential", 404);
-        }
+        $service = new UserLoginService();
+        $service->checkUser($user, $request);
 
         $token = $user->createToken($user->email)->plainTextToken;
-        $response = [
+        $data = [
             "user" => $user["email"],
             "auth_token" => $token,
         ];
 
-        return response($response, 201);
+        return response()
+            ->view("user.dashboard")
+            ->header("BearerToken", $data["auth_token"]);
     }
 
-    public function logout(Request $request)
+    public function logout(): View
     {
-        $user = $request;
-        $request->user()->currentAccessToken()->delete();
+        auth()->user()->tokens()->delete();
 
-        return response("Logged Out");
+        return view("user.logout");
     }
 }
+

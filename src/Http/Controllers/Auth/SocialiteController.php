@@ -6,33 +6,34 @@ namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
-    public function redirectToGoogle()
+    public function redirectToGoogle(): RedirectResponse
     {
         return Socialite::driver("google")->redirect();
     }
-    public function handleGoogleCallback()
+    public function handleGoogleCallback(): RedirectResponse
     {
         $user = Socialite::driver("google")->user();
 
         $this->registerOrLogin($user);
 
-        return redirect(route("home"));
+        return redirect()->route("home");
     }
-    public function redirectToFacebook()
+    public function redirectToFacebook(): RedirectResponse
     {
         return Socialite::driver("facebook")->redirect();
     }
-    public function handleFacebookCallback()
+    public function handleFacebookCallback(): RedirectResponse
     {
         $user = Socialite::driver("google")->user();
 
         $this->registerOrLogin($user);
 
-        return redirect(route("home"));
+        return redirect()->route("home");
     }
 
     protected function registerOrLogin($data)
@@ -55,3 +56,4 @@ class SocialiteController extends Controller
         return response($response, 201);
     }
 }
+

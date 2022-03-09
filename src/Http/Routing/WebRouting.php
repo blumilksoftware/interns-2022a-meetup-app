@@ -15,16 +15,18 @@ class WebRouting extends Routing
     {
         $this->router->get("/", fn() => view("welcome"))->name("home");
 
-        $this->router->get("/auth/register", [RegisterController::class, "formPage"])->name("register.form");
-        $this->router->post("/auth/register", [RegisterController::class, "create"])->name("register");
-        $this->router->get("/auth/login", [LoginController::class, "formPage"])->name("login.form");
+        $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register.form");
+        $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register");
+        $this->router->get("/auth/login", [LoginController::class, "store"])->name("login.form");
         $this->router->post("/auth/login", [LoginController::class, "login"])->name("login");
-        $this->router->get("/auth/logout", [LoginController::class, "logout"])->middleware("auth:sanctum")->name("logout");
+        $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth:sanctum");
 
-        $this->router->get("/auth/google/redirect", [SocialiteController::class, "redirectToGoogle"])->name("login.google");
-        $this->router->get("/auth/google/callback", [SocialiteController::class, "handleGoogleCallback"]);
-        $this->router->get("/auth/facebook/redirect", [SocialiteController::class, "redirectToFacebook"])->name("login.facebook");
-        $this->router->get("/auth/facebook/callback", [SocialiteController::class, "handleFacebookCallback"]);
+        $this->router->controller(SocialiteController::class)->group(function (): void {
+            $this->router->get("/auth/google/redirect", [SocialiteController::class, "redirectToGoogle"])->name("login.google");
+            $this->router->get("/auth/google/callback", [SocialiteController::class, "handleGoogleCallback"]);
+            $this->router->get("/auth/facebook/redirect", [SocialiteController::class, "redirectToFacebook"])->name("login.facebook");
+            $this->router->get("/auth/facebook/callback", [SocialiteController::class, "handleFacebookCallback"]);
+        });
 
         $this->router->controller(MeetupController::class)->middleware("auth")->group(function (): void {
             $this->router->get("/meetups", "index")->name("meetups");
@@ -36,3 +38,4 @@ class WebRouting extends Routing
         });
     }
 }
+

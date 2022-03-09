@@ -7,23 +7,25 @@ namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Http\Requests\RegisterUserRequest;
 use Blumilk\Meetup\Core\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\Hashing\Hasher;
+use Illuminate\Contracts\View\View;
 
 class RegisterController extends Controller
 {
-    public function create()
+    public function create(): View
     {
         return view("user.register");
     }
-    public function store(RegisterUserRequest $request)
+    public function store(RegisterUserRequest $request, Hasher $hasher): View
     {
         $validated = $request->validated();
         $user = User::create([
             "name" => $request->get("name"),
             "email" => $request->get("email"),
-            "password" => Hash::make($request->get("password")),
+            "password" => $hasher->make($request->get("password")),
         ]);
 
-        return response("User created", 201);
+        return view("user.registered");
     }
 }
+
