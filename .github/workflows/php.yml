@@ -36,8 +36,5 @@ jobs:
       - name: Run PHP linter
         run: composer ecs
 
-      - name: Run PHP stan
-        run: composer phpstan
-
       - name: Execute tests
         run: php artisan test --env=ci

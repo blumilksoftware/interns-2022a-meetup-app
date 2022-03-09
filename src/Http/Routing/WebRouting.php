@@ -7,6 +7,7 @@ namespace Blumilk\Meetup\Core\Http\Routing;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
+use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
 
 class WebRouting extends Routing
 {
@@ -24,5 +25,14 @@ class WebRouting extends Routing
         $this->router->get("/auth/google/callback", [SocialiteController::class, "handleGoogleCallback"]);
         $this->router->get("/auth/facebook/redirect", [SocialiteController::class, "redirectToFacebook"])->name("login.facebook");
         $this->router->get("/auth/facebook/callback", [SocialiteController::class, "handleFacebookCallback"]);
+
+        $this->router->controller(MeetupController::class)->middleware("auth")->group(function (): void {
+            $this->router->get("/meetups", "index")->name("meetups");
+            $this->router->get("/meetups/create", "create")->name("meetups.create");
+            $this->router->post("/meetups", "store")->name("meetups");
+            $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
+            $this->router->put("/meetups/{meetup}", "update")->name("meetups.update");
+            $this->router->delete("/meetups/{meetup}", "destroy")->name("meetups.destroy");
+        });
     }
 }
