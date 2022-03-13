@@ -16,7 +16,7 @@ class RegisterController extends Controller
     {
         return view("user.register");
     }
-    
+
     public function store(RegisterUserRequest $request, Hasher $hasher): View
     {
         $user = User::create([

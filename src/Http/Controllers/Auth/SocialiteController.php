@@ -24,7 +24,7 @@ class SocialiteController extends Controller
 
         return redirect()->route("home");
     }
-    
+
     public function redirectToFacebook(): RedirectResponse
     {
         return Socialite::driver("facebook")->redirect();
