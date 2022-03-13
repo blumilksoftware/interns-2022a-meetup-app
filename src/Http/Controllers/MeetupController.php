@@ -14,7 +14,7 @@ class MeetupController extends Controller
 {
     public function index(): View
     {
-        $meetups = Meetup::latest()->with(["user"])->paginate(20);
+        $meetups = Meetup::query()->latest()->with(["user"])->paginate(20);
 
         return view("meetups.index")
             ->with("meetups", $meetups);
