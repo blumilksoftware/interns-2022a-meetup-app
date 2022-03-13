@@ -7,6 +7,7 @@ namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
@@ -36,23 +37,24 @@ class SocialiteController extends Controller
         return redirect()->route("home");
     }
 
-    protected function registerOrLogin($data)
+    protected function registerOrLogin($data): void
     {
         $user = User::where("email", $data["email"])->first();
         if (!$user) {
-            $user = User::create([
-                "name" => $data["name"],
-                "email" => $data["email"],
-                "provider_id" => $data["id"],
-            ]);
+            $user = User::firstOrCreate(
+                [
+                    "name" => $data["name"],
+                ],
+                [
+                    "email" => $data["email"],
+                ],
+                [
+                    "provider_id" => $data["id"],
+                ],
+            );
         }
 
-        $token = $user->createToken($user->email)->plainTextToken;
-        $response = [
-            "user" => $user["email"],
-            "auth_token" => $token,
-        ];
-
-        return response($response, 201);
+        Auth::login($user);
+        session()->regenerate();
     }
 }

@@ -18,7 +18,6 @@ class RegisterController extends Controller
     }
     public function store(RegisterUserRequest $request, Hasher $hasher): View
     {
-        $validated = $request->validated();
         $user = User::create([
             "name" => $request->get("name"),
             "email" => $request->get("email"),

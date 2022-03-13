@@ -6,9 +6,9 @@ namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Http\Requests\LoginUserRequest;
-use Blumilk\Meetup\Core\Models\User;
 use Blumilk\Meetup\Core\Services\UserLoginService;
-use Illuminate\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class LoginController extends Controller
@@ -17,27 +17,24 @@ class LoginController extends Controller
     {
         return view("user.login");
     }
-    public function login(LoginUserRequest $request): Response
+    public function login(LoginUserRequest $request): \Illuminate\Contracts\View\View
     {
-        $validated = $request->validated();
-        $user = User::where("email", $validated["email"])->first();
         $service = new UserLoginService();
-        $service->checkUser($user, $request);
-
-        $token = $user->createToken($user->email)->plainTextToken;
         $data = [
-            "user" => $user["email"],
-            "auth_token" => $token,
+            "email" => $request->get("email"),
+            "password" => $request->get("password"),
         ];
+        $service->loginUser($data);
 
-        return response()
-            ->view("user.dashboard")
-            ->header("BearerToken", $data["auth_token"]);
+        return \view("user.dashboard");
     }
 
-    public function logout(): View
+    public function logout(Request $request): View
     {
-        auth()->user()->tokens()->delete();
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        session()->forget("user");
 
         return view("user.logout");
     }

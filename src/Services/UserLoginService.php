@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Services;
 
-use Blumilk\Meetup\Core\Http\Requests\LoginUserRequest;
 use Blumilk\Meetup\Core\Models\User;
 
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserLoginService
@@ -15,10 +16,14 @@ class UserLoginService
     /**
      * @throws AuthenticationException
      */
-    public function checkUser(User $user, LoginUserRequest $request): void
+    public function loginUser($data): Response
     {
-        if (!$user || !Hash::check($request->get("password"), $user["password"])) {
+        $user = User::where("email", $data["email"])->first();
+        if (!$user || !Hash::check($data["password"], $user["password"])) {
             throw new AuthenticationException("Bad credentials");
         }
+        Auth::login($user);
+        session()->regenerate();
+        return response($user->email);
     }
 }

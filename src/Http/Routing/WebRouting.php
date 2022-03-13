@@ -19,7 +19,7 @@ class WebRouting extends Routing
         $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register");
         $this->router->get("/auth/login", [LoginController::class, "store"])->name("login.form");
         $this->router->post("/auth/login", [LoginController::class, "login"])->name("login");
-        $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth:sanctum");
+        $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
 
         $this->router->controller(SocialiteController::class)->group(function (): void {
             $this->router->get("/auth/google/redirect", [SocialiteController::class, "redirectToGoogle"])->name("login.google");
