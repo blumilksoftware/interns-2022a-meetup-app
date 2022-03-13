@@ -1,5 +1,6 @@
 install:
 	cp .env.example .env
+	touch database/database.sqlite
 	docker-compose build
 
 db-create:

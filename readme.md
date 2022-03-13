@@ -4,14 +4,16 @@
 ### Run env for Mac/Linux
 1. `$ make install`
 2. `$ make start`
-3. if the artisan starts serving the website, then you can do the migrations `$ make db-create`
+3. `$ make bash` amd run this commnad `composer install`
+3. `$ make db-create`
 
 ### Run env for Windows
 
-1. `docker-compose up`
+1. `docker-compose up -d`
 2. `cp .env.example .env`
-3. if the artisan starts serving the website, then you can do the migrations 
-   `docker-compose exec php php artisan migrate`
+3. `touch database/database.sqlite`
+4. `docker-compose exec php ash` and run this commnad `composer install`
+5. `docker-compose exec php php artisan migrate`
 
 ### Address where the environment is available
 - `http://localhost`
