@@ -6,6 +6,7 @@ namespace Blumilk\Meetup\Core\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Speaker extends Model
 {
@@ -14,7 +15,7 @@ class Speaker extends Model
     protected $fillable = [
         "name",
         "description",
-        "avatar",
+        "avatar_path",
         "linkedin_url",
         "github_url",
     ];
@@ -22,4 +23,9 @@ class Speaker extends Model
     protected $casts = [
         "date" => "datetime:Y-m-d h:i:s",
     ];
+
+    public function meetup(): BelongsTo
+    {
+        return $this->belongsTo(Meetup::class);
+    }
 }

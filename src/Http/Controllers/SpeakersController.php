@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
-use Blumilk\Meetup\Core\Http\Requests\UpdateSpeakerRequest;
+use Blumilk\Meetup\Core\Contracts\StoreFile;
+use Blumilk\Meetup\Core\Http\Requests\Speaker\UpdateSpeakerRequest;
 use Blumilk\Meetup\Core\Models\Speaker;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -28,6 +29,14 @@ class SpeakersController extends Controller
     {
         return view("speakers.edit")
             ->with("speakers", $speaker);
+    }
+
+    public function store(UpdateSpeakerRequest $request, StoreFile $service): RedirectResponse
+    {
+        $service->storeFile("speakers", $request->file("avatar"));
+        $request->user()->meetups()->speakers()->create($request->validated());
+
+        return redirect()->route("speakers");
     }
 
     public function update(UpdateSpeakerRequest $request, Speaker $speaker): RedirectResponse

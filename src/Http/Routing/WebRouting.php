@@ -22,7 +22,7 @@ class WebRouting extends Routing
             $this->router->delete("/meetups/{meetup}", "destroy")->name("meetups.destroy");
         });
 
-        $this->router->controller(SpeakersController::class)->middleware("auth")->group(function (): void {
+        $this->router->controller(SpeakersController::class)->group(function (): void {
             $this->router->get("/speakers", "index")->name("speakers");
             $this->router->get("/speakers/create", "create")->name("speakers.create");
             $this->router->get("/speakers/{meetup}/edit", "edit")->name("speakers.edit");

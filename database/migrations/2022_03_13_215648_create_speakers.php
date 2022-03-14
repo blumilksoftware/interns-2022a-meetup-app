@@ -11,9 +11,10 @@ return new class() extends Migration {
     {
         Schema::create("speakers", function (Blueprint $table): void {
             $table->id();
+            $table->foreignId("meetup_id")->constrained()->onDelete("cascade");
             $table->string("name");
             $table->text("description")->nullable();
-            $table->string("avatar")->unique()->nullable();
+            $table->string("avatar_path")->default("");
             $table->string("linkedin_url")->nullable();
             $table->string("github_url")->nullable();
             $table->timestamps();
