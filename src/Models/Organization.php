@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Organization extends Model
@@ -19,6 +18,7 @@ class Organization extends Model
         "organization_type",
         "foundation_date",
         "number_of_employers",
+        "logo",
         "website_url",
         "facebook_url",
         "linkedin_url",
