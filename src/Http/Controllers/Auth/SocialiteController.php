@@ -8,6 +8,7 @@ use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
@@ -16,11 +17,11 @@ class SocialiteController extends Controller
     {
         return Socialite::driver("google")->redirect();
     }
+
     public function handleGoogleCallback(): RedirectResponse
     {
         $user = Socialite::driver("google")->user();
-
-        $this->registerOrLogin($user);
+        $this->registerOrLogin($user, "google");
 
         return redirect()->route("home");
     }
@@ -29,31 +30,32 @@ class SocialiteController extends Controller
     {
         return Socialite::driver("facebook")->redirect();
     }
+
     public function handleFacebookCallback(): RedirectResponse
     {
-        $user = Socialite::driver("google")->user();
-
-        $this->registerOrLogin($user);
+        $user = Socialite::driver("facebook")->user();
+        $this->registerOrLogin($user, "facebook");
 
         return redirect()->route("home");
     }
 
-    protected function registerOrLogin($data): void
+    protected function registerOrLogin($SocialUser, string $provider): void
     {
-        $user = User::where("email", $data["email"])->first();
-        if (!$user) {
-            $user = User::firstOrCreate(
-                [
-                    "name" => $data["name"],
-                ],
-                [
-                    "email" => $data["email"],
-                ],
-                [
-                    "provider_id" => $data["id"],
-                ],
-            );
-        }
+        $user = User::firstOrCreate(
+            [
+                "email" => $SocialUser["email"],
+            ],
+            [
+                "name" => $SocialUser["name"],
+                "email" => $SocialUser["email"],
+                "password" => Hash::make($SocialUser["email"]),
+            ],
+        );
+
+        $user->socialAccounts()->firstOrCreate([
+            "provider_id" => $SocialUser->id,
+            "provider" => $provider,
+        ]);
 
         Auth::login($user);
         session()->regenerate();

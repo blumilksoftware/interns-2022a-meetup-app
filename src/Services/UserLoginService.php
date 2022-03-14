@@ -16,14 +16,15 @@ class UserLoginService
     /**
      * @throws AuthenticationException
      */
-    public function loginUser($data): Response
+    public function loginUser(string $email, string $password): Response
     {
-        $user = User::where("email", $data["email"])->first();
-        if (!$user || !Hash::check($data["password"], $user["password"])) {
+        $user = User::where("email", $email)->first();
+        if (!$user || !Hash::check($password, $user->password)) {
             throw new AuthenticationException("Bad credentials");
         }
         Auth::login($user);
         session()->regenerate();
+
         return response($user->email);
     }
 }
