@@ -5,7 +5,7 @@
         <div>
             <h1>Create Organization</h1>
             @auth
-                <form action="{{ route('organizations.store') }}" method="post">
+                <form action="{{ route('organizations.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div>
                         <label for="name">Name:</label>
@@ -36,6 +36,11 @@
                         <label for="number_of_employers">Number of employers:</label>
                         <input type="text" id="number_of_employers" name="number_of_employers" value="{{ old('number_of_employers') }}">
                         <x-input-error for="number_of_employers"/>
+                    </div>
+                    <div>
+                        <label for="logo">Logo image:</label>
+                        <input type="file" id="logo" name="logo">
+                        <x-input-error for="logo"/>
                     </div>
                     <div>
                         <label for="website_url">Website:</label>

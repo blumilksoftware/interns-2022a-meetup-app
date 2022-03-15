@@ -7,6 +7,7 @@ namespace Blumilk\Meetup\Core\Http\Controllers;
 use Blumilk\Meetup\Core\Http\Requests\StoreOrganizationRequest;
 use Blumilk\Meetup\Core\Http\Requests\UpdateOrganizationRequest;
 use Blumilk\Meetup\Core\Models\Organization;
+use Blumilk\Meetup\Core\Services\Organization\StoreFileService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -14,7 +15,7 @@ class OrganizationController extends Controller
 {
     public function index(): View
     {
-        $organizations = Organization::orderBy("name")->paginate(20);
+        $organizations = Organization::query()->orderBy("name")->paginate(20);
 
         return view("organizations.index")
             ->with("organizations", $organizations);
@@ -25,9 +26,12 @@ class OrganizationController extends Controller
         return view("organizations.create");
     }
 
-    public function store(StoreOrganizationRequest $request): RedirectResponse
+    public function store(StoreOrganizationRequest $request, StoreFileService $service): RedirectResponse
     {
-        Organization::create($request->validated());
+        $input = $request->validated();
+        $input["logo"] = $service->storeFile("organizations/logos", $request->file("logo"));
+
+        Organization::query()->create($input);
 
         return redirect()->route("organizations");
     }
@@ -38,9 +42,14 @@ class OrganizationController extends Controller
             ->with("organization", $organization);
     }
 
-    public function update(UpdateOrganizationRequest $request, Organization $organization): RedirectResponse
+    public function update(UpdateOrganizationRequest $request, Organization $organization, StoreFileService $storeFileService): RedirectResponse
     {
-        $organization->update($request->validated());
+        $input = $request->validated();
+        if ($request->hasFile("logo")) {
+            $input["logo"] = $storeFileService->storeFile("organizations/logos", $request->file("logo"));
+        }
+
+        $organization->update($input);
 
         return redirect()->route("organizations");
     }

@@ -17,6 +17,7 @@ return new class() extends Migration {
             $table->string("organization_type");
             $table->dateTime("foundation_date");
             $table->string("number_of_employers");
+            $table->string("logo");
             $table->string("website_url")->nullable();
             $table->string("facebook_url")->nullable();
             $table->string("linkedin_url")->nullable();
