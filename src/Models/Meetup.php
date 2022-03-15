@@ -21,7 +21,7 @@ class Meetup extends Model
     ];
 
     protected $casts = [
-        "date" => Formats::DATETIME,
+        "date:" . Formats::DATETIME,
     ];
 
     public function user(): BelongsTo

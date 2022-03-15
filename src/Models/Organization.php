@@ -30,7 +30,7 @@ class Organization extends Model
     ];
 
     protected $casts = [
-        "foundation_date" => Formats::DATETIME,
+        "foundation_date:" . Formats::DATETIME,
     ];
 
     public function meetups(): HasMany
