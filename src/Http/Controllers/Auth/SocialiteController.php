@@ -13,8 +13,8 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
-    const google = "google";
-    const facebook = "facebook";
+    protected const google = "google";
+    protected const facebook = "facebook";
     public function redirectToGoogle(): RedirectResponse
     {
         return Socialite::driver(self::google)->redirect();
