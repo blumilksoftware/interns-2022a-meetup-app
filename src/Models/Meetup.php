@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Models;
 
+use Blumilk\Meetup\Core\Formats;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -20,7 +21,7 @@ class Meetup extends Model
     ];
 
     protected $casts = [
-        "date" => "datetime:Y-m-d h:i:s",
+        "date" => Formats::DATETIME,
     ];
 
     public function user(): BelongsTo
