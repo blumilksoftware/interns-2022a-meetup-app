@@ -13,47 +13,49 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
+    const google = "google";
+    const facebook = "facebook";
     public function redirectToGoogle(): RedirectResponse
     {
-        return Socialite::driver("google")->redirect();
+        return Socialite::driver(self::google)->redirect();
     }
 
     public function handleGoogleCallback(): RedirectResponse
     {
-        $user = Socialite::driver("google")->user();
-        $this->registerOrLogin($user, "google");
+        $user = Socialite::driver(self::google)->user();
+        $this->registerOrLogin($user, self::google);
 
         return redirect()->route("home");
     }
 
     public function redirectToFacebook(): RedirectResponse
     {
-        return Socialite::driver("facebook")->redirect();
+        return Socialite::driver(self::facebook)->redirect();
     }
 
     public function handleFacebookCallback(): RedirectResponse
     {
-        $user = Socialite::driver("facebook")->user();
-        $this->registerOrLogin($user, "facebook");
+        $user = Socialite::driver(self::facebook)->user();
+        $this->registerOrLogin($user, self::facebook);
 
         return redirect()->route("home");
     }
 
-    protected function registerOrLogin($SocialUser, string $provider): void
+    protected function registerOrLogin($socialUser, string $provider): void
     {
         $user = User::firstOrCreate(
             [
-                "email" => $SocialUser["email"],
+                "email" => $socialUser["email"],
             ],
             [
-                "name" => $SocialUser["name"],
-                "email" => $SocialUser["email"],
-                "password" => Hash::make($SocialUser["email"]),
+                "name" => $socialUser["name"],
+                "email" => $socialUser["email"],
+                "password" => Hash::make($socialUser["email"]),
             ],
         );
 
         $user->socialAccounts()->firstOrCreate([
-            "provider_id" => $SocialUser->id,
+            "provider_id" => $socialUser->id,
             "provider" => $provider,
         ]);
 
