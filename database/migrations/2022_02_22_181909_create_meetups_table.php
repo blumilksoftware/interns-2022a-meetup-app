@@ -12,6 +12,7 @@ return new class() extends Migration {
         Schema::create("meetups", function (Blueprint $table): void {
             $table->id();
             $table->foreignId("user_id")->constrained()->onDelete("cascade");
+            $table->foreignId("organization_id")->nullable()->constrained()->onDelete("set null");
             $table->string("title");
             $table->text("description")->nullable();
             $table->dateTime("date");
