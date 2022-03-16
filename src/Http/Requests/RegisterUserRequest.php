@@ -8,11 +8,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterUserRequest extends FormRequest
 {
-    public function authorize()
-    {
-        return true;
-    }
-
     public function rules(): array
     {
         return [

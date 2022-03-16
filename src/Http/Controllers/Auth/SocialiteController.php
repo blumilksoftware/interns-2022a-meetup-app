@@ -6,37 +6,41 @@ namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Models\User;
+use Blumilk\Meetup\Core\Providers\AvailableAuthenticationProviders as Provider;
+use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
-    protected const google = "google";
-    protected const facebook = "facebook";
+    public function __construct(Auth $auth, Hasher $hasher)
+    {
+        $this->auth = $auth;
+        $this->hasher = $hasher;
+    }
     public function redirectToGoogle(): RedirectResponse
     {
-        return Socialite::driver(self::google)->redirect();
+        return Socialite::driver(Provider::GOOGLE)->redirect();
     }
 
     public function handleGoogleCallback(): RedirectResponse
     {
-        $user = Socialite::driver(self::google)->user();
-        $this->registerOrLogin($user, self::google);
+        $user = Socialite::driver(Provider::GOOGLE)->user();
+        $this->registerOrLogin($user, Provider::GOOGLE);
 
         return redirect()->route("home");
     }
 
     public function redirectToFacebook(): RedirectResponse
     {
-        return Socialite::driver(self::facebook)->redirect();
+        return Socialite::driver(Provider::FACEBOOK)->redirect();
     }
 
     public function handleFacebookCallback(): RedirectResponse
     {
-        $user = Socialite::driver(self::facebook)->user();
-        $this->registerOrLogin($user, self::facebook);
+        $user = Socialite::driver(Provider::FACEBOOK)->user();
+        $this->registerOrLogin($user, Provider::FACEBOOK);
 
         return redirect()->route("home");
     }
@@ -50,7 +54,7 @@ class SocialiteController extends Controller
             [
                 "name" => $socialUser["name"],
                 "email" => $socialUser["email"],
-                "password" => Hash::make($socialUser["email"]),
+                "password" => $this->hasher->make($socialUser["email"]),
             ],
         );
 
@@ -59,7 +63,7 @@ class SocialiteController extends Controller
             "provider" => $provider,
         ]);
 
-        Auth::login($user);
+        $this->auth::login($user);
         session()->regenerate();
     }
 }

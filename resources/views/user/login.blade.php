@@ -13,20 +13,12 @@
                 <div>
                     <label for="email">email:</label>
                     <input type="text" id="email" name="email" value="{{ old('email') }}">
-                    @error('email')
-                    <div>
-                        {{ $message }}
-                    </div>
-                    @enderror
+                    <x-input-error for="email"/>
                 </div>
                 <div>
                     <label for="password">password:</label>
                     <input type="text" id="password" name="password" value="{{ old('password') }}">
-                    @error('password')
-                    <div>
-                        {{ $message }}
-                    </div>
-                    @enderror
+                    <x-input-error for="password"/>
                 </div>
                 <div>
                     <button type="submit">Login</button>
@@ -35,4 +27,3 @@
         </div>
     </div>
     @endsection
-

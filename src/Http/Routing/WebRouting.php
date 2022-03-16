@@ -8,14 +8,12 @@ use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
-use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 
 class WebRouting extends Routing
 {
     public function wire(): void
     {
         $this->router->get("/", fn() => view("welcome"))->name("home");
-
 
         $this->router->prefix("/auth")->group(function (): void {
             $this->router->get("/register", [RegisterController::class, "create"])->name("register.form");
@@ -26,9 +24,9 @@ class WebRouting extends Routing
 
             $this->router->controller(SocialiteController::class)->group(function (): void {
                 $this->router->get("/google/redirect", "redirectToGoogle")->name("login.google");
-                $this->router->get("/google/callback",  "handleGoogleCallback");
+                $this->router->get("/google/callback", "handleGoogleCallback");
                 $this->router->get("/facebook/redirect", "redirectToFacebook")->name("login.facebook");
-                $this->router->get("/facebook/callback",  "handleFacebookCallback");
+                $this->router->get("/facebook/callback", "handleFacebookCallback");
             });
         });
 
@@ -40,7 +38,5 @@ class WebRouting extends Routing
             $this->router->put("/{meetup}", "update")->name("meetups.update");
             $this->router->delete("/{meetup}", "destroy")->name("meetups.destroy");
         });
-
-
     }
 }

@@ -25,12 +25,11 @@ class LoginController extends Controller
         return view("user.dashboard");
     }
 
-    public function logout(Request $request): View
+    public function logout(Request $request, Auth $auth): View
     {
-        Auth::logout();
+        $auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        session()->forget("user");
 
         return view("user.logout");
     }

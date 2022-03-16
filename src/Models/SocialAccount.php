@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class SocialAccount extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         "provider",
         "provider_id",

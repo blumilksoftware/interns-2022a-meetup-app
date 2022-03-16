@@ -13,38 +13,22 @@
                 <div>
                     <label for="email">email:</label>
                     <input type="text" id="email" name="email" value="{{ old('email') }}">
-                    @error('email')
-                    <div>
-                        {{ $message }}
-                    </div>
-                    @enderror
+                    <x-input-error for="email"/>
                 </div>
                 <div>
                     <label for="name">name:</label>
                     <input type="text" id="name" name="name" value="{{ old('name') }}">
-                    @error('name')
-                    <div>
-                        {{ $message }}
-                    </div>
-                    @enderror
+                    <x-input-error for="name"/>
                 </div>
                 <div>
                     <label for="password">password:</label>
                     <input type="text" id="password" name="password" value="{{ old('password') }}">
-                    @error('password')
-                    <div>
-                        {{ $message }}
-                    </div>
-                    @enderror
+                    <x-input-error for="password"/>
                 </div>
                 <div>
                     <label for="confirm_password">password_confirmation :</label>
                     <input type="text" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}">
-                    @error('confirm_password')
-                    <div>
-                        {{ $message }}
-                    </div>
-                    @enderror
+                    <x-input-error for="password_confirmation"/>
                 </div>
                 <div>
                     <button type="submit">Create</button>
@@ -53,4 +37,3 @@
         </div>
     </div>
     @endsection
-
