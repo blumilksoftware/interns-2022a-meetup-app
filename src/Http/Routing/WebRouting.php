@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Http\Routing;
 
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
-use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
-
+use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
 
 class WebRouting extends Routing
 {
@@ -24,7 +23,6 @@ class WebRouting extends Routing
             $this->router->delete("/meetups/{meetup}", "destroy")->name("meetups.destroy");
         });
 
-
         $this->router->controller(OrganizationController::class)->middleware("auth")->group(function (): void {
             $this->router->get("/organizations", "index")->name("organizations");
             $this->router->get("/organizations/create", "create")->name("organizations.create");
@@ -36,9 +34,11 @@ class WebRouting extends Routing
 
         $this->router->controller(SpeakersController::class)->group(function (): void {
             $this->router->get("/speakers", "index")->name("speakers");
+            $this->router->post("/speakers", "store")->name("speakers.store");
             $this->router->get("/speakers/create", "create")->name("speakers.create");
             $this->router->get("/speakers/{meetup}/edit", "edit")->name("speakers.edit");
             $this->router->put("/speakers/{speaker}", "update")->name("speakers.update");
             $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
         });
+    }
 }

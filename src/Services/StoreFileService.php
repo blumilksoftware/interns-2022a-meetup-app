@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Blumilk\Meetup\Core\Services\Organization;
+namespace Blumilk\Meetup\Core\Services;
 
+use Blumilk\Meetup\Core\Contracts\StoreFile;
 use Illuminate\Http\UploadedFile;
 
-class StoreFileService
+class StoreFileService implements StoreFile
 {
     protected string $path;
 

@@ -7,7 +7,7 @@
             @auth
                 <a href="{{ route('speakers.create') }}">Add new speakers</a>
             @endauth
-            @if ($speaker->count())
+            @if ($speakers->count())
                 @foreach ($speakers as $speaker)
                     <div>
                         {{ $speaker->name }}
@@ -24,8 +24,6 @@
                         </form>
                     </div>
                 @endforeach
-
-                {{ $speaker->links() }}
             @else
                 <p>There are no speakers</p>
             @endif

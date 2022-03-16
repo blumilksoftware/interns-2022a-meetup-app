@@ -43,6 +43,7 @@ return [
         Blumilk\Meetup\Core\Providers\EventServiceProvider::class,
         Blumilk\Meetup\Core\Providers\RouteServiceProvider::class,
         Blumilk\Meetup\Core\Providers\TelescopeServiceProvider::class,
+        Blumilk\Meetup\Core\Providers\StoreFileProvider::class,
     ],
     "aliases" => [
         Facade::defaultAliases()->toArray(),

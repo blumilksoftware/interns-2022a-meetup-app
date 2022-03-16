@@ -6,7 +6,7 @@ namespace Blumilk\Meetup\Core\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Speaker extends Model
 {
@@ -24,8 +24,8 @@ class Speaker extends Model
         "date" => "datetime:Y-m-d h:i:s",
     ];
 
-    public function meetup(): BelongsTo
+    public function meetup(): HasMany
     {
-        return $this->belongsTo(Meetup::class);
+        return $this->hasMany(Meetup::class);
     }
 }

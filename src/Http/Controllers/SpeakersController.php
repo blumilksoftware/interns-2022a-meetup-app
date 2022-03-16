@@ -34,7 +34,7 @@ class SpeakersController extends Controller
     public function store(UpdateSpeakerRequest $request, StoreFile $service): RedirectResponse
     {
         $service->storeFile("speakers", $request->file("avatar"));
-        $request->user()->meetups()->speakers()->create($request->validated());
+        Speaker::query()->create($request->validated());
 
         return redirect()->route("speakers");
     }
