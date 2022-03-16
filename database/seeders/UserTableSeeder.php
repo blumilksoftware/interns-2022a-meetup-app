@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use Blumilk\Meetup\Core\Models\User;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,7 +15,7 @@ class UserTableSeeder extends Seeder
     {
         User::truncate();
 
-        $faker = \Faker\Factory::create();
+        $faker = Factory::create();
 
         User::create([
             "name" => "Admin",
