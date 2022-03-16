@@ -8,6 +8,7 @@ use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
+use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 
 class WebRouting extends Routing
 {
@@ -33,10 +34,19 @@ class WebRouting extends Routing
         $this->router->controller(MeetupController::class)->middleware("auth")->prefix("/meetups")->group(function (): void {
             $this->router->get("/", "index")->name("meetups");
             $this->router->get("/create", "create")->name("meetups.create");
-            $this->router->post("/", "store")->name("meetups");
+            $this->router->post("/", "store")->name("meetups.store"");
             $this->router->get("/{meetup}/edit", "edit")->name("meetups.edit");
             $this->router->put("/{meetup}", "update")->name("meetups.update");
             $this->router->delete("/{meetup}", "destroy")->name("meetups.destroy");
+        });
+
+        $this->router->controller(OrganizationController::class)->middleware("auth")->group(function (): void {
+            $this->router->get("/organizations", "index")->name("organizations");
+            $this->router->get("/organizations/create", "create")->name("organizations.create");
+            $this->router->post("/organizations", "store")->name("organizations.store");
+            $this->router->get("/organizations/{organization}/edit", "edit")->name("organizations.edit");
+            $this->router->put("/organizations/{organization}", "update")->name("organizations.update");
+            $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");
         });
     }
 }

@@ -51,4 +51,5 @@ return [
         "Auth" => Illuminate\Support\Facades\Auth::class,
     ],
     "Socialite" => Laravel\Socialite\Facades\Socialite::class,
+    ],
 ];
