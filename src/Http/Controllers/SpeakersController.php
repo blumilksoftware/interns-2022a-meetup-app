@@ -28,7 +28,7 @@ class SpeakersController extends Controller
     public function edit(Speaker $speaker): View
     {
         return view("speakers.edit")
-            ->with("speakers", $speaker);
+            ->with("speaker", $speaker);
     }
 
     public function store(UpdateSpeakerRequest $request, StoreFile $service): RedirectResponse
