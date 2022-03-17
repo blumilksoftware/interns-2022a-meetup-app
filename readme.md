@@ -4,7 +4,7 @@
 ### Run env for Mac/Linux
 1. `$ make install`
 2. `$ make start`
-3. `$ make bash` amd run this commnad `composer install`
+3. `$ make bash` and run this command `composer install`
 3. `$ make db-create`
 
 ### Run env for Windows
