@@ -25,12 +25,12 @@
                     </div>
                     <div>
                         <label for="linkedin_url">Linkedin url:</label>
-                        <input type="text" id="linkedin_url" name="linkedin_url" value="{{ old('linkedin_url', $speaker->linkedin_url) }}">
+                        <input type="text" id="linkedin_url" name="linkedin_url" value="{{ old('linkedinUrl', $speaker->linkedinUrl) }}">
                         <x-input-error for="linkedin_url"/>
                     </div>
                     <div>
                         <label for="github_url">Github url:</label>
-                        <input type="text" id="github_url" name="github_url" value="{{ old('github_url', $speaker->github_url) }}">
+                        <input type="text" id="github_url" name="github_url" value="{{ old('githubUrl', $speaker->githubUrl) }}">
                         <x-input-error for="github_url"/>
                     </div>
                     <div>

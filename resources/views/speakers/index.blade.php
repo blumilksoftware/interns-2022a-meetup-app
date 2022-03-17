@@ -13,8 +13,8 @@
                         {{ $speaker->name }}
                         {{ $speaker->description }}
                         {{ $speaker->avatar }}
-                        {{ $speaker->linkedin_url }}
-                        {{ $speaker->github_url }}
+                        {{ $speaker->linkedinUrl }}
+                        {{ $speaker->githubUrl }}
 
                         <a href="{{ route('speakers.edit', $speaker) }}">Edit</a>
                         <form action="{{ route('speakers.destroy', $speaker) }}" method="post">

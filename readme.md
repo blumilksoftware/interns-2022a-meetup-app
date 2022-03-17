@@ -2,10 +2,12 @@
 
 ### Development
 ### Run env for Mac/Linux
+
 1. `$ make install`
 2. `$ make start`
-3. `$ make bash` and run this command `composer install`
-3. `$ make db-create`
+3. `touch database/database.sqlite`
+4. `$ make bash` and run this command `composer install`
+6. `$ make db-create`
 
 ### Run env for Windows
 
