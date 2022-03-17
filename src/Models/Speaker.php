@@ -21,7 +21,7 @@ class Speaker extends Model
     ];
 
     protected $casts = [
-        "date" => "datetime:Y-m-d h:i:s",
+        "date:" . Formats::DATETIME,
     ];
 
     public function meetup(): HasMany
