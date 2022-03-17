@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
+use Blumilk\Meetup\Core\AvailableAuthentication as Provider;
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Models\User;
-use Blumilk\Meetup\Core\Providers\AvailableAuthenticationProviders as Provider;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;

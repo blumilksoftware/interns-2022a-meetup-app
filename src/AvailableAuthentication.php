@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Blumilk\Meetup\Core\Providers;
+namespace Blumilk\Meetup\Core;
 
-class AvailableAuthenticationProviders
+class AvailableAuthentication
 {
     public const GOOGLE = "google";
     public const FACEBOOK = "facebook";
