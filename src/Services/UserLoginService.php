@@ -24,7 +24,7 @@ class UserLoginService
     public function loginUser(string $email, string $password): Response
     {
         $user = User::where("email", $email)->first();
-        if (!$user || $this->hasher->check($password, $user->password)) {
+        if (!$user || !$this->hasher->check($password, $user->password)) {
             throw new AuthenticationException("Bad credentials");
         }
         $this->auth::login($user);
