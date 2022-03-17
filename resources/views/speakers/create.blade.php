@@ -19,7 +19,7 @@
                     </div>
                     <div>
                         <label for="avatar">Avatar:</label>
-                        <input type="file" id="avatar" name="avatar" value="{{ old('avatar') }}">
+                        <input type="file" id="avatar" name="avatar">
                         <x-input-error for="avatar"/>
                     </div>
                     <div>
