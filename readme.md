@@ -12,7 +12,7 @@
 1. `docker-compose up -d`
 2. `cp .env.example .env`
 3. `touch database/database.sqlite`
-4. `docker-compose exec php ash` and run this commnad `composer install`
+4. `docker-compose exec php ash` and run this command `composer install`
 5. `docker-compose exec php php artisan migrate`
 
 ### Address where the environment is available
