@@ -21,6 +21,10 @@
     "fakerphp/faker": "^1.9.1",
     "mockery/mockery": "^1.4.4",
     "nunomaduro/collision": "^6.1",
+    "nunomaduro/larastan": "^2.0",
+    "orchestra/testbench": "^7.0",
+    "phpstan/phpstan": "^1.4",
+    "phpstan/phpstan-mockery": "^1.0",
     "phpunit/phpunit": "^9.5.10",
     "spatie/laravel-ignition": "^1.0"
   },
@@ -44,7 +48,18 @@
   },
   "scripts": {
     "ecs": "./vendor/bin/ecs check",
-    "ecsf": "./vendor/bin/ecs check --fix"
+    "ecsf": "./vendor/bin/ecs check --fix",
+    "test": "phpunit",
+    "code-style": [
+      "vendor/bin/phpcs",
+      "@phpstan"
+    ],
+    "phpstan": [
+      "php -d memory_limit=600M vendor/bin/phpstan analyse -l 5 -c phpstan.neon"
+    ],
+    "post-autoload-dump": [
+      "@php ./vendor/bin/testbench package:discover --ansi"
+    ]
   },
   "extra": {
     "laravel": {
