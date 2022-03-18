@@ -50,5 +50,4 @@ return [
         "Formats" => Blumilk\Meetup\Core\Formats::class,
         "Auth" => Illuminate\Support\Facades\Auth::class,
     ],
-    "Socialite" => Laravel\Socialite\Facades\Socialite::class,
 ];

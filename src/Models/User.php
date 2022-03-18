@@ -35,6 +35,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "remember_token",
     ];
 
+    protected $guarded = [
+        "id",
+    ];
+
     protected $casts = [
         "email_verified_at" => "datetime",
     ];

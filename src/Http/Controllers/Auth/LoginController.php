@@ -8,9 +8,9 @@ use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Http\Requests\LoginUserRequest;
 use Blumilk\Meetup\Core\Services\UserLoginService;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -31,9 +31,9 @@ class LoginController extends Controller
         return view("user.dashboard");
     }
 
-    public function logout(Request $request, Auth $auth): View
+    public function logout(Request $request, AuthManager $auth): View
     {
-        $auth::logout();
+        $auth->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

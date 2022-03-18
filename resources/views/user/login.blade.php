@@ -7,7 +7,7 @@
             <form action="{{ route('login') }}" method="post">
                 @csrf
                 <div>
-                    <a href="{{ route('login.google') }}"><button type="button">Sing in with google</button></a>
+                    <a href="{{ route('login.google') }}"><button type="button">Sing in with Google</button></a>
                     <a href="{{ route('login.facebook') }}"><button type="button">Sing in with Facebook</button></a>
                 </div>
                 <div>

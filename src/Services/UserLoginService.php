@@ -7,29 +7,28 @@ namespace Blumilk\Meetup\Core\Services;
 use Blumilk\Meetup\Core\Models\User;
 
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Hashing\Hasher;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Session\Store;
 
 class UserLoginService
 {
-    public function __construct(Auth $auth, Hasher $hasher)
+    public function __construct(AuthManager $authManager, Hasher $hasher, Store $session)
     {
-        $this->auth = $auth;
+        $this->auth = $authManager;
         $this->hasher = $hasher;
+        $this->session = $session;
     }
     /**
      * @throws AuthenticationException
      */
-    public function loginUser(string $email, string $password): Response
+    public function loginUser(string $email, string $password): void
     {
         $user = User::where("email", $email)->first();
         if (!$user || !$this->hasher->check($password, $user->password)) {
             throw new AuthenticationException("Bad credentials");
         }
-        $this->auth::login($user);
-        session()->regenerate();
-
-        return response($user->email);
+        $this->auth->login($user);
+        $this->session->regenerate();
     }
 }
