@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core;
 
-class AvailableAuthentication
+enum AvailableAuthentication : string
 {
-    public const GOOGLE = "google";
-    public const FACEBOOK = "facebook";
+    case GOOGLE = "google";
+    case FACEBOOK = "facebook";
 }

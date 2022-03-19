@@ -13,11 +13,11 @@ use Illuminate\Session\Store;
 
 class UserLoginService
 {
-    public function __construct(AuthManager $authManager, Hasher $hasher, Store $session)
-    {
-        $this->auth = $authManager;
-        $this->hasher = $hasher;
-        $this->session = $session;
+    public function __construct(
+        public AuthManager $authManager,
+        public Hasher $hasher,
+        public Store $session,
+    ) {
     }
     /**
      * @throws AuthenticationException
@@ -28,7 +28,7 @@ class UserLoginService
         if (!$user || !$this->hasher->check($password, $user->password)) {
             throw new AuthenticationException("Bad credentials");
         }
-        $this->auth->login($user);
+        $this->authManager->login($user);
         $this->session->regenerate();
     }
 }

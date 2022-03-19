@@ -6,22 +6,19 @@ namespace Blumilk\Meetup\Core\Services;
 
 use Blumilk\Meetup\Core\Models\User;
 
-use Illuminate\Auth\AuthenticationException;
+
 use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Session\Store;
 
 class SocialUserLoginService
 {
-    public function __construct(AuthManager $auth, Hasher $hasher, Store $session)
-    {
-        $this->auth = $auth;
-        $this->hasher = $hasher;
-        $this->session = $session;
+    public function __construct(
+        public AuthManager $authManager,
+        public Hasher $hasher,
+        public Store $session,
+    ) {
     }
-    /**
-     * @throws AuthenticationException
-     */
     public function registerOrLogin($socialUser, string $provider): void
     {
         $appUser = User::query()->firstOrCreate(
@@ -42,7 +39,7 @@ class SocialUserLoginService
             "provider" => $provider,
         ]);
 
-        $this->auth->login($appUser);
+        $this->authManager->login($appUser);
         $this->session->regenerate();
     }
 }
