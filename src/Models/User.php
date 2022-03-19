@@ -16,7 +16,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract,
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
     use Authenticatable;
     use Authorizable;
@@ -40,8 +40,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "email_verified_at" => "datetime",
     ];
 
-    public function setPasswordAttribute($password){
-        $this->attributes['password'] = Hash::make($password);
+    public function setPasswordAttribute($password): void
+    {
+        $this->attributes["password"] = Hash::make($password);
     }
 
     public function meetups(): HasMany
