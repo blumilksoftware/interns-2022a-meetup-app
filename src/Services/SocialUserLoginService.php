@@ -16,6 +16,7 @@ class SocialUserLoginService
         public Hasher $hasher,
         public Store $session,
     ) {}
+
     public function registerOrLogin($socialUser, string $provider): void
     {
         $appUser = User::query()->firstOrCreate(

@@ -18,6 +18,7 @@ class UserLoginService
         public Hasher $hasher,
         public Store $session,
     ) {}
+
     /**
      * @throws AuthenticationException
      */

@@ -13,7 +13,6 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
@@ -39,11 +38,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $casts = [
         "email_verified_at" => "datetime",
     ];
-
-    public function setPasswordAttribute($password): void
-    {
-        $this->attributes["password"] = Hash::make($password);
-    }
 
     public function meetups(): HasMany
     {
