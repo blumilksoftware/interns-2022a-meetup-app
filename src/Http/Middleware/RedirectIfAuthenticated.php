@@ -15,8 +15,7 @@ class RedirectIfAuthenticated
     public function __construct(
         protected Redirector $redirector,
         protected AuthManager $authManager,
-    ) {
-    }
+    ) {}
 
     public function handle(Request $request, Closure $next, ...$guards): Response
     {

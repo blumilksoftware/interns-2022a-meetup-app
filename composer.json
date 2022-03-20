@@ -18,7 +18,7 @@
   },
   "require-dev": {
     "blumilksoftware/blt": "dev-main",
-    "blumilksoftware/codestyle": "^0.9.0",
+    "blumilksoftware/codestyle": "^0.9.0 || ^0.10.0",
     "fakerphp/faker": "^1.9.1",
     "mockery/mockery": "^1.4.4",
     "nunomaduro/collision": "^6.1",
