@@ -15,7 +15,7 @@ class SocialiteController extends Controller
     public function __construct(
         public SocialUserLoginService $service,
     ) {}
-    
+
     public function redirectToGoogle(): RedirectResponse
     {
         return Socialite::driver(Provider::GOOGLE->value)->redirect();
