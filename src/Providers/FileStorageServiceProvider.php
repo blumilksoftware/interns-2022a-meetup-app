@@ -8,7 +8,7 @@ use Blumilk\Meetup\Core\Contracts\StoreFile;
 use Blumilk\Meetup\Core\Services\StoreFileService as Service;
 use Illuminate\Support\ServiceProvider;
 
-class StoreFileProvider extends ServiceProvider
+class FileStorageServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
