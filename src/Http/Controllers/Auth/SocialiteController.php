@@ -31,13 +31,13 @@ class SocialiteController extends Controller
 
     public function redirectToFacebook(): RedirectResponse
     {
-        return Socialite::driver(Provider::Facebook)->redirect();
+        return Socialite::driver(Provider::FACEBOOK->value)->redirect();
     }
 
     public function handleFacebookCallback(SocialUserLoginService $service): RedirectResponse
     {
-        $user = Socialite::driver(Provider::Facebook)->user();
-        $this->service->registerOrLogin($user, Provider::Facebook);
+        $user = Socialite::driver(Provider::FACEBOOK->value)->user();
+        $this->service->registerOrLogin($user, Provider::FACEBOOK->value);
 
         return redirect()->route("home");
     }
