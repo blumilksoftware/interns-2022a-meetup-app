@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a1c0f984e60dda1ef4f870a5c9ab9e6",
+    "content-hash": "bd02dd2cc83b523f952df6cad62d1a30",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2892,12 +2892,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Ramsey\\Uuid\\": "src/"
-                },
                 "files": [
                     "src/functions.php"
-                ]
+                ],
+                "psr-4": {
+                    "Ramsey\\Uuid\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5329,10 +5329,10 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Behat\\Behat\\": "src/Behat/Behat/",
-                    "Behat\\Testwork\\": "src/Behat/Testwork/",
+                    "Behat\\Hook\\": "src/Behat/Hook/",
                     "Behat\\Step\\": "src/Behat/Step/",
-                    "Behat\\Hook\\": "src/Behat/Hook/"
+                    "Behat\\Behat\\": "src/Behat/Behat/",
+                    "Behat\\Testwork\\": "src/Behat/Testwork/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
