@@ -12,32 +12,34 @@ use Illuminate\Session\Store;
 class SocialUserLoginService
 {
     public function __construct(
-        public AuthManager $authManager,
-        public Hasher $hasher,
-        public Store $session,
+        protected AuthManager $authManager,
+        protected Hasher $hasher,
+        protected Store $session,
     ) {}
 
-    public function registerOrLogin($socialUser, string $provider): void
+    public function registerOrLogin(string $socialEmail, string $socialName, string $socialId, string $provider): void
     {
-        $appUser = User::query()->firstOrCreate(
+        $user = User::query()->firstOrCreate(
             [
-                "email" => $socialUser["email"],
+                "email" => $socialEmail,
             ],
             [
-                "name" => $socialUser["name"],
-                "email" => $socialUser["email"],
-                "password" => $this->hasher->make($socialUser["email"]),
+                "name" => $socialName,
+                "email" => $socialEmail,
+                "password" => $this->hasher->make($socialEmail),
             ],
         );
-        if (!$appUser->id) {
-            $appUser = User::query()->where("email", $appUser->getAttribute("email"))->first();
+
+        if (!$user->id) {
+            $user = User::query()->where("email", $user->email)->first();
         }
-        $appUser->socialAccounts()->firstOrCreate([
-            "provider_id" => $socialUser->id,
+
+        $user->socialAccounts()->firstOrCreate([
+            "provider_id" => $socialId,
             "provider" => $provider,
         ]);
 
-        $this->authManager->login($appUser);
+        $this->authManager->login($user);
         $this->session->regenerate();
     }
 }

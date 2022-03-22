@@ -13,7 +13,7 @@ use Laravel\Socialite\Facades\Socialite;
 class SocialiteController extends Controller
 {
     public function __construct(
-        public SocialUserLoginService $service,
+        protected SocialUserLoginService $service,
     ) {}
 
     public function redirectToGoogle(): RedirectResponse
@@ -24,7 +24,7 @@ class SocialiteController extends Controller
     public function handleGoogleCallback(): RedirectResponse
     {
         $user = Socialite::driver(Provider::GOOGLE->value)->user();
-        $this->service->registerOrLogin($user, Provider::GOOGLE->value);
+        $this->service->registerOrLogin($user->getEmail(), $user->getName(), $user->getId(), Provider::GOOGLE->value);
 
         return redirect()->route("home");
     }
@@ -37,7 +37,7 @@ class SocialiteController extends Controller
     public function handleFacebookCallback(SocialUserLoginService $service): RedirectResponse
     {
         $user = Socialite::driver(Provider::FACEBOOK->value)->user();
-        $this->service->registerOrLogin($user, Provider::FACEBOOK->value);
+        $this->service->registerOrLogin($user->getEmail(), $user->getName(), $user->getId(), Provider::FACEBOOK->value);
 
         return redirect()->route("home");
     }

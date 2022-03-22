@@ -7,8 +7,8 @@
             <form action="{{ route('register') }}" method="post">
                 @csrf
                 <div>
-                    <a href="{{ route('login.google') }}"><button type="button">Sing up with Google</button></a>
-                    <a href="{{ route('login.facebook') }}"><button type="button">Sing up with Facebook</button></a>
+                    <a href="{{ route('login.google') }}"><button type="button">Sign up with Google</button></a>
+                    <a href="{{ route('login.facebook') }}"><button type="button">Sign up with Facebook</button></a>
                 </div>
                 <div>
                     <label for="email">email:</label>
@@ -27,7 +27,7 @@
                 </div>
                 <div>
                     <label for="confirm_password">password_confirmation :</label>
-                    <input type="text" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}">
+                    <input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}">
                     <x-input-error for="password_confirmation"/>
                 </div>
                 <div>
