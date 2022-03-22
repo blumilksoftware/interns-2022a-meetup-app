@@ -46,7 +46,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
     ],
     "aliases" => [
-        Facade::defaultAliases()->toArray(),
+        ...Facade::defaultAliases()->toArray(),
         "Formats" => Blumilk\Meetup\Core\Formats::class,
         "Auth" => Illuminate\Support\Facades\Auth::class,
     ],
