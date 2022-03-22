@@ -3,19 +3,11 @@
 ### Development
 ### Run env for Mac/Linux
 
-1. `$ make install`
-2. `$ make start`
-3. `touch database/database.sqlite`
-4. `$ make bash` and run this command `composer install`
-6. `$ make db-create`
+1. `$ make init`
 
 ### Run env for Windows
-
-1. `docker-compose up -d`
-2. `cp .env.example .env`
-3. `touch database/database.sqlite`
-4. `docker-compose exec php ash` and run this command `composer install`
-5. `docker-compose exec php php artisan migrate`
+Please install packages makefile for [Windows](http://gnuwin32.sourceforge.net/packages/make.htm)
+1. `make init`
 
 ### Address where the environment is available
 - `http://localhost`

@@ -29,3 +29,20 @@ run-tests:
 
 phpstan:
 	docker-compose exec php composer phpstan
+
+composer-install:
+	docker-compose exec php composer install
+
+sqlite-create:
+	touch database/database.sqlite
+
+key-generate:
+	docker-compose exec php artisan key:generate
+
+init:
+	make install
+	make sqlite-create
+	make start
+	make key-generate
+	make composer-install
+	make sqlite-create

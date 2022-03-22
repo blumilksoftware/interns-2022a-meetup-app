@@ -15,7 +15,7 @@ class UpdateSpeakerRequest extends FormRequest
     {
         return [
             "name" => "required",
-            "description" => "nullable",
+            "description" => ["nullable", "max:255"],
             "avatar" => AvatarFileRules::rules(),
             "linkedin_url" => LinkedinLinkRules::rules(),
             "github_url" => GithubLinkRules::rules(),
