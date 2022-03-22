@@ -46,7 +46,7 @@ return [
         Blumilk\Meetup\Core\Providers\FileStorageServiceProvider::class,
     ],
     "aliases" => [
-        Facade::defaultAliases()->toArray(),
+        ...Facade::defaultAliases()->toArray(),
         "Formats" => Blumilk\Meetup\Core\Formats::class,
     ],
 ];
