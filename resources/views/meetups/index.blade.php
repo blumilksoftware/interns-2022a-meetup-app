@@ -20,7 +20,7 @@
                         <form action="{{ route('meetups.destroy', $meetup) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit"  onclick="return confirm('Sure Want Delete?')">Delete</button>
+                            <button type="submit"  onclick="return confirm('Delete meetup? This operation is irreversible.')">Delete</button>
                         </form>
                     </div>
                 @endforeach
