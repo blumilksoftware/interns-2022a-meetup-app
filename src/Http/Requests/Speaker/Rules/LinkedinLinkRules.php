@@ -9,7 +9,7 @@ use Blumilk\Meetup\Core\Http\Requests\BaseRules;
 class LinkedinLinkRules extends BaseRules
 {
     protected static array $rules = [
-        "starts_with:https://www.linkedin.com/",
+        "starts_with:linkedin.com/,www.linkedin.com/,https://linkedin.com/,https://www.linkedin.com/",
         "nullable",
     ];
 }

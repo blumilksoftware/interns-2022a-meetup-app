@@ -9,7 +9,7 @@ use Blumilk\Meetup\Core\Http\Requests\BaseRules;
 class GithubLinkRules extends BaseRules
 {
     protected static array $rules = [
-        "starts_with:https://github.com/",
+        "starts_with:github.com/,https://github.com/",
         "nullable",
     ];
 }
