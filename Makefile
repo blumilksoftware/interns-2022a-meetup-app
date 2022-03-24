@@ -25,8 +25,8 @@ cs-fix: ## Run composer ecsf
 	docker-compose exec php composer ecsf
 
 run-tests: ## Run stage for test
-	docker-compose exec php composer ecs
-	docker-compose exec php composer test
+	$(MAKE) cs-check
+	$(MAKE) phpunit
 
 phpstan: ## Run composer phpstan
 	docker-compose exec php composer phpstan
@@ -41,13 +41,13 @@ key-generate: ## Create key for artisan
 	docker-compose exec php php artisan key:generate
 
 init: ## Setup for project
-	make install
-	make sqlite-create
-	make start
-	make key-generate
-	make composer-install
-	make sqlite-create
-	make db-create
+	$(MAKE) install
+	$(MAKE) sqlite-create
+	$(MAKE) start
+	$(MAKE) key-generate
+	$(MAKE) composer-install
+	$(MAKE) sqlite-create
+	$(MAKE) db-create
 
 .PHONY: help
 help:
