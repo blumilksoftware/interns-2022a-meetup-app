@@ -8,6 +8,7 @@ use Blumilk\Meetup\Core\Models\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Session\Store;
+use Laravel\Socialite\Two\User as SocialUser;
 
 class SocialUserLoginService
 {
@@ -17,16 +18,16 @@ class SocialUserLoginService
         protected Store $session,
     ) {}
 
-    public function registerOrLogin(string $socialEmail, string $socialName, string $socialId, string $provider): void
+    public function registerOrLogin(SocialUser $socialUser, string $provider): void
     {
         $user = User::query()->firstOrCreate(
             [
-                "email" => $socialEmail,
+                "email" => $socialUser->getEmail(),
             ],
             [
-                "name" => $socialName,
-                "email" => $socialEmail,
-                "password" => $this->hasher->make($socialEmail),
+                "name" => $socialUser->getName(),
+                "email" => $socialUser->getEmail(),
+                "password" => $this->hasher->make($socialUser->getEmail()),
             ],
         );
 
@@ -35,7 +36,7 @@ class SocialUserLoginService
         }
 
         $user->socialAccounts()->firstOrCreate([
-            "provider_id" => $socialId,
+            "provider_id" => $socialUser->getId(),
             "provider" => $provider,
         ]);
 
