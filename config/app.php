@@ -45,7 +45,7 @@ return [
         Blumilk\Meetup\Core\Providers\TelescopeServiceProvider::class,
     ],
     "aliases" => [
-        Facade::defaultAliases()->toArray(),
+        ...Facade::defaultAliases()->toArray(),
         "Formats" => Blumilk\Meetup\Core\Formats::class,
     ],
 ];
