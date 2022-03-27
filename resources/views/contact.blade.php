@@ -5,7 +5,7 @@
         <h1>Contact Us</h1>
         @if(session()->has('message'))
             <div>
-                {{session()->get('message')}}
+                {{ session()->get('message') }}
             </div>
         @endif
         <form action="{{ route('contact.store') }}" method="post">

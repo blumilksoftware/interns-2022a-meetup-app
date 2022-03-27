@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
-use Blumilk\Meetup\Core\Http\Requests\StoreContactRequest;
+use Blumilk\Meetup\Core\Http\Requests\Contact\StoreContactRequest;
 use Blumilk\Meetup\Core\Models\Contact;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
