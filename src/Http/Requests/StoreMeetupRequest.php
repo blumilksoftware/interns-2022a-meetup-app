@@ -11,11 +11,11 @@ class StoreMeetupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title" => "required",
-            "description" => "nullable",
-            "date" => "required",
-            "place" => "required",
-            "language" => "required",
+            "title" => ["required"],
+            "description" => ["nullable"],
+            "date" => ["required"],
+            "place" => ["required"],
+            "language" => ["required"],
         ];
     }
 }
