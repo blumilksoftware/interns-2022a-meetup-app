@@ -5,15 +5,15 @@ Feature: Logging to app
       | email                    | password        |
       | existinguser@example.com | correctpassword |
 
-  Scenario Outline: attempt to log in with correct credentials
+  Scenario Outline: Attempt to log in with correct credentials
     When I fill "email" with <email>
-    And I fill "password" with <password>
-    Then I have successfully logged in
+    And I "password" with <password>
+    Then I successfully logged in
     Examples:
       | email                    | password        |
       | existinguser@example.com | correctpassword |
 
-  Scenario Outline: attempt to log in with wrong password
+  Scenario Outline: Attempt to log in with wrong password
     When I fill "email" with <email>
     And I fill "password" with <password>
     Then I should see message "bad credentials"
@@ -21,7 +21,7 @@ Feature: Logging to app
       | email                       | password           |
       | existinguser@example.com    | wrongpassword      |
 
-  Scenario Outline: attempt to log in as unregistered user
+  Scenario Outline: Attempt to log in as unregistered user
     When I fill "email" with <email>
     And I fill "password" with <password>
     Then I should see message "bad credentials"

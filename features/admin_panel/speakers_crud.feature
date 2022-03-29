@@ -13,7 +13,7 @@ Feature: Speaker CRUD operations
     Given I am on the create speaker page
     When I fill the "name" with <name>
     And I fill the "description" with <description>
-    Then New speaker with matching data should be created
+    Then new speaker with matching data should be created
     And I should see message "Speaker was created"
     Examples:
       | name                | description          |

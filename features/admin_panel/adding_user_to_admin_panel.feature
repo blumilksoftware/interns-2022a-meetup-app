@@ -17,11 +17,11 @@ Feature:
     | email                     |
     | firstuser@example.com     |
 
-  Scenario Outline: Invited user already are admin
+  Scenario Outline: Invited user is already an administrator
     Given user with <email> already are admin user
     When I fill "email" with <email>
     And I send the form
-    Then I should see message "This user already are admin user"
+    Then I should see message "This user is already an administrator"
     Examples:
       | email                         |
       | existingadmin@example.com     |

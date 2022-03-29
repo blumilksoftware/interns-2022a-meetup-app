@@ -15,7 +15,7 @@ Feature: Meetup CRUD operations
     And I fill the "date" with <date>
     And I fill the "place" with <place>
     And I fill the "language" with <language>
-    Then New meetup with matching data should be created
+    Then new meetup with matching data should be created
     And I should see message "Meetup was created"
     Examples:
       | title                    | date                 | place           | language |

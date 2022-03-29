@@ -9,21 +9,22 @@ Feature: Creating new admin user
       | user@example.com         |
 
   Scenario: Invited user already have account
-    Given I get to authentication route by invitation link
-    When I log in as "user@example.com"
+    Given Invited user get to authentication route by invitation link
+    When I log in as <email>
     Then I become admin user
 
   Scenario Outline: Successfully created an account
     Given I get to authentication route by invitation link
     When I fill "email" with <email>
-    And I fill "password" with <password>>
+    And I fill "password" with <password>
     And I fill "name" with <name>
     Then I create new account with email <email>
     And I become admin user
     Examples:
       | email                    | password       | name       |
       | user@example.com         | validpassword  | newadmin   |
-  Scenario: Invitation is expired
-    Given Invitation was send more than 7 days ago
+
+  Scenario: Invitation has expired
+    Given invitation was send more than 7 days ago
     When I get to authentication route by invitation link
     Then I should see message "Your invitation is expired"

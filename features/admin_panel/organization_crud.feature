@@ -13,7 +13,7 @@ Feature: Organization CRUD operations
     Given I am on the create organization page
     When I fill the "name" with <name>
     And I fill the "description" with <description>
-    Then New organization with matching data should be created
+    Then new organization with matching data should be created
     And I should see message "Organization was created"
     Examples:
       | name                     | description          |

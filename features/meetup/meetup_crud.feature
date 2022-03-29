@@ -18,7 +18,7 @@ Feature: Meetup CRUD operations
     And I fill the "place" with <place>
     And I fill the "language" with <language>
     And I submit form
-    Then New meetup with matching data should be created
+    Then new meetup with matching data should be created
     And Organizer id should be 1
     And I should see message "Meetup was created"
     Examples:
