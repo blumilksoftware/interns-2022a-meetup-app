@@ -22,7 +22,7 @@ class Contact extends Model
     public function routeNotificationForMail(): array
     {
         return [
-            env("MAIL_FROM_ADDRESS") => env("MAIL_FROM_NAME"),
+            config("mail.from.address") => config("mail.from.name"),
         ];
     }
 }
