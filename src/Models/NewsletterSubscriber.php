@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Blumilk\Meetup\Core\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,5 +21,4 @@ class NewsletterSubscriber extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 }

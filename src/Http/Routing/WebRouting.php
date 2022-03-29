@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Http\Routing;
 
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
+use Blumilk\Meetup\Core\Http\Controllers\NewsletterSubscriberController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 
 class WebRouting extends Routing
@@ -29,6 +30,11 @@ class WebRouting extends Routing
             $this->router->get("/organizations/{organization}/edit", "edit")->name("organizations.edit");
             $this->router->put("/organizations/{organization}", "update")->name("organizations.update");
             $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");
+        });
+
+        $this->router->controller(NewsletterSubscriberController::class)->group(function (): void {
+            $this->router->get("/newsletter", "create")->name("newsletter");
+            $this->router->post("/newsletter", "store")->name("newsletter.store");
         });
     }
 }
