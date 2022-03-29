@@ -10,7 +10,7 @@ use Illuminate\Contracts\Hashing\Hasher;
 class UserObserver
 {
     public function __construct(
-        public Hasher $hasher,
+        protected Hasher $hasher,
     ) {}
 
     public function creating(User $user): void
