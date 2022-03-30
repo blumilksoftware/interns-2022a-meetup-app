@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
-use Blumilk\Meetup\Core\Http\Requests\StoreOrganizationRequest;
-use Blumilk\Meetup\Core\Http\Requests\UpdateOrganizationRequest;
+use Blumilk\Meetup\Core\Http\Requests\Organization\StoreOrganizationRequest;
+use Blumilk\Meetup\Core\Http\Requests\Organization\UpdateOrganizationRequest;
 use Blumilk\Meetup\Core\Models\Organization;
-use Blumilk\Meetup\Core\Services\Organization\StoreFileService;
+use Blumilk\Meetup\Core\Services\StoreFileService;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 
 class OrganizationController extends Controller
 {

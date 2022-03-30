@@ -29,6 +29,11 @@ class Meetup extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function speakers(): BelongsTo
+    {
+        return $this->belongsTo(Speaker::class);
+    }
+
     public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class);
