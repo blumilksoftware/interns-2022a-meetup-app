@@ -7,6 +7,7 @@ namespace Blumilk\Meetup\Core\Http\Routing;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
+use Blumilk\Meetup\Core\Http\Controllers\ContactController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
@@ -46,6 +47,11 @@ class WebRouting extends Routing
             $this->router->get("/organizations/{organization}/edit", "edit")->name("organizations.edit");
             $this->router->put("/organizations/{organization}", "update")->name("organizations.update");
             $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");
+        });
+
+        $this->router->controller(ContactController::class)->group(function (): void {
+            $this->router->get("/contact", "create")->name("contact");
+            $this->router->post("/contact", "store")->name("contact.store");
         });
 
         $this->router->controller(SpeakersController::class)->group(function (): void {
