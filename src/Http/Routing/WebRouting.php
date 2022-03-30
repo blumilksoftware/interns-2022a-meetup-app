@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Routing;
 
+use Blumilk\Meetup\Core\Http\Controllers\AssetsController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
@@ -61,6 +62,10 @@ class WebRouting extends Routing
             $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
             $this->router->put("/speakers/{speaker}", "update")->name("speakers.update");
             $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
+        });
+
+        $this->router->controller(AssetsController::class)->group(function (): void {
+            $this->router->get("/static/{folder}/{file}", "index")->name("assets");
         });
     }
 }
