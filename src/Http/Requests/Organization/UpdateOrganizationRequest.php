@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Blumilk\Meetup\Core\Http\Requests;
+namespace Blumilk\Meetup\Core\Http\Requests\Organization;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreOrganizationRequest extends FormRequest
+class UpdateOrganizationRequest extends FormRequest
 {
     public function rules(): array
     {
@@ -17,7 +17,7 @@ class StoreOrganizationRequest extends FormRequest
             "organization_type" => "required",
             "foundation_date" => "required",
             "number_of_employers" => "required",
-            "logo" => "required|image|max:2048",
+            "logo" => "image|max:2048",
             "*_url" => "nullable|url",
         ];
     }

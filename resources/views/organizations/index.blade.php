@@ -20,7 +20,7 @@
                         <form action="{{ route('organizations.destroy', $organization) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Delete</button>
+                            <button type="submit"  onclick="return confirm('Sure Want Delete?')">Delete</button>
                         </form>
                     </div>
                 @endforeach

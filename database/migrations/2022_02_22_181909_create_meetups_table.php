@@ -13,6 +13,7 @@ return new class() extends Migration {
             $table->id();
             $table->foreignId("user_id")->constrained()->onDelete("cascade");
             $table->foreignId("organization_id")->nullable()->constrained()->onDelete("set null");
+            $table->foreignId("speaker_id")->nullable()->constrained()->onDelete("set null");
             $table->string("title");
             $table->text("description")->nullable();
             $table->dateTime("date");

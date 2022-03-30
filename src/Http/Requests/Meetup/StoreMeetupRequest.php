@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Blumilk\Meetup\Core\Http\Requests;
+namespace Blumilk\Meetup\Core\Http\Requests\Meetup;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMeetupRequest extends FormRequest
+class StoreMeetupRequest extends FormRequest
 {
     public function rules(): array
     {

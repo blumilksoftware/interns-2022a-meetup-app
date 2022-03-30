@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
-use Blumilk\Meetup\Core\Http\Requests\StoreMeetupRequest;
-use Blumilk\Meetup\Core\Http\Requests\UpdateMeetupRequest;
+use Blumilk\Meetup\Core\Http\Requests\Meetup\StoreMeetupRequest;
+use Blumilk\Meetup\Core\Http\Requests\Meetup\UpdateMeetupRequest;
 use Blumilk\Meetup\Core\Models\Meetup;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -14,7 +14,7 @@ class MeetupController extends Controller
 {
     public function index(): View
     {
-        $meetups = Meetup::latest()->with(["user"])->paginate(20);
+        $meetups = Meetup::query()->latest()->with(["user"])->paginate(20);
 
         return view("meetups.index")
             ->with("meetups", $meetups);
