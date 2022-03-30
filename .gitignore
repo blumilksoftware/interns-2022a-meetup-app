@@ -12,7 +12,6 @@
 .env.backup
 .phpunit.result.cache
 docker-compose.override.yml
-composer.lock
 Homestead.json
 Homestead.yaml
 npm-debug.log
@@ -21,3 +20,5 @@ storage/redis/appendonly.aof
 storage/redis/dump.rdb
 /public/*
 .editorconfig
+/storage/src/*
+composer.lock
