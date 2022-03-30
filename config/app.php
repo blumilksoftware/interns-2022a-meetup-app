@@ -43,9 +43,11 @@ return [
         Blumilk\Meetup\Core\Providers\EventServiceProvider::class,
         Blumilk\Meetup\Core\Providers\RouteServiceProvider::class,
         Blumilk\Meetup\Core\Providers\TelescopeServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
     "aliases" => [
         ...Facade::defaultAliases()->toArray(),
         "Formats" => Blumilk\Meetup\Core\Formats::class,
+        "Auth" => Illuminate\Support\Facades\Auth::class,
     ],
 ];
