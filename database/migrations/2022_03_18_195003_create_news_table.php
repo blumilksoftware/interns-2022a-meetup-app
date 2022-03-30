@@ -11,20 +11,9 @@ return new class() extends Migration {
     {
         Schema::create("news", function (Blueprint $table): void {
             $table->id();
+            $table->foreignId("author")->constrained()->onDelete("cascade");
             $table->string("name");
-            $table->text("description")->nullable();
-            $table->string("location");
-            $table->string("organization_type");
-            $table->dateTime("foundation_date");
-            $table->string("number_of_employers");
-            $table->string("logo");
-            $table->string("website_url")->nullable();
-            $table->string("facebook_url")->nullable();
-            $table->string("linkedin_url")->nullable();
-            $table->string("instagram_url")->nullable();
-            $table->string("youtube_url")->nullable();
-            $table->string("twitter_url")->nullable();
-            $table->string("github_url")->nullable();
+            $table->text("content");
             $table->timestamps();
         });
     }

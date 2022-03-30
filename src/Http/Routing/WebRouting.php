@@ -8,6 +8,7 @@ use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
+use Blumilk\Meetup\Core\Http\Controllers\NewsController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
 
@@ -48,6 +49,7 @@ class WebRouting extends Routing
             $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");
         });
 
+<<<<<<< Updated upstream
         $this->router->controller(SpeakersController::class)->group(function (): void {
             $this->router->get("/speakers", "index")->name("speakers");
             $this->router->post("/speakers", "store")->name("speakers.store");
@@ -55,6 +57,15 @@ class WebRouting extends Routing
             $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
             $this->router->put("/speakers/{speaker}", "update")->name("speakers.update");
             $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
+=======
+        $this->router->controller( NewsController::class)->group(function (): void {
+            $this->router->get("/news", "index")->name("news");
+            $this->router->get("/news/create", "create")->name("news.create");
+            $this->router->post("/news", "store")->name("news.store");
+            $this->router->get("/news/{news}/edit", "edit")->name("news.edit");
+            $this->router->put("/news/{news}", "update")->name("news.update");
+            $this->router->delete("/news/{news}", "destroy")->name("news.destroy");
+>>>>>>> Stashed changes
         });
     }
 }

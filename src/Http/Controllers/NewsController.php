@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
+use Blumilk\Meetup\Core\Http\Requests\StoreNewsRequest;
 use Blumilk\Meetup\Core\Http\Requests\StoreOrganizationRequest;
 use Blumilk\Meetup\Core\Http\Requests\UpdateOrganizationRequest;
+use Blumilk\Meetup\Core\Models\News;
 use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Services\Organization\StoreFileService;
 use Illuminate\Http\RedirectResponse;
@@ -15,25 +17,21 @@ class NewsController extends Controller
 {
     public function index(): View
     {
-        $organizations = Organization::query()->orderBy("name")->paginate(20);
+        $news = News::query()->orderBy("date")->paginate(20);
 
-        return view("organizations.index")
-            ->with("organizations", $organizations);
+        return view("news.index")
+            ->with("news", $news);
     }
 
     public function create(): View
     {
-        return view("organizations.create");
+        return view("news.create");
     }
 
-    public function store(StoreOrganizationRequest $request, StoreFileService $service): RedirectResponse
+    public function store(StoreNewsRequest $request): RedirectResponse
     {
-        $input = $request->validated();
-        $input["logo"] = $service->storeFile("organizations/logos", $request->file("logo"));
-
-        Organization::query()->create($input);
-
-        return redirect()->route("organizations");
+        dd($request->request);
+        return redirect()->route("news");
     }
 
     public function edit(Organization $organization): View
