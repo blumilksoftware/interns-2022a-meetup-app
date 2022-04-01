@@ -11,11 +11,11 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class StaticController extends Controller
 {
-    private const ASSETS_PATH = "static";
+    private const STATIC_PATH = "static";
 
     public function index(Request $request): BinaryFileResponse
     {
-        $path = resource_path() . "/" . self::ASSETS_PATH . "/" . $request->route("path");
+        $path = resource_path() . "/" . self::STATIC_PATH . "/" . $request->route("path");
         if (!File::exists($path)) {
             abort(Response::HTTP_NOT_FOUND);
         }
