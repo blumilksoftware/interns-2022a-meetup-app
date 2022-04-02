@@ -1,14 +1,17 @@
-Feature: Access to admin panel
-  In order to managing app
-  As an admin user
-  I want to see admin panel
+Feature: Access to the admin panel
 
-  Scenario: I have access to admin panel
-    Given I am logged in as an admin user
-    When I get to admin panel route
-    Then I should see admin panel page
+  Scenario: Successfully have access to admin panel
+    Given the administrator is logged in
+    When the administrator is on the admin panel route
+    Then the administrator should see the admin panel page
 
-  Scenario: Unauthorized access
-    Given I am not logged in as an admin user
-    When I get to admin panel route
-    Then I should see "You do not have access"
+  Scenario: Attempt to get to admin panel as authenticated non-administrator user
+    Given the user is logged in
+    But the user is not an administrator
+    When the user is on the admin panel route
+    Then the user should see "You are not allowed to access this page"
+
+  Scenario: Attempt to get to admin panel as unauthenticated user
+    Given the user is logged in
+    When the user is on the admin panel route
+    Then the user should be redirected to the login page

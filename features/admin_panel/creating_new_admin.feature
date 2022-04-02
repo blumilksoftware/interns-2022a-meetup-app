@@ -1,30 +1,24 @@
-Feature: Creating new admin user
-  In order to have access to admin panel
-  As a invited user
-  I want to be able to creating account with admin privileges
+Feature: Creating a admin user
 
   Background:
     Given there are invited users:
       | email                    |
       | user@example.com         |
 
-  Scenario: Invited user already have account
-    Given Invited user get to authentication route by invitation link
-    When I log in as <email>
-    Then I become admin user
+  Scenario: The invited user already have account
+    Given the invited user is on the authentication route by invitation link
+    When the invited user logs in as "<email>"
+    Then the invited user becomes admin user
 
   Scenario Outline: Successfully created an account
-    Given I get to authentication route by invitation link
-    When I fill "email" with <email>
-    And I fill "password" with <password>
-    And I fill "name" with <name>
-    Then I create new account with email <email>
-    And I become admin user
+    Given the invited user is on the authentication route by invitation link
+    When the invited user registers with "<email>" email addrress
+    Then new administrator with email "<email>" should be created
     Examples:
-      | email                    | password       | name       |
-      | user@example.com         | validpassword  | newadmin   |
+      | email                    |
+      | user@example.com         |
 
-  Scenario: Invitation has expired
-    Given invitation was send more than 7 days ago
-    When I get to authentication route by invitation link
-    Then I should see message "Your invitation is expired"
+  Scenario: The invitation has expired
+    Given the invitation was send more than 7 days ago
+    When the invited user is on the authentication route by invitation link
+    Then the invited user should see message "Your invitation is expired"
