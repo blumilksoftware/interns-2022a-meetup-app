@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
+use Blumilk\Meetup\Core\FilesFilter;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
@@ -16,7 +17,7 @@ class StaticController extends Controller
     public function index(Request $request): BinaryFileResponse
     {
         $path = resource_path() . "/" . self::STATIC_PATH . "/" . $request->route("path");
-        if (!File::exists($path)) {
+        if (!File::exists($path) || FilesFilter::filter(File::basename($path))) {
             abort(Response::HTTP_NOT_FOUND);
         }
 
