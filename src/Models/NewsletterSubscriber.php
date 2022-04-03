@@ -6,7 +6,7 @@ namespace Blumilk\Meetup\Core\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class NewsletterSubscriber extends Model
 {
@@ -17,8 +17,8 @@ class NewsletterSubscriber extends Model
         "status",
     ];
 
-    public function user(): BelongsTo
+    public function preferences(): HasMany
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(NewsletterPreferences::class);
     }
 }
