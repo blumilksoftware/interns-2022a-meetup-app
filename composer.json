@@ -8,8 +8,6 @@
   "license": "MIT",
   "require": {
     "php": "^8.1",
-    "arcanedev/laravel-markdown": "^6.0",
-    "ckeditor/ckeditor": "^4.18",
     "fruitcake/laravel-cors": "^2.0.5",
     "guzzlehttp/guzzle": "^7.2",
     "laravel/framework": "^9.0",
