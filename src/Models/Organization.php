@@ -37,4 +37,9 @@ class Organization extends Model
     {
         return $this->hasMany(Meetup::class);
     }
+
+    public function organizationProfiles(): HasMany
+    {
+        return $this->hasMany(OrganizationProfiles::class);
+    }
 }
