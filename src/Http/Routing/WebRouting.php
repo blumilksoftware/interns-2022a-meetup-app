@@ -11,6 +11,7 @@ use Blumilk\Meetup\Core\Http\Controllers\ContactController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
+use Blumilk\Meetup\Core\Http\Controllers\StaticController;
 
 class WebRouting extends Routing
 {
@@ -61,6 +62,10 @@ class WebRouting extends Routing
             $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
             $this->router->put("/speakers/{speaker}", "update")->name("speakers.update");
             $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
+        });
+
+        $this->router->controller(StaticController::class)->group(function (): void {
+            $this->router->get("/static/{path}", "index")->where("path", ".*")->name("assets");
         });
     }
 }
