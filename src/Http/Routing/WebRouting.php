@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Routing;
 
-use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
 use Blumilk\Meetup\Core\Http\Controllers\ContactController;
@@ -20,12 +19,13 @@ class WebRouting extends Routing
     {
         $this->router->get("/", fn() => view("welcome"))->name("home");
 
-        $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register.form");
-        $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register");
-        $this->router->get("/auth/login", [LoginController::class, "store"])->name("login.form");
-        $this->router->post("/auth/login", [LoginController::class, "login"])->name("login");
-        $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
-
+        $this->router->controller(RegisterController::class)->group(function (): void {
+            $this->router->get("/auth/register", "create")->name("register.form");
+            $this->router->post("/auth/register", "store")->name("register");
+            $this->router->get("/auth/login", "store")->name("login.form");
+            $this->router->post("/auth/login", "login")->name("login");
+            $this->router->get("/auth/logout", "logout")->name("logout")->middleware("auth");
+        });
         $this->router->controller(SocialiteController::class)->group(function (): void {
             $this->router->get("/auth/google/redirect", "redirectToGoogle")->name("login.google");
             $this->router->get("/auth/google/callback", "handleGoogleCallback");
@@ -51,12 +51,10 @@ class WebRouting extends Routing
             $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");
         });
 
-
         $this->router->controller(ContactController::class)->group(function (): void {
             $this->router->get("/contact", "create")->name("contact");
             $this->router->post("/contact", "store")->name("contact.store");
         });
-
 
         $this->router->controller(SpeakersController::class)->group(function (): void {
             $this->router->get("/speakers", "index")->name("speakers");
@@ -67,7 +65,7 @@ class WebRouting extends Routing
             $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
         });
 
-        $this->router->controller( NewsController::class)->group(function (): void {
+        $this->router->controller(NewsController::class)->group(function (): void {
             $this->router->get("/news", "index")->name("news");
             $this->router->get("/news/create", "create")->name("news.create");
             $this->router->post("/news", "store")->name("news.store");

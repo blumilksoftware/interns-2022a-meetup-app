@@ -14,7 +14,7 @@ class News extends Model
 
     protected $fillable = [
         "name",
-        "content"
+        "content",
     ];
 
     protected $casts = [

@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
 use Blumilk\Meetup\Core\Http\Requests\StoreNewsRequest;
-use Blumilk\Meetup\Core\Http\Requests\StoreOrganizationRequest;
 use Blumilk\Meetup\Core\Http\Requests\UpdateOrganizationRequest;
 use Blumilk\Meetup\Core\Models\News;
 use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Services\Organization\StoreFileService;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class NewsController extends Controller
 {
