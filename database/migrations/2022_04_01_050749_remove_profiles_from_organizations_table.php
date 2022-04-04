@@ -1,27 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    public function up()
+return new class() extends Migration {
+    public function up(): void
     {
-        Schema::table('organizations', function (Blueprint $table): void {
-            $table->dropColumn("website_url");
-            $table->dropColumn("facebook_url");
-            $table->dropColumn("linkedin_url");
-            $table->dropColumn("instagram_url");
-            $table->dropColumn("youtube_url");
-            $table->dropColumn("twitter_url");
-            $table->dropColumn("github_url");
+        Schema::table("organizations", function (Blueprint $table): void {
+            $table->dropColumn(["website_url", "facebook_url", "linkedin_url", "instagram_url", "youtube_url", "twitter_url", "github_url"]);
         });
     }
 
-    public function down()
+    public function down(): void
     {
-        Schema::table('organizations', function (Blueprint $table): void {
+        Schema::table("organizations", function (Blueprint $table): void {
             $table->string("website_url")->nullable();
             $table->string("facebook_url")->nullable();
             $table->string("linkedin_url")->nullable();
