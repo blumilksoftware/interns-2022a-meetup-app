@@ -7,10 +7,12 @@ namespace Blumilk\Meetup\Core\Http\Routing;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
+use Blumilk\Meetup\Core\Http\Controllers\ContactController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
 use Blumilk\Meetup\Core\Http\Controllers\NewsController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
+use Blumilk\Meetup\Core\Http\Controllers\StaticController;
 
 class WebRouting extends Routing
 {
@@ -49,7 +51,13 @@ class WebRouting extends Routing
             $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");
         });
 
-<<<<<<< Updated upstream
+
+        $this->router->controller(ContactController::class)->group(function (): void {
+            $this->router->get("/contact", "create")->name("contact");
+            $this->router->post("/contact", "store")->name("contact.store");
+        });
+
+
         $this->router->controller(SpeakersController::class)->group(function (): void {
             $this->router->get("/speakers", "index")->name("speakers");
             $this->router->post("/speakers", "store")->name("speakers.store");
@@ -57,7 +65,8 @@ class WebRouting extends Routing
             $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
             $this->router->put("/speakers/{speaker}", "update")->name("speakers.update");
             $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
-=======
+        });
+
         $this->router->controller( NewsController::class)->group(function (): void {
             $this->router->get("/news", "index")->name("news");
             $this->router->get("/news/create", "create")->name("news.create");
@@ -65,7 +74,10 @@ class WebRouting extends Routing
             $this->router->get("/news/{news}/edit", "edit")->name("news.edit");
             $this->router->put("/news/{news}", "update")->name("news.update");
             $this->router->delete("/news/{news}", "destroy")->name("news.destroy");
->>>>>>> Stashed changes
+        });
+
+        $this->router->controller(StaticController::class)->group(function (): void {
+            $this->router->get("/static/{path}", "index")->where("path", ".*")->name("assets");
         });
     }
 }
