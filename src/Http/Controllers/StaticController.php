@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class StaticController extends Controller
 {
-    protected const IGNORE_FILES = [
+    private const IGNORE_FILES = [
         ".gitignore",
     ];
     private const STATIC_PATH = "static";
@@ -30,8 +30,8 @@ class StaticController extends Controller
         return response()->file($path, $headers);
     }
 
-    protected function filesFilter(string $fileName): bool
+    private function filesFilter(string $fileName): bool
     {
-        return in_array($fileName, self::IGNORE_FILES, true);
+        return in_array($fileName, static::IGNORE_FILES, true);
     }
 }
