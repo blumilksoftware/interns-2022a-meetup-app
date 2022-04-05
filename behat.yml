@@ -1,0 +1,11 @@
+default:
+  extensions:
+    Blumilk\Meetup\Core\Testing\Behat:
+      env: ".env.behat"
+
+  suites:
+    application:
+      contexts:
+        - Blumilk\Meetup\Core\Testing\Contexts\ApplicationContext
+      paths:
+        - tests/features

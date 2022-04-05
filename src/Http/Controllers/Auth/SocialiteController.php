@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
-use Blumilk\Meetup\Core\AvailableAuthentication as Provider;
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
-use Blumilk\Meetup\Core\Services\SocialUserLoginService;
+use Blumilk\Meetup\Core\Services\Authentication\AvailableAuthentication as Provider;
+use Blumilk\Meetup\Core\Services\Authentication\SocialUserLoginService;
 use Illuminate\Http\RedirectResponse;
 use Laravel\Socialite\Facades\Socialite;
 

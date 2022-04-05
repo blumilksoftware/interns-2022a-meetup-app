@@ -18,7 +18,7 @@
   },
   "require-dev": {
     "blumilksoftware/blt": "dev-main",
-    "blumilksoftware/codestyle": "^0.9.0 || ^0.10.0",
+    "blumilksoftware/codestyle": "^1.0.0",
     "fakerphp/faker": "^1.9.1",
     "mockery/mockery": "^1.4.4",
     "nunomaduro/collision": "^6.1",
@@ -48,13 +48,9 @@
     }
   },
   "scripts": {
-    "ecs": "./vendor/bin/ecs check",
-    "ecsf": "./vendor/bin/ecs check --fix",
+    "cs": "./vendor/bin/php-cs-fixer fix --dry-run --diff --config codestyle.php",
+    "csf": "./vendor/bin/php-cs-fixer fix --diff --config codestyle.php",
     "test": "phpunit",
-    "code-style": [
-      "vendor/bin/phpcs",
-      "@phpstan"
-    ],
     "phpstan": [
       "php -d memory_limit=600M vendor/bin/phpstan analyse -l 5 -c phpstan.neon"
     ],
