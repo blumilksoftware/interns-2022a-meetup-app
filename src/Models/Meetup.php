@@ -7,7 +7,24 @@ namespace Blumilk\Meetup\Core\Models;
 use Blumilk\Meetup\Core\Formats;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property int $id
+ * @property int $userId
+ * @property int|null $organizationId
+ * @property int|null $speakerId
+ * @property string $title
+ * @property string|null $description
+ * @property string $date
+ * @property string $place
+ * @property string $language
+ * @property Carbon|null $createdAt
+ * @property Carbon|null $updatedAt
+ * @property-read Organization|null $organization
+ * @property-read Speaker|null $speakers
+ * @property-read User $user
+ */
 class Meetup extends Model
 {
     use HasFactory;

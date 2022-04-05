@@ -17,6 +17,7 @@
     "laravel/tinker": "^2.7"
   },
   "require-dev": {
+    "barryvdh/laravel-ide-helper": "^2.12",
     "blumilksoftware/blt": "dev-main",
     "blumilksoftware/codestyle": "^0.9.0 || ^0.10.0",
     "fakerphp/faker": "^1.9.1",
