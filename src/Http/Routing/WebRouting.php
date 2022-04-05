@@ -7,10 +7,12 @@ namespace Blumilk\Meetup\Core\Http\Routing;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
+use Blumilk\Meetup\Core\Http\Controllers\ContactController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
 use Blumilk\Meetup\Core\Http\Controllers\NewsletterSubscriberController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
+use Blumilk\Meetup\Core\Http\Controllers\StaticController;
 
 class WebRouting extends Routing
 {
@@ -49,6 +51,11 @@ class WebRouting extends Routing
             $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");
         });
 
+        $this->router->controller(ContactController::class)->group(function (): void {
+            $this->router->get("/contact", "create")->name("contact");
+            $this->router->post("/contact", "store")->name("contact.store");
+        });
+
         $this->router->controller(SpeakersController::class)->group(function (): void {
             $this->router->get("/speakers", "index")->name("speakers");
             $this->router->post("/speakers", "store")->name("speakers.store");
@@ -64,6 +71,10 @@ class WebRouting extends Routing
             $this->router->get("/newsletter/subscribe/preference", "edit")->name("newsletter.edit");
             $this->router->post("/newsletter/subscribe/preference", "update")->name("newsletter.update");
             $this->router->post("/newsletter/unsubscribe", "destroy")->name("newsletter.destroy");
+        });
+
+        $this->router->controller(StaticController::class)->group(function (): void {
+            $this->router->get("/static/{path}", "index")->where("path", ".*")->name("assets");
         });
     }
 }
