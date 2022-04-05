@@ -2,6 +2,6 @@
 
 @section('content')
     <div style="text-align: center">
-        <h1>{{$message->content()}}</h1>
+        <h1>{{$message}}</h1>
     </div>
 @endsection

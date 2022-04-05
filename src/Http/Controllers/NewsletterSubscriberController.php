@@ -8,7 +8,6 @@ use Blumilk\Meetup\Core\Http\Requests\Newsletter\NewsletterStoreRequest;
 use Blumilk\Meetup\Core\Http\Requests\Newsletter\NewsletterUpdateRequest;
 use Blumilk\Meetup\Core\Models\NewsletterSubscriber;
 use Blumilk\Meetup\Core\Services\NewsletterService;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class NewsletterSubscriberController extends Controller
@@ -40,12 +39,14 @@ class NewsletterSubscriberController extends Controller
         $subscriber = $subscriber->newQuery()->where("email", $request->validated("email"))->first();
         $message = $service->preference($subscriber, $request->validated("type"));
 
-        return view("newsletter.dashboard")->with("message", $message);
+        return view("newsletter.dashboard")->with("message", $message->content());
     }
 
-    public function destroy(NewsletterStoreRequest $request, NewsletterService $service): RedirectResponse
+    public function destroy(NewsletterStoreRequest $request, NewsletterService $service): View
     {
-        $subscriber = NewsletterSubscriber::query()->where($request->validated())->first();
+        $subscriber = NewsletterSubscriber::query()->firstOrCreate([
+            "email" => $request->validated("email"),
+        ]);
         $message = $service->unsubscribe($subscriber);
 
         return view("newsletter.dashboard")->with("message", $message->content());
