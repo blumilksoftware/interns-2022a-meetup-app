@@ -26,10 +26,7 @@ use Illuminate\Support\Carbon;
  * @property string|null $youtubeUrl
  * @property string|null $twitterUrl
  * @property string|null $githubUrl
- * @property Carbon|null $createdAt
- * @property Carbon|null $updatedAt
- * @property-read Collection|array<Meetup> $meetups
- * @property-read int|null $meetupsCount
+ * @property-read Collection<Meetup> $meetups
  */
 class Organization extends Model
 {

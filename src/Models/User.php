@@ -29,13 +29,10 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property string|null $rememberToken
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
- * @property-read Collection|array<Meetup> $meetups
- * @property-read int|null $meetupsCount
- * @property-read DatabaseNotificationCollection|array<DatabaseNotification> $notifications
- * @property-read int|null $notificationsCount
- * @property-read Collection|array<SocialAccount> $socialAccounts
- * @property-read int|null $socialAccountsCount
- * @property-read Collection|array<PersonalAccessToken> $tokens
+ * @property-read Collection<Meetup> $meetups
+ * @property-read DatabaseNotificationCollection<DatabaseNotification> $notifications
+ * @property-read Collection<SocialAccount> $socialAccounts
+ * @property-read Collection<PersonalAccessToken> $tokens
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {

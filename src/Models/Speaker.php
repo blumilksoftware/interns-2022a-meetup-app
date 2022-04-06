@@ -17,9 +17,7 @@ use Illuminate\Support\Carbon;
  * @property string $avatarPath
  * @property string|null $linkedinUrl
  * @property string|null $githubUrl
- * @property Carbon|null $createdAt
- * @property Carbon|null $updatedAt
- * @property-read Collection|array<Meetup> $meetup
+ * @property-read Collection<Meetup> $meetup
  */
 class Speaker extends Model
 {

@@ -16,9 +16,7 @@ use Illuminate\Support\Carbon;
  * @property string $email
  * @property string $subject
  * @property string $message
- * @property Carbon|null $createdAt
- * @property Carbon|null $updatedAt
- * @property-read DatabaseNotificationCollection|array<DatabaseNotification> $notifications
+ * @property-read DatabaseNotificationCollection<DatabaseNotification> $notifications
  */
 class Contact extends Model
 {

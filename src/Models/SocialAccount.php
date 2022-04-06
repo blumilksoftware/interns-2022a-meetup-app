@@ -12,8 +12,6 @@ use Illuminate\Support\Carbon;
 /**
  * @property string $provider
  * @property string $provider_id
- * @property Carbon|null $createdAt
- * @property Carbon|null $updatedAt
  * @property-read User $user
  */
 class SocialAccount extends Model

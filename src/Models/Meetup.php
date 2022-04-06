@@ -19,8 +19,6 @@ use Illuminate\Support\Carbon;
  * @property string $date
  * @property string $place
  * @property string $language
- * @property Carbon|null $createdAt
- * @property Carbon|null $updatedAt
  * @property-read Organization|null $organization
  * @property-read Speaker|null $speakers
  * @property-read User $user

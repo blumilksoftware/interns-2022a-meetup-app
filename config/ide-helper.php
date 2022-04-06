@@ -41,7 +41,8 @@ return [
     "extra" => [
     ],
 
-    "magic" => [],
+    "magic" => [
+    ],
 
     "interfaces" => [
     ],
@@ -60,7 +61,8 @@ return [
 
     "force_fqn" => false,
 
-    "additional_relation_types" => [],
+    "additional_relation_types" => [
+    ],
 
     "post_migrate" => [
     ],
