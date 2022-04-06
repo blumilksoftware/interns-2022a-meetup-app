@@ -7,7 +7,7 @@ namespace Blumilk\Meetup\Core\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class OrganizationProfiles extends Model
+class OrganizationProfile extends Model
 {
     use HasFactory;
 

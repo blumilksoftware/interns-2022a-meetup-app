@@ -20,13 +20,6 @@ class Organization extends Model
         "foundation_date",
         "number_of_employers",
         "logo",
-        "website_url",
-        "facebook_url",
-        "linkedin_url",
-        "instagram_url",
-        "youtube_url",
-        "twitter_url",
-        "github_url",
     ];
 
     protected $casts = [
@@ -40,6 +33,6 @@ class Organization extends Model
 
     public function organizationProfiles(): HasMany
     {
-        return $this->hasMany(OrganizationProfiles::class);
+        return $this->hasMany(OrganizationProfile::class);
     }
 }
