@@ -8,7 +8,8 @@
     <title>Meetup app</title>
 </head>
 <body>
-    <div>
+    @include('partials.navbar')
+    <div class="flex-grow">
         @yield('content')
     </div>
 </body>
