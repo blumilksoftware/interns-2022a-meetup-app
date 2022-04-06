@@ -1,6 +1,6 @@
 default:
   extensions:
-    Blumilk\Meetup\Core\Testing\Behat:
+    Blumilk\Meetup\Core\Testing\BehatExtension:
       env: ".env.behat"
 
   suites:
