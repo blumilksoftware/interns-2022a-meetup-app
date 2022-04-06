@@ -50,6 +50,14 @@ final class MeetupApplication
         return $status;
     }
 
+    /**
+     * @internal
+     */
+    public function getApplication(): Application
+    {
+        return $this->app;
+    }
+
     private function bootstrapApplication(string $instancePath, string $envFilename = ".env"): void
     {
         $instancePath = realpath($instancePath);

@@ -12,7 +12,7 @@ $config = new Config(
         "lang",
         "src",
         "tests",
-        "ecs.php",
+        "codestyle.php",
     ),
 );
 
