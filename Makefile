@@ -19,10 +19,10 @@ phpunit: ## Run tests
 	docker-compose exec php composer test
 
 cs-check: ## Run composer ecs
-	docker-compose exec php composer ecs
+	docker-compose exec php composer cs
 
 cs-fix: ## Run composer ecsf
-	docker-compose exec php composer ecsf
+	docker-compose exec php composer csf
 
 run-tests: ## Run stage for test
 	$(MAKE) cs-check
