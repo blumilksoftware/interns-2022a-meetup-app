@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="{{ asset('/static/css/app.css') }}">
     <title>Meetup app</title>
 </head>
-<body>
+<body class="flex bg-gray-100 flex-col min-h-screen">
     @include('partials.navbar')
     <div class="flex-grow">
         @yield('content')
     </div>
+    @include('partials.footer')
 </body>
 </html>
