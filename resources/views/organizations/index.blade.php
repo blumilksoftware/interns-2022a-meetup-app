@@ -14,7 +14,6 @@
                         {{ $organization->location }}
                         {{ $organization->organizationType }}
                         {{ $organization->numberOfEmployers }}
-                        <a href="{{ $organization->websiteUrl }}"> Website </a>
 
                         <a href="{{ route('organizations.edit', $organization) }}">Edit</a>
                         <form action="{{ route('organizations.destroy', $organization) }}" method="post">
