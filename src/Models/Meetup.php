@@ -7,7 +7,6 @@ namespace Blumilk\Meetup\Core\Models;
 use Blumilk\Meetup\Core\Models\Utils\Formats;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
