@@ -7,7 +7,8 @@
             <div class="max-w-7x mx-auto ">
                 <div class="relative shadow-xl sm:overflow-hidden">
                     <div class="absolute inset-0">
-                        <img class="h-full w-full object-cover" src={Hero} alt="People working on laptops" />
+                        <img class="h-full w-full object-cover" src={{ asset('static/images/hero.png') }}
+                            alt="People working on laptops" />
                         <div class="absolute inset-0 bg-indigo-400 mix-blend-multiply"></div>
                     </div>
                     <div class="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
