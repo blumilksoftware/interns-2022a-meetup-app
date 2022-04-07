@@ -14,5 +14,6 @@
     </div>
     @include('partials.footer')
     <script src="{{ asset('/static/js/navbar.js') }}"></script>
+    <script src="{{ asset('/static/js/userMenu.js') }}"></script>
 </body>
 </html>
