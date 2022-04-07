@@ -23,6 +23,9 @@
                 <div>
                     <button type="submit">Login</button>
                 </div>
+                <div>
+                    <a href="{{route("password.request")}}">Forgot password?</a>
+                </div>
                 @if(!empty($error))
                     <div>{{$error}}</div>
                 @endif

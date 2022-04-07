@@ -10,6 +10,7 @@ use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
 use Blumilk\Meetup\Core\Http\Controllers\ContactController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
+use Blumilk\Meetup\Core\Http\Controllers\PasswordResetController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
 use Blumilk\Meetup\Core\Http\Controllers\StaticController;
 
@@ -24,6 +25,11 @@ class WebRouting extends Routing
         $this->router->get("/auth/login", [LoginController::class, "store"])->name("login.form");
         $this->router->post("/auth/login", [LoginController::class, "login"])->name("login");
         $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
+
+        $this->router->get("/auth/forgot-password", [PasswordResetController::class, "create"])->name("password.request");
+        $this->router->post("/auth/forgot-password", [PasswordResetController::class, "store"])->name("password.email");
+        $this->router->get('/auth/reset-password/{token}', [PasswordResetController::class, "edit"])->name('password.reset');
+        $this->router->post('/auth/reset-password', [PasswordResetController::class, "update"])->name('password.update');
 
         $this->router->controller(SocialiteController::class)->group(function (): void {
             $this->router->get("/auth/google/redirect", "redirectToGoogle")->name("login.google");
