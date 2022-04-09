@@ -5,9 +5,19 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Models;
 
 use Blumilk\Meetup\Core\Models\Utils\Formats;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string|null $description
+ * @property string $avatarPath
+ * @property string|null $linkedinUrl
+ * @property string|null $githubUrl
+ * @property-read Collection<Meetup> $meetup
+ */
 class Speaker extends Model
 {
     use HasFactory;
