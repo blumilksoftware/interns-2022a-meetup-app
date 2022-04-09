@@ -33,7 +33,6 @@ class Meetup extends Model
         "place",
         "language",
     ];
-
     protected $casts = [
         "date:" . Formats::DATETIME,
     ];

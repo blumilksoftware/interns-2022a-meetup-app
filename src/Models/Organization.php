@@ -47,7 +47,6 @@ class Organization extends Model
         "twitter_url",
         "github_url",
     ];
-
     protected $casts = [
         "foundation_date:" . Formats::DATETIME,
     ];
