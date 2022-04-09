@@ -16,7 +16,6 @@ class News extends Model
         "name",
         "content",
     ];
-
     protected $casts = [
         "date:" . Formats::DATETIME,
     ];

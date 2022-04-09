@@ -48,12 +48,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "email",
         "password",
     ];
-
     protected $hidden = [
         "password",
         "remember_token",
     ];
-
     protected $casts = [
         "email_verified_at" => "datetime",
     ];

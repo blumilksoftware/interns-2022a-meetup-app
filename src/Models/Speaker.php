@@ -29,7 +29,6 @@ class Speaker extends Model
         "linkedin_url",
         "github_url",
     ];
-
     protected $casts = [
         "date:" . Formats::DATETIME,
     ];

@@ -16,7 +16,6 @@ class NewsletterPreferences extends Model
     protected $fillable = [
         "preference",
     ];
-
     protected $casts = [
         "preference" => AvailableNewsletter::class,
     ];
