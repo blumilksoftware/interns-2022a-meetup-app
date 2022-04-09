@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Blumilk\Meetup\Core\Enums;
+namespace Blumilk\Meetup\Core\Services\Authentication;
 
 enum AvailableAuthentication: string
 {

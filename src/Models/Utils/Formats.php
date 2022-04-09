@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Blumilk\Meetup\Core;
+namespace Blumilk\Meetup\Core\Models\Utils;
 
 class Formats
 {

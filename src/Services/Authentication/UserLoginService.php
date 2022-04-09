@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Blumilk\Meetup\Core\Services;
+namespace Blumilk\Meetup\Core\Services\Authentication;
 
 use Blumilk\Meetup\Core\Models\User;
 use Illuminate\Auth\AuthenticationException;
