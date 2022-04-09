@@ -35,7 +35,7 @@ class MeetupEmailNotification extends Notification
             ->greeting(__("Hi :user", [
                 "user" => $email,
             ]))
-            ->subject("New meetup has been created")
+            ->line("New meetup has been created")
             ->line(__(":title ", [
                 "title" => $title,
             ]))

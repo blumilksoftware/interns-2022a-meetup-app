@@ -35,7 +35,7 @@ class NewsEmailNotification extends Notification
             ->greeting(__("Hi :user", [
                 "user" => $email,
             ]))
-            ->subject("New news has been created")
+            ->line("New news has been created")
             ->line(__(":title ", [
                 "title" => $title,
             ]))
