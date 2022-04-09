@@ -4,8 +4,17 @@
     <div>
         <div>
             <h1>Forgot Password Page</h1>
-            <form action="{{ route('password.email') }}" method="post">
+            <form action="{{ route('password.update') }}" method="post">
                 @csrf
+                <div>
+                    <input type="string" id="token" hidden="hidden" name="token" value="{{ $token }}">
+                    <x-input-error for="token"/>
+                </div>
+                <div>
+                    <label for="email">email:</label>
+                    <input type="email" id="email" readonly="readonly" name="email" value="{{ ($_GET['email']) }}">
+                    <x-input-error for="email"/>
+                </div>
                 <div>
                     <label for="password">password:</label>
                     <input type="password" id="password" name="password" value="{{ old('password') }}">
