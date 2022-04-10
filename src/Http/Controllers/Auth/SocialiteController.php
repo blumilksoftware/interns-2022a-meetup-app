@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
-use Blumilk\Meetup\Core\AvailableAuthentication as Provider;
+use Blumilk\Meetup\Core\Enums\AvailableAuthentication as Provider;
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Services\SocialUserLoginService;
 use Illuminate\Http\RedirectResponse;

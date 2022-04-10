@@ -14,6 +14,7 @@ class OrganizationProfile extends Model
     protected $fillable = [
         "link",
         "label",
+        "icon",
     ];
 
     public function organization(): BelongsTo

@@ -50,5 +50,6 @@ return [
         ...Facade::defaultAliases()->toArray(),
         "Formats" => Blumilk\Meetup\Core\Formats::class,
         "Auth" => Illuminate\Support\Facades\Auth::class,
+        "Constants" => Blumilk\Meetup\Core\Constants::class,
     ],
 ];
