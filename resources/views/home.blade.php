@@ -89,37 +89,41 @@
                 </svg>
             </button>
         </div>
-        <div class="grid place-items-center md:grid-cols-2 xl:grid-cols-3 gap-y-12 gap-x-10  mt-8">
-            <a href="/meetup" class="w-[397px] h-[309px] rounded-2xl bg-white shadow-lg">
-                <img src="{{ asset('static/images/meetup_card.jpg') }}" alt="meetup"
-                    class="w-[397px] h-[167px] rounded-t-20" />
-                <div class="flex justify-between px-7 mt-1">
-                    <div class="flex flex-col h-[100px] justify-around">
-                        <p class="text-xl">Jamstack Warsaw Meetup</p>
-                        <p class="text-sm text-gray-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            Monday - Feb 24 - 18:30
-                        </p>
-                        <p class="text-sm text-gray-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline mr-2" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            Legnica event - online
-                        </p>
+        <div class="grid place-items-center md:grid-cols-2 xl:grid-cols-3 gap-y-12 gap-x-10 mt-8 relative">
+            @forelse ($meetups as $meetup)
+                <a href="/meetup" class="w-[397px] h-[309px] rounded-2xl bg-white shadow-lg">
+                    <img src="{{ asset('static/images/meetup_card.jpg') }}" alt="meetup"
+                        class="w-[397px] h-[167px] rounded-t-20" />
+                    <div class="flex justify-between px-7 mt-1">
+                        <div class="flex flex-col h-[100px] justify-around">
+                            <p class="text-xl">{{ $meetup->title }}</p>
+                            <p class="text-sm text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline mr-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                {{ $meetup->date }}
+                            </p>
+                            <p class="text-sm text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline mr-2" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                {{ $meetup->place }}
+                            </p>
+                        </div>
+                        <div class="text-xl text-center mt-1">
+                            <p class="text-red-500">Feb</p>
+                            <p>24</p>
+                        </div>
                     </div>
-                    <div class="text-xl text-center mt-1">
-                        <p class="text-red-500">Feb</p>
-                        <p>24</p>
-                    </div>
-                </div>
-            </a>
+                </a>
+            @empty
+                <p class="text-xl text-center absolute top-4">There are no meetups</p>
+            @endforelse
         </div>
     </div>
 @endsection

@@ -16,7 +16,7 @@ class MeetupController extends Controller
     {
         $meetups = Meetup::query()->latest()->with(["user"])->paginate(20);
 
-        return view("meetups.index")
+        return view("home")
             ->with("meetups", $meetups);
     }
 

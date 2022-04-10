@@ -33,7 +33,7 @@ class WebRouting extends Routing
         });
 
         $this->router->controller(MeetupController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/meetups", "index")->name("meetups");
+            $this->router->get("/", "index")->name("meetups");
             $this->router->get("/meetups/create", "create")->name("meetups.create");
             $this->router->post("/meetups", "store")->name("meetups.store");
             $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
