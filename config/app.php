@@ -48,7 +48,7 @@ return [
     ],
     "aliases" => [
         ...Facade::defaultAliases()->toArray(),
-        "Formats" => Blumilk\Meetup\Core\Formats::class,
+        "Formats" => Blumilk\Meetup\Core\Models\Utils\Formats::class,
         "Auth" => Illuminate\Support\Facades\Auth::class,
         "Constants" => Blumilk\Meetup\Core\Constants::class,
     ],
