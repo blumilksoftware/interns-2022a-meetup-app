@@ -18,14 +18,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $foundationDate
  * @property string $numberOfEmployers
  * @property string $logo
- * @property string|null $websiteUrl
- * @property string|null $facebookUrl
- * @property string|null $linkedinUrl
- * @property string|null $instagramUrl
- * @property string|null $youtubeUrl
- * @property string|null $twitterUrl
- * @property string|null $githubUrl
  * @property-read Collection<Meetup> $meetups
+ * @property-read Collection<OrganizationProfile> $organizationProfiles
  */
 class Organization extends Model
 {

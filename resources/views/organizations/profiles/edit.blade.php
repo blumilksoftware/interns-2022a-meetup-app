@@ -14,7 +14,7 @@
                         <select id="label" name="label">
                             @foreach($availableProfiles as $availableProfile)
                                 <option value="{{ $availableProfile['label'] }}"
-                                        @if($availableProfile['label'] === $profile->label) selected @endif>
+                                        @if($availableProfile['label'] === old('label', $profile->label)) selected @endif>
                                     {{ $availableProfile['label'] }}
                                 </option>
                             @endforeach
