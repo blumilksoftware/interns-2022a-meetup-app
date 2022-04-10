@@ -10,13 +10,12 @@
                     <div>
                         <label for="label">Label:</label>
                         <select id="label" name="label">
-                            <option value="Website">Website</option>
-                            <option value="Facebook">Facebook</option>
-                            <option value="Linkedin">Linkedin</option>
-                            <option value="Instagram">Instagram</option>
-                            <option value="YouTube">YouTube</option>
-                            <option value="Twitter">Twitter</option>
-                            <option value="GitHub">GitHub</option>
+                            @foreach( $availableProfiles as $availableProfile )
+                                <option value="{{ $availableProfile['label'] }}"
+                                        @if($availableProfile['label'] === old('label')) selected @endif>
+                                    {{ $availableProfile['label'] }}
+                                </option>
+                            @endforeach
                         </select>
                         <x-input-error for="label"/>
                     </div>

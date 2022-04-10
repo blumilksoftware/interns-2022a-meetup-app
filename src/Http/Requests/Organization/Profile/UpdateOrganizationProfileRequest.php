@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Requests\Organization\Profile;
 
+use Blumilk\Meetup\Core\Enums\AvailableProfiles;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class UpdateOrganizationProfileRequest extends FormRequest
 {
@@ -12,7 +14,7 @@ class UpdateOrganizationProfileRequest extends FormRequest
     {
         return [
             "link" => ["required", "url"],
-            "label" => ["required", "in:Website,Facebook,Linkedin,Instagram,YouTube,Twitter,GitHub"],
+            "label" => ["required", new Enum(AvailableProfiles::class)],
         ];
     }
 }
