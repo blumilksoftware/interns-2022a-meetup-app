@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Models;
 
 use Blumilk\Meetup\Core\Models\Utils\Formats;
+use Database\Factories\SpeakerFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -29,7 +30,6 @@ class Speaker extends Model
         "linkedin_url",
         "github_url",
     ];
-
     protected $casts = [
         "date:" . Formats::DATETIME,
     ];
@@ -37,5 +37,10 @@ class Speaker extends Model
     public function meetup(): HasMany
     {
         return $this->hasMany(Meetup::class);
+    }
+
+    protected static function newFactory(): SpeakerFactory
+    {
+        return SpeakerFactory::new();
     }
 }

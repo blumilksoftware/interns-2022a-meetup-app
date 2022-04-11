@@ -35,7 +35,6 @@ class Kernel extends HttpKernel
         Middleware\TrimStrings::class,
         ConvertEmptyStringsToNull::class,
     ];
-
     protected $middlewareGroups = [
         "web" => [
             EncryptCookies::class,
@@ -52,7 +51,6 @@ class Kernel extends HttpKernel
             SubstituteBindings::class,
         ],
     ];
-
     protected $routeMiddleware = [
         "auth" => Middleware\Authenticate::class,
         "auth.basic" => AuthenticateWithBasicAuth::class,
