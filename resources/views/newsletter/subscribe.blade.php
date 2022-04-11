@@ -14,12 +14,13 @@
             <label for="Notification type">Notification type:</label>
             <div>
                 <label for="News">New News
-                    <input type="checkbox" name="type[]" id="News" checked="checked" value={{\Blumilk\Meetup\Core\Enums\AvailableNewsletter::NEWS->value}}></label>
+                    <input type="checkbox" name="type[]" id="News" checked="checked" value={{AvailableNewsletter::NEWS->value}}></label>
                 <label for="News">New Meetups
-                    <input type="checkbox" name="type[]" id="Meetups" value="{{\Blumilk\Meetup\Core\Enums\AvailableNewsletter::MEETUPS->value}}"></label>
+                    <input type="checkbox" name="type[]" id="Meetups" value={{AvailableNewsletter::MEETUPS->value}}></label>
                 <x-input-error for="type"/>
             </div>
             <input type="submit" name="Subscribe" value="Subscribe">
         </form>
     </div>
 @endsection
+
