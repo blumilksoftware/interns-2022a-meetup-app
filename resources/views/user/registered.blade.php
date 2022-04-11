@@ -2,7 +2,7 @@
 
 @section('content')
     <div style="text-align: center">
-        <h1>You have been registered<br>Please go to login Page</h1>
-        <a href="{{ route('login') }}"><button type="button">Login</button></a>
+        <h1>You have been registered<br>Please verified your email address</h1>
+        <a href="{{ route('login') }}"><button type="button">Login Page</button></a>
     </div>
 @endsection

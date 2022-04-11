@@ -8,6 +8,7 @@ use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
 use Blumilk\Meetup\Core\Http\Controllers\ContactController;
+use Blumilk\Meetup\Core\Http\Controllers\EmailVerificationController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\PasswordResetController;
@@ -26,10 +27,19 @@ class WebRouting extends Routing
         $this->router->post("/auth/login", [LoginController::class, "login"])->name("login");
         $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
 
-        $this->router->get("/auth/forgot-password", [PasswordResetController::class, "create"])->name("password.request");
-        $this->router->post("/auth/forgot-password", [PasswordResetController::class, "store"])->name("password.email");
-        $this->router->get("/auth/reset-password/{token}", [PasswordResetController::class, "edit"])->name("password.reset");
-        $this->router->post("/auth/reset-password", [PasswordResetController::class, "update"])->name("password.update");
+        $this->router->controller(PasswordResetController::class)->group(function (): void{
+            $this->router->get('/email/verify', "create")->middleware('auth')->name('verification.notice');
+            $this->router->get('/email/verify/{id}/{hash}', "store")->middleware(['auth', 'signed'])->name('verification.verify');
+            $this->router->post('/email/verification-notification', "notification")->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+        });
+
+
+        $this->router->controller(PasswordResetController::class)->group(function (): void{
+            $this->router->get("/auth/forgot-password", "create")->name("password.request");
+            $this->router->post("/auth/forgot-password", "store")->name("password.email");
+            $this->router->get("/auth/reset-password/{token}", "edit")->name("password.reset");
+            $this->router->post("/auth/reset-password", "update")->name("password.update");
+        });
 
         $this->router->controller(SocialiteController::class)->group(function (): void {
             $this->router->get("/auth/google/redirect", "redirectToGoogle")->name("login.google");
