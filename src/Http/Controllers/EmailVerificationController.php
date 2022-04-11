@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -11,20 +13,20 @@ class EmailVerificationController extends Controller
 {
     public function create(): View
     {
-        return view('auth.verify-email');
+        return view("auth.verify-email");
     }
 
     public function store(EmailVerificationRequest $request): RedirectResponse
     {
         $request->fulfill();
 
-        return redirect('/home');
+        return redirect("/home");
     }
 
     public function notification(Request $request): RedirectResponse
     {
         $request->user()->sendEmailVerificationNotification();
 
-        return back()->with('message', 'Verification link sent!');
+        return back()->with("message", "Verification link sent!");
     }
 }

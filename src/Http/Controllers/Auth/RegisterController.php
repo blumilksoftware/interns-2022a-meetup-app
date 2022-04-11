@@ -21,7 +21,7 @@ class RegisterController extends Controller
     {
         User::create($request->validated());
         $user = User::query()->where("email", $request->validated("email"))->first();
-        event(new Registered($user));;
+        event(new Registered($user));
 
         return view("user.registered");
     }
