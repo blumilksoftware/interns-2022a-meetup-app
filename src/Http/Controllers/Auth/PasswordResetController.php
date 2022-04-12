@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Blumilk\Meetup\Core\Http\Controllers;
+namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
+use function __;
+use function back;
+use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Http\Requests\PasswordResetRequest;
 use Blumilk\Meetup\Core\Http\Requests\PasswordUpdateRequest;
+use function event;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Passwords\PasswordBrokerManager;
 use Illuminate\Contracts\Auth\PasswordBroker;
@@ -14,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use function view;
 
 class PasswordResetController extends Controller
 {
