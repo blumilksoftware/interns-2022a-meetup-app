@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Models;
 
 use Blumilk\Meetup\Core\Models\Utils\Formats;
+use Database\Factories\MeetupFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -26,6 +27,8 @@ class Meetup extends Model
 {
     use HasFactory;
 
+    public $incrementing = true;
+    protected $primaryKey = "id";
     protected $fillable = [
         "title",
         "description",
@@ -33,7 +36,6 @@ class Meetup extends Model
         "place",
         "language",
     ];
-
     protected $casts = [
         "date:" . Formats::DATETIME,
     ];
@@ -51,5 +53,10 @@ class Meetup extends Model
     public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class);
+    }
+
+    protected static function newFactory(): MeetupFactory
+    {
+        return MeetupFactory::new();
     }
 }

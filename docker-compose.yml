@@ -12,7 +12,7 @@ services:
     container_name: meetup-php
     working_dir: /application
     user: ${CURRENT_UID:-1000}
-    entrypoint: sh -c "php artisan serve --host 0.0.0.0"
+    entrypoint: environment/dev/php/bin/entrypoint.sh
     volumes:
       -  ./tests/manual/public:/application/public
       - .:/application

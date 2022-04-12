@@ -24,7 +24,7 @@ class StaticController extends Controller
         }
 
         $headers = [
-            "Content-Type" => File::mimeType($path),
+            "Content-Type" => File::type($path),
         ];
 
         return response()->file($path, $headers);
