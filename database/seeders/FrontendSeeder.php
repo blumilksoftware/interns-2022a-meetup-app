@@ -29,10 +29,10 @@ class FrontendSeeder extends Seeder
         $organization = Organization::all();
         foreach ($speakers as $speaker) {
             Meetup::factory(10)->create([
-                    "user_id" => $user,
-                    "speaker_id" => $speakers->random(),
-                    "organization_id" => $organization->random(),
-                ]);
+                "user_id" => $user,
+                "speaker_id" => $speakers->random(),
+                "organization_id" => $organization->random(),
+            ]);
         }
     }
 }
