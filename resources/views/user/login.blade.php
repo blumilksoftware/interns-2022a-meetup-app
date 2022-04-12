@@ -26,9 +26,6 @@
                 <div>
                     <a href="{{route("password.request")}}">Forgot password?</a>
                 </div>
-                @if(!empty($error))
-                    <div>{{$error}}</div>
-                @endif
             </form>
         </div>
     </div>

@@ -4,21 +4,15 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
-use function __;
-use function back;
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Http\Requests\PasswordResetRequest;
 use Blumilk\Meetup\Core\Http\Requests\PasswordUpdateRequest;
-use function event;
-use Illuminate\Auth\Events\PasswordReset;
+use Blumilk\Meetup\Core\Services\Authentication\PasswordResetService;
 use Illuminate\Auth\Passwords\PasswordBrokerManager;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
-use function view;
 
 class PasswordResetController extends Controller
 {
@@ -38,9 +32,11 @@ class PasswordResetController extends Controller
             $request->validated(),
         );
 
-        return $status === PasswordBroker::RESET_LINK_SENT
-            ? \view("user.password.dashboard")->with(["status" => __($status)])
-            : back()->withErrors(["email" => __($status)]);
+        if ($status === PasswordBroker::RESET_LINK_SENT)
+        {
+            return view("user.password.dashboard")->with(["status" => __($status)]);
+        }
+            return back()->withErrors(["email" => __($status)]);
     }
 
     public function edit(string $token): View
@@ -48,23 +44,16 @@ class PasswordResetController extends Controller
         return view("user.password.reset-password")->with("token", $token);
     }
 
-    public function update(PasswordUpdateRequest $request): RedirectResponse|View
+    /**
+     * @throws \Illuminate\Auth\AuthenticationException
+     */
+    public function update(PasswordUpdateRequest $request, PasswordResetService $service): RedirectResponse|View
     {
-        $status = Password::reset(
-            $request->only("email", "password", "password_confirmation", "token"),
-            function ( $user, $password): void {
-                $user->forceFill([
-                    "password" => $this->hash->make($password),
-                ])->setRememberToken(Str::random(60));
+        $status = $service->resetPassword($request->validated());
 
-                $user->save();
-
-                event(new PasswordReset($user));
-            },
-        );
-
-        return $status === PasswordBroker::PASSWORD_RESET
-            ? view("user.password.dashboard")->with("status", __($status))
-            : back()->withErrors(["email" => [__($status)]]);
+        if ($status === PasswordBroker::PASSWORD_RESET){
+            return view("user.password.dashboard")->with("status", __($status));
+        }
+            return back()->withErrors(["email" => [__($status)]]);
     }
 }
