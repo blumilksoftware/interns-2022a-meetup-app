@@ -6,6 +6,12 @@ install: ## Copy .env.example to .env and build docker image
 db-create: ## Run db migrates
 	docker-compose exec php php artisan migrate
 
+db-seed: ## Run db seeders
+	docker-compose exec php php artisan db:seed
+
+db-fresh: ## Refresh db migrate
+	docker-compose exec php php artisan migrate:fresh
+
 start: ## Run server http
 	docker-compose up -d
 
@@ -40,12 +46,11 @@ sqlite-create: ## Create file for sqlite
 key-generate: ## Create key for artisan
 	docker-compose exec php php artisan key:generate
 
-init: ## Setup for project
+init: ## First setup for project
 	$(MAKE) install
 	$(MAKE) sqlite-create
 	$(MAKE) start
 	$(MAKE) key-generate
-	$(MAKE) composer-install
 	$(MAKE) sqlite-create
 	$(MAKE) db-create
 
