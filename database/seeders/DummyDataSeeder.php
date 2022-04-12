@@ -23,11 +23,10 @@ class DummyDataSeeder extends Seeder
             "email_verified_at" => Carbon::createFromDate(2022, 01, 01),
         ])->create();
 
-        $organization = Organization::factory(10)->create();
+        $organizations = Organization::factory(10)->create();
         $speakers = Speaker::factory(10)->create();
-
         foreach ($speakers as $speaker) {
-            Meetup::factory(10)->create([
+            Meetup::factory()->create([
                 "user_id" => $user,
                 "speaker_id" => $speakers->random(),
                 "organization_id" => $organizations->random(),

@@ -46,6 +46,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use Notifiable;
     use HasFactory;
 
+    public $incrementing = true;
+    protected $primaryKey = "id";
     protected $fillable = [
         "name",
         "email",

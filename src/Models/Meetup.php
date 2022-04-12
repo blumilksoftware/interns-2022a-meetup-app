@@ -27,6 +27,8 @@ class Meetup extends Model
 {
     use HasFactory;
 
+    public $incrementing = true;
+    protected $primaryKey = "id";
     protected $fillable = [
         "title",
         "description",
