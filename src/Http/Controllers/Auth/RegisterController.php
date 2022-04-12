@@ -19,8 +19,7 @@ class RegisterController extends Controller
 
     public function store(RegisterUserRequest $request): View
     {
-        User::create($request->validated());
-        $user = User::query()->where("email", $request->validated("email"))->first();
+        $user = User::create($request->validated());
         event(new Registered($user));
 
         return view("user.registered");
