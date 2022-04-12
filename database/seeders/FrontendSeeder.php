@@ -23,15 +23,12 @@ class FrontendSeeder extends Seeder
             "email_verified_at" => Carbon::createFromDate(2022, 01, 01),
         ])
             ->create();
-        Organization::factory(10)
-            ->create();
-        Speaker::factory(10)
-            ->create();
+        Organization::factory(10)->create();
+        Speaker::factory(10)->create();
         $speakers = Speaker::all();
         $organization = Organization::all();
         foreach ($speakers as $speaker) {
-            Meetup::factory(10)
-                ->create([
+            Meetup::factory(10)->create([
                     "user_id" => $user,
                     "speaker_id" => $speakers->random(),
                     "organization_id" => $organization->random(),
