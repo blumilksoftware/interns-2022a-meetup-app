@@ -5,13 +5,25 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $subject
+ * @property string $message
+ * @property-read DatabaseNotificationCollection<DatabaseNotification> $notifications
+ */
 class Contact extends Model
 {
     use HasFactory;
     use Notifiable;
 
+    public $incrementing = true;
+    protected $primaryKey = "id";
     protected $fillable = [
         "name",
         "email",
