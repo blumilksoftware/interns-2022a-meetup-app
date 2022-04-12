@@ -25,6 +25,7 @@ class DummyDataSeeder extends Seeder
 
         $organizations = Organization::factory(10)->create();
         $speakers = Speaker::factory(10)->create();
+
         foreach ($speakers as $speaker) {
             Meetup::factory()->create([
                 "user_id" => $user,
