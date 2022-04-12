@@ -2,7 +2,7 @@
 set -ea
 
 if [ ! -d "vendor" ]; then
-  echo "Vendor not installed. Installing..."
+  echo "Vendor does not exist. Installing..."
   if [ -f "composer.json" ]; then
     composer install
   fi
