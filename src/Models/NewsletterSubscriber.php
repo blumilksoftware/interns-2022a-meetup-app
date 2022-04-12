@@ -27,6 +27,8 @@ class NewsletterSubscriber extends Model
     use HasFactory;
     use Notifiable;
 
+    public $incrementing = true;
+    protected $primaryKey = "id";
     protected $fillable = [
         "email",
         "status",
