@@ -11,7 +11,7 @@ class NewsletterStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "email" => ["required"],
+            "email" => ["required", "string", "email", "max:255"],
         ];
     }
 }

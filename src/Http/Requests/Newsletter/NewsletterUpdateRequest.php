@@ -13,7 +13,7 @@ class NewsletterUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "email" => ["required"],
+            "email" => ["required", "string", "email", "max:255"],
             "type" => ["required", "array", Rule::in([AvailableNewsletter::MEETUPS->value, AvailableNewsletter::NEWS->value])],
         ];
     }
