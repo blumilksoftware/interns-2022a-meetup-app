@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Models;
 
+use Database\Factories\UserFactory;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -12,6 +13,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\DatabaseNotification;
@@ -43,7 +45,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use HasApiTokens;
     use MustVerifyEmail;
     use Notifiable;
+    use HasFactory;
 
+    public $incrementing = true;
+    protected $primaryKey = "id";
     protected $fillable = [
         "name",
         "email",
@@ -65,5 +70,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function socialAccounts(): HasMany
     {
         return $this->hasMany(SocialAccount::class);
+    }
+
+    protected static function newFactory(): UserFactory
+    {
+        return UserFactory::new();
     }
 }

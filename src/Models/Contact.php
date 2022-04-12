@@ -22,6 +22,8 @@ class Contact extends Model
     use HasFactory;
     use Notifiable;
 
+    public $incrementing = true;
+    protected $primaryKey = "id";
     protected $fillable = [
         "name",
         "email",
