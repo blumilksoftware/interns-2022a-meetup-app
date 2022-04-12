@@ -21,17 +21,16 @@ class DummyDataSeeder extends Seeder
             "email" => "admin@example.com",
             "password" => Hash::make("password"),
             "email_verified_at" => Carbon::createFromDate(2022, 01, 01),
-        ])
-            ->create();
-        Organization::factory(10)->create();
-        Speaker::factory(10)->create();
-        $speakers = Speaker::all();
-        $organization = Organization::all();
+        ])->create();
+
+        $organization = Organization::factory(10)->create();
+        $speakers = Speaker::factory(10)->create();
+
         foreach ($speakers as $speaker) {
             Meetup::factory(10)->create([
                 "user_id" => $user,
                 "speaker_id" => $speakers->random(),
-                "organization_id" => $organization->random(),
+                "organization_id" => $organizations->random(),
             ]);
         }
     }
