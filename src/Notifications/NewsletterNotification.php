@@ -27,7 +27,8 @@ class NewsletterNotification extends Notification
             ->greeting(__("Hi :user", [
                 "user" => $email,
             ]))
-            ->subject("Thank you for subscribing to our newsletter")
+            ->subject("Subscribe newsletter")
+            ->line("Thank you for subscribing to our newsletter")
             ->action(__("Click here if you want to go to our page"), $url);
     }
 }
