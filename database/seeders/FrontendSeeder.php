@@ -12,7 +12,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 
-class FrontendSeeder extends Seeder
+class DummyDataSeeder extends Seeder
 {
     public function run(): void
     {
