@@ -7,7 +7,7 @@ Feature: Showing a speaker
     And the administrator is logged in
 
   Scenario Outline: Successfully showing a speaker
-    Given the administrator is on the showing speaker page with speaker id <id>
+    Given the administrator is on the showing speaker page with speaker id equals "<id>"
     Then the administrator should see "name" with "<name>"
     And the administrator should see "description" with "<description>"
     Examples:

@@ -12,7 +12,7 @@ Feature: Creating a admin user
 
   Scenario Outline: Successfully created an account
     Given the invited user is on the authentication route by invitation link
-    When the invited user registers with "<email>" email addrress
+    When the invited user registers with "<email>" email address
     Then new administrator with email "<email>" should be created
     Examples:
       | email                    |

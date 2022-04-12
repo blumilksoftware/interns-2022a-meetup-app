@@ -7,7 +7,7 @@ Feature: Deleting a speaker
     And the administrator is logged in
 
   Scenario Outline: Successfully deleting a speaker
-    Given the administrator is on the deleting speaker page with meetup id <id>
+    Given the administrator is on the deleting speaker page with meetup id equals "<id>"
     When the administrator clicks on the delete speaker button
     Then the administrator should see the message "Speaker successfully deleted"
     Examples:

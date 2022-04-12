@@ -9,7 +9,7 @@ Feature: Showing a meetup
     And the user is not an administrator
 
   Scenario Outline: Successfully showing a meetup
-    When the user is on the show meetup page with <id>
+    When the user is on the show meetup page with id equals "<id>"
     Then the user should see following meetup details:
       | id              | <id>               |
       | organizer_id    | <organizer_id>     |
@@ -23,7 +23,7 @@ Feature: Showing a meetup
       | 2   | 2             | foreign meetup           | 2023-01-01 10:10:10  | place           | pl       |
 
   Scenario Outline: Attempt to show a meetup which does not exist
-    When the user in on the show meetup page with id equals "<id>
+    When the user in on the show meetup page with id equals "<id>"
     Then the user should see the message "Page not found"
     Examples:
       | id   |

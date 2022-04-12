@@ -7,7 +7,7 @@ Feature: Deleting a meetup
     And the administrator is logged in
 
   Scenario Outline: Successfully deleting a meetup
-    Given the administrator is on the deleting meetup page with meetup id <id>
+    Given the administrator is on the deleting meetup page with meetup id equals "<id>"
     When the administrator clicks on the delete meetup button
     Then the administrator should see the message "Meetup successfully deleted"
     Examples:

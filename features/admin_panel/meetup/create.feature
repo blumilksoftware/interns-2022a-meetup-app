@@ -15,7 +15,7 @@ Feature: Creating a meetup
       | date         | <date>       |
       | place        | <place>      |
       | language     | <language>   |
-    And the administrator should see the message "Meetup succesfully created"
+    And the administrator should see the message "Meetup successfully created"
     Examples:
       | title                    | date                 | place           | language |
       | test meetup              | 2023-02-02 10:10:10  | test place      | pl       |

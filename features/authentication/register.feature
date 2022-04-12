@@ -10,7 +10,7 @@ Feature: User registration
     And the user fills in "name" with "<name>"
     And the user submits form
     Then the user has successfully sign up
-    And the user should get an email on <email>
+    And the user should get an email on "<email>"
     Examples:
       | email                    | password        | name          |
       | testuser@example.com     | correctpassword | testuser      |
