@@ -14,7 +14,7 @@ class NewsletterService
         if ($subscriber->getAttribute("status") === 1) {
             return response("You are already subscriber. Would you like to change your preferences?");
         }
-        $subscriber->status = 1;
+        $subscriber->status = true;
         $subscriber->saveOrFail();
 
         return response("Thank you for subscribing to our newsletter. What would you like to subscribe?");
