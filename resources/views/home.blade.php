@@ -125,5 +125,8 @@
                 <p class="text-xl text-center absolute top-4">There are no meetups</p>
             @endforelse
         </div>
+        <div class="mt-10">
+            {{ $meetups->links() }}
+        </div>
     </div>
 @endsection
