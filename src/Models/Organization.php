@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Models;
 
 use Blumilk\Meetup\Core\Models\Utils\Formats;
+use Database\Factories\OrganizationFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,6 +26,8 @@ class Organization extends Model
 {
     use HasFactory;
 
+    public $incrementing = true;
+    protected $primaryKey = "id";
     protected $fillable = [
         "name",
         "description",
@@ -43,8 +46,8 @@ class Organization extends Model
         return $this->hasMany(Meetup::class);
     }
 
-    public function organizationProfiles(): HasMany
+    protected static function newFactory(): OrganizationFactory
     {
-        return $this->hasMany(OrganizationProfile::class);
+        return OrganizationFactory::new();
     }
 }
