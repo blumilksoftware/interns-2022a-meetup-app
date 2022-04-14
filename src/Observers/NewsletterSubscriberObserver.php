@@ -11,6 +11,6 @@ class NewsletterSubscriberObserver
 {
     public function created(NewsletterSubscriber $subscriber): void
     {
-        $subscriber->notify(new NewsletterNotification());
+        $subscriber->notify(new NewsletterNotification($subscriber));
     }
 }

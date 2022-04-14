@@ -5,22 +5,21 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Services;
 
 use Blumilk\Meetup\Core\Models\NewsletterSubscriber;
-use Illuminate\Http\Response;
 
 class NewsletterService
 {
-    public function isSubscriber(NewsletterSubscriber $subscriber): Response
+    public function isSubscriber(NewsletterSubscriber $subscriber): string
     {
-        if ($subscriber->getAttribute("status") === true) {
-            return response("You are already subscriber. Would you like to change your preferences?");
+        if ($subscriber->subscribed) {
+            return "You are already subscriber. Would you like to change your preferences?";
         }
-        $subscriber->status = true;
+        $subscriber->subscribed = true;
         $subscriber->saveOrFail();
 
-        return response("Thank you for subscribing to our newsletter. What would you like to subscribe?");
+        return "Thank you for subscribing to our newsletter. What would you like to subscribe?";
     }
 
-    public function preference(NewsletterSubscriber $subscriber, array $preferences): Response
+    public function preference(NewsletterSubscriber $subscriber, array $preferences): string
     {
         $subscriber->preferences()->delete();
 
@@ -30,15 +29,15 @@ class NewsletterService
             ]);
         }
 
-        return response("You are successfully subscribed");
+        return "You are successfully subscribed";
     }
 
-    public function unsubscribe(NewsletterSubscriber $subscriber): Response
+    public function unsubscribe(NewsletterSubscriber $subscriber): string
     {
         $subscriber->preferences()->delete();
-        $subscriber->status = false;
+        $subscriber->subscribed = false;
         $subscriber->saveOrFail();
 
-        return response("You have delete your subscription");
+        return "You have delete your subscription";
     }
 }

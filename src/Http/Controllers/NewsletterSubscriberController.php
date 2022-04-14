@@ -25,7 +25,7 @@ class NewsletterSubscriberController extends Controller
         $message = $service->isSubscriber($subscriber);
 
         return view("newsletter.subscribe")
-            ->with("message", $message->content())
+            ->with("message", $message)
             ->with("subscriber", $subscriber);
     }
 
@@ -39,7 +39,7 @@ class NewsletterSubscriberController extends Controller
         $subscriber = $subscriber->newQuery()->where("email", $request->validated("email"))->first();
         $message = $service->preference($subscriber, $request->validated("type"));
 
-        return view("newsletter.dashboard")->with("message", $message->content());
+        return view("newsletter.dashboard")->with("message", $message);
     }
 
     public function destroy(NewsletterStoreRequest $request, NewsletterService $service): View
@@ -49,6 +49,6 @@ class NewsletterSubscriberController extends Controller
         ]);
         $message = $service->unsubscribe($subscriber);
 
-        return view("newsletter.dashboard")->with("message", $message->content());
+        return view("newsletter.dashboard")->with("message", $message);
     }
 }

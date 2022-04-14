@@ -12,13 +12,10 @@ use Illuminate\Database\Eloquent\Collection;
 
 class NewsObserver
 {
-    public function __construct() {}
-
     public function created(News $news): void
     {
-        foreach ($this->getSubscribersForNotifications() as $subscriber) {
-            $subscriber->notify(new NewsEmailNotification($news, $subscriber));
-        }
+        $this->getSubscribersForNotifications()
+            ->each(fn($subscriber) => $subscriber->notify(new NewsEmailNotification($news, $subscriber)));
     }
 
     protected function getSubscribersForNotifications(): Collection

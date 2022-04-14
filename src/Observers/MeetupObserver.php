@@ -12,12 +12,10 @@ use Illuminate\Database\Eloquent\Collection;
 
 class MeetupObserver
 {
-    public function __construct() {}
-
     public function created(Meetup $meetup): void
     {
         $this->getSubscribersForNotifications()
-          ->each(fn($subscriber) => $subscriber->notify(new MeetupEmailNotification($meetup, $subscriber)));
+            ->each(fn($subscriber) => $subscriber->notify(new MeetupEmailNotification($meetup, $subscriber)));
     }
 
     protected function getSubscribersForNotifications(): Collection

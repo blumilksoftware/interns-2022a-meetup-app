@@ -9,6 +9,9 @@
             </div>
         @endif
         <form action="{{route("newsletter.update")}}" method="post">
+            @if($message)
+                <div>{{$message}}</div>
+            @endif
             @csrf
             <input type="email" hidden="hidden"  name="email" id="email" value="{{ $subscriber->email }}">
             <label for="Notification type">Notification type:</label>
@@ -23,4 +26,3 @@
         </form>
     </div>
 @endsection
-

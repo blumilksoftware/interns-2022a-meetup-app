@@ -16,7 +16,7 @@ use Illuminate\Support\Carbon;
 /**
  * @property int $id
  * @property string $email
- * @property string $status
+ * @property string $subscribed
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
  * @property-read Collection<NewsletterPreferences> $preferences
@@ -31,7 +31,7 @@ class NewsletterSubscriber extends Model
     protected $primaryKey = "id";
     protected $fillable = [
         "email",
-        "status",
+        "subscribed",
     ];
 
     public function preferences(): HasMany
