@@ -9,16 +9,11 @@ use Blumilk\Meetup\Core\Http\Requests\Organization\Profile\StoreOrganizationProf
 use Blumilk\Meetup\Core\Http\Requests\Organization\Profile\UpdateOrganizationProfileRequest;
 use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Models\OrganizationProfile;
-use Blumilk\Meetup\Core\Services\OrganizationProfileIconService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class OrganizationProfileController extends Controller
 {
-    public function __construct(
-        protected OrganizationProfileIconService $service,
-    ) {}
-
     public function create(Organization $organization): View
     {
         return view("organizations.profiles.create")
@@ -30,9 +25,7 @@ class OrganizationProfileController extends Controller
 
     public function store(StoreOrganizationProfileRequest $request, Organization $organization): RedirectResponse
     {
-        $organization->organizationProfiles()->create($request->validated() + [
-            "icon" => $this->service->getPath($request["label"]),
-        ]);
+        $organization->organizationProfiles()->create($request->validated());
 
         return redirect()->route("organizations.edit", $organization);
     }
@@ -49,9 +42,7 @@ class OrganizationProfileController extends Controller
 
     public function update(UpdateOrganizationProfileRequest $request, Organization $organization, OrganizationProfile $profile): RedirectResponse
     {
-        $profile->update($request->validated() + [
-            "icon" => $this->service->getPath($request["label"]),
-        ]);
+        $profile->update($request->validated());
 
         return redirect()->route("organizations.edit", $organization);
     }

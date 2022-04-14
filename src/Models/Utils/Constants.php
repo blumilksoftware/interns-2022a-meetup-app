@@ -6,5 +6,5 @@ namespace Blumilk\Meetup\Core\Models\Utils;
 
 class Constants
 {
-    public const PROFILE_ICON_PATH = "organizations/profiles/icons/";
+    public const FA_BRANDS_PATH = "fa-brands fa-";
 }

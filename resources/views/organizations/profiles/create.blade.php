@@ -10,7 +10,7 @@
                     <div>
                         <label for="label">Label:</label>
                         <select id="label" name="label">
-                            @foreach( $availableProfiles as $availableProfile )
+                            @foreach($availableProfiles as $availableProfile)
                                 <option value="{{ $availableProfile['label'] }}"
                                         @if($availableProfile['label'] === old('label')) selected @endif>
                                     {{ $availableProfile['label'] }}

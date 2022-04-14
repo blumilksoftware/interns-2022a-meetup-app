@@ -14,7 +14,6 @@ return new class() extends Migration {
             $table->foreignId("organization_id")->constrained()->onDelete("cascade");
             $table->string("link");
             $table->string("label");
-            $table->string("icon");
             $table->timestamps();
         });
     }
