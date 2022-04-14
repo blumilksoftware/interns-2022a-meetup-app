@@ -563,6 +563,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .-ml-px {
   margin-left: -1px;
 }
+.-ml-1 {
+  margin-left: -0.25rem;
+}
+.mr-3 {
+  margin-right: 0.75rem;
+}
 .block {
   display: block;
 }
@@ -611,6 +617,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-5 {
   height: 1.25rem;
 }
+.h-\[200px\] {
+  height: 200px;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -638,6 +647,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-5 {
   width: 1.25rem;
 }
+.w-\[200px\] {
+  width: 200px;
+}
+.w-\[400px\] {
+  width: 400px;
+}
 .max-w-lg {
   max-width: 32rem;
 }
@@ -661,6 +676,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .cursor-default {
   cursor: default;
+}
+.cursor-pointer {
+  cursor: pointer;
 }
 .flex-col {
   flex-direction: column;
@@ -692,6 +710,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .gap-5 {
   gap: 1.25rem;
 }
+.gap-6 {
+  gap: 1.5rem;
+}
+.gap-7 {
+  gap: 1.75rem;
+}
 .gap-y-12 {
   row-gap: 3rem;
 }
@@ -713,6 +737,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+.self-center {
+  align-self: center;
+}
+.justify-self-center {
+  justify-self: center;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -923,6 +953,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-indigo-800 {
   --tw-text-opacity: 1;
   color: rgb(55 48 163 / var(--tw-text-opacity));
+}
+.opacity-0 {
+  opacity: 0;
 }
 .mix-blend-multiply {
   mix-blend-mode: multiply;
