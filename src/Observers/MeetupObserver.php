@@ -16,9 +16,8 @@ class MeetupObserver
 
     public function created(Meetup $meetup): void
     {
-        foreach ($this->getSubscribersForNotifications() as $subscriber) {
-            $subscriber->notify(new MeetupEmailNotification($meetup, $subscriber));
-        }
+        $this->getSubscribersForNotifications()
+          ->each(fn($subscriber) => $subscriber->notify(new MeetupEmailNotification($meetup, $subscriber)));
     }
 
     protected function getSubscribersForNotifications(): Collection
