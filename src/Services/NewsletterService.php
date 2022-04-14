@@ -11,7 +11,7 @@ class NewsletterService
 {
     public function isSubscriber(NewsletterSubscriber $subscriber): Response
     {
-        if ($subscriber->getAttribute("status") === 1) {
+        if ($subscriber->getAttribute("status") === true) {
             return response("You are already subscriber. Would you like to change your preferences?");
         }
         $subscriber->status = true;

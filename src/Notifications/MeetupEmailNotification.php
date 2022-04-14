@@ -26,9 +26,15 @@ class MeetupEmailNotification extends Notification
 
     public function toMail(): MailMessage
     {
+        $detailsUrl = route("meetups");
+
+        return $this->buildMessage($detailsUrl);
+    }
+
+    protected function buildMessage(string $url): MailMessage
+    {
         $title = $this->meetup->title;
         $email = $this->subscriber->email;
-        $detailsUrl = route("meetups");
 
         return (new MailMessage())
             ->replyTo($email)
@@ -40,6 +46,6 @@ class MeetupEmailNotification extends Notification
             ->line(__(":title ", [
                 "title" => $title,
             ]))
-            ->action(__("Click here for details"), $detailsUrl);
+            ->action(__("Click here for details"), $url);
     }
 }
