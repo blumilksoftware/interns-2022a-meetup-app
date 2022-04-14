@@ -10,10 +10,10 @@ class NewsletterService
 {
     public function isSubscriber(NewsletterSubscriber $subscriber): string
     {
-        if ($subscriber->subscribed) {
+        if ($subscriber->subscription_state) {
             return "You are already subscriber. Would you like to change your preferences?";
         }
-        $subscriber->subscribed = true;
+        $subscriber->subscription_state = true;
         $subscriber->saveOrFail();
 
         return "Thank you for subscribing to our newsletter. What would you like to subscribe?";
@@ -35,7 +35,7 @@ class NewsletterService
     public function unsubscribe(NewsletterSubscriber $subscriber): string
     {
         $subscriber->preferences()->delete();
-        $subscriber->subscribed = false;
+        $subscriber->subscription_state = false;
         $subscriber->saveOrFail();
 
         return "You have delete your subscription";
