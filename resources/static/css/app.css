@@ -686,9 +686,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .justify-around {
   justify-content: space-around;
 }
-.justify-items-center {
-  justify-items: center;
-}
 .gap-8 {
   gap: 2rem;
 }
@@ -1200,3 +1197,4 @@ Ensure the default browser behavior of the `hidden` attribute.
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+

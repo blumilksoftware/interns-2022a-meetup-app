@@ -126,7 +126,7 @@
             @endforelse
         </div>
         <div class="mt-10">
-            {{ $meetups->links() }}
+            {{ $meetups->links('vendor.pagination.tailwind') }}
         </div>
     </div>
 @endsection
