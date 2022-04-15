@@ -4,7 +4,7 @@
     <div>
         <div>
             <h1>Sing Up Page</h1>
-            <form action="{{ route('register') }}" method="post">
+            <form action="{{ route('register.store') }}" method="post">
                 @csrf
                 <div>
                     <a href="{{ route('login.google') }}"><button type="button">Sign up with Google</button></a>

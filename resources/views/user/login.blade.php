@@ -4,7 +4,7 @@
     <div>
         <div>
             <h1>Login Page</h1>
-            <form action="{{ route('login') }}" method="post">
+            <form action="{{ route('login.store') }}" method="post">
                 @csrf
                 <div>
                     <a href="{{ route('login.google') }}"><button type="button">Sign in with Google</button></a>

@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Blumilk\Meetup\Core\Http\Controllers;
+namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
+use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

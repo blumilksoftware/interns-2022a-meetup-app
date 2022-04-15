@@ -20,10 +20,10 @@ class WebRouting extends Routing
     {
         $this->router->get("/", fn() => view("welcome"))->name("home");
 
-        $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register.form");
-        $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register");
-        $this->router->get("/auth/login", [LoginController::class, "store"])->name("login.form");
-        $this->router->post("/auth/login", [LoginController::class, "login"])->name("login");
+        $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register");
+        $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register.store");
+        $this->router->get("/auth/login", [LoginController::class, "store"])->name("login");
+        $this->router->post("/auth/login", [LoginController::class, "login"])->name("login.store");
         $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
 
         $this->router->controller(PasswordResetController::class)->group(function (): void{
