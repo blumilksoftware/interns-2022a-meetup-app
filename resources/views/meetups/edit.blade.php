@@ -10,7 +10,7 @@
                 <div>
                     <div>
                         <h3 class="text-xl leading-6 font-medium text-gray-900">
-                            Create Meetup
+                            Edit Meetup
                         </h3>
                     </div>
                     <div class="mt-6 flex flex-col gap-7">
@@ -57,7 +57,7 @@
                                 Date
                             </label>
                             <div class="mt-1">
-                                <input type="date" name="date" id="date" placeholder="Date..."
+                                <input type="datetime-local" name="date" id="date" placeholder="Date..."
                                     value="{{ old('date', $meetup->date) }}"
                                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
                                 <x-input-error for="date" />

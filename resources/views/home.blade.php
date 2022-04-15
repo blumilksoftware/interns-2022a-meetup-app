@@ -26,7 +26,7 @@
                         </p>
                         <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                             <div class="text-center">
-                                <a href="/register"
+                                <a href="{{ route("register") }}
                                     class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8">
                                     Get started
                                 </a>
