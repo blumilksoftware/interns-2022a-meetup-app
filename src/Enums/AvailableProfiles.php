@@ -9,7 +9,6 @@ use Illuminate\Support\Collection;
 
 enum AvailableProfiles: string
 {
-    case Website = "Website";
     case Facebook = "Facebook";
     case Linkedin = "Linkedin";
     case Instagram = "Instagram";

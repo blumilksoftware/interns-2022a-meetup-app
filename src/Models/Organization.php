@@ -36,6 +36,7 @@ class Organization extends Model
         "foundation_date",
         "number_of_employers",
         "logo",
+        "website_url",
     ];
     protected $casts = [
         "foundation_date:" . Formats::DATETIME,

@@ -22,6 +22,7 @@ class OrganizationFactory extends Factory
             "foundation_date" => Carbon::createFromDate(2022, 01, 01),
             "number_of_employers" => $this->faker->randomNumber(),
             "logo" => $this->faker->url(),
+            "website_url" => $this->faker->url(),
         ];
     }
 }

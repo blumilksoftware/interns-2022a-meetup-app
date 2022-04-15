@@ -44,6 +44,11 @@
                     <x-input-error for="logo"/>
                 </div>
                 <div>
+                    <label for="website_url">Website:</label>
+                    <input type="text" id="website_url" name="website_url" value="{{ old('website_url', $organization->websiteUrl) }}">
+                    <x-input-error for="website_url"/>
+                </div>
+                <div>
                     <button type="submit">Update</button>
                 </div>
             </form>
