@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $date
  * @property string $place
  * @property string $language
+ * @property string $logo
  * @property-read Organization|null $organization
  * @property-read Speaker|null $speakers
  * @property-read User $user
@@ -35,6 +36,7 @@ class Meetup extends Model
         "date",
         "place",
         "language",
+        "logo",
     ];
     protected $casts = [
         "date:" . Formats::DATETIME,
