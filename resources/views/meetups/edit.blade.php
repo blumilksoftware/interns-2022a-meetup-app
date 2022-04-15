@@ -5,7 +5,7 @@
         <div>
             <h1>Edit Meetup</h1>
             @auth
-                <form method="post" action="{{ route('meetups.update', $meetup) }}">
+                <form method="post" action="{{ route('meetups.update', $meetup) }}" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div>
@@ -32,6 +32,11 @@
                         <label for="language">Language:</label>
                         <input type="text" id="language" name="language" value="{{ old('language', $meetup->language) }}">
                         <x-input-error for="language"/>
+                    </div>
+                    <div>
+                        <label for="logo">Logo image:</label>
+                        <input type="file" id="logo" name="logo">
+                        <x-input-error for="logo"/>
                     </div>
                     <div>
                         <button type="submit">Update</button>
