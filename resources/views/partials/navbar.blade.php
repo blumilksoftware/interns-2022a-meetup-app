@@ -21,7 +21,7 @@
                 </button>
             </div>
             <div class="flex-1 flex items-center justify-center sm:items-stretch lg:justify-start">
-                <a href="/" class="flex-shrink-0 flex items-center">
+                <a href="{{ route('meetups') }}" class="flex-shrink-0 flex items-center">
                     <img class="block lg:hidden h-8 w-auto"
                         src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow" />
                     <img class="hidden lg:block h-8 w-auto"
@@ -30,32 +30,32 @@
                 </a>
                 <div class="hidden lg:block sm:ml-6">
                     <div class="flex space-x-4">
-                        <a href="/" class="bg-indigo-600 text-white px-3 py-2 rounded-md text-sm font-medium"
+                        <a href="{{ route('meetups') }}" class="bg-indigo-600 text-white px-3 py-2 rounded-md text-sm font-medium"
                             aria-current="page">
                             Home
                         </a>
 
-                        <a href="/organizations"
+                        <a href="{{ route('organizations') }}"
                             class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                             Organizations
                         </a>
 
-                        <a href="/speakers"
+                        <a href="{{ route('speakers') }}"
                             class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                             Speakers
                         </a>
 
-                        <a href="/news"
+                        <a href="#"
                             class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                             News
                         </a>
 
-                        <a href="/about"
+                        <a href="#"
                             class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                             About
                         </a>
 
-                        <a href="/contact"
+                        <a href="{{ route('contact') }}"
                             class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                             Contact
                         </a>
@@ -84,20 +84,20 @@
                                 id="user-menu-item-0">Your Profile</a>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-1">Settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                            <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-2">Sign out</a>
                         </div>
                     </div>
                 @endauth
 
                 @guest
-                    <a href="/login" class="text-white bg-indigo-800 rounded-md px-4 py-2">
+                    <a href="{{ route('login') }}" class="text-white bg-indigo-800 rounded-md px-4 py-2">
                         Sign in
                     </a>
 
                     <div class="ml-3 relative">
                         <div>
-                            <a href="/register" class="bg-white text-indigo-800 rounded-md px-4 py-2">
+                            <a href="{{ route('register') }}" class="bg-white text-indigo-800 rounded-md px-4 py-2">
                                 Sign up
                             </a>
                         </div>
@@ -111,32 +111,32 @@
 
     <div class="hidden lg:hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="/" class="bg-indigo-600 text-white block px-3 py-2 rounded-md text-base font-medium"
+            <a href="{{ route('meetups') }}" class="bg-indigo-600 text-white block px-3 py-2 rounded-md text-base font-medium"
                 aria-current="page">
                 Home
             </a>
 
-            <a href="/organizations"
+            <a href="{{ route('organizations') }}"
                 class="text-white hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                 Organizations
             </a>
 
-            <a href="/speakers"
+            <a href="{{ route('speakers') }}"
                 class="text-white hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                 Speakers
             </a>
 
-            <a href="/news"
+            <a href="#"
                 class="text-white hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                 News
             </a>
 
-            <a href="/about"
+            <a href="#"
                 class="text-white hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                 About
             </a>
 
-            <a href="/contact"
+            <a href="{{ route('contact') }}"
                 class="text-white hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                 Contact
             </a>
