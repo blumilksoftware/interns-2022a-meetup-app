@@ -785,6 +785,12 @@ select {
 .h-8 {
   height: 2rem;
 }
+.h-0 {
+  height: 0px;
+}
+.h-auto {
+  height: auto;
+}
 .h-5 {
   height: 1.25rem;
 }
@@ -1389,4 +1395,3 @@ select {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
-
