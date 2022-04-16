@@ -26,8 +26,7 @@
                         </p>
                         <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                             <div class="text-center">
-                                <a href="/register"
-                                    class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8">
+                                <a href="{{ route("register") }}"                                    class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8">
                                     Get started
                                 </a>
                             </div>
@@ -91,7 +90,7 @@
         </div>
         <div class="grid place-items-center md:grid-cols-2 xl:grid-cols-3 gap-y-12 gap-x-10 mt-8 relative">
             @forelse ($meetups as $meetup)
-                <a href="/meetup" class="w-[397px] h-[309px] rounded-2xl bg-white shadow-lg">
+                <a href="#" class="w-[397px] h-[309px] rounded-2xl bg-white shadow-lg">
                     <img src="{{ asset('static/images/meetup_card.jpg') }}" alt="meetup"
                         class="w-[397px] h-[167px] rounded-t-20" />
                     <div class="flex justify-between px-7 mt-1">
