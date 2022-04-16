@@ -683,6 +683,15 @@ select {
 .left-1\/2 {
   left: 50%;
 }
+.-top-2 {
+  top: -0.5rem;
+}
+.-top-4 {
+  top: -1rem;
+}
+.-top-6 {
+  top: -1.5rem;
+}
 .z-10 {
   z-index: 10;
 }
@@ -911,6 +920,9 @@ select {
 }
 .justify-around {
   justify-content: space-around;
+}
+.justify-items-stretch {
+  justify-items: stretch;
 }
 .gap-8 {
   gap: 2rem;
@@ -1498,8 +1510,8 @@ select {
     display: flex;
   }
 
-  .md\:h-\[718px\] {
-    height: 718px;
+  .md\:h-auto {
+    height: auto;
   }
 
   .md\:w-\[800px\] {
@@ -1520,6 +1532,10 @@ select {
 
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:justify-self-stretch {
+    justify-self: stretch;
   }
 
   .md\:rounded-l-20 {

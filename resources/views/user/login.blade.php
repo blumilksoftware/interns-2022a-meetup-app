@@ -4,7 +4,7 @@
     <div class="container lg:w-[933px] mx-auto">
         <div class="md:flex mt-12 px-10 sm:mx-auto sm:w-full sm:max-w-md md:px-0 md:max-w-none">
             <div
-                class="relative w-full h-[500px] rounded-t-20 md:w-[485px] md:h-[718px] md:rounded-l-20 md:rounded-tr-none bg-login bg-cover">
+                class="relative w-full h-[500px] rounded-t-20 md:w-[485px] md:h-auto md:justify-self-stretch md:rounded-l-20 md:rounded-tr-none bg-login bg-cover">
                 <div class="absolute inset-0 bg-indigo-600 opacity-40 rounded-t-20 md:rounded-l-20 md:rounded-tr-none">
                 </div>
                 <h1
@@ -24,14 +24,20 @@
                                 Sign in to your account
                             </h2>
                         </div>
-                        <form class="space-y-6 mt-12" action="#" method="POST">
+                        <form action="{{ route('login') }}" class="space-y-6 mt-12 relative" action="#" method="POST">
+                            @csrf
+                            @if (!empty($error))
+                                <div class="absolute text-red-500 -top-6 left-1/2 transform -translate-x-1/2">{{ $error }}</div>
+                            @endif
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700">
                                     Email address
                                 </label>
                                 <div class="mt-1">
-                                    <input id="email" name="email" type="email" autocomplete="email" required
+                                    <input id="email" name="email" type="email" autocomplete="email"
+                                        value="{{ old('email') }}" required
                                         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                                    <x-input-error for="email" />
                                 </div>
                             </div>
 
@@ -40,9 +46,10 @@
                                     Password
                                 </label>
                                 <div class="mt-1">
-                                    <input id="password" name="password" type="password" autocomplete="current-password"
-                                        required
+                                    <input id="password" name="password" type="password" value="{{ old('password') }}"
+                                        autocomplete="current-password" required
                                         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                                    <x-input-error for="password" />
                                 </div>
                             </div>
 
@@ -81,7 +88,7 @@
                             </div>
 
                             <div class="mt-6 text-center">
-                                <button type="button"
+                                <a href="{{ route('login.google') }}" type="button"
                                     class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 w-full justify-center md:w-auto">
                                     <svg class="w-4 h-4 mr-2 -ml-1" aria-hidden="true" focusable="false" data-prefix="fab"
                                         data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -91,8 +98,8 @@
                                         </path>
                                     </svg>
                                     Sign in with Google
-                                </button>
-                                <button type="button"
+                                </a>
+                                <a href="{{ route('login.facebook') }}" type="button"
                                     class="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2 mt-3 w-full justify-center md:w-auto">
                                     <svg class="w-4 h-4 mr-2 -ml-1" aria-hidden="true" focusable="false" data-prefix="fab"
                                         data-icon="facebook-f" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +109,7 @@
                                         </path>
                                     </svg>
                                     Sign in with Facebook
-                                </button>
+                                </a>
                             </div>
                             <p class="text-center mt-7">Don't have and account? <a href="{{ route('register') }}"
                                     class="text-indigo-600">Register
