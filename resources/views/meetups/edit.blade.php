@@ -14,10 +14,11 @@
                         </h3>
                     </div>
                     <div class="mt-6 flex flex-col gap-7">
-                        <div class="sm:flex items-center">
-                            <img id="image" src="{{ asset('static/images/no_image.jpeg') }}" alt="meetup"
+                        <div x-data class="sm:flex items-center">
+                            <img x-ref="image" id="image" src="{{ asset('static/images/no_image.jpeg') }}" alt="meetup"
                                 class="w-full sm:w-[400px] h-[200px]">
-                            <input type="file" accept="image/*" id="image-input" class="hidden">
+                            <input @change="image.src = URL.createObjectURL($event.target.files[0])" type="file"
+                                accept="image/*" id="image-input" class="hidden">
                             <label for="image-input"
                                 class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer mx-auto w-full justify-center mt-3 sm:w-auto sm:mt-0">
                                 <!-- Heroicon name: solid/mail -->

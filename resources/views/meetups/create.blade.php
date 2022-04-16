@@ -12,13 +12,13 @@
                         </h3>
                     </div>
                     <div class="mt-6 flex flex-col gap-7">
-                        <div class="sm:flex items-center">
-                            <img id="image" src="{{ asset('static/images/no_image.jpeg') }}" alt="meetup"
-                                class="w-full sm:w-[400px] h-[200px]">
-                            <input type="file" accept="image/*" id="image-input" class="hidden">
+                        <div x-data class="sm:flex items-center">
+                            <img x-ref="image" id="image" src="{{ asset('/static/images/no_image.jpeg') }}"
+                                alt="meetup_avatar" class="w-full sm:w-[400px] h-[200px]">
+                            <input @change="image.src = URL.createObjectURL($event.target.files[0])" type="file"
+                                accept="image/*" id="image-input" class="hidden">
                             <label for="image-input"
                                 class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer mx-auto w-full justify-center mt-3 sm:w-auto sm:mt-0">
-                                <!-- Heroicon name: solid/mail -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -54,7 +54,8 @@
                                 Date
                             </label>
                             <div class="mt-1">
-                                <input type="datetime-local" name="date" id="date" placeholder="Date..." value="{{ old('date') }}"
+                                <input type="datetime-local" name="date" id="date" placeholder="Date..."
+                                    value="{{ old('date') }}"
                                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
                                 <x-input-error for="date" />
                             </div>
