@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div className="container lg:w-[1141px] mx-auto">
-        <div className="md:flex mt-8 px-10 sm:mx-auto sm:w-full sm:max-w-md md:px-0 md:max-w-none">
+    <div class="container lg:w-[1141px] mx-auto">
+        <div class="md:flex mt-8 px-10 sm:mx-auto sm:w-full sm:max-w-md md:px-0 md:max-w-none">
             <div
-                className="relative w-full h-[550px] md:h-[916px] lg:w-[591px] lg:h-[832px] bg-register bg-cover bg-center rounded-t-20 md:rounded-l-20 md:rounded-tr-none">
-                <div className="absolute inset-0 bg-indigo-600 opacity-40 rounded-t-20 md:rounded-l-20 md:rounded-tr-none">
+                class="relative w-full h-[550px] md:h-[916px] lg:w-[591px] lg:h-auto bg-register bg-cover bg-center rounded-t-20 md:rounded-l-20 md:rounded-tr-none">
+                <div class="absolute inset-0 bg-indigo-600 opacity-40 rounded-t-20 md:rounded-l-20 md:rounded-tr-none">
                 </div>
                 <h1
-                    className="absolute top-1/2 left-1/2 text-white text-6xl font-extrabold transform -translate-x-1/2 -translate-y-1/2 text-center leading-relaxed">
+                    class="absolute top-1/2 left-1/2 text-white text-6xl font-extrabold transform -translate-x-1/2 -translate-y-1/2 text-center leading-relaxed">
                     Sign up to join
                     <br /> our community
                 </h1>
@@ -32,7 +32,7 @@
                                 <div class="mt-1">
                                     <input id="name" name="name" type="text" required value="{{ old('name') }}"
                                         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                                        <x-input-error for="name"/>
+                                    <x-input-error for="name" />
                                 </div>
                             </div>
 
@@ -53,7 +53,7 @@
                                 <div class="mt-1">
                                     <input id="email" name="email" type="email" required
                                         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                                        <x-input-error for="email"/>
+                                    <x-input-error for="email" />
                                 </div>
                             </div>
 
@@ -62,9 +62,10 @@
                                     Password
                                 </label>
                                 <div class="mt-1">
-                                    <input id="password" name="password" type="password" value="{{ old('password') }}" required
+                                    <input id="password" name="password" type="password" value="{{ old('password') }}"
+                                        required
                                         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                                        <x-input-error for="password"/>
+                                    <x-input-error for="password" />
                                 </div>
                             </div>
 
@@ -73,11 +74,10 @@
                                     Confirm Password
                                 </label>
                                 <div class="mt-1">
-                                    <input id="password_confirmation" name="password_confirmation" type="password"
-                                        required
-                                        value="{{ old('password_confirmation')}}"
+                                    <input id="password_confirmation" name="password_confirmation" type="password" required
+                                        value="{{ old('password_confirmation') }}"
                                         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                                        <x-input-error for="password_confirmation"/>
+                                    <x-input-error for="password_confirmation" />
                                 </div>
                             </div>
 
@@ -123,6 +123,9 @@
                                     </a>
                                 </div>
                             </div>
+                            <p class="text-center mt-7">Have an account? <a href="{{ route('login') }}"
+                                    class="text-indigo-600">Login
+                                    now</a></p>
                         </form>
                     </div>
                 </div>
