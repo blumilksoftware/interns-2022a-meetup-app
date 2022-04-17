@@ -683,12 +683,6 @@ select {
 .left-1\/2 {
   left: 50%;
 }
-.-top-2 {
-  top: -0.5rem;
-}
-.-top-4 {
-  top: -1rem;
-}
 .-top-6 {
   top: -1.5rem;
 }
@@ -818,6 +812,9 @@ select {
 .h-4 {
   height: 1rem;
 }
+.h-\[550px\] {
+  height: 550px;
+}
 .h-5 {
   height: 1.25rem;
 }
@@ -920,9 +917,6 @@ select {
 }
 .justify-around {
   justify-content: space-around;
-}
-.justify-items-stretch {
-  justify-items: stretch;
 }
 .gap-8 {
   gap: 2rem;
@@ -1045,8 +1039,14 @@ select {
 .bg-login {
   background-image: url('/static/images/login.jpg');
 }
+.bg-register {
+  background-image: url('/static/images/register.jpg');
+}
 .bg-cover {
   background-size: cover;
+}
+.bg-center {
+  background-position: center;
 }
 .object-cover {
   -o-object-fit: cover;
@@ -1446,6 +1446,10 @@ select {
     max-width: 28rem;
   }
 
+  .sm\:max-w-\[550px\] {
+    max-width: 550px;
+  }
+
   .sm\:flex-1 {
     flex: 1 1 0%;
   }
@@ -1514,6 +1518,10 @@ select {
     height: auto;
   }
 
+  .md\:h-\[916px\] {
+    height: 916px;
+  }
+
   .md\:w-\[800px\] {
     width: 800px;
   }
@@ -1571,8 +1579,20 @@ select {
     display: none;
   }
 
+  .lg\:h-\[832px\] {
+    height: 832px;
+  }
+
   .lg\:w-\[933px\] {
     width: 933px;
+  }
+
+  .lg\:w-\[1141px\] {
+    width: 1141px;
+  }
+
+  .lg\:w-\[591px\] {
+    width: 591px;
   }
 
   .lg\:justify-start {

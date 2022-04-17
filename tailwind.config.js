@@ -10,6 +10,7 @@ module.exports = {
       },
       backgroundImage: {
         login: "url('/static/images/login.jpg')",
+        register: "url('/static/images/register.jpg')",
       },
       dropShadow: {
         filter: '0px 4px 4px rgba(0, 0, 0, 0.25)',
