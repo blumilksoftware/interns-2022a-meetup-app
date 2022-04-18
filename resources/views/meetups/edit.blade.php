@@ -33,6 +33,7 @@
                         <input type="text" id="language" name="language" value="{{ old('language', $meetup->language) }}">
                         <x-input-error for="language"/>
                     </div>
+                    <img src="{{ asset("storage/" . $meetup->logo) }}" alt="{{ $meetup->title }} logo">
                     <div>
                         <label for="logo">Logo image:</label>
                         <input type="file" id="logo" name="logo">

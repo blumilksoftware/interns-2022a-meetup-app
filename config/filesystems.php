@@ -27,6 +27,6 @@ return [
         ],
     ],
     "links" => [
-        public_path("storage") => storage_path("src/public"),
+        public_path("storage") => storage_path("src"),
     ],
 ];

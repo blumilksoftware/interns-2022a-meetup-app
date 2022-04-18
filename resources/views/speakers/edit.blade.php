@@ -18,6 +18,7 @@
                         <textarea name="description" id="description" cols="30" rows="4">{{ old('description', $speaker->description) }}</textarea>
                         <x-input-error for="description"/>
                     </div>
+                    <img src="{{ asset("storage/" . $speaker->avatar_path) }}" alt="{{ $speaker->name }} avatar">
                     <div>
                         <label for="avatar">Avatar:</label>
                         <input type="file" id="avatar" name="avatar">
