@@ -26,7 +26,8 @@
                         </p>
                         <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                             <div class="text-center">
-                                <a href="{{ route("register") }}"                                    class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8">
+                                <a href="{{ route('register') }}"
+                                    class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8">
                                     Get started
                                 </a>
                             </div>
@@ -43,49 +44,30 @@
                 <input class="border-2 border-gray-300 bg-white h-10 px-10 pr-16 rounded-lg text-sm focus:outline-none w-96"
                     type="search" name="search" placeholder="Search" />
                 <button type="submit" class="absolute left-3 -top-1 mt-5 mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
         </div>
         <div class="flex flex-wrap gap-8 mt-12">
             <button class="bg-white drop-shadow-filter p-2 rounded-lg flex">
                 <p>Any category</p>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+                <span><i class="fa-solid fa-chevron-down fa-lg ml-3"></i></span>
             </button>
             <button class="bg-white drop-shadow-filter p-2 rounded-lg flex">
                 <p>Any day</p>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+                <span><i class="fa-solid fa-chevron-down fa-lg ml-3"></i></span>
             </button>
             <button class="bg-white drop-shadow-filter p-2 rounded-lg flex">
                 <p>Any type</p>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+                <span><i class="fa-solid fa-chevron-down fa-lg ml-3"></i></span>
             </button>
             <button class="bg-white drop-shadow-filter p-2 rounded-lg flex">
                 <p>Any language</p>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+                <span><i class="fa-solid fa-chevron-down fa-lg ml-3"></i></span>
             </button>
             <button class="bg-white drop-shadow-filter p-2 rounded-lg flex">
                 <p>Any Sort by: Date</p>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+                <span><i class="fa-solid fa-chevron-down fa-lg ml-3"></i></span>
             </button>
         </div>
         <div class="grid place-items-center md:grid-cols-2 xl:grid-cols-3 gap-y-12 gap-x-10 mt-8 relative">
@@ -97,20 +79,11 @@
                         <div class="flex flex-col h-[100px] justify-around">
                             <p class="text-xl">{{ $meetup->title }}</p>
                             <p class="text-sm text-gray-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline mr-2" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
+                                <i class="fa-regular fa-clock fa-lg mr-2"></i>
                                 {{ $meetup->date }}
                             </p>
                             <p class="text-sm text-gray-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline mr-2" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                                        clip-rule="evenodd" />
-                                </svg>
+                                <i class="fa-solid fa-location-dot fa-xl mr-2"></i>
                                 {{ $meetup->place }}
                             </p>
                         </div>

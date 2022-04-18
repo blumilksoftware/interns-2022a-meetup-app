@@ -710,6 +710,9 @@ select {
 .mt-12 {
   margin-top: 3rem;
 }
+.ml-4 {
+  margin-left: 1rem;
+}
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -736,6 +739,9 @@ select {
 }
 .-ml-px {
   margin-left: -1px;
+}
+.mr-3 {
+  margin-right: 0.75rem;
 }
 .block {
   display: block;
@@ -784,12 +790,6 @@ select {
 }
 .h-8 {
   height: 2rem;
-}
-.h-0 {
-  height: 0px;
-}
-.h-auto {
-  height: auto;
 }
 .h-5 {
   height: 1.25rem;
@@ -1395,3 +1395,4 @@ select {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
