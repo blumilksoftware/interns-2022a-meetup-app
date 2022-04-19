@@ -26,7 +26,7 @@ enum AvailableProfiles: string
         $cases = AvailableProfiles::all();
 
         return $cases->map(
-            fn(AvailableProfiles $enum) => [
+            fn(AvailableProfiles $enum): array => [
                 "label" => $enum->label(),
                 "value" => $enum->value,
             ],
