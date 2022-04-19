@@ -29,7 +29,7 @@ class WebRouting extends Routing
         $this->router->controller(PasswordResetController::class)->group(function (): void{
             $this->router->get("/email/verify", "create")->middleware("auth")->name("verification.notice");
             $this->router->get("/email/verify/{id}/{hash}", "store")->middleware(["auth", "signed"])->name("verification.verify");
-            $this->router->post("/email/verification-notification", "notification")->middleware(["auth", "throttle:6,1"])->name("verification.send");
+            $this->router->post("/email/verification-notification", "notification")->middleware(["auth", "throttle:web"])->name("verification.send");
         });
 
         $this->router->controller(PasswordResetController::class)->group(function (): void{

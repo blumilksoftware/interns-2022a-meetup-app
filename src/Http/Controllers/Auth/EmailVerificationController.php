@@ -21,7 +21,7 @@ class EmailVerificationController extends Controller
     {
         $request->fulfill();
 
-        return redirect("/home");
+        return redirect()->route("home");
     }
 
     public function notification(Request $request): RedirectResponse

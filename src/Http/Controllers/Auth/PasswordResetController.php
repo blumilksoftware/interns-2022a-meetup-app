@@ -36,7 +36,8 @@ class PasswordResetController extends Controller
         {
             return view("user.password.dashboard")->with(["status" => __($status)]);
         }
-            return back()->withErrors(["email" => __($status)]);
+
+        return back()->withErrors(["email" => __($status)]);
     }
 
     public function edit(string $token): View
@@ -54,6 +55,7 @@ class PasswordResetController extends Controller
         if ($status === PasswordBroker::PASSWORD_RESET){
             return view("user.password.dashboard")->with("status", __($status));
         }
-            return back()->withErrors(["email" => [__($status)]]);
+
+        return back()->withErrors(["email" => [__($status)]]);
     }
 }
