@@ -19,14 +19,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $foundationDate
  * @property string $numberOfEmployers
  * @property string $logo
- * @property string|null $websiteUrl
- * @property string|null $facebookUrl
- * @property string|null $linkedinUrl
- * @property string|null $instagramUrl
- * @property string|null $youtubeUrl
- * @property string|null $twitterUrl
- * @property string|null $githubUrl
  * @property-read Collection<Meetup> $meetups
+ * @property-read Collection<OrganizationProfile> $organizationProfiles
  */
 class Organization extends Model
 {
@@ -43,12 +37,6 @@ class Organization extends Model
         "number_of_employers",
         "logo",
         "website_url",
-        "facebook_url",
-        "linkedin_url",
-        "instagram_url",
-        "youtube_url",
-        "twitter_url",
-        "github_url",
     ];
     protected $casts = [
         "foundation_date:" . Formats::DATETIME,
@@ -62,6 +50,11 @@ class Organization extends Model
     public function meetups(): HasMany
     {
         return $this->hasMany(Meetup::class);
+    }
+
+    public function organizationProfiles(): HasMany
+    {
+        return $this->hasMany(OrganizationProfile::class);
     }
 
     protected static function newFactory(): OrganizationFactory
