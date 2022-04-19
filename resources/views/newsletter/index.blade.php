@@ -19,7 +19,7 @@
             <input type="submit" name="Unsubscribe" value="Unsubscribe" onclick="unsubscribe()">
         </form>
         <script>
-            form=document.getElementById("newsletterForm");
+            const form=document.getElementById("newsletterForm");
             function subscribe() {
                 form.action="{{ route('newsletter.store') }}";
                 form.submit();
