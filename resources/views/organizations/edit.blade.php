@@ -49,39 +49,28 @@
                     <x-input-error for="website_url"/>
                 </div>
                 <div>
-                    <label for="facebook_url">Facebook:</label>
-                    <input type="text" id="facebook_url" name="facebook_url" value="{{ old('facebook_url', $organization->facebookUrl) }}">
-                    <x-input-error for="website_url"/>
-                </div>
-                <div>
-                    <label for="linkedin_url">Linkedin:</label>
-                    <input type="text" id="linkedin_url" name="linkedin_url" value="{{ old('linkedin_url', $organization->linkedinUrl) }}">
-                    <x-input-error for="linkedin_url"/>
-                </div>
-                <div>
-                    <label for="instagram_url">Instagram:</label>
-                    <input type="text" id="instagram_url" name="instagram_url" value="{{ old('instagram_url', $organization->instagramUrl) }}">
-                    <x-input-error for="instagram_url"/>
-                </div>
-                <div>
-                    <label for="youtube_url">YouTube:</label>
-                    <input type="text" id="youtube_url" name="youtube_url" value="{{ old('youtube_url', $organization->youtubeUrl) }}">
-                    <x-input-error for="youtube_url"/>
-                </div>
-                <div>
-                    <label for="twitter_url">Twitter:</label>
-                    <input type="text" id="twitter_url" name="twitter_url" value="{{ old('twitter_url', $organization->twitterUrl) }}">
-                    <x-input-error for="twitter_url"/>
-                </div>
-                <div>
-                    <label for="github_url">Github:</label>
-                    <input type="text" id="github_url" name="github_url" value="{{ old('github_url', $organization->githubUrl) }}">
-                    <x-input-error for="github_url"/>
-                </div>
-                <div>
                     <button type="submit">Update</button>
                 </div>
             </form>
+                <h3>Organization profiles</h3>
+                <a href="{{ route('organizations.profiles.create', $organization) }}">Add profile</a>
+                @if ($organization->organizationProfiles->count())
+                    @foreach ($organization->organizationProfiles as $profile)
+                        <div>
+                            {{ $profile->label }}
+                            {{ $profile->link }}
+
+                            <a href="{{ route('organizations.profiles.edit', [$organization, $profile]) }}">Edit</a>
+                            <form action="{{ route('organizations.profiles.destroy', [$organization, $profile]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"  onclick="return confirm('Sure Want Delete?')">Delete</button>
+                            </form>
+                        </div>
+                    @endforeach
+                @else
+                    <p>There are no organization profiles</p>
+                @endif
             @endauth
         </div>
     </div>
