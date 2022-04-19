@@ -18,7 +18,7 @@ class StoreOrganizationRequest extends FormRequest
             "foundation_date" => ["required"],
             "number_of_employers" => ["required"],
             "logo" => ["required", "image", "max:2048"],
-            "*_url" => ["nullable", "url"],
+            "website_url" => ["nullable", "url"],
         ];
     }
 }

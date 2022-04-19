@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Models;
 
 use Blumilk\Meetup\Core\Models\Utils\Formats;
+use Database\Factories\OrganizationFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,19 +19,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $foundationDate
  * @property string $numberOfEmployers
  * @property string $logo
- * @property string|null $websiteUrl
- * @property string|null $facebookUrl
- * @property string|null $linkedinUrl
- * @property string|null $instagramUrl
- * @property string|null $youtubeUrl
- * @property string|null $twitterUrl
- * @property string|null $githubUrl
  * @property-read Collection<Meetup> $meetups
+ * @property-read Collection<OrganizationProfile> $organizationProfiles
  */
 class Organization extends Model
 {
     use HasFactory;
 
+    public $incrementing = true;
+    protected $primaryKey = "id";
     protected $fillable = [
         "name",
         "description",
@@ -40,14 +37,7 @@ class Organization extends Model
         "number_of_employers",
         "logo",
         "website_url",
-        "facebook_url",
-        "linkedin_url",
-        "instagram_url",
-        "youtube_url",
-        "twitter_url",
-        "github_url",
     ];
-
     protected $casts = [
         "foundation_date:" . Formats::DATETIME,
     ];
@@ -55,5 +45,15 @@ class Organization extends Model
     public function meetups(): HasMany
     {
         return $this->hasMany(Meetup::class);
+    }
+
+    public function organizationProfiles(): HasMany
+    {
+        return $this->hasMany(OrganizationProfile::class);
+    }
+
+    protected static function newFactory(): OrganizationFactory
+    {
+        return OrganizationFactory::new();
     }
 }
