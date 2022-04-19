@@ -60,7 +60,7 @@
                             {{ $profile->label }}
                             {{ $profile->link }}
 
-                            <a href="{{ route("organizations.profiles.edit", [$organization, $profile]) }}">Edit</a>
+                            <a href="{{ route('organizations.profiles.edit', [$organization, $profile]) }}">Edit</a>
                             <form action="{{ route('organizations.profiles.destroy', [$organization, $profile]) }}" method="post">
                                 @csrf
                                 @method('DELETE')

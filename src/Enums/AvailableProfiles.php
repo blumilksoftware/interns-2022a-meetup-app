@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Enums;
 
-use function __;
 use Illuminate\Support\Collection;
 
 enum AvailableProfiles: string
