@@ -54,8 +54,8 @@
             </form>
                 <h3>Organization profiles</h3>
                 <a href="{{ route('organizations.profiles.create', $organization) }}">Add profile</a>
-                @if ( $organization->organizationProfiles->count() )
-                    @foreach ( $organization->organizationProfiles as $profile )
+                @if ($organization->organizationProfiles->count())
+                    @foreach ($organization->organizationProfiles as $profile)
                         <div>
                             {{ $profile->label }}
                             {{ $profile->link }}
