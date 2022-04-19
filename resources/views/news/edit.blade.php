@@ -4,27 +4,26 @@
     <div>
         <div>
             <h1>Edit News</h1>
-            @auth
-            <form method="post" action="{{ route('news.update', $news) }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('news.update', $news) }}"  id="editNews">
                 @method('PUT')
                 @csrf
-                @csrf
                 <div>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" value="{{ old('name') }}">
+                    <label for="name">Title:</label>
+                    <input type="text" id="title" name="title" value="{{ old('title', $news->title) }}">
                     <x-input-error for="name"/>
                 </div>
-                <div>
-                    <label for="content">Content:</label>
-                    <textarea class="ckeditor form-control" name="content">{{ old('content') }}</textarea>
-                    <x-input-error for="content"/>
+                <label for="editor">Content:</label>
+                <div class="flex flex-col space-y-2">
+                    <div id="editor" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"></div>
                 </div>
+                <x-input-error for="editor"/>
+                <input type="hidden" id="oldContent" value="{!! \Illuminate\Support\Str::markdown($news->content) !!}">
+                <input type="hidden" name="content" id="content">
                 <div>
                     <button type="submit">Update</button>
                 </div>
             </form>
-            @endauth
         </div>
     </div>
-    @include('components.ckeditor')
+    <script src="{{ asset('static/js/app.js') }}"></script>
 @endsection

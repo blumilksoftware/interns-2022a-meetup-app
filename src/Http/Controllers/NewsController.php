@@ -6,9 +6,10 @@ namespace Blumilk\Meetup\Core\Http\Controllers;
 
 use Blumilk\Meetup\Core\Http\Requests\StoreNewsRequest;
 use Blumilk\Meetup\Core\Models\News;
-use Blumilk\Meetup\Core\Models\Organization;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Str;
+use Mews\Purifier\Facades\Purifier;
 
 class NewsController extends Controller
 {
@@ -27,31 +28,31 @@ class NewsController extends Controller
 
     public function store(StoreNewsRequest $request): RedirectResponse
     {
-        dd($request);
+        $input = $request->validated();
+        $input["content"] = Purifier::clean($input["content"]);
+        $input["slug"] = Str::slug($input["title"]);
+
+        $request->user()->news()->create($input);
+
         return redirect()->route("news");
     }
 
-    public function edit(Organization $organization): View
+    public function edit(News $news): View
     {
-        return view("organizations.edit")
-            ->with("organization", $organization);
+        return view("news.edit")
+            ->with("news", $news);
     }
 
-    public function update(UpdateOrganizationRequest $request, Organization $organization, StoreFileService $storeFileService): RedirectResponse
+    public function update(StoreNewsRequest $request, News $news): RedirectResponse
     {
-        $input = $request->validated();
-        if ($request->hasFile("logo")) {
-            $input["logo"] = $storeFileService->storeFile("organizations/logos", $request->file("logo"));
-        }
+        $news->update($request->validated());
 
-        $organization->update($input);
-
-        return redirect()->route("organizations");
+        return redirect()->route("news");
     }
 
-    public function destroy(Organization $organization): RedirectResponse
+    public function destroy(News $news): RedirectResponse
     {
-        $organization->delete();
+        $news->delete();
 
         return back();
     }

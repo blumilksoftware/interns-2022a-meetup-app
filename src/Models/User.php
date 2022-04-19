@@ -71,6 +71,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->hasMany(SocialAccount::class);
     }
 
+    public function news(): HasMany
+    {
+        return $this->hasMany(News::class);
+    }
+
     protected static function newFactory(): UserFactory
     {
         return UserFactory::new();

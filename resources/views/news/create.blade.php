@@ -7,9 +7,9 @@
             <form action="{{ route('news.store') }}" method="post" id="createNews">
                 @csrf
                 <div>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" value="{{ old('name') }}">
-                    <x-input-error for="name"/>
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" value="{{ old('title') }}">
+                    <x-input-error for="title"/>
                 </div>
                     <label for="editor">Content:</label>
                     <div class="flex flex-col space-y-2">
