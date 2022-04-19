@@ -32,12 +32,10 @@ class NewsletterService
         return "You are successfully subscribed";
     }
 
-    public function unsubscribe(NewsletterSubscriber $subscriber): string
+    public function unsubscribe(NewsletterSubscriber $subscriber): void
     {
         $subscriber->preferences()->delete();
         $subscriber->subscription_state = false;
         $subscriber->saveOrFail();
-
-        return "You have delete your subscription";
     }
 }

@@ -11,10 +11,6 @@ enum AvailableNewsletter: string
 
     public static function values(): array
     {
-        $cases = collect(AvailableNewsletter::cases());
-
-        return $cases->map(
-            fn(AvailableNewsletter $enum) => $enum->value,
-        )->toArray();
+        return array_map(self::cases(), fn(AvailableNewsletter $enum): string => $enum->value);
     }
 }
