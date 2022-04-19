@@ -8,15 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="{{ asset('/static/js/app.js') }}" defer></script>
     <title>Meetup app</title>
-    <style>
-        [x-cloak] {
-            display: none !important;
-        }
-    </style>
 </head>
-
 <body class="flex bg-gray-100 flex-col min-h-screen">
     @include('partials.navbar')
     <div class="flex-grow">

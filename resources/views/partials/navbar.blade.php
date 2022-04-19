@@ -97,7 +97,6 @@
             </div>
         </div>
     </div>
-
     <div x-cloak x-show="navOpened" x-transition class="lg:hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1">
             <a href="{{ route('meetups') }}"
