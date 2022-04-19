@@ -9,12 +9,9 @@
             </div>
         @endif
         <form action="{{route("newsletter.update")}}" method="post">
-            @if($message)
-                <div>{{$message}}</div>
-            @endif
             @csrf
             <input type="email" hidden="hidden"  name="email" id="email" value="{{ $subscriber->email }}">
-            <label for="Notification type">Notification type:</label>
+            <label for="Notification_type">What would you like to subscribe?</label>
             <div>
                 <label for="News">New News
                     <input type="checkbox" name="type[]" id="News" checked="checked" value={{AvailableNewsletter::NEWS->value}}></label>

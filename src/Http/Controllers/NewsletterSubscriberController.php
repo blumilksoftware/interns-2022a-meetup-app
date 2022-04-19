@@ -22,10 +22,8 @@ class NewsletterSubscriberController extends Controller
         $subscriber = NewsletterSubscriber::query()->firstOrCreate([
             "email" => $request->validated("email"),
         ]);
-        $message = $service->isSubscriber($subscriber);
 
         return view("newsletter.subscribe")
-            ->with("message", $message)
             ->with("subscriber", $subscriber);
     }
 
@@ -37,9 +35,10 @@ class NewsletterSubscriberController extends Controller
     public function update(NewsletterUpdateRequest $request, NewsletterService $service, NewsletterSubscriber $subscriber): View
     {
         $subscriber = $subscriber->newQuery()->where("email", $request->validated("email"))->first();
-        $message = $service->preference($subscriber, $request->validated("type"));
+        $service->subscribe($subscriber);
+        $service->preference($subscriber, $request->validated("type"));
 
-        return view("newsletter.dashboard")->with("message", $message);
+        return view("newsletter.dashboard")->with("message", "You are now subscribed.");
     }
 
     public function destroy(NewsletterStoreRequest $request, NewsletterService $service): View
@@ -47,8 +46,8 @@ class NewsletterSubscriberController extends Controller
         $subscriber = NewsletterSubscriber::query()->firstOrCreate([
             "email" => $request->validated("email"),
         ]);
-        $message = $service->unsubscribe($subscriber);
+        $service->unsubscribe($subscriber);
 
-        return view("newsletter.dashboard")->with("message", $message);
+        return view("newsletter.dashboard")->with("message", "Your subscription is cancelled");
     }
 }

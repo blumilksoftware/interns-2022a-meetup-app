@@ -8,18 +8,15 @@ use Blumilk\Meetup\Core\Models\NewsletterSubscriber;
 
 class NewsletterService
 {
-    public function isSubscriber(NewsletterSubscriber $subscriber): string
+    public function subscribe(NewsletterSubscriber $subscriber): void
     {
-        if ($subscriber->subscription_state) {
-            return "You are already subscriber. Would you like to change your preferences?";
+        if (!$subscriber->subscription_state) {
+            $subscriber->subscription_state = true;
+            $subscriber->saveOrFail();
         }
-        $subscriber->subscription_state = true;
-        $subscriber->saveOrFail();
-
-        return "Thank you for subscribing to our newsletter. What would you like to subscribe?";
     }
 
-    public function preference(NewsletterSubscriber $subscriber, array $preferences): string
+    public function preference(NewsletterSubscriber $subscriber, array $preferences): void
     {
         $subscriber->preferences()->delete();
 
@@ -28,8 +25,6 @@ class NewsletterService
                 "preference" => $type,
             ]);
         }
-
-        return "You are successfully subscribed";
     }
 
     public function unsubscribe(NewsletterSubscriber $subscriber): void
