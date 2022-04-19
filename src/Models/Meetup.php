@@ -42,6 +42,11 @@ class Meetup extends Model
         "date:" . Formats::DATETIME,
     ];
 
+    public function getLogoPath(): string
+    {
+        return asset("storage/" . $this->attributes["logo"]);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

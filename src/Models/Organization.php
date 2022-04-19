@@ -54,6 +54,11 @@ class Organization extends Model
         "foundation_date:" . Formats::DATETIME,
     ];
 
+    public function getLogoPath(): string
+    {
+        return asset("storage/" . $this->attributes["logo"]);
+    }
+
     public function meetups(): HasMany
     {
         return $this->hasMany(Meetup::class);
