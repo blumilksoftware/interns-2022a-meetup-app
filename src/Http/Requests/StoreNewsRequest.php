@@ -12,7 +12,7 @@ class StoreNewsRequest extends FormRequest
     {
         return [
             "name" => "required",
-            "content" => "required",
+            "content" => "required|string",
         ];
     }
 }
