@@ -32,8 +32,7 @@ class PasswordResetController extends Controller
             $request->validated(),
         );
 
-        if ($status === PasswordBroker::RESET_LINK_SENT)
-        {
+        if ($status === PasswordBroker::RESET_LINK_SENT){
             return view("user.password.dashboard")->with(["status" => __($status)]);
         }
 
