@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Blumilk\Meetup\Core\Http\Requests;
+namespace Blumilk\Meetup\Core\Http\Requests\PasswordReset;
 
 use Illuminate\Foundation\Http\FormRequest;
 
