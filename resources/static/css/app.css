@@ -671,6 +671,9 @@ select {
 .top-4 {
   top: 1rem;
 }
+.-top-3 {
+  top: -0.75rem;
+}
 .left-0 {
   left: 0px;
 }
@@ -730,6 +733,12 @@ select {
 }
 .mr-3 {
   margin-right: 0.75rem;
+}
+.mt-16 {
+  margin-top: 4rem;
+}
+.mt-11 {
+  margin-top: 2.75rem;
 }
 .mt-2 {
   margin-top: 0.5rem;
@@ -793,6 +802,9 @@ select {
 }
 .w-\[397px\] {
   width: 397px;
+}
+.w-\[500px\] {
+  width: 500px;
 }
 .w-auto {
   width: auto;
@@ -862,6 +874,12 @@ select {
 }
 .gap-7 {
   gap: 1.75rem;
+}
+.gap-5 {
+  gap: 1.25rem;
+}
+.gap-9 {
+  gap: 2.25rem;
 }
 .gap-y-12 {
   row-gap: 3rem;
@@ -990,13 +1008,13 @@ select {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
-.py-12 {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 .px-2 {
   padding-left: 0.5rem;
@@ -1018,6 +1036,9 @@ select {
 }
 .pt-6 {
   padding-top: 1.5rem;
+}
+.pb-5 {
+  padding-bottom: 1.25rem;
 }
 .pr-2 {
   padding-right: 0.5rem;
@@ -1044,11 +1065,22 @@ select {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
 .font-extrabold {
   font-weight: 800;
 }
 .font-medium {
   font-weight: 500;
+}
+.font-bold {
+  font-weight: 700;
 }
 .leading-6 {
   line-height: 1.5rem;
@@ -1090,6 +1122,10 @@ select {
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 .text-indigo-800 {
   --tw-text-opacity: 1;
@@ -1291,6 +1327,10 @@ select {
     width: auto;
   }
 
+  .sm\:w-\[1216px\] {
+    width: 1216px;
+  }
+
   .sm\:max-w-3xl {
     max-width: 48rem;
   }
@@ -1355,12 +1395,33 @@ select {
 
 @media (min-width: 768px) {
 
+  .md\:h-\[218px\] {
+    height: 218px;
+  }
+
   .md\:w-\[800px\] {
     width: 800px;
   }
 
+  .md\:w-\[361px\] {
+    width: 361px;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .md\:rounded-l-20 {
+    border-top-left-radius: 1.25rem;
+    border-bottom-left-radius: 1.25rem;
+  }
+
+  .md\:rounded-tr-none {
+    border-top-right-radius: 0px;
   }
 
   .md\:px-0 {
@@ -1407,6 +1468,11 @@ select {
 
   .xl\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .xl\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
