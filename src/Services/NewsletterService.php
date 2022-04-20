@@ -8,10 +8,14 @@ use Blumilk\Meetup\Core\Models\NewsletterSubscriber;
 
 class NewsletterService
 {
+    public function __construct(
+        protected NewsletterSubscriber $subscriber,
+    ) {}
+
     public function subscribe(NewsletterSubscriber $subscriber): void
     {
-        if (!$subscriber->subscription_state) {
-            $subscriber->subscription_state = true;
+        if (!$subscriber->subscribed) {
+            $subscriber->subscribed = true;
             $subscriber->saveOrFail();
         }
     }
@@ -30,7 +34,7 @@ class NewsletterService
     public function unsubscribe(NewsletterSubscriber $subscriber): void
     {
         $subscriber->preferences()->delete();
-        $subscriber->subscription_state = false;
+        $subscriber->subscribed = false;
         $subscriber->saveOrFail();
     }
 }
