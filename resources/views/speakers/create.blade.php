@@ -9,7 +9,7 @@
                 <div>
                     <div>
                         <h3 class="text-xl leading-6 font-medium text-gray-900">
-                            Create Meetup
+                            Add speaker
                         </h3>
                     </div>
                     <div class="mt-6 flex flex-col gap-7">
@@ -39,7 +39,7 @@
                             </label>
                             <div x-data class="flex items-center gap-12 mt-4">
                                 <img x-ref="image" id="image" src="{{ asset('/static/images/no_avatar.png') }}"
-                                    alt="meetup_avatar" class="w-full sm:w-[100px] h-[100px] rounded-full object-cover">
+                                    alt="speaker_avatar" class="w-full sm:w-[100px] h-[100px] rounded-full object-cover">
                                 <input @change="image.src = URL.createObjectURL($event.target.files[0])" type="file"
                                     accept="image/*" id="avatar" name="avatar" class="hidden">
                                 <label for="avatar"
@@ -82,7 +82,7 @@
                         </a>
                         <button type="submit"
                             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Save
+                            Add
                         </button>
                     </div>
                 </div>
