@@ -15,11 +15,11 @@
                     </div>
                     <div class="mt-6 flex flex-col gap-7">
                         <div x-data class="sm:flex items-center">
-                            <img x-ref="image" id="image" src="{{ asset('static/images/no_image.jpeg') }}" alt="meetup"
+                            <img x-ref="image" id="image" src="{{ $meetup->getLogoPath() }}" alt="{{ $meetup->title }} logo"
                                 class="w-full sm:w-[400px] h-[200px]">
                             <input @change="image.src = URL.createObjectURL($event.target.files[0])" type="file"
-                                accept="image/*" id="image-input" class="hidden">
-                            <label for="image-input"
+                                accept="image/*" id="logo" class="hidden" name="logo">
+                            <label for="logo"
                                 class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer mx-auto w-full justify-center mt-3 sm:w-auto sm:mt-0">
                                 <i class="fa-solid fa-arrow-up-from-bracket mr-3"></i>
                                 Upload Image
@@ -96,7 +96,6 @@
                             Update
                         </button>
                     </div>
-                </div>
             </form>
         @endauth
     </div>

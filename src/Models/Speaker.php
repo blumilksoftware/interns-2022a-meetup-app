@@ -36,6 +36,11 @@ class Speaker extends Model
         "date:" . Formats::DATETIME,
     ];
 
+    public function getAvatarPath(): string
+    {
+        return asset("storage/" . $this->attributes["avatar_path"]);
+    }
+
     public function meetup(): HasMany
     {
         return $this->hasMany(Meetup::class);
