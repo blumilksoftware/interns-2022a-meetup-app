@@ -19,7 +19,7 @@ class WebRouting extends Routing
 {
     public function wire(): void
     {
-        $this->router->get("/", fn() => view("welcome"))->name("home");
+        $this->router->get("/", fn() => view("home"))->name("home");
 
         $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register.form");
         $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register");
@@ -35,7 +35,7 @@ class WebRouting extends Routing
         });
 
         $this->router->controller(MeetupController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/meetups", "index")->name("meetups");
+            $this->router->get("/", "index")->name("meetups");
             $this->router->get("/meetups/create", "create")->name("meetups.create");
             $this->router->post("/meetups", "store")->name("meetups.store");
             $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
