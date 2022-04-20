@@ -5,7 +5,7 @@
         <div>
             <h1>Create Meetup</h1>
             @auth
-                <form action="{{ route('meetups.store') }}" method="post">
+                <form action="{{ route('meetups.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div>
                         <label for="title">Title:</label>
@@ -31,6 +31,11 @@
                         <label for="language">Language:</label>
                         <input type="text" id="language" name="language" value="{{ old('language') }}">
                         <x-input-error for="language"/>
+                    </div>
+                    <div>
+                        <label for="logo">Logo image:</label>
+                        <input type="file" id="logo" name="logo">
+                        <x-input-error for="logo"/>
                     </div>
                     <div>
                         <button type="submit">Post</button>

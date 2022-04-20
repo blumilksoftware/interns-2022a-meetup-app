@@ -7,6 +7,7 @@ namespace Blumilk\Meetup\Core\Http\Controllers;
 use Blumilk\Meetup\Core\Http\Requests\Organization\StoreOrganizationRequest;
 use Blumilk\Meetup\Core\Http\Requests\Organization\UpdateOrganizationRequest;
 use Blumilk\Meetup\Core\Models\Organization;
+use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Services\StoreFileService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -29,7 +30,7 @@ class OrganizationController extends Controller
     public function store(StoreOrganizationRequest $request, StoreFileService $service): RedirectResponse
     {
         $input = $request->validated();
-        $input["logo"] = $service->storeFile("organizations/logos", $request->file("logo"));
+        $input["logo"] = $service->storeFile(Constants::ORGANIZATIONS_LOGOS_PATH, $request->file("logo"));
 
         Organization::query()->create($input);
 
@@ -46,7 +47,7 @@ class OrganizationController extends Controller
     {
         $input = $request->validated();
         if ($request->hasFile("logo")) {
-            $input["logo"] = $storeFileService->storeFile("organizations/logos", $request->file("logo"));
+            $input["logo"] = $storeFileService->storeFile(Constants::ORGANIZATIONS_LOGOS_PATH, $request->file("logo"));
         }
 
         $organization->update($input);
