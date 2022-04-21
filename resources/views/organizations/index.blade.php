@@ -21,7 +21,7 @@
         <ul class="mt-11">
             @forelse ($organizations as $organization)
                 <li class="mt-12">
-                    <a href="/organization">
+                    <a href="#">
                         <div class="bg-white flex items-center flex-wrap md:flex-nowrap gap-9 shadow-lg rounded-20">
                             <img src="{{ asset('/static/images/organization_logo.jpeg') }}" alt="news_image"
                                 class="w-full rounded-t-20 md:w-[361px] md:h-[218px] md:rounded-l-20 md:rounded-tr-none object-cover" />
