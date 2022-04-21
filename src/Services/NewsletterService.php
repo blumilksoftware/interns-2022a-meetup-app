@@ -8,10 +8,6 @@ use Blumilk\Meetup\Core\Models\NewsletterSubscriber;
 
 class NewsletterService
 {
-    public function __construct(
-        protected NewsletterSubscriber $subscriber,
-    ) {}
-
     public function subscribe(NewsletterSubscriber $subscriber): void
     {
         if (!$subscriber->subscribed) {

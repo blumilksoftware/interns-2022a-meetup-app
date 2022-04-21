@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
- * @property enum $preference
+ * @property AvailableNewsletter $preference
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
  * @property-read NewsletterSubscriber $subscriber
