@@ -19,7 +19,7 @@ class WebRouting extends Routing
 {
     public function wire(): void
     {
-        $this->router->get("/", fn(): View => view("contact"))->name("home");
+        $this->router->get("/", fn(): View => view("home"))->name("home");
 
         $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register.form");
         $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register");
