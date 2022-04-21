@@ -61,7 +61,7 @@ Feature: User registration
       | email                 | password        | confirmation_password   | name           |
       | testuser@example.com  | correctpassword | wrongpassword           | testuser       |
 
-  Scenario Outline: Attempt to register with with too short password
+  Scenario Outline: Attempt to register with too short password
     When the user fills in "email" with "<email>"
     And the user fills in "password" with "<password>"
     And the user fills in "confirm password" with "<password>"
