@@ -13,7 +13,7 @@ class StoreFileService implements StoreFile
 
     public function storeFile(string $uploadFolder, UploadedFile $file): string
     {
-        $this->path = $file->store($uploadFolder);
+        $this->path = $file->store($uploadFolder, "public");
 
         return $this->path;
     }
