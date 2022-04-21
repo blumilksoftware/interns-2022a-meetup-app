@@ -8,16 +8,18 @@
   "license": "MIT",
   "require": {
     "php": "^8.1",
-    "fruitcake/laravel-cors": "^2.0.5",
+    "doctrine/dbal": "^3.3",
+    "fruitcake/laravel-cors": "^3.0.0",
     "guzzlehttp/guzzle": "^7.2",
     "laravel/framework": "^9.0",
     "laravel/sanctum": "^2.14",
+    "laravel/socialite": "^5.5",
     "laravel/telescope": "^4.7",
     "laravel/tinker": "^2.7"
   },
   "require-dev": {
     "blumilksoftware/blt": "dev-main",
-    "blumilksoftware/codestyle": "^0.9.0 || ^0.10.0",
+    "blumilksoftware/codestyle": "^1.0.1",
     "fakerphp/faker": "^1.9.1",
     "mockery/mockery": "^1.4.4",
     "nunomaduro/collision": "^6.1",
@@ -25,8 +27,8 @@
     "orchestra/testbench": "^7.0",
     "phpstan/phpstan": "^1.4",
     "phpstan/phpstan-mockery": "^1.0",
-    "phpunit/phpunit": "^9.5.10",
-    "spatie/laravel-ignition": "^1.0"
+    "phpunit/phpunit": "^9.5.20",
+    "spatie/laravel-ignition": "^1.2.0"
   },
   "repositories": [
     {
@@ -47,13 +49,10 @@
     }
   },
   "scripts": {
-    "ecs": "./vendor/bin/ecs check",
-    "ecsf": "./vendor/bin/ecs check --fix",
+    "cs": "./vendor/bin/php-cs-fixer fix --dry-run --diff --config codestyle.php",
+    "csf": "./vendor/bin/php-cs-fixer fix --diff --config codestyle.php",
+    "behat": "./vendor/bin/behat",
     "test": "phpunit",
-    "code-style": [
-      "vendor/bin/phpcs",
-      "@phpstan"
-    ],
     "phpstan": [
       "php -d memory_limit=600M vendor/bin/phpstan analyse -l 5 -c phpstan.neon"
     ],
