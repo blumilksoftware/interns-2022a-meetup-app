@@ -13,12 +13,13 @@ use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationProfileController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
 use Blumilk\Meetup\Core\Http\Controllers\StaticController;
+use Illuminate\View\View;
 
 class WebRouting extends Routing
 {
     public function wire(): void
     {
-        $this->router->get("/", fn() => view("home"))->name("home");
+        $this->router->get("/", fn(): View => view("contact"))->name("home");
 
         $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register.form");
         $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register");
