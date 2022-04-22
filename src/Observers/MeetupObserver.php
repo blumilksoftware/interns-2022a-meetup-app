@@ -15,13 +15,13 @@ class MeetupObserver
     public function created(Meetup $meetup): void
     {
         $this->getSubscribersForNotifications()
-            ->each(fn($subscriber) => $subscriber->notify(new MeetupEmailNotification($meetup, $subscriber)));
+            ->each(fn($subscriber): ?bool => $subscriber->notify(new MeetupEmailNotification($meetup, $subscriber)));
     }
 
     protected function getSubscribersForNotifications(): Collection
     {
         return NewsletterSubscriber::query()
-            ->whereRelation("preferences", "preference", AvailableNewsletter::MEETUPS->value)
+            ->whereRelation("preferences", "preference", AvailableNewsletter::Meetups->value)
             ->get();
     }
 }

@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
- * @property string $preference
+ * @property AvailableNewsletter $preference
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
  * @property-read NewsletterSubscriber $subscriber
@@ -21,7 +21,6 @@ class NewsletterPreferences extends Model
 {
     use HasFactory;
 
-    public $incrementing = true;
     protected $primaryKey = "id";
     protected $fillable = [
         "preference",

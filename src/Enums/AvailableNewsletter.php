@@ -6,11 +6,11 @@ namespace Blumilk\Meetup\Core\Enums;
 
 enum AvailableNewsletter: string
 {
-    case NEWS = "news";
-    case MEETUPS = "meetups";
+    case News = "news";
+    case Meetups = "meetups";
 
     public static function values(): array
     {
-        return array_map(fn(AvailableNewsletter $enum): string => $enum->value, self::cases());
+        return array_column(self::cases(), "value");
     }
 }

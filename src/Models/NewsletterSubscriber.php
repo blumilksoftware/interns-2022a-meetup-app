@@ -16,7 +16,7 @@ use Illuminate\Support\Carbon;
 /**
  * @property int $id
  * @property string $email
- * @property boolean $subscription_state
+ * @property boolean $subscribed
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
  * @property-read Collection<NewsletterPreferences> $preferences
@@ -27,11 +27,10 @@ class NewsletterSubscriber extends Model
     use HasFactory;
     use Notifiable;
 
-    public $incrementing = true;
     protected $primaryKey = "id";
     protected $fillable = [
         "email",
-        "subscription_states",
+        "subscribed",
     ];
 
     public function preferences(): HasMany

@@ -12,12 +12,16 @@ use Illuminate\View\View;
 
 class NewsletterSubscriberController extends Controller
 {
+    public function __construct(
+        protected NewsletterService $service,
+    ) {}
+
     public function create(): View
     {
         return view("newsletter.index");
     }
 
-    public function store(NewsletterStoreRequest $request, NewsletterService $service): View
+    public function store(NewsletterStoreRequest $request): View
     {
         $subscriber = NewsletterSubscriber::query()->firstOrCreate([
             "email" => $request->validated("email"),
@@ -32,21 +36,23 @@ class NewsletterSubscriberController extends Controller
         return view("newsletter.subscribe");
     }
 
-    public function update(NewsletterUpdateRequest $request, NewsletterService $service, NewsletterSubscriber $subscriber): View
-    {
-        $subscriber = $subscriber->newQuery()->where("email", $request->validated("email"))->first();
-        $service->subscribe($subscriber);
-        $service->preference($subscriber, $request->validated("type"));
-
-        return view("newsletter.dashboard")->with("message", "You are now subscribed.");
-    }
-
-    public function destroy(NewsletterStoreRequest $request, NewsletterService $service): View
+    public function update(NewsletterUpdateRequest $request): View
     {
         $subscriber = NewsletterSubscriber::query()->firstOrCreate([
             "email" => $request->validated("email"),
         ]);
-        $service->unsubscribe($subscriber);
+        $this->service->subscribe($subscriber);
+        $this->service->preference($subscriber, $request->validated("type"));
+
+        return view("newsletter.dashboard")->with("message", "You are now subscribed.");
+    }
+
+    public function destroy(NewsletterStoreRequest $request): View
+    {
+        $subscriber = NewsletterSubscriber::query()->firstOrCreate([
+            "email" => $request->validated("email"),
+        ]);
+        $this->service->unsubscribe($subscriber);
 
         return view("newsletter.dashboard")->with("message", "Your subscription is cancelled");
     }
