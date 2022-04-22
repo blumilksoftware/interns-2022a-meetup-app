@@ -4,7 +4,7 @@
     <div class="container md:w-[800px] mx-auto">
         @auth
             <form action="{{ route('meetups.update', $meetup) }}" method="post"
-                class="bg-white p-6 mt-20 rounded-20 shadow-xl">
+                class="bg-white p-6 mt-20 rounded-20 shadow-xl" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div>

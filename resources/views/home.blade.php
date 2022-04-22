@@ -7,7 +7,7 @@
             <div class="max-w-7x mx-auto ">
                 <div class="relative shadow-xl sm:overflow-hidden">
                     <div class="absolute inset-0">
-                        <img class="h-full w-full object-cover" src={{ asset('static/images/hero.png') }}
+                        <img class="h-full w-full object-cover" src={{ asset('static/images/hero.webp') }}
                             alt="People working on laptops" />
                         <div class="absolute inset-0 bg-indigo-400 mix-blend-multiply"></div>
                     </div>
@@ -73,7 +73,7 @@
         <div class="grid place-items-center md:grid-cols-2 xl:grid-cols-3 gap-y-12 gap-x-10 mt-8 relative">
             @forelse ($meetups as $meetup)
                 <a href="{{ route('meetups.show', $meetup) }}" class="w-[397px] h-[309px] rounded-2xl bg-white shadow-lg">
-                    <img src="{{ asset('static/images/meetup_card.jpg') }}" alt="meetup"
+                    <img src="{{ $meetup->getLogoPath() }}" alt="{{ $meetup->title }} logo"
                         class="w-[397px] h-[167px] rounded-t-20" />
                     <div class="flex justify-between px-7 mt-1">
                         <div class="flex flex-col h-[100px] justify-around">
