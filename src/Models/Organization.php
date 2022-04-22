@@ -35,7 +35,7 @@ class Organization extends Model
         "organization_type",
         "foundation_date",
         "number_of_employees",
-        "logo",
+        "logo_path",
         "website_url",
     ];
     protected $casts = [
