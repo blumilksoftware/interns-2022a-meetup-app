@@ -49,6 +49,7 @@ class WebRouting extends Routing
             $this->router->get("/organizations", "index")->name("organizations");
             $this->router->get("/organizations/create", "create")->name("organizations.create");
             $this->router->post("/organizations", "store")->name("organizations.store");
+            $this->router->get("/organizations/{organization}/show", "show")->name("organizations.show");
             $this->router->get("/organizations/{organization}/edit", "edit")->name("organizations.edit");
             $this->router->put("/organizations/{organization}", "update")->name("organizations.update");
             $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");

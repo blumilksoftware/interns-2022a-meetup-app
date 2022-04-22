@@ -37,6 +37,12 @@ class OrganizationController extends Controller
         return redirect()->route("organizations");
     }
 
+    public function show(Organization $organization): View
+    {
+        return view("organizations.show")
+            ->with("organization", $organization);
+    }
+
     public function edit(Organization $organization): View
     {
         return view("organizations.edit")
