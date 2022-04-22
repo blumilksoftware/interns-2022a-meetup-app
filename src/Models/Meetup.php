@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $date
  * @property string $place
  * @property string $language
- * @property string $logo
+ * @property string $logoPath
  * @property-read Organization|null $organization
  * @property-read Speaker|null $speakers
  * @property-read User $user
@@ -36,7 +36,7 @@ class Meetup extends Model
         "date",
         "place",
         "language",
-        "logo",
+        "logo_path",
     ];
     protected $casts = [
         "date:" . Formats::DATETIME,
@@ -44,7 +44,7 @@ class Meetup extends Model
 
     public function getLogoPath(): string
     {
-        return asset("storage/" . $this->attributes["logo"]);
+        return asset("storage/" . $this->attributes["logo_path"]);
     }
 
     public function user(): BelongsTo

@@ -14,7 +14,7 @@
                     </div>
                     <div class="mt-6 flex flex-col gap-7">
                         <div x-data class="sm:flex items-center">
-                            <img x-ref="image" id="image" src="{{ asset('/static/images/no_image.jpeg') }}"
+                            <img x-ref="image" id="image" src="{{ asset('/static/images/no_image.webp') }}"
                                 alt="meetup_avatar" class="w-full sm:w-[400px] h-[200px]">
                             <input @change="image.src = URL.createObjectURL($event.target.files[0])" type="file"
                                 accept="image/*" id="logo" name="logo" class="hidden">
@@ -93,6 +93,7 @@
                             Save
                         </button>
                     </div>
+                </div>
             </form>
         @endauth
     </div>

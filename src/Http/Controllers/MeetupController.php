@@ -30,7 +30,7 @@ class MeetupController extends Controller
     public function store(StoreMeetupRequest $request, StoreFileService $service): RedirectResponse
     {
         $input = $request->validated();
-        $input["logo"] = $service->storeFile(Constants::MEETUPS_LOGOS_PATH, $request->file("logo"));
+        $input["logo_path"] = $service->storeFile(Constants::MEETUPS_LOGOS_PATH, $request->file("logo"));
 
         $request->user()->meetups()->create($input);
 
@@ -47,7 +47,7 @@ class MeetupController extends Controller
     {
         $input = $request->validated();
         if ($request->hasFile("logo")) {
-            $input["logo"] = $service->storeFile(Constants::MEETUPS_LOGOS_PATH, $request->file("logo"));
+            $input["logo_path"] = $service->storeFile(Constants::MEETUPS_LOGOS_PATH, $request->file("logo"));
         }
 
         $meetup->update($input);

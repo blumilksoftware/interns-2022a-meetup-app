@@ -44,7 +44,7 @@ class Organization extends Model
 
     public function getLogoPath(): string
     {
-        return asset("storage/" . $this->attributes["logo"]);
+        return asset("storage/" . $this->attributes["logo_path"]);
     }
 
     public function meetups(): HasMany
