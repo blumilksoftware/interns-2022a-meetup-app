@@ -8,7 +8,7 @@
             <p class="mt-2 text-lg">
                 Please check your registered email for email verification
             </p>
-            <a href="/login" class="w-48 mt-10 bg-indigo-600 text-white text-center p-4 rounded-lg">
+            <a href="{{ route('login') }}" class="w-48 mt-10 bg-indigo-600 text-white text-center p-4 rounded-lg">
                 Go to login page
             </a>
         </div>

@@ -1034,10 +1034,10 @@ select {
   background-color: rgb(59 89 152 / var(--tw-bg-opacity));
 }
 .bg-login {
-  background-image: url('/static/images/login.jpg');
+  background-image: url('/static/images/login.webp');
 }
 .bg-register {
-  background-image: url('/static/images/register.jpg');
+  background-image: url('/static/images/register.webp');
 }
 .bg-cover {
   background-size: cover;

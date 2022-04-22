@@ -7,7 +7,7 @@
             <div class="max-w-7x mx-auto ">
                 <div class="relative shadow-xl sm:overflow-hidden">
                     <div class="absolute inset-0">
-                        <img class="h-full w-full object-cover" src={{ asset('static/images/hero.png') }}
+                        <img class="h-full w-full object-cover" src={{ asset('static/images/hero.webp') }}
                             alt="People working on laptops" />
                         <div class="absolute inset-0 bg-indigo-400 mix-blend-multiply"></div>
                     </div>

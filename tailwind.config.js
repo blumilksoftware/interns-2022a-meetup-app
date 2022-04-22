@@ -9,8 +9,8 @@ module.exports = {
         20: '1.25rem',
       },
       backgroundImage: {
-        login: "url('/static/images/login.jpg')",
-        register: "url('/static/images/register.jpg')",
+        login: "url('/static/images/login.webp')",
+        register: "url('/static/images/register.webp')",
       },
       dropShadow: {
         filter: '0px 4px 4px rgba(0, 0, 0, 0.25)',
