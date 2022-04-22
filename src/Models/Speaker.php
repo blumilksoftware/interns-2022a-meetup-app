@@ -8,7 +8,7 @@ use Blumilk\Meetup\Core\Models\Utils\Formats;
 use Database\Factories\SpeakerFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id
@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $avatarPath
  * @property string|null $linkedinUrl
  * @property string|null $githubUrl
- * @property-read Collection<Meetup> $meetup
+ * @property-read Collection<Meetup> $meetups
  */
 class Speaker extends Model
 {
@@ -41,9 +41,9 @@ class Speaker extends Model
         return asset("storage/" . $this->attributes["avatar_path"]);
     }
 
-    public function meetup(): HasMany
+    public function meetups(): BelongsToMany
     {
-        return $this->hasMany(Meetup::class);
+        return $this->belongsToMany(Meetup::class);
     }
 
     protected static function newFactory(): SpeakerFactory
