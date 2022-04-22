@@ -8,6 +8,7 @@ use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
 use Blumilk\Meetup\Core\Http\Controllers\ContactController;
+use Blumilk\Meetup\Core\Http\Controllers\InvitationsController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
 use Blumilk\Meetup\Core\Http\Controllers\NewsletterSubscriberController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
@@ -81,6 +82,11 @@ class WebRouting extends Routing
             $this->router->get("/newsletter/subscribe/preference", "edit")->name("newsletter.edit");
             $this->router->post("/newsletter/subscribe/preference", "update")->name("newsletter.update");
             $this->router->post("/newsletter/unsubscribe", "destroy")->name("newsletter.destroy");
+        });
+
+        $this->router->controller(InvitationsController::class)->group(function (): void{
+            $this->router->get("/invitation", "create")->name("invitation");
+            $this->router->post("/invitation", "store")->name("invitation.store");
         });
 
         $this->router->controller(StaticController::class)->group(function (): void {
