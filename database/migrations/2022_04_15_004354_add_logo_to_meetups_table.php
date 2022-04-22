@@ -10,14 +10,14 @@ return new class() extends Migration {
     public function up(): void
     {
         Schema::table("meetups", function (Blueprint $table): void {
-            $table->string("logo")->nullable();
+            $table->string("logo_path")->nullable();
         });
     }
 
     public function down(): void
     {
         Schema::table("meetups", function (Blueprint $table): void {
-            $table->dropColumn("logo");
+            $table->dropColumn("logo_path");
         });
     }
 };
