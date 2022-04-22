@@ -22,9 +22,6 @@ Feature: Showing a meetup
       | 1   | 1             | my meetup                | 2023-01-01 10:10:10  | place           | pl       |
       | 2   | 2             | foreign meetup           | 2023-01-01 10:10:10  | place           | pl       |
 
-  Scenario Outline: Attempt to show a meetup which does not exist
-    When the user in on the show meetup page with id equals "<id>"
+  Scenario: Attempt to show a meetup which does not exist
+    When the user in on the show meetup page with id equals "999"
     Then the user should see the message "Page not found"
-    Examples:
-      | id   |
-      | 999  |

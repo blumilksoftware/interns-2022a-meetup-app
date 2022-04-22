@@ -48,20 +48,14 @@ Feature: Updating a meetup
       | id  | language           |
       | 1   | en                 |
 
-  Scenario Outline: Attempt to update a meetup without credentials
-    Given the user is on the update meetup page with id equals "<id>"
+  Scenario: Attempt to update a meetup without credentials
+    Given the user is on the update meetup page with id equals "1"
     When the user sends the form
     Then the user should see the message "Title field is required"
     And the user should see the message "Date field are required"
     And the user should see the message "Place field are required"
     And the user should see the message "Language field are required"
-    Examples:
-      | id  |
-      | 1   |
 
-  Scenario Outline: Updating meetup as not an organizer
-    When The user is on the update meetup page with organizer id equals "<id>"
+  Scenario: Updating meetup as not an organizer
+    When The user is on the update meetup page with organizer id equals "2"
     Then The user should see "You are not allowed to do this"
-    Examples:
-      | id |
-      | 2  |

@@ -16,9 +16,6 @@ Feature: Showing a meetup
       | id  | title                    | date                 | place           | language |
       | 1   | example meetup           | 2023-01-01 10:10:10  | example place   | pl       |
 
-  Scenario Outline: Attempt to show a meetup which does not exist
-    When the administrator get to the show meetup page with id equals "<id>"
+  Scenario: Attempt to show a meetup which does not exist
+    When the administrator get to the show meetup page with id equals "999"
     Then the administrator should see the message "Page not found"
-    Examples:
-      | id   |
-      | 999  |

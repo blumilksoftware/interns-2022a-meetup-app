@@ -16,17 +16,11 @@ Feature: Updating a speaker
       | id  | name                     |
       | 1   | updated speaker          |
 
-  Scenario Outline: Attempt to update a speaker without credentials
-    Given the administrator is on the update speaker page with id equals "<id>"
+  Scenario: Attempt to update a speaker without credentials
+    Given the administrator is on the update speaker page with id equals "1"
     When the administrator sends the form
     Then the administrator should see the message "Name field is required"
-    Examples:
-      | id  |
-      | 1   |
 
-  Scenario Outline: Attempt to update a speaker which does not exist
-    When the administrator get to the update speaker page with id equals "<id>"
+  Scenario: Attempt to update a speaker which does not exist
+    When the administrator get to the update speaker page with id equals "999"
     Then the administrator should see the message "Page not found"
-    Examples:
-      | id   |
-      | 999  |

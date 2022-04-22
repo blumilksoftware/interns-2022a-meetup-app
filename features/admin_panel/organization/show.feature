@@ -14,9 +14,6 @@ Feature: Showing an organization
       | id  | name                    | description            |
       | 1   | example organization    | existing organization  |
 
-  Scenario Outline: Attempt to show an organization which does not exist
-    When the administrator get to the show organization page with id equals "<id>"
+  Scenario: Attempt to show an organization which does not exist
+    When the administrator get to the show organization page with id equals "999"
     Then the administrator should see the message "Page not found"
-    Examples:
-      | id   |
-      | 999  |

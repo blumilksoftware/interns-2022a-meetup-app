@@ -7,16 +7,13 @@ Feature: Creating a admin user
 
   Scenario: The invited user already have account
     Given the invited user is on the authentication route by invitation link
-    When the invited user logs in as "<email>"
+    When the invited user logs in as "user@example.com "
     Then the invited user becomes admin user
 
-  Scenario Outline: Successfully created an account
+  Scenario: Successfully created an account
     Given the invited user is on the authentication route by invitation link
-    When the invited user registers with "<email>" email address
-    Then new administrator with email "<email>" should be created
-    Examples:
-      | email                    |
-      | user@example.com         |
+    When the invited user registers with "user@example.com " email address
+    Then new administrator with email "user@example.com " should be created
 
   Scenario: The invitation has expired
     Given the invitation was send more than 7 days ago

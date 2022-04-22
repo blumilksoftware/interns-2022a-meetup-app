@@ -16,17 +16,11 @@ Feature: Updating an organization
       | id  | name                     |
       | 1   | updated organization     |
 
-  Scenario Outline: Attempt to update an organization without credentials
-    Given the administrator is on the update organization page with id equals "<id>"
+  Scenario: Attempt to update an organization without credentials
+    Given the administrator is on the update organization page with id equals "1"
     When the administrator sends the form
     Then the administrator should see the message "Name field is required"
-    Examples:
-      | id  |
-      | 1   |
 
-  Scenario Outline: Attempt to update an organization which does not exist
-    When the administrator get to the update organization page with id equals "<id>"
+  Scenario: Attempt to update an organization which does not exist
+    When the administrator get to the update organization page with id equals "999"
     Then the administrator should see the message "Page not found"
-    Examples:
-      | id   |
-      | 999  |

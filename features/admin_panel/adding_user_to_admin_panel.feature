@@ -4,15 +4,12 @@ Feature: Adding a user to admin panel
     Given the administrator is logged in
     And the administrator is on the page with invitation form
 
-  Scenario Outline: Successfully send invitation to unregistered user
+  Scenario Successfully send invitation to unregistered user
     Given the invited user doesn't have an account
-    When the administrator fills in "email" with "<email>"
+    When the administrator fills in "email" with "firstuser@example.com"
     And the administrator sends the form
     Then the administrator should see "Successfully send invitation"
-    And the invited user should get an invitation link on "<email>"
-    Examples:
-    | email                     |
-    | firstuser@example.com     |
+    And the invited user should get an invitation link on "firstuser@example.com"
 
   Scenario: An administrator fills in invited user email field with invalid email
     When the administrator fills in "email" with "wrongemail@"
@@ -23,22 +20,16 @@ Feature: Adding a user to admin panel
     When the administrator sends the form
     Then the administrator should see "Email field is required"
 
-  Scenario Outline: The invited user is already an administrator
-    Given the user with "<email>" email address is already an administrator
-    When the administrator fills in "email" with "<email>"
+  Scenario: The invited user is already an administrator
+    Given the user with "existingadmin@example.com" email address is already an administrator
+    When the administrator fills in "email" with "existingadmin@example.com"
     And the administrator sends the form
     Then the administrator should see the message "This user is already an administrator"
-    Examples:
-      | email                         |
-      | existingadmin@example.com     |
 
-  Scenario Outline: Successfully send invitation to already registered user
-    Given There is a user with "<email>" email address
+  Scenario: Successfully send invitation to already registered user
+    Given There is a user with "firstuser@example.com" email address
     And the invited user is not an administrator yet
-    When the administrator fills in "email" with "<email>"
+    When the administrator fills in "email" with "firstuser@example.com"
     And the administrator sends the form
     Then the administrator should see "Successfully send invitation"
-    And invited user should get an invitation link on "<email>"
-    Examples:
-      | email                     |
-      | firstuser@example.com     |
+    And invited user should get an invitation link on "firstuser@example.com"
