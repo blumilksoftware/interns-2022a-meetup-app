@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $location
  * @property string $organizationType
  * @property string $foundationDate
- * @property string $numberOfEmployers
+ * @property string $numberOfEmployees
  * @property string $logo
  * @property-read Collection<Meetup> $meetups
  * @property-read Collection<OrganizationProfile> $organizationProfiles
@@ -34,7 +34,7 @@ class Organization extends Model
         "location",
         "organization_type",
         "foundation_date",
-        "number_of_employers",
+        "number_of_employees",
         "logo",
         "website_url",
     ];

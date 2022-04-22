@@ -84,7 +84,7 @@
                         </label>
                         <div class="mt-1">
                             <input type="number" name="number_of_employees" id="number_of_employees"
-                                placeholder="Number of employees..." value="{{ old('number_of_employees', $organization->numberOfEmployers) }}"
+                                placeholder="Number of employees..." value="{{ old('number_of_employees', $organization->numberOfEmployees) }}"
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
                             <x-input-error for="number_of_employees" />
                         </div>
