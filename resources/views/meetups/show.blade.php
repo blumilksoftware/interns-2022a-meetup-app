@@ -23,11 +23,11 @@
         <h1>Speakers:</h1>
         <div>
             @foreach ($meetup->speakers as $speaker)
-                <li> {{ $speaker->name }} </li>
+                <div>
+                    <img src="{{ $speaker->getAvatarPath() }}" alt="{{ $speaker->name }} avatar">
+                    {{ $speaker->name }}
+                </div>
             @endforeach
-        </div>
-        <div>
-            {{ $test }}
         </div>
     </div>
 @endsection
