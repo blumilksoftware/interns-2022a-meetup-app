@@ -14,6 +14,15 @@ Feature: Adding a user to admin panel
     | email                     |
     | firstuser@example.com     |
 
+  Scenario: An administrator fills in invited user email field with invalid email
+    When the administrator fills in "email" with "wrongemail@"
+    And the administrator sends the form
+    Then the administrator should see "Invalid email"
+
+  Scenario: An administrator sends the form with empty invited user email field
+    When the administrator sends the form
+    Then the administrator should see "Email field is required"
+
   Scenario Outline: The invited user is already an administrator
     Given the user with "<email>" email address is already an administrator
     When the administrator fills in "email" with "<email>"
