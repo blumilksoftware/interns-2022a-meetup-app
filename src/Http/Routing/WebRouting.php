@@ -38,6 +38,7 @@ class WebRouting extends Routing
             $this->router->get("/", "index")->name("meetups");
             $this->router->get("/meetups/create", "create")->name("meetups.create");
             $this->router->post("/meetups", "store")->name("meetups.store");
+            $this->router->get("/meetups/{meetup}/show", "show")->name("meetups.show");
             $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
             $this->router->put("/meetups/{meetup}", "update")->name("meetups.update");
             $this->router->delete("/meetups/{meetup}", "destroy")->name("meetups.destroy");

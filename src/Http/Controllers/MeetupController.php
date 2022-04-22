@@ -37,6 +37,12 @@ class MeetupController extends Controller
         return redirect()->route("meetups");
     }
 
+    public function show(Meetup $meetup): View
+    {
+        return view("meetups.show")
+            ->with("meetup", $meetup);
+    }
+
     public function edit(Meetup $meetup): View
     {
         return view("meetups.edit")
