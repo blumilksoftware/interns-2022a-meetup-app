@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container md:w-[800px] mx-auto">
-        <h1>Edit Profile</h1>
         @auth
             <form method="post" action="{{ route('organizations.profiles.update', [$organization, $profile]) }}"
                 enctype="multipart/form-data" class="bg-white p-6 mt-20 rounded-20 shadow-xl">
@@ -52,7 +51,7 @@
                         </a>
                         <button type="submit"
                             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Add
+                            Update
                         </button>
                     </div>
                 </div>

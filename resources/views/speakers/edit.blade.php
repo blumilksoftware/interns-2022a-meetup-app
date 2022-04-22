@@ -3,7 +3,7 @@
 @section('content')
     <div class="container md:w-[800px] mx-auto">
         @auth
-            <form method="post" action="{{ route('speakers.update', $speaker) }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('speakers.update', $speaker) }}" enctype="multipart/form-data" class="bg-white p-6 mt-20 rounded-20 shadow-xl">
                 @method('PUT')
                 @csrf
                 <div>
