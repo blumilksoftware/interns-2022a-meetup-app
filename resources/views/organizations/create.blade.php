@@ -17,7 +17,7 @@
                         <img x-ref="image" id="image" src="{{ asset('/static/images/no_image.webp') }}"
                             alt="meetup_avatar" class="w-full sm:w-[400px] h-[200px]">
                         <input @change="image.src = URL.createObjectURL($event.target.files[0])" type="file"
-                            accept="image/*" id="logo" name="logo" class="hidden">
+                            accept="image/*" id="logo_path" name="logo" class="hidden">
                         <label for="logo"
                             class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer mx-auto w-full justify-center mt-3 sm:w-auto sm:mt-0">
                             <i class="fa-solid fa-arrow-up-from-bracket mr-3"></i>
@@ -70,7 +70,7 @@
                             Foundation date
                         </label>
                         <div class="mt-1">
-                            <input type="date" name="foundation_date" id="foundation_date" placeholder="Foundation date..."
+                            <input type="datetime-local" name="foundation_date" id="foundation_date" placeholder="Foundation date..."
                                 value="{{ old('foundation_date') }}"
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
                             <x-input-error for="foundation_date" />
