@@ -24,17 +24,7 @@
                                 Upload Image
                             </label>
                         </div>
-                        <div>
-                            <label for="title" class="block font-medium text-gray-700">
-                                Title
-                            </label>
-                            <div class="mt-1">
-                                <input type="text" name="title" id="title" placeholder="Title..." value="{{ old('title') }}"
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                                <x-input-error for="title" />
-                            </div>
-                        </div>
-
+                        <x-form-input id="title" name="Title" type="text" value="{{ old('title') }}" />
                         <div>
                             <label for="description" class="block font-medium text-gray-700">
                                 Description
@@ -45,41 +35,9 @@
                                 <x-input-error for="description" />
                             </div>
                         </div>
-
-                        <div>
-                            <label for="date" class="block font-medium text-gray-700">
-                                Date
-                            </label>
-                            <div class="mt-1">
-                                <input type="datetime-local" name="date" id="date" placeholder="Date..."
-                                    value="{{ old('date') }}"
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                                <x-input-error for="date" />
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="place" class="block font-medium text-gray-700">
-                                Place
-                            </label>
-                            <div class="mt-1">
-                                <input type="text" name="place" id="place" placeholder="Place..." value="{{ old('place') }}"
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                                <x-input-error for="place" />
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="language" class="block font-medium text-gray-700">
-                                Language
-                            </label>
-                            <div class="mt-1">
-                                <input type="text" name="language" id="language" placeholder="Language..."
-                                    value="{{ old('language') }}"
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                                <x-input-error for="language" />
-                            </div>
-                        </div>
+                        <x-form-input id="date" name="Date" type="datetime-local" value="{{ old('date') }}" />
+                        <x-form-input id="place" name="Place" type="text" value="{{ old('place') }}" />
+                        <x-form-input id="language" name="Language" type="text" value="{{ old('language') }}" />
                     </div>
                 </div>
                 <div class="pt-6">

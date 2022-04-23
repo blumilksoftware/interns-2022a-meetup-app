@@ -3,8 +3,8 @@
 @section('content')
     <div class="container md:w-[800px] mx-auto">
         @auth
-            <form action="{{ route('meetups.update', $meetup) }}" method="post"
-                class="bg-white p-6 mt-20 rounded-20 shadow-xl" enctype="multipart/form-data">
+            <form action="{{ route('meetups.update', $meetup) }}" method="post" class="bg-white p-6 mt-20 rounded-20 shadow-xl"
+                enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div>
@@ -25,18 +25,7 @@
                                 Upload Image
                             </label>
                         </div>
-                        <div>
-                            <label for="title" class="block font-medium text-gray-700">
-                                Title
-                            </label>
-                            <div class="mt-1">
-                                <input type="text" name="title" id="title" placeholder="Title..."
-                                    value="{{ old('title', $meetup->title) }}"
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                                <x-input-error for="title" />
-                            </div>
-                        </div>
-
+                        <x-form-input id="title" name="Title" type="text" value="{{ old('title', $meetup->title) }}" />
                         <div>
                             <label for="description" class="block font-medium text-gray-700">
                                 Description
@@ -47,42 +36,10 @@
                                 <x-input-error for="description" />
                             </div>
                         </div>
-
-                        <div>
-                            <label for="date" class="block font-medium text-gray-700">
-                                Date
-                            </label>
-                            <div class="mt-1">
-                                <input type="datetime-local" name="date" id="date" placeholder="Date..."
-                                    value="{{ old('date', $meetup->date) }}"
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                                <x-input-error for="date" />
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="place" class="block font-medium text-gray-700">
-                                Place
-                            </label>
-                            <div class="mt-1">
-                                <input type="text" name="place" id="place" placeholder="Place..."
-                                    value="{{ old('place', $meetup->place) }}"
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                                <x-input-error for="place" />
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="language" class="block font-medium text-gray-700">
-                                Language
-                            </label>
-                            <div class="mt-1">
-                                <input type="text" name="language" id="language" placeholder="Language..."
-                                    value="{{ old('language', $meetup->language) }}"
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                                <x-input-error for="language" />
-                            </div>
-                        </div>
+                        <x-form-input id="date" name="Date" type="datetime-local" value="{{ old('date', $meetup->date) }}" />
+                        <x-form-input id="place" name="Place" type="text" value="{{ old('place', $meetup->place) }}" />
+                        <x-form-input id="language" name="Language" type="text"
+                            value="{{ old('language', $meetup->language) }}" />
                     </div>
                 </div>
                 <div class="pt-6">
