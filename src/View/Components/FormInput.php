@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Blumilk\Meetup\Core\View\Components;
 
 use Illuminate\View\Component;
@@ -13,8 +15,6 @@ class FormInput extends Component
 
     /**
      * Create a new component instance.
-     *
-     * @return void
      */
     public function __construct($id, $name, $type, $value)
     {
@@ -32,6 +32,6 @@ class FormInput extends Component
      */
     public function render()
     {
-        return view('components.form-input');
+        return view("components.form-input");
     }
 }
