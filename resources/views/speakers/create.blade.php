@@ -13,16 +13,7 @@
                         </h3>
                     </div>
                     <div class="mt-6 flex flex-col gap-7">
-                        <div>
-                            <label for="name" class="block font-medium text-gray-700">
-                                Name
-                            </label>
-                            <div class="mt-1">
-                                <input type="text" name="name" id="name" placeholder="Name..." value="{{ old('name') }}"
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                                <x-input-error for="name" />
-                            </div>
-                        </div>
+                        <x-form-input id="name" name="Name" type="text" value="{{ old('name') }}" />
                         <div>
                             <label for="description" class="block font-medium text-gray-700">
                                 Description
@@ -50,28 +41,8 @@
                                 <x-input-error for="avatar" />
                             </div>
                         </div>
-                        <div>
-                            <label for="linkedin_url" class="block font-medium text-gray-700">
-                                Linkedin url
-                            </label>
-                            <div class="mt-1">
-                                <input type="text" id="linkedin_url" name="linkedin_url" value="{{ old('linkedin_url') }}"
-                                    placeholder="Linkedin url..."
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                                <x-input-error for="linkedin_url" />
-                            </div>
-                        </div>
-                        <div>
-                            <label for="github_url" class="block font-medium text-gray-700">
-                                Github url
-                            </label>
-                            <div class="mt-1">
-                                <input type="text" id="github_url" name="github_url" value="{{ old('github_url') }}"
-                                    placeholder="Github url..."
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                                <x-input-error for="github_url" />
-                            </div>
-                        </div>
+                        <x-form-input id="linkedin_url" name="Linkedin url" type="text" value="{{ old('linkedin_url') }}" />
+                        <x-form-input id="github_url" name="Github url" type="text" value="{{ old('github_url') }}" />
                     </div>
                 </div>
                 <div class="pt-6">
