@@ -86,6 +86,7 @@ class WebRouting extends Routing
             $this->router->get("/speakers", "index")->name("speakers");
             $this->router->post("/speakers", "store")->name("speakers.store");
             $this->router->get("/speakers/create", "create")->name("speakers.create");
+            $this->router->get("/speakers/{speaker}/show", "show")->name("speakers.show");
             $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
             $this->router->put("/speakers/{speaker}", "update")->name("speakers.update");
             $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
