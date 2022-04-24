@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Http\Routing;
 
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
+use Blumilk\Meetup\Core\Http\Controllers\Auth\PasswordResetController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
 use Blumilk\Meetup\Core\Http\Controllers\ContactController;
@@ -22,11 +23,24 @@ class WebRouting extends Routing
     {
         $this->router->get("/", fn(): View => view("home"))->name("home");
 
-        $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register.form");
-        $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register");
-        $this->router->get("/auth/login", [LoginController::class, "store"])->name("login.form");
-        $this->router->post("/auth/login", [LoginController::class, "login"])->name("login");
+        $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register");
+        $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register.store");
+        $this->router->get("/auth/login", [LoginController::class, "store"])->name("login");
+        $this->router->post("/auth/login", [LoginController::class, "login"])->name("login.store");
         $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
+
+        $this->router->controller(PasswordResetController::class)->group(function (): void{
+            $this->router->get("/email/verify", "create")->middleware("auth")->name("verification.notice");
+            $this->router->get("/email/verify/{id}/{hash}", "store")->middleware(["auth", "signed"])->name("verification.verify");
+            $this->router->post("/email/verification-notification", "notification")->middleware(["auth", "throttle:web"])->name("verification.send");
+        });
+
+        $this->router->controller(PasswordResetController::class)->group(function (): void{
+            $this->router->get("/auth/forgot-password", "create")->name("password.request");
+            $this->router->post("/auth/forgot-password", "store")->name("password.email");
+            $this->router->get("/auth/reset-password/{token}", "edit")->name("password.reset");
+            $this->router->post("/auth/reset-password", "update")->name("password.update");
+        });
 
         $this->router->controller(SocialiteController::class)->group(function (): void {
             $this->router->get("/auth/google/redirect", "redirectToGoogle")->name("login.google");

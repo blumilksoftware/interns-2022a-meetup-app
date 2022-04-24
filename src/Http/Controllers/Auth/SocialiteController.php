@@ -34,7 +34,7 @@ class SocialiteController extends Controller
         return Socialite::driver(Provider::FACEBOOK->value)->redirect();
     }
 
-    public function handleFacebookCallback(SocialUserLoginService $service): RedirectResponse
+    public function handleFacebookCallback(): RedirectResponse
     {
         $user = Socialite::driver(Provider::FACEBOOK->value)->user();
         $this->service->registerOrLogin($user, Provider::FACEBOOK->value);
