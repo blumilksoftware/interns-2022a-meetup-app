@@ -58,6 +58,19 @@
                                 value="{{ old('website_url', $organization->websiteUrl) }}" />
                         </div>
                     </div>
+                    <div class="pt-6 mt-5">
+                        <div class="flex justify-end">
+                            <a href="{{ route('organizations') }}"
+                               class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Cancel
+                            </a>
+                            <button type="submit"
+                                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
                     <div class="flex justify-between items-center mt-7 mb-8">
                         <h3 class="text-xl font-medium text-gray-900 ">Organization profiles</h3>
                         <a href="{{ route('organizations.profiles.create', $organization) }}" class="inline-flex py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Add profile</a>
@@ -82,19 +95,6 @@
                     @empty
                         <p>There are no organization profiles</p>
                     @endforelse
-                    <div class="pt-6 mt-5">
-                        <div class="flex justify-end">
-                            <a href="{{ route('organizations') }}"
-                                class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Cancel
-                            </a>
-                            <button type="submit"
-                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Update
-                            </button>
-                        </div>
-                    </div>
-                </form>      
             </div>
         @endauth
     </div>

@@ -17,7 +17,7 @@
                             <img x-ref="image" id="image" src="{{ asset('/static/images/no_image.webp') }}"
                                 alt="organization_avatar" class="w-full sm:w-[400px] h-[200px]">
                             <input @change="image.src = URL.createObjectURL($event.target.files[0])" type="file"
-                                accept="image/*" id="logo_path" name="logo" class="hidden">
+                                accept="image/*" id="logo" name="logo" class="hidden">
                             <label for="logo"
                                 class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer mx-auto w-full justify-center mt-3 sm:w-auto sm:mt-0">
                                 <i class="fa-solid fa-arrow-up-from-bracket mr-3"></i>

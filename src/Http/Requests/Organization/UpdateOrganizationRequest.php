@@ -17,7 +17,7 @@ class UpdateOrganizationRequest extends FormRequest
             "organization_type" => ["required"],
             "foundation_date" => ["required"],
             "number_of_employees" => ["required"],
-            "logo_path" => ["image", "max:2048"],
+            "logo" => ["image", "max:2048"],
             "website_url" => ["nullable", "url"],
         ];
     }
