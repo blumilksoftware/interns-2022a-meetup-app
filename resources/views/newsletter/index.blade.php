@@ -17,19 +17,24 @@
           <div class="relative">
             <div class="sm:text-center">
               <h2 class="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">Subscribe to our newsletter</h2>
-              <p class="mt-6 mx-auto max-w-2xl text-lg text-indigo-200">And start getting information about meetups and news</p>
+              <p class="mt-6 mx-auto max-w-2xl text-lg text-indigo-200">And start getting information about meetups and
+                news</p>
             </div>
-            <form class="mt-12 sm:mx-auto sm:max-w-lg" method="post">
+            <form x-data x-ref="form" @submit="$event.preventDefault()" class="mt-12 sm:mx-auto sm:max-w-lg"
+              method="post">
+              @csrf
               <div class="min-w-0 flex-1">
-                <label for="cta-email" class="sr-only">Email address</label>
-                <input id="cta-email" type="email"
+                <label for="email" class="sr-only">Email address</label>
+                <input id="email" type="email" name="email" value="{{ old('email') }}"
                   class="block w-full border border-transparent rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600"
                   placeholder="Enter your email">
+                <x-input-error for="email" />
               </div>
               <div class="mt-5 flex justify-between">
-                <button
+                <button type="submit" @click="$refs.form.action='{{ route('newsletter.store') }}';$refs.form.submit()"
+                  name="Subscribe"
                   class="block w-[45%] rounded-md border border-transparent px-5 py-3 bg-indigo-500 text-base font-medium text-white shadow hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10">Subscribe</button>
-                <button
+                <button @click="$refs.form.action='{{ route('newsletter.destroy') }}';$refs.form.submit()"
                   class="block w-[45%] rounded-md border border-transparent px-5 py-3 bg-indigo-500 text-base font-medium text-white shadow hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10">Unsubscribe</button>
               </div>
             </form>
