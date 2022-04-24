@@ -9,8 +9,12 @@ use Illuminate\View\View;
 
 class FormInput extends Component
 {
-
-    public function __construct(public $id, public $name, public $type, public $value) {} 
+    public function __construct(
+        public $id,
+        public $name,
+        public $type,
+        public $value,
+    ) {} 
 
     public function render(): View
     {
