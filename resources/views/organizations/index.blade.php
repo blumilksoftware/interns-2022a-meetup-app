@@ -23,15 +23,14 @@
         <li class="mt-12">
           <a href="#">
             <div class="bg-white flex items-center flex-wrap md:flex-nowrap gap-9 shadow-lg rounded-20">
-              <img src="{{ asset('/static/images/organization_logo.webp') }}" alt="news_image"
+              <img src="{{ $organization->getLogoPath() }}" alt="{{ $organization->name }} image"
                 class="w-full rounded-t-20 md:w-[361px] md:h-[218px] md:rounded-l-20 md:rounded-tr-none object-cover" />
               <div class="w-[500px] px-8 pb-5">
                 <h3 class="text-2xl font-bold">
                   {{ $organization->name }}
                 </h3>
                 <p class="text-gray-400 mt-5">
-                  We are a company that is difficult to label. On the one hand, NOVOMATIC Technologies
-                  Poland is a medium-sized R&D center with approximately three hundred specialists.
+                  {{ $organization->description }}
                 </p>
               </div>
             </div>
