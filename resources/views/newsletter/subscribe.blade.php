@@ -28,23 +28,23 @@
                 <div class="divide-y divide-gray-200">
                   <div class="relative flex items-start py-4">
                     <div class="min-w-0 flex-1 text-sm">
-                      <label for="News" class="font-medium text-white">New Meetups</label>
-                      <p id="news-description" class="text-indigo-200">Get notified about new meetups that might
+                      <label for="meetups" class="font-medium text-white">New Meetups</label>
+                      <p id="mettups-description" class="text-indigo-200">Get notified about new meetups that might
                         interest you</p>
                     </div>
                     <div class="ml-3 flex items-center h-5">
-                      <input id="News" name="type[]" type="checkbox" value={{ AvailableNewsletter::News->value }}
+                      <input id="meetups" name="type[]" checked type="checkbox" value={{ AvailableNewsletter::Meetups->value }}
                         class="h-[18px] w-[18px] text-indigo-600 border-gray-300 rounded default:border-gray-300 checked:border-gray-300 checked:border-2">
                     </div>
                   </div>
                   <div class="relative flex items-start py-4">
                     <div class="min-w-0 flex-1 text-sm">
-                      <label for="News" class="font-medium text-white">New News</label>
-                      <p id="meetups-description" class="text-indigo-200">Get notified about news that might interest you
+                      <label for="news" class="font-medium text-white">New News</label>
+                      <p id="news-description" class="text-indigo-200">Get notified about news that might interest you
                       </p>
                     </div>
                     <div class="ml-3 flex items-center h-5">
-                      <input id="Meetups" name="type[]" type="checkbox" value={{ AvailableNewsletter::Meetups->value }}
+                      <input id="news" name="type[]" type="checkbox" value={{ AvailableNewsletter::News->value }}
                         class="h-[18px] w-[18px] text-indigo-600 border-gray-300 rounded default:border-gray-300 checked:border-gray-300 checked:border-2">
                     </div>
                   </div>
