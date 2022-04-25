@@ -43,6 +43,7 @@ class Kernel extends HttpKernel
             ShareErrorsFromSession::class,
             VerifyCsrfToken::class,
             SubstituteBindings::class,
+            "throttle:web",
         ],
 
         "api" => [
