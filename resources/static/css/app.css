@@ -1162,10 +1162,6 @@ select {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
 .pt-2 {
   padding-top: 0.5rem;
 }
@@ -1183,9 +1179,6 @@ select {
 }
 .pb-8 {
   padding-bottom: 2rem;
-}
-.pt-4 {
-  padding-top: 1rem;
 }
 .text-center {
   text-align: center;
@@ -1569,6 +1562,10 @@ select {
 
   .sm\:max-w-xl {
     max-width: 36rem;
+  }
+
+  .sm\:max-w-lg {
+    max-width: 32rem;
   }
 
   .sm\:flex-1 {
