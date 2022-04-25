@@ -30,7 +30,8 @@
                 <x-input-error for="label" />
               </div>
             </div>
-            <x-form-input id="link" name="Link" type="text" value="{{ old('link', $profile->link) }}" />
+            <x-form-input id="link" label="Link" field="link" placeholder="Link..." type="text"
+              value="{{ old('link', $profile->link) }}" />
           </div>
         </div>
         <div class="pt-6">

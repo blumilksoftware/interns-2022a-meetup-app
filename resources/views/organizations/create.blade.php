@@ -24,7 +24,8 @@
                 Upload Image
               </label>
             </div>
-            <x-form-input id="name" name="Name" type="text" value="{{ old('name') }}" />
+            <x-form-input id="name" label="Name" field="name" placeholder="Name..." type="text"
+              value="{{ old('name') }}" />
             <div>
               <label for="description" class="block font-medium text-gray-700">
                 Description
@@ -35,14 +36,16 @@
                 <x-input-error for="description" />
               </div>
             </div>
-            <x-form-input id="location" name="Location" type="text" value="{{ old('location') }}" />
-            <x-form-input id="organization_type" name="Organization type" type="text"
-              value="{{ old('organization_type') }}" />
-            <x-form-input id="foundation_date" name="Foundation Date" type="datetime-local"
-              value="{{ old('foundation_date') }}" />
-            <x-form-input id="number_of_employees" name="Number of employees" type="number"
-              value="{{ old('number_of_employees') }}" />
-            <x-form-input id="website_url" name="Website" type="text" value="{{ old('website_url') }}" />
+            <x-form-input id="location" field="location" label="Location" placeholder="Location..." type="text"
+              value="{{ old('location') }}" />
+            <x-form-input id="organization_type" field="organization_type" label="Organization type"
+              placeholder="Organization type..." type="text" value="{{ old('organization_type') }}" />
+            <x-form-input id="foundation_date" field="foundation_date" label="Foundation date"
+              placeholder="Foundation date..." type="datetime-local" value="{{ old('foundation_date') }}" />
+            <x-form-input id="number_of_employees" field="number_of_employees" label="Number of employees"
+              placeholder="Number of employees" type="number" value="{{ old('number_of_employees') }}" />
+            <x-form-input id="website_url" field="website_url" label="Website" placeholder="Website url..." type="text"
+              value="{{ old('website_url') }}" />
           </div>
         </div>
         <div class="pt-6">

@@ -11,7 +11,9 @@ class FormInput extends Component
 {
     public function __construct(
         public $id,
-        public $name,
+        public $label,
+        public $field,
+        public $placeholder,
         public $type,
         public $value,
     ) {} 

@@ -25,17 +25,8 @@
                   Upload Image
                 </label>
               </div>
-              <div>
-                <label for="name" class="block font-medium text-gray-700">
-                  Name
-                </label>
-                <div class="mt-1">
-                  <input type="text" name="name" id="name" placeholder="Name..."
-                    value="{{ old('name', $organization->name) }}"
-                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
-                  <x-input-error for="name" />
-                </div>
-              </div>
+              <x-form-input id="name" field="name" label="Name" placeholder="Name..." type="text"
+              value="{{ old('name', $organization->name) }}" />
               <div>
                 <label for="description" class="block font-medium text-gray-700">
                   Description
@@ -46,15 +37,18 @@
                   <x-input-error for="description" />
                 </div>
               </div>
-              <x-form-input id="location" name="Location" type="text"
-                value="{{ old('location', $organization->description) }}" />
-              <x-form-input id="organization_type" name="Organization type" type="text"
+              <x-form-input id="location" field="location" label="Location" placeholder="Location..." type="text"
+                value="{{ old('location', $organization->location) }}" />
+              <x-form-input id="organization_type" field="organization_type" label="Organization type"
+                placeholder="Organization type..." type="text"
                 value="{{ old('organization_type', $organization->organizationType) }}" />
-              <x-form-input id="foundation_date" name="Foundation Date" type="datetime-local"
+              <x-form-input id="foundation_date" field="foundation_date" label="Foundation date"
+                placeholder="Foundation date..." type="datetime-local"
                 value="{{ old('foundation_date', $organization->foundationDate) }}" />
-              <x-form-input id="number_of_employees" name="Number of employees" type="number"
+              <x-form-input id="number_of_employees" field="number_of_employees" label="Number of employees"
+                placeholder="Number of employees" type="number"
                 value="{{ old('number_of_employees', $organization->numberOfEmployees) }}" />
-              <x-form-input id="website_url" name="Website" type="text"
+              <x-form-input id="website_url" field="website_url" label="Website" placeholder="Website url..." type="text"
                 value="{{ old('website_url', $organization->websiteUrl) }}" />
             </div>
           </div>
@@ -80,7 +74,8 @@
         @forelse ($organization->organizationProfiles as $profile)
           <div class="flex items-end justify-between mt-5">
             <div>
-              <p> <i class="{{ $profile->getIconPath() }} text-gray-600 text-lg mr-2 rounded-full"></i> {{ $profile->label }}:</p>
+              <p> <i class="{{ $profile->getIconPath() }} text-gray-600 text-lg mr-2 rounded-full"></i>
+                {{ $profile->label }}:</p>
               <a href="{{ $profile->link }}" class="text-blue-500 hover:text-blue-600">{{ $profile->link }}</a>
             </div>
             <div class="flex">
