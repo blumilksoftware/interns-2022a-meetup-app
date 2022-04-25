@@ -33,8 +33,8 @@
                         interest you</p>
                     </div>
                     <div class="ml-3 flex items-center h-5">
-                      <input id="meetups" name="type[]" checked type="checkbox" value={{ AvailableNewsletter::Meetups->value }}
-                        class="h-[18px] w-[18px] text-indigo-600 border-gray-300 rounded default:border-gray-300 checked:border-gray-300 checked:border-2">
+                      <input id="meetups" name="type[]" checked type="checkbox" value="{{ AvailableNewsletter::Meetups->value }}"
+                        class="h-5 w-5 bg-indigo-500 text-indigo-500 rounded border-2 border-indigo-200 checked:bg-indigo-500 checked:border-indigo-200 checked:border-2">
                     </div>
                   </div>
                   <div class="relative flex items-start py-4">
@@ -44,15 +44,15 @@
                       </p>
                     </div>
                     <div class="ml-3 flex items-center h-5">
-                      <input id="news" name="type[]" type="checkbox" value={{ AvailableNewsletter::News->value }}
-                        class="h-[18px] w-[18px] text-indigo-600 border-gray-300 rounded default:border-gray-300 checked:border-gray-300 checked:border-2">
+                      <input id="news" name="type[]" type="checkbox" value="{{ AvailableNewsletter::News->value }}"
+                        class="h-5 w-5 bg-indigo-500 text-indigo-500 rounded border-2 border-indigo-200 checked:bg-indigo-500 checked:border-indigo-200 checked:border-2">
                     </div>
                   </div>
                   <x-input-error for="type" />
                 </div>
               </fieldset>
               <button
-                class="block w-[45%] rounded-md border border-transparent px-5 py-3 bg-indigo-500 text-base font-medium text-white shadow hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10 mt-5 mx-auto">Subscribe</button>
+                class="block w-[45%] rounded-md border border-transparent px-5 py-3 bg-white text-base font-medium text-indigo-600 shadow hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10 mt-5 mx-auto">Subscribe</button>
             </form>
           </div>
         </div>

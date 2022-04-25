@@ -33,9 +33,9 @@
               <div class="mt-5 flex justify-between">
                 <button @click="$refs.form.action='{{ route('newsletter.store') }}';$refs.form.submit()"
                   name="Subscribe"
-                  class="block w-[45%] rounded-md border border-transparent px-5 py-3 bg-indigo-500 text-base font-medium text-white shadow hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10">Subscribe</button>
+                  class="block w-[45%] rounded-md border border-transparent px-5 py-3 bg-white text-base font-medium text-indigo-600 shadow hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10">Subscribe</button>
                 <button @click="$refs.form.action='{{ route('newsletter.destroy') }}';$refs.form.submit()"
-                  class="block w-[45%] rounded-md border border-transparent px-5 py-3 bg-indigo-500 text-base font-medium text-white shadow hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10">Unsubscribe</button>
+                  class="block w-[45%] rounded-md border border-transparent px-5 py-3 bg-white text-base font-medium text-indigo-600 shadow hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10">Unsubscribe</button>
               </div>
             </form>
           </div>
