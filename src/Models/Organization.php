@@ -39,14 +39,12 @@ class Organization extends Model
         "logo_path",
         "website_url",
     ];
+    protected $attributes = [
+        "logo_path" => Constants::ORGANIZATION_DEFAULT_LOGO_PATH,
+    ];
     protected $casts = [
         "foundation_date:" . Formats::DATETIME,
     ];
-
-    public function getLogoPath(): string
-    {
-        return asset($this->attributes["logo_path"] ? "storage/" . $this->attributes["logo_path"] : Constants::ORGANIZATION_DEFAULT_LOGO_PATH);
-    }
 
     public function meetups(): HasMany
     {
@@ -56,6 +54,16 @@ class Organization extends Model
     public function organizationProfiles(): HasMany
     {
         return $this->hasMany(OrganizationProfile::class);
+    }
+
+    public function getLogoPathAttribute(): string
+    {
+        return asset($this->attributes["logo_path"]);
+    }
+
+    public function setLogoPathAttribute($value): void
+    {
+        $this->attributes["logo_path"] = $value;
     }
 
     protected static function newFactory(): OrganizationFactory

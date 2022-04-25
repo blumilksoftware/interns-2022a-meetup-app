@@ -33,18 +33,26 @@ class Speaker extends Model
         "linkedin_url",
         "github_url",
     ];
+    protected $attributes = [
+        "avatar_path" => Constants::SPEAKER_DEFAULT_AVATAR_PATH,
+    ];
     protected $casts = [
         "date:" . Formats::DATETIME,
     ];
 
-    public function getAvatarPath(): string
-    {
-        return asset($this->attributes["avatar_path"] ? "storage/" . $this->attributes["avatar_path"] : Constants::SPEAKER_DEFAULT_AVATAR_PATH);
-    }
-
     public function meetup(): HasMany
     {
         return $this->hasMany(Meetup::class);
+    }
+
+    public function getAvatarPathAttribute(): string
+    {
+        return asset($this->attributes["avatar_path"]);
+    }
+
+    public function setAvatarPathAttribute($value): void
+    {
+        $this->attributes["avatar_path"] = $value;
     }
 
     protected static function newFactory(): SpeakerFactory
