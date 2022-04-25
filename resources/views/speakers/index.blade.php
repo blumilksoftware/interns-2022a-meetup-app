@@ -26,7 +26,7 @@
                         <a href="#">
                             <div class="flex justify-between items-center">
                                 <div class="flex gap-6">
-                                    <img src="{{ $speaker->getAvatarPath() }}" alt="avatar"
+                                    <img src="{{ $speaker->avatarPath }}" alt="avatar"
                                         class="w-[70px] h-[70px] rounded-full object-cover" />
                                     <div class="">
                                         <p>{{ $speaker->name }}</p>
