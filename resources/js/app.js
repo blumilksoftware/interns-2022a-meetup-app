@@ -25,3 +25,8 @@ if (document.querySelector('#editNews')) {
         e.target.submit();
     });
 }
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();

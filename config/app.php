@@ -53,5 +53,7 @@ return [
         "Auth" => Illuminate\Support\Facades\Auth::class,
         "Constants" => Blumilk\Meetup\Core\Models\Utils\Constants::class,
         "Purifier" => Mews\Purifier\Facades\Purifier::class,
+        "AvailableNewsletter" => Blumilk\Meetup\Core\Enums\AvailableNewsletter::class,
+        "Markdown" =>  \Illuminate\Mail\Markdown::class,
     ],
 ];

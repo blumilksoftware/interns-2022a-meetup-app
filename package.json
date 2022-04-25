@@ -6,6 +6,7 @@
   "directories": {
     "test": "tests"
   },
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -14,6 +15,7 @@
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/blumilksoftware/meetup.git"
@@ -38,5 +40,6 @@
   "dependencies": {
     "@toast-ui/editor": "^3.1.4",
     "codemirror": "^5.65.2"
+    "alpinejs": "^3.9.6"
   }
 }

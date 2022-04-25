@@ -7,6 +7,8 @@ namespace Blumilk\Meetup\Core\Http\Controllers;
 use Blumilk\Meetup\Core\Http\Requests\Meetup\StoreMeetupRequest;
 use Blumilk\Meetup\Core\Http\Requests\Meetup\UpdateMeetupRequest;
 use Blumilk\Meetup\Core\Models\Meetup;
+use Blumilk\Meetup\Core\Models\Utils\Constants;
+use Blumilk\Meetup\Core\Services\StoreFileService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -16,7 +18,7 @@ class MeetupController extends Controller
     {
         $meetups = Meetup::query()->latest()->with(["user"])->paginate(20);
 
-        return view("meetups.index")
+        return view("home")
             ->with("meetups", $meetups);
     }
 
@@ -25,9 +27,12 @@ class MeetupController extends Controller
         return view("meetups.create");
     }
 
-    public function store(StoreMeetupRequest $request): RedirectResponse
+    public function store(StoreMeetupRequest $request, StoreFileService $service): RedirectResponse
     {
-        $request->user()->meetups()->create($request->validated());
+        $input = $request->validated();
+        $input["logo_path"] = $service->storeFile(Constants::MEETUPS_LOGOS_PATH, $request->file("logo"));
+
+        $request->user()->meetups()->create($input);
 
         return redirect()->route("meetups");
     }
@@ -38,9 +43,14 @@ class MeetupController extends Controller
             ->with("meetup", $meetup);
     }
 
-    public function update(UpdateMeetupRequest $request, Meetup $meetup): RedirectResponse
+    public function update(UpdateMeetupRequest $request, Meetup $meetup, StoreFileService $service): RedirectResponse
     {
-        $meetup->update($request->validated());
+        $input = $request->validated();
+        if ($request->hasFile("logo")) {
+            $input["logo_path"] = $service->storeFile(Constants::MEETUPS_LOGOS_PATH, $request->file("logo"));
+        }
+
+        $meetup->update($input);
 
         return redirect()->route("meetups");
     }

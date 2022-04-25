@@ -31,10 +31,6 @@ class SocialUserLoginService
             ],
         );
 
-        if (!$user->id) {
-            $user = User::query()->where("email", $user->email)->first();
-        }
-
         $user->socialAccounts()->firstOrCreate([
             "provider_id" => $socialUser->getId(),
             "provider" => $provider,

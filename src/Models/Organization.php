@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $organizationType
  * @property string $foundationDate
  * @property string $numberOfEmployers
- * @property string $logo
+ * @property string $logoPath
  * @property-read Collection<Meetup> $meetups
  * @property-read Collection<OrganizationProfile> $organizationProfiles
  */
@@ -35,12 +35,17 @@ class Organization extends Model
         "organization_type",
         "foundation_date",
         "number_of_employers",
-        "logo",
+        "logo_path",
         "website_url",
     ];
     protected $casts = [
         "foundation_date:" . Formats::DATETIME,
     ];
+
+    public function getLogoPath(): string
+    {
+        return asset("storage/" . $this->attributes["logo_path"]);
+    }
 
     public function meetups(): HasMany
     {
