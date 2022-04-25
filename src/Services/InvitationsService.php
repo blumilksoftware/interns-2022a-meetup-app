@@ -18,9 +18,4 @@ class InvitationsService
 
         return false;
     }
-
-    public function invite(string $email): void
-    {
-        event();
-    }
 }

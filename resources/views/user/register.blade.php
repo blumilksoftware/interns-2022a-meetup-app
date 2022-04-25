@@ -23,7 +23,7 @@
                                 Sign up to your account
                             </h2>
                         </div>
-                        <form action="{{ route('register') }}" class="space-y-6 mt-12" action="#" method="POST">
+                        <form action="{{ route('register') }}" class="space-y-6 mt-12" method="POST">
                             @csrf
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700">

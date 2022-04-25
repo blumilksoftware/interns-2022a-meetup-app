@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Routing;
 
+use Blumilk\Meetup\Core\Http\Controllers\Auth\EmailVerificationController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\PasswordResetController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
@@ -30,7 +31,7 @@ class WebRouting extends Routing
         $this->router->post("/auth/login", [LoginController::class, "login"])->name("login.store");
         $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
 
-        $this->router->controller(PasswordResetController::class)->group(function (): void{
+        $this->router->controller(EmailVerificationController::class)->group(function (): void{
             $this->router->get("/email/verify", "create")->middleware("auth")->name("verification.notice");
             $this->router->get("/email/verify/{id}/{hash}", "store")->middleware(["auth", "signed"])->name("verification.verify");
             $this->router->post("/email/verification-notification", "notification")->middleware(["auth", "throttle:web"])->name("verification.send");
@@ -99,7 +100,7 @@ class WebRouting extends Routing
         });
 
         $this->router->controller(InvitationsController::class)->group(function (): void{
-            $this->router->get("/invitation", "create")->name("invitation");
+            $this->router->get("/invitation", "create")->middleware("auth")->name("invitation");
             $this->router->post("/invitation", "store")->name("invitation.store");
         });
 

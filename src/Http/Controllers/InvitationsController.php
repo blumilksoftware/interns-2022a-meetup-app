@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
+use Blumilk\Meetup\Core\Events\SendInvitationEmailEvent;
 use Blumilk\Meetup\Core\Http\Requests\Invitations\StoreInvitationRequest;
 use Blumilk\Meetup\Core\Services\InvitationsService;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -16,14 +18,14 @@ class InvitationsController extends Controller
         return view("invitation");
     }
 
-    public function store(StoreInvitationRequest $request, InvitationsService $service): RedirectResponse
+    public function store(StoreInvitationRequest $request, InvitationsService $service, Guard $auth): RedirectResponse
     {
         if ($service->existed($request->validated("email"))){
             return back()->with("message", "User with that email already existed");
         }
 
-        $service->invite($request->validated("email"));
+        SendInvitationEmailEvent::dispatch($auth->user(), $request->validated("email"));
 
-        return back()->with("message", "We have");
+        return back()->with("message", "We have sent invitation");
     }
 }

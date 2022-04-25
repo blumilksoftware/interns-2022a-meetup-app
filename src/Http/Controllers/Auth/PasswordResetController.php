@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
-use Blumilk\Meetup\Core\Http\Requests\PasswordResetRequest;
-use Blumilk\Meetup\Core\Http\Requests\PasswordUpdateRequest;
+use Blumilk\Meetup\Core\Http\Requests\PasswordReset\PasswordResetRequest;
+use Blumilk\Meetup\Core\Http\Requests\PasswordReset\PasswordUpdateRequest;
 use Blumilk\Meetup\Core\Services\Authentication\PasswordResetService;
 use Illuminate\Auth\Passwords\PasswordBrokerManager;
 use Illuminate\Contracts\Auth\PasswordBroker;
