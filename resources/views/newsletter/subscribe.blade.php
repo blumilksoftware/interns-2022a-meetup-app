@@ -20,35 +20,39 @@
               </h2>
               <p class="mt-6 mx-auto max-w-2xl text-lg text-indigo-200">Please, feel free to choose your preference!</p>
             </div>
-            <form x-data x-ref="form" @submit="$event.preventDefault()" class="mt-12 sm:mx-auto sm:max-w-lg"
-              method="post">
+            <form action="{{ route('newsletter.update') }}" class="mt-12 sm:mx-auto sm:max-w-lg" method="post">
               @csrf
+              <input type="email" hidden="hidden" name="email" id="email" value="{{ $subscriber->email }}">
               <fieldset class="border-t border-b border-indigo-200">
                 <legend class="sr-only">Notifications</legend>
                 <div class="divide-y divide-gray-200">
                   <div class="relative flex items-start py-4">
                     <div class="min-w-0 flex-1 text-sm">
-                      <label for="candidates" class="font-medium text-white">New Meetups</label>
-                      <p id="candidates-description" class="text-indigo-200">Get notified about new meetups that might interest you</p>
+                      <label for="News" class="font-medium text-white">New Meetups</label>
+                      <p id="news-description" class="text-indigo-200">Get notified about new meetups that might
+                        interest you</p>
                     </div>
                     <div class="ml-3 flex items-center h-5">
-                      <input id="candidates" name="candidates" type="checkbox"
+                      <input id="News" name="type[]" type="checkbox" value={{ AvailableNewsletter::News->value }}
                         class="h-[18px] w-[18px] text-indigo-600 border-gray-300 rounded default:border-gray-300 checked:border-gray-300 checked:border-2">
                     </div>
                   </div>
                   <div class="relative flex items-start py-4">
                     <div class="min-w-0 flex-1 text-sm">
-                      <label for="offers" class="font-medium text-white">New News</label>
-                      <p id="offers-description" class="text-indigo-200">Get notified about news that might interest you</p>
+                      <label for="News" class="font-medium text-white">New News</label>
+                      <p id="meetups-description" class="text-indigo-200">Get notified about news that might interest you
+                      </p>
                     </div>
                     <div class="ml-3 flex items-center h-5">
-                      <input id="offers" name="offers" type="checkbox"
+                      <input id="Meetups" name="type[]" type="checkbox" value={{ AvailableNewsletter::Meetups->value }}
                         class="h-[18px] w-[18px] text-indigo-600 border-gray-300 rounded default:border-gray-300 checked:border-gray-300 checked:border-2">
                     </div>
                   </div>
+                  <x-input-error for="type" />
                 </div>
               </fieldset>
-              <button name="Subscribe" value="Subscribe" class="block w-[45%] rounded-md border border-transparent px-5 py-3 bg-indigo-500 text-base font-medium text-white shadow hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10 mt-5 mx-auto">Subscribe</button>
+              <button
+                class="block w-[45%] rounded-md border border-transparent px-5 py-3 bg-indigo-500 text-base font-medium text-white shadow hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10 mt-5 mx-auto">Subscribe</button>
             </form>
           </div>
         </div>
