@@ -10,19 +10,19 @@ const editor = new Editor({
 })
 
 if (document.querySelector('#createNews')) {
-    document.querySelector('#createNews').addEventListener('submit', e => {
-        e.preventDefault();
-        document.querySelector('#content').value = editor.getMarkdown();
-        e.target.submit();
+    document.querySelector('#createNews').addEventListener('submit', event => {
+        event.preventDefault();
+        document.querySelector('#text').value = editor.getMarkdown();
+        event.target.submit();
     });
 }
 if (document.querySelector('#editNews')) {
-    editor.setMarkdown(document.querySelector('#oldContent').value);
+    editor.setMarkdown(document.querySelector('#oldText').value);
 
-    document.querySelector('#editNews').addEventListener('submit', e => {
-        e.preventDefault();
-        document.querySelector('#content').value = editor.getMarkdown();
-        e.target.submit();
+    document.querySelector('#editNews').addEventListener('submit', event => {
+        event.preventDefault();
+        document.querySelector('#text').value = editor.getMarkdown();
+        event.target.submit();
     });
 }
 import Alpine from 'alpinejs';

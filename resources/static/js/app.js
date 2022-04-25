@@ -28684,19 +28684,19 @@ var editor = new _toast_ui_editor__WEBPACK_IMPORTED_MODULE_0__["default"]({
 });
 
 if (document.querySelector('#createNews')) {
-  document.querySelector('#createNews').addEventListener('submit', function (e) {
-    e.preventDefault();
-    document.querySelector('#content').value = editor.getMarkdown();
-    e.target.submit();
+  document.querySelector('#createNews').addEventListener('submit', function (event) {
+    event.preventDefault();
+    document.querySelector('#text').value = editor.getMarkdown();
+    event.target.submit();
   });
 }
 
 if (document.querySelector('#editNews')) {
-  editor.setMarkdown(document.querySelector('#oldContent').value);
-  document.querySelector('#editNews').addEventListener('submit', function (e) {
-    e.preventDefault();
-    document.querySelector('#content').value = editor.getMarkdown();
-    e.target.submit();
+  editor.setMarkdown(document.querySelector('#oldText').value);
+  document.querySelector('#editNews').addEventListener('submit', function (event) {
+    event.preventDefault();
+    document.querySelector('#text').value = editor.getMarkdown();
+    event.target.submit();
   });
 }
 

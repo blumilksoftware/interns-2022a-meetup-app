@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
-use Blumilk\Meetup\Core\Http\Requests\NewsRequest;
+use Blumilk\Meetup\Core\Http\Requests\News\NewsRequest;
 use Blumilk\Meetup\Core\Models\News;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Str;
-use Mews\Purifier\Facades\Purifier;
 
 class NewsController extends Controller
 {
@@ -29,8 +27,6 @@ class NewsController extends Controller
     public function store(NewsRequest $request): RedirectResponse
     {
         $input = $request->validated();
-        $input["content"] = Purifier::clean($input["content"]);
-        $input["slug"] = Str::slug($input["title"]);
 
         $request->user()->news()->create($input);
 

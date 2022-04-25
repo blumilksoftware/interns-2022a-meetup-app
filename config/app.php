@@ -54,6 +54,6 @@ return [
         "Constants" => Blumilk\Meetup\Core\Models\Utils\Constants::class,
         "Purifier" => Mews\Purifier\Facades\Purifier::class,
         "AvailableNewsletter" => Blumilk\Meetup\Core\Enums\AvailableNewsletter::class,
-        "Markdown" => \Illuminate\Mail\Markdown::class,
+        "Str" => Illuminate\Support\Str::class,
     ],
 ];

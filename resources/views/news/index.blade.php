@@ -11,7 +11,7 @@
                 @foreach ($news as $singleNews)
                     <div>
                         {{ $singleNews->title }}
-                        {!! Markdown::parse($singleNews->content) !!}
+                        {!! Str::markdown($singleNews->text) !!}
                         {{ $singleNews->author }}
 
                         <a href="{{ route('news.edit', $singleNews) }}">Edit</a>
