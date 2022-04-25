@@ -94,6 +94,7 @@ class WebRouting extends Routing
             $this->router->post("/newsletter/subscribe", "store")->name("newsletter.store");
             $this->router->get("/newsletter/subscribe/preference", "edit")->name("newsletter.edit");
             $this->router->post("/newsletter/subscribe/preference", "update")->name("newsletter.update");
+            $this->router->get("/newsletter/unsubscribe", "delete")->name("newsletter.unsubscribe");
             $this->router->post("/newsletter/unsubscribe", "destroy")->name("newsletter.destroy");
         });
 

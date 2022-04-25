@@ -24,22 +24,21 @@ class NewsletterNotification extends Notification
 
     public function toMail(): MailMessage
     {
-        $url = route("home");
-
-        return $this->buildMessage($url);
+        return $this->buildMessage();
     }
 
-    protected function buildMessage($url): MailMessage
+    protected function buildMessage(): MailMessage
     {
         $email = $this->subscriber->email;
 
         return (new MailMessage())
             ->replyTo($email)
-            ->greeting(__("Hi :user", [
-                "user" => $email,
-            ]))
             ->subject("Subscribe newsletter")
-            ->line("Thank you for subscribing to our newsletter")
-            ->action(__("Click here if you want to go to our page"), $url);
-    }
+            ->markdown(
+                "emails.newsletter",
+                [
+                    "email" => $email,
+                ],
+            )
+    ; }
 }
