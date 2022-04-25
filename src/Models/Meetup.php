@@ -7,7 +7,6 @@ namespace Blumilk\Meetup\Core\Models;
 use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Models\Utils\Formats;
 use Database\Factories\MeetupFactory;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
