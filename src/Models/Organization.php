@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $location
  * @property string $organizationType
  * @property string $foundationDate
- * @property string $numberOfEmployees
+ * @property int $numberOfEmployees
  * @property string $logoPath
  * @property-read Collection<Meetup> $meetups
  * @property-read Collection<OrganizationProfile> $organizationProfiles
