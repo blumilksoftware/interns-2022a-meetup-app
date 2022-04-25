@@ -6,7 +6,7 @@ namespace Blumilk\Meetup\Core\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreNewsRequest extends FormRequest
+class NewsRequest extends FormRequest
 {
     public function rules(): array
     {

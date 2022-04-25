@@ -11,7 +11,7 @@
                 @foreach ($news as $singleNews)
                     <div>
                         {{ $singleNews->title }}
-                        {!! \Illuminate\Mail\Markdown::parse($singleNews->content) !!}
+                        {!! Markdown::parse($singleNews->content) !!}
                         {{ $singleNews->author }}
 
                         <a href="{{ route('news.edit', $singleNews) }}">Edit</a>
