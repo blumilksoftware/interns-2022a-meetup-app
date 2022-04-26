@@ -61,11 +61,6 @@ class Organization extends Model
         return asset($this->attributes["logo_path"]);
     }
 
-    public function setLogoPathAttribute($value): void
-    {
-        $this->attributes["logo_path"] = $value;
-    }
-
     protected static function newFactory(): OrganizationFactory
     {
         return OrganizationFactory::new();

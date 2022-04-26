@@ -50,11 +50,6 @@ class Speaker extends Model
         return asset($this->attributes["avatar_path"]);
     }
 
-    public function setAvatarPathAttribute($value): void
-    {
-        $this->attributes["avatar_path"] = $value;
-    }
-
     protected static function newFactory(): SpeakerFactory
     {
         return SpeakerFactory::new();

@@ -66,11 +66,6 @@ class Meetup extends Model
         return asset($this->attributes["logo_path"]);
     }
 
-    public function setLogoPathAttribute($value): void
-    {
-        $this->attributes["logo_path"] = $value;
-    }
-
     protected static function newFactory(): MeetupFactory
     {
         return MeetupFactory::new();
