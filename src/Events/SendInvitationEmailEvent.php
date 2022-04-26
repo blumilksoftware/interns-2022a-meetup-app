@@ -13,8 +13,8 @@ use Illuminate\Queue\SerializesModels;
 class SendInvitationEmailEvent
 {
     use Dispatchable;
- use InteractsWithSockets;
- use SerializesModels;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public function __construct(
         public User $senderUser,

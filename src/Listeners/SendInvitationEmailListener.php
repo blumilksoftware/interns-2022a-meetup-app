@@ -11,6 +11,6 @@ class SendInvitationEmailListener
 {
     public function handle(SendInvitationEmailEvent $event): void
     {
-        $event->senderUser->notify( new InvitationEmailNotification($event->senderUser, $event->receiverEmail));
+        $event->senderUser->notify(new InvitationEmailNotification($event->senderUser, $event->receiverEmail));
     }
 }
