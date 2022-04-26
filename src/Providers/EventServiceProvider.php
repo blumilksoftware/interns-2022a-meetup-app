@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Providers;
 
-use Blumilk\Meetup\Core\Events\SendInvitationEmailEvent;
-use Blumilk\Meetup\Core\Listeners\SendInvitationEmailListener;
 use Blumilk\Meetup\Core\Models\Contact;
 use Blumilk\Meetup\Core\Models\Meetup;
 use Blumilk\Meetup\Core\Models\NewsletterSubscriber;
@@ -24,7 +22,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        SendInvitationEmailEvent::class => [SendInvitationEmailListener::class],
     ];
 
     public function boot(): void

@@ -27,7 +27,7 @@ class InvitationEmailNotification extends Notification
     {
         return (new MailMessage())
             ->replyTo($this->email)
-            ->view(
+            ->markdown(
                 "emails.invitation",
                 [
                     "receiver" => $this->email,

@@ -5,17 +5,12 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Services;
 
 use Blumilk\Meetup\Core\Models\User;
+use Blumilk\Meetup\Core\Notifications\InvitationEmailNotification;
 
 class InvitationsService
 {
-    public function existed(string $email): bool
+    public function sendInvitation(User $senderUser, string $email): void
     {
-        $user = User::query()->where("email", $email)->first();
-
-        if ($user){
-            return true;
-        }
-
-        return false;
+        $senderUser->notify(new InvitationEmailNotification($senderUser, $email));
     }
 }
