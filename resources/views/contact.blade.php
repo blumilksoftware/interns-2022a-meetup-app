@@ -65,14 +65,14 @@
                 </dt>
                 <dd class="flex items-center text-base text-indigo-50">
                   <i class="fa-solid fa-phone fa-lg text-indigo-200"></i>
-                  <span class="ml-3">+1 (555) 123-4567</span>
+                  <a class="ml-3" href="tel:123-456-7890">123-456-7890</a>
                 </dd>
                 <dt>
                   <span class="sr-only">Email</span>
                 </dt>
                 <dd class="flex items-center text-base text-indigo-50">
                   <i class="fa-regular fa-envelope fa-xl text-indigo-200"></i>
-                  <span class="ml-3">support@workcation.com</span>
+                  <a class="ml-3" href= "mailto:abc@example.com">Send Email</a>
                 </dd>
               </dl>
               <ul role="list" class="mt-8 flex space-x-12">
