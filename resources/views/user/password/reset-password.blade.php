@@ -12,7 +12,7 @@
                 </div>
                 <div>
                     <label for="email">email:</label>
-                    <input type="email" id="email" readonly="readonly" name="email" value="{{ ($_GET['email']) }}">
+                    <input type="email" id="email" readonly="readonly" name="email" value="{{ $email }}">
                     <x-input-error for="email"/>
                 </div>
                 <div>
