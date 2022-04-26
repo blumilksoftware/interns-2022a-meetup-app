@@ -14,14 +14,14 @@
             </h3>
           </div>
           <div class="mt-6 flex flex-col gap-7">
-            <x-form-input id="name" field="name" label="Name" placeholder="Name..." type="text"
+            <x-form-input id="name" field="name" label="Name" placeholder="Name" type="text"
               value="{{ old('name', $speaker->name) }}" />
             <div>
               <label for="description" class="block font-medium text-gray-700">
                 Description
               </label>
               <div class="mt-1">
-                <textarea rows="5" type="text" name="description" id="description" placeholder="Description..."
+                <textarea rows="5" name="description" id="description" placeholder="Description"
                   class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">{{ old('description', $speaker->description) }}</textarea>
                 <x-input-error for="description" />
               </div>
@@ -43,9 +43,9 @@
                 <x-input-error for="avatar" />
               </div>
             </div>
-            <x-form-input id="linkedin_url" field="linkedin_url" label="Linkedin url" placeholder="Linkedin url..."
+            <x-form-input id="linkedin_url" field="linkedin_url" label="Linkedin url" placeholder="Linkedin url"
               type="text" value="{{ old('linkedin_url', $speaker->linkedinUrl) }}" />
-            <x-form-input id="github_url" field="github_url" label="Github url" placeholder="Github url..." type="text"
+            <x-form-input id="github_url" field="github_url" label="Github url" placeholder="Github url" type="text"
               value="{{ old('github_url', $speaker->githubUrl) }}" />
           </div>
         </div>

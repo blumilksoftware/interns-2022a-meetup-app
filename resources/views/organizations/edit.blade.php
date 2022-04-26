@@ -25,30 +25,30 @@
                   Upload Image
                 </label>
               </div>
-              <x-form-input id="name" field="name" label="Name" placeholder="Name..." type="text"
+              <x-form-input id="name" field="name" label="Name" placeholder="Name" type="text"
               value="{{ old('name', $organization->name) }}" />
               <div>
                 <label for="description" class="block font-medium text-gray-700">
                   Description
                 </label>
                 <div class="mt-1">
-                  <textarea rows="5" type="text" name="description" id="description" placeholder="Description..."
+                  <textarea rows="5" name="description" id="description" placeholder="Description"
                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">{{ old('description', $organization->description) }}</textarea>
                   <x-input-error for="description" />
                 </div>
               </div>
-              <x-form-input id="location" field="location" label="Location" placeholder="Location..." type="text"
+              <x-form-input id="location" field="location" label="Location" placeholder="Location" type="text"
                 value="{{ old('location', $organization->location) }}" />
               <x-form-input id="organization_type" field="organization_type" label="Organization type"
-                placeholder="Organization type..." type="text"
+                placeholder="Organization type" type="text"
                 value="{{ old('organization_type', $organization->organizationType) }}" />
               <x-form-input id="foundation_date" field="foundation_date" label="Foundation date"
-                placeholder="Foundation date..." type="datetime-local"
+                placeholder="Foundation date" type="datetime-local"
                 value="{{ old('foundation_date', $organization->foundationDate) }}" />
               <x-form-input id="number_of_employees" field="number_of_employees" label="Number of employees"
                 placeholder="Number of employees" type="number"
                 value="{{ old('number_of_employees', $organization->numberOfEmployees) }}" />
-              <x-form-input id="website_url" field="website_url" label="Website" placeholder="Website url..." type="text"
+              <x-form-input id="website_url" field="website_url" label="Website" placeholder="Website url" type="text"
                 value="{{ old('website_url', $organization->websiteUrl) }}" />
             </div>
           </div>

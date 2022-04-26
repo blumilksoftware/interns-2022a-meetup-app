@@ -25,24 +25,24 @@
                 Upload Image
               </label>
             </div>
-            <x-form-input id="title" field="title" label="Title" placeholder="Title..." type="text"
-              value="{{ old('title', $organization->title) }}" />
+            <x-form-input id="title" field="title" label="Title" placeholder="Title" type="text"
+              value="{{ old('title', $meetup->title) }}" />
             <div>
               <label for="description" class="block font-medium text-gray-700">
                 Description
               </label>
               <div class="mt-1">
-                <textarea rows="5" type="text" name="description" id="description" placeholder="Description..."
+                <textarea rows="5" name="description" id="description" placeholder="Description"
                   class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">{{ old('description', $meetup->description) }}</textarea>
                 <x-input-error for="description" />
               </div>
             </div>
-            <x-form-input id="date" field="date" label="Date" placeholder="Date..." type="datetime-local"
-              value="{{ old('date', $organization->date) }}" />
-            <x-form-input id="place" field="place" label="Place" placeholder="Place..." type="text"
-              value="{{ old('place', $organization->place) }}" />
-            <x-form-input id="language" field="language" label="Language" placeholder="Language..." type="text"
-              value="{{ old('language', $organization->language) }}" />
+            <x-form-input id="date" field="date" label="Date" placeholder="Date" type="datetime-local"
+              value="{{ old('date', $meetup->date) }}" />
+            <x-form-input id="place" field="place" label="Place" placeholder="Place" type="text"
+              value="{{ old('place', $meetup->place) }}" />
+            <x-form-input id="language" field="language" label="Language" placeholder="Language" type="text"
+              value="{{ old('language', $meetup->language) }}" />
           </div>
         </div>
         <div class="pt-6">
