@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 /**
  * @property int $id
  * @property string $name
- * @property string|null $content
+ * @property string|null $text
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
  * @property-read User $user

@@ -11,9 +11,9 @@ return new class() extends Migration {
     {
         Schema::create("news", function (Blueprint $table): void {
             $table->id();
-            $table->foreignId("author_id")->constrained()->onDelete("cascade");
+            $table->foreignId("author")->constrained()->onDelete("cascade");
             $table->string("title");
-            $table->longText("text");
+            $table->longText("content");
             $table->string("slug")->unique();
             $table->timestamps();
         });
