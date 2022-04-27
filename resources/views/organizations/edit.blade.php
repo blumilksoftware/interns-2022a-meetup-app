@@ -38,7 +38,7 @@
                     <input type="text" id="number_of_employers" name="number_of_employers" value="{{ old('number_of_employers', $organization->numberOfEmployers) }}">
                     <x-input-error for="number_of_employers"/>
                 </div>
-                <img src="{{ $organization->getLogoPath() }}" alt="{{ $organization->name }} logo">
+                <img src="{{ $organization->logoPath }}" alt="{{ $organization->name }} logo">
                 <div>
                     <label for="logo">Logo image:</label>
                     <input type="file" id="logo" name="logo">
