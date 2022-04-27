@@ -30,7 +30,9 @@ class OrganizationController extends Controller
     public function store(StoreOrganizationRequest $request, StoreFileService $service): RedirectResponse
     {
         $input = $request->validated();
-        $input["logo_path"] = $service->storeFile(Constants::ORGANIZATIONS_LOGOS_PATH, $request->file("logo"));
+        if ($request->hasFile("logo")) {
+            $input["logo_path"] = $service->storeFile(Constants::ORGANIZATIONS_LOGOS_PATH, $request->file("logo"));
+        }
 
         Organization::query()->create($input);
 

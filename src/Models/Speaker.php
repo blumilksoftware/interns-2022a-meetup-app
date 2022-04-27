@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Models;
 
+use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Models\Utils\Formats;
 use Database\Factories\SpeakerFactory;
 use Illuminate\Database\Eloquent\Collection;
@@ -32,18 +33,21 @@ class Speaker extends Model
         "linkedin_url",
         "github_url",
     ];
+    protected $attributes = [
+        "avatar_path" => Constants::SPEAKER_DEFAULT_AVATAR_PATH,
+    ];
     protected $casts = [
         "date:" . Formats::DATETIME,
     ];
 
-    public function getAvatarPath(): string
-    {
-        return asset("storage/" . $this->attributes["avatar_path"]);
-    }
-
     public function meetups(): BelongsToMany
     {
         return $this->belongsToMany(Meetup::class);
+    }
+
+    public function getAvatarPathAttribute(): string
+    {
+        return asset($this->attributes["avatar_path"]);
     }
 
     protected static function newFactory(): SpeakerFactory

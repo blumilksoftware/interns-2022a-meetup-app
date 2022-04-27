@@ -29,13 +29,13 @@ class WebRouting extends Routing
         $this->router->post("/auth/login", [LoginController::class, "login"])->name("login.store");
         $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
 
-        $this->router->controller(PasswordResetController::class)->group(function (): void{
+        $this->router->controller(PasswordResetController::class)->group(function (): void {
             $this->router->get("/email/verify", "create")->middleware("auth")->name("verification.notice");
             $this->router->get("/email/verify/{id}/{hash}", "store")->middleware(["auth", "signed"])->name("verification.verify");
             $this->router->post("/email/verification-notification", "notification")->middleware(["auth", "throttle:web"])->name("verification.send");
         });
 
-        $this->router->controller(PasswordResetController::class)->group(function (): void{
+        $this->router->controller(PasswordResetController::class)->group(function (): void {
             $this->router->get("/auth/forgot-password", "create")->name("password.request");
             $this->router->post("/auth/forgot-password", "store")->name("password.email");
             $this->router->get("/auth/reset-password/{token}", "edit")->name("password.reset");

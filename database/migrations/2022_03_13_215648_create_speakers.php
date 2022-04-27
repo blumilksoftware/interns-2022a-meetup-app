@@ -13,7 +13,7 @@ return new class() extends Migration {
             $table->id();
             $table->string("name");
             $table->text("description")->nullable();
-            $table->string("avatar_path")->default("");
+            $table->string("avatar_path")->nullable();
             $table->string("linkedin_url")->nullable();
             $table->string("github_url")->nullable();
             $table->timestamps();

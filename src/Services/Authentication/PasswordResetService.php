@@ -23,7 +23,7 @@ class PasswordResetService
     {
         return $this->password->reset(
             $request,
-            function ( $user, $password): void {
+            function ($user, $password): void {
                 $user->forceFill([
                     "password" => $this->hash->make($password),
                 ])->setRememberToken(Str::random(60));
