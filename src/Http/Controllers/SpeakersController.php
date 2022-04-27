@@ -35,7 +35,9 @@ class SpeakersController extends Controller
     public function store(UpdateSpeakerRequest $request, StoreFile $service): RedirectResponse
     {
         $input = $request->validated();
-        $input["avatar_path"] = $service->storeFile(Constants::SPEAKERS_AVATARS_PATH, $request->file("avatar"));
+        if ($request->hasFile("avatar")) {
+            $input["avatar_path"] = $service->storeFile(Constants::SPEAKERS_AVATARS_PATH, $request->file("avatar"));
+        }
 
         Speaker::query()->create($input);
 
@@ -45,7 +47,9 @@ class SpeakersController extends Controller
     public function update(UpdateSpeakerRequest $request, StoreFile $service, Speaker $speaker): RedirectResponse
     {
         $input = $request->validated();
-        $input["avatar_path"] = $service->storeFile(Constants::SPEAKERS_AVATARS_PATH, $request->file("avatar"));
+        if ($request->hasFile("avatar")) {
+            $input["avatar_path"] = $service->storeFile(Constants::SPEAKERS_AVATARS_PATH, $request->file("avatar"));
+        }
 
         $speaker->update($input);
 
