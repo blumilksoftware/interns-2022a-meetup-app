@@ -31,7 +31,7 @@
               </label>
               <div class="mt-1">
                 <input id="password" name="password" type="password" value="{{ old('password') }}"
-                  placeholder="Password..." required
+                  placeholder="Password" required
                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                 <x-input-error for="password" />
               </div>
@@ -43,7 +43,7 @@
               </label>
               <div class="mt-1">
                 <input id="password_confirmation" name="password_confirmation" type="password"
-                  placeholder="New password..." value="{{ old('password_confirmation') }}" required
+                  placeholder="New password" value="{{ old('password_confirmation') }}" required
                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                 <x-input-error for="password_confirmation" />
               </div>
