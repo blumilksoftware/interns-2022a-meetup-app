@@ -41,7 +41,7 @@ class News extends Model
     protected static function boot(): void
     {
         parent::boot();
-        static::creating(function ($news): void {
+        static::creating(function (self $news): void {
             $news->slug = Str::slug($news->title);
         });
     }
