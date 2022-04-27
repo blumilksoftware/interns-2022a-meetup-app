@@ -15,7 +15,7 @@
                     </div>
                     <div class="mt-6 flex flex-col gap-7">
                         <div x-data class="sm:flex items-center">
-                            <img x-ref="image" id="image" src="{{ $meetup->getLogoPath() }}" alt="{{ $meetup->title }} logo"
+                            <img x-ref="image" id="image" src="{{ $meetup->logoPath }}" alt="{{ $meetup->title }} logo"
                                 class="w-full sm:w-[400px] h-[200px]">
                             <input @change="image.src = URL.createObjectURL($event.target.files[0])" type="file"
                                 accept="image/*" id="logo" class="hidden" name="logo">

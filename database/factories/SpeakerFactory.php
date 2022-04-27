@@ -16,7 +16,6 @@ class SpeakerFactory extends Factory
         return [
             "name" => $this->faker->firstName() . " " . $this->faker->lastName(),
             "description" => $this->faker->word(),
-            "avatar_path" => "",
             "linkedin_url" => "https://pl.linkedin.com/",
             "github_url" => "https://github.com/",
         ];

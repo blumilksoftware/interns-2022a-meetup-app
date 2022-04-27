@@ -39,7 +39,7 @@
                                 Avatar
                             </label>
                             <div x-data class="flex items-center gap-12 mt-4">
-                                <img x-ref="image" id="image" src="{{ $speaker->getAvatarPath() }}"
+                                <img x-ref="image" id="image" src="{{ $speaker->avatarPath }}"
                                     alt="{{ $speaker->name }} avatar"
                                     class="w-full sm:w-[100px] h-[100px] rounded-full object-cover">
                                 <input @change="image.src = URL.createObjectURL($event.target.files[0])" type="file"

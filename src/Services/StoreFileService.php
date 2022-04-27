@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Services;
 
 use Blumilk\Meetup\Core\Contracts\StoreFile;
+use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Illuminate\Http\UploadedFile;
 
 class StoreFileService implements StoreFile
@@ -13,7 +14,7 @@ class StoreFileService implements StoreFile
 
     public function storeFile(string $uploadFolder, UploadedFile $file): string
     {
-        $this->path = $file->store($uploadFolder, "public");
+        $this->path = Constants::STORAGE_PATH . $file->store($uploadFolder, "public");
 
         return $this->path;
     }
