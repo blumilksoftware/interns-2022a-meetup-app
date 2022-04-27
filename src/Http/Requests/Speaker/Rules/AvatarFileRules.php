@@ -9,7 +9,6 @@ use Blumilk\Meetup\Core\Http\Requests\BaseRules;
 class AvatarFileRules extends BaseRules
 {
     protected static array $rules = [
-        "required",
         "mimes:jpg,png,jpeg,gif",
         "max:2048",
     ];

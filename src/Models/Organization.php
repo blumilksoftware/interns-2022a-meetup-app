@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Models;
 
+use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Models\Utils\Formats;
 use Database\Factories\OrganizationFactory;
 use Illuminate\Database\Eloquent\Collection;
@@ -38,14 +39,12 @@ class Organization extends Model
         "logo_path",
         "website_url",
     ];
+    protected $attributes = [
+        "logo_path" => Constants::ORGANIZATION_DEFAULT_LOGO_PATH,
+    ];
     protected $casts = [
         "foundation_date:" . Formats::DATETIME,
     ];
-
-    public function getLogoPath(): string
-    {
-        return asset("storage/" . $this->attributes["logo_path"]);
-    }
 
     public function meetups(): HasMany
     {
@@ -55,6 +54,11 @@ class Organization extends Model
     public function organizationProfiles(): HasMany
     {
         return $this->hasMany(OrganizationProfile::class);
+    }
+
+    public function getLogoPathAttribute(): string
+    {
+        return asset($this->attributes["logo_path"]);
     }
 
     protected static function newFactory(): OrganizationFactory
