@@ -36,7 +36,6 @@
                                 <x-input-error for="title" />
                             </div>
                         </div>
-
                         <div>
                             <label for="description" class="block font-medium text-gray-700">
                                 Description
@@ -47,7 +46,6 @@
                                 <x-input-error for="description" />
                             </div>
                         </div>
-
                         <div>
                             <label for="date" class="block font-medium text-gray-700">
                                 Date
@@ -59,7 +57,6 @@
                                 <x-input-error for="date" />
                             </div>
                         </div>
-
                         <div>
                             <label for="place" class="block font-medium text-gray-700">
                                 Place
@@ -71,7 +68,6 @@
                                 <x-input-error for="place" />
                             </div>
                         </div>
-
                         <div>
                             <label for="language" class="block font-medium text-gray-700">
                                 Language
@@ -81,6 +77,24 @@
                                     value="{{ old('language', $meetup->language) }}"
                                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" />
                                 <x-input-error for="language" />
+                            </div>
+                        </div>
+                        <div>
+                            <label for="organization_id" class="block font-medium text-gray-700">
+                                Organization
+                            </label>
+                            <div class="mt-1">
+                                <select name="organization_id" id="organization_id"
+                                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                    <option selected value="">Without organization</option>
+                                    @foreach ($organizations as $organization)
+                                        <option value="{{ $organization['id'] }}"
+                                                @if ($organization['id'] === old('organization_id', $meetup->organization?->id)) selected @endif>
+                                            {{ $organization['name'] }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <x-input-error for="organization_id"/>
                             </div>
                         </div>
                     </div>
@@ -96,6 +110,7 @@
                             Update
                         </button>
                     </div>
+                </div>
             </form>
         @endauth
     </div>
