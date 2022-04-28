@@ -17,6 +17,7 @@ class StoreMeetupRequest extends FormRequest
             "place" => ["required"],
             "language" => ["required"],
             "logo" => ["image", "max:2048"],
+            "organization_id" => ["nullable"],
         ];
     }
 }
