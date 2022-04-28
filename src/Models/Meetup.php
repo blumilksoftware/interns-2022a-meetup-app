@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Models;
 
+use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Models\Utils\Formats;
 use Database\Factories\MeetupFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,14 +39,12 @@ class Meetup extends Model
         "language",
         "logo_path",
     ];
+    protected $attributes = [
+        "logo_path" => Constants::MEETUP_DEFAULT_LOGO_PATH,
+    ];
     protected $casts = [
         "date:" . Formats::DATETIME,
     ];
-
-    public function getLogoPath(): string
-    {
-        return asset("storage/" . $this->attributes["logo_path"]);
-    }
 
     public function user(): BelongsTo
     {
@@ -60,6 +59,11 @@ class Meetup extends Model
     public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class);
+    }
+
+    public function getLogoPathAttribute(): string
+    {
+        return asset($this->attributes["logo_path"]);
     }
 
     protected static function newFactory(): MeetupFactory

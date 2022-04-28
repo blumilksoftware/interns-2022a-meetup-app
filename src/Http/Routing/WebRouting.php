@@ -37,7 +37,7 @@ class WebRouting extends Routing
             $this->router->post("/email/verification-notification", "notification")->middleware(["auth", "throttle:web"])->name("verification.send");
         });
 
-        $this->router->controller(PasswordResetController::class)->group(function (): void{
+        $this->router->controller(PasswordResetController::class)->group(function (): void {
             $this->router->get("/auth/forgot-password", "create")->name("password.request");
             $this->router->post("/auth/forgot-password", "store")->name("password.email");
             $this->router->get("/auth/reset-password/{token}", "edit")->name("password.reset");
