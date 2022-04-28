@@ -33,7 +33,12 @@ class PasswordResetController extends Controller
         );
 
         if ($status === PasswordBroker::RESET_LINK_SENT) {
-            return view("user.password.dashboard")->with(["status" => __($status)]);
+            return view("user.password.dashboard")
+                ->with([
+                    "status" => __($status),
+                    "route" => route("meetups"),
+                    "page" => "home",
+                    ]);
         }
 
         return back()->withErrors(["email" => __($status)]);
@@ -52,7 +57,12 @@ class PasswordResetController extends Controller
         $status = $service->resetPassword($request->validated());
 
         if ($status === PasswordBroker::PASSWORD_RESET) {
-            return view("user.password.dashboard")->with("status", __($status));
+            return view("user.password.dashboard")
+                ->with([
+                    "status" => __($status),
+                    "route" => route("login"),
+                    "page" => "login",]
+                );
         }
 
         return back()->withErrors(["email" => [__($status)]]);
