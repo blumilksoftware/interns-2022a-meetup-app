@@ -38,7 +38,7 @@ class PasswordResetController extends Controller
                     "status" => __($status),
                     "route" => route("meetups"),
                     "page" => "home",
-                    ]);
+                ]);
         }
 
         return back()->withErrors(["email" => __($status)]);
@@ -58,10 +58,11 @@ class PasswordResetController extends Controller
 
         if ($status === PasswordBroker::PASSWORD_RESET) {
             return view("user.password.dashboard")
-                ->with([
-                    "status" => __($status),
-                    "route" => route("login"),
-                    "page" => "login",]
+                ->with(
+                    [
+                        "status" => __($status),
+                        "route" => route("login"),
+                        "page" => "login", ],
                 );
         }
 
