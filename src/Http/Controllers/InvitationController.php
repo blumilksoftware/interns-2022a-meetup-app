@@ -20,7 +20,7 @@ class InvitationController extends Controller
 
     public function store(StoreInvitationRequest $request, InvitationsService $service, Guard $auth): RedirectResponse
     {
-        if (User::query()->where("email", $request->validated("email"))->exists()){
+        if (User::query()->where("email", $request->validated("email"))->exists()) {
             return back()->with("message", "User with that email already existed");
         }
 

@@ -31,7 +31,7 @@ class WebRouting extends Routing
         $this->router->post("/auth/login", [LoginController::class, "login"])->name("login.store");
         $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
 
-        $this->router->controller(EmailVerificationController::class)->group(function (): void{
+        $this->router->controller(EmailVerificationController::class)->group(function (): void {
             $this->router->get("/email/verify", "create")->middleware("auth")->name("verification.notice");
             $this->router->get("/email/verify/{id}/{hash}", "store")->middleware(["auth", "signed"])->name("verification.verify");
             $this->router->post("/email/verification-notification", "notification")->middleware(["auth", "throttle:web"])->name("verification.send");
@@ -99,7 +99,7 @@ class WebRouting extends Routing
             $this->router->post("/newsletter/unsubscribe", "destroy")->name("newsletter.destroy");
         });
 
-        $this->router->controller(InvitationController::class)->group(function (): void{
+        $this->router->controller(InvitationController::class)->group(function (): void {
             $this->router->get("/invitation", "create")->middleware("auth")->name("invitation");
             $this->router->post("/invitation", "store")->name("invitation.store");
         });
