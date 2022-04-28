@@ -23,7 +23,7 @@
         <li class="mt-12">
           <a href="#">
             <div class="bg-white flex items-center flex-wrap md:flex-nowrap gap-9 shadow-lg rounded-20">
-              <img src="{{ $organization->getLogoPath() }}" alt="{{ $organization->name }} image"
+              <img src="{{ $organization->logoPath }}" alt="{{ $organization->name }} image"
                 class="w-full rounded-t-20 md:w-[361px] md:h-[218px] md:rounded-l-20 md:rounded-tr-none object-cover" />
               <div class="w-[500px] px-8 pb-5">
                 <h3 class="text-2xl font-bold">
