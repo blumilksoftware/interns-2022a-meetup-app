@@ -7,8 +7,10 @@ namespace Blumilk\Meetup\Core\Models;
 use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Models\Utils\Formats;
 use Database\Factories\MeetupFactory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id
@@ -22,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $language
  * @property string $logoPath
  * @property-read Organization|null $organization
- * @property-read Speaker|null $speakers
+ * @property-read Collection<Speaker> $speakers
  * @property-read User $user
  */
 class Meetup extends Model
@@ -52,9 +54,9 @@ class Meetup extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function speakers(): BelongsTo
+    public function speakers(): BelongsToMany
     {
-        return $this->belongsTo(Speaker::class);
+        return $this->belongsToMany(Speaker::class);
     }
 
     public function organization(): BelongsTo
