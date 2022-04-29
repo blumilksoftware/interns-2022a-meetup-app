@@ -14,7 +14,7 @@ class InvitationEmailNotification extends Notification
     use Queueable;
 
     public function __construct(
-        protected User $senderUser,
+        protected User $sender,
         protected string $email,
     ) {}
 
