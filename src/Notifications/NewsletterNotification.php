@@ -39,7 +39,6 @@ class NewsletterNotification extends Notification
                 [
                     "email" => $email,
                 ],
-            )
-    ;
+            );
     }
 }
