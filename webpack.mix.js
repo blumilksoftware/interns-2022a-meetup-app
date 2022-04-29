@@ -7,7 +7,3 @@ mix.disableSuccessNotifications()
   .postCss('resources/css/app.css', 'resources/static/css', [
     require('tailwindcss'),
   ]);
-
-  mix.browserSync('127.0.0.1');
-  mix.disableSuccessNotifications();
-

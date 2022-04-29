@@ -15,7 +15,7 @@
                         {{ $singleNews->author }}
 
                         <a href="{{ route('news.edit', $singleNews) }}">Edit</a>
-                        <form action="{{ route('news.destroy', $singleNews) }}" method="post">
+                        <form action="{{ route('news.destroy', $singleNews) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit"  onclick="return confirm('Delete News? This operation is irreversible.')">Delete</button>
