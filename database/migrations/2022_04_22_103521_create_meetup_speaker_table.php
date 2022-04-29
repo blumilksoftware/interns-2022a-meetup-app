@@ -11,8 +11,8 @@ return new class() extends Migration {
     {
         Schema::create("meetup_speaker", function (Blueprint $table): void {
             $table->id();
-            $table->integer("meetup_id")->unsigned();
-            $table->integer("speaker_id")->unsigned();
+            $table->foreignId("meetup_id")->constrained()->onDelete("cascade");
+            $table->foreignId("speaker_id")->constrained()->onDelete("cascade");
         });
     }
 
