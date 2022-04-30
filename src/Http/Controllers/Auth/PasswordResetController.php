@@ -8,6 +8,7 @@ use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Http\Requests\PasswordReset\PasswordResetRequest;
 use Blumilk\Meetup\Core\Http\Requests\PasswordReset\PasswordUpdateRequest;
 use Blumilk\Meetup\Core\Services\Authentication\PasswordResetService;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Passwords\PasswordBrokerManager;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Contracts\Hashing\Hasher;
@@ -36,7 +37,7 @@ class PasswordResetController extends Controller
             return view("user.password.dashboard")
                 ->with([
                     "status" => __($status),
-                    "route" => route("meetups"),
+                    "route" => route("home"),
                     "page" => "home",
                 ]);
         }
@@ -46,7 +47,12 @@ class PasswordResetController extends Controller
 
     public function edit(string $token): View
     {
-        return view("user.password.reset-password")->with("token", $token);
+        $email = request()->get("email");
+
+        return view("user.password.reset-password")->with([
+            "token" => $token,
+            "email" => $email,
+        ]);
     }
 
     /**
@@ -54,6 +60,17 @@ class PasswordResetController extends Controller
      */
     public function update(PasswordUpdateRequest $request, PasswordResetService $service): RedirectResponse|View
     {
+        try {
+            $service->validatePassword($request->get("password"), $request->get("email"));
+        } catch (AuthenticationException $exception) {
+            return view("user.password.reset-password")
+                ->with([
+                    "error" => $exception->getMessage(),
+                    "token" => $request->validated("token"),
+                    "email" => $request->validated("email"),
+                ]);
+        }
+
         $status = $service->resetPassword($request->validated());
 
         if ($status === PasswordBroker::PASSWORD_RESET) {
