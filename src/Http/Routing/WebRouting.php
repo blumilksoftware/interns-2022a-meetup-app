@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Routing;
 
+use Blumilk\Meetup\Core\Http\Controllers\Auth\EmailVerificationController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\PasswordResetController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
@@ -15,21 +16,20 @@ use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationProfileController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
 use Blumilk\Meetup\Core\Http\Controllers\StaticController;
-use Illuminate\View\View;
 
 class WebRouting extends Routing
 {
     public function wire(): void
     {
-        $this->router->get("/", fn(): View => view("home"))->name("home");
+        $this->router->get("/", [MeetupController::class, "index"])->name("home");
 
         $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register");
         $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register.store");
-        $this->router->get("/auth/login", [LoginController::class, "store"])->name("login");
+        $this->router->get("/auth/login", [LoginController::class, "store"])->middleware("guest")->name("login");
         $this->router->post("/auth/login", [LoginController::class, "login"])->name("login.store");
         $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
 
-        $this->router->controller(PasswordResetController::class)->group(function (): void {
+        $this->router->controller(EmailVerificationController::class)->group(function (): void {
             $this->router->get("/email/verify", "create")->middleware("auth")->name("verification.notice");
             $this->router->get("/email/verify/{id}/{hash}", "store")->middleware(["auth", "signed"])->name("verification.verify");
             $this->router->post("/email/verification-notification", "notification")->middleware(["auth", "throttle:web"])->name("verification.send");
@@ -50,7 +50,7 @@ class WebRouting extends Routing
         });
 
         $this->router->controller(MeetupController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/", "index")->name("meetups");
+            $this->router->get("/meetups", "index")->name("meetups");
             $this->router->get("/meetups/create", "create")->name("meetups.create");
             $this->router->post("/meetups", "store")->name("meetups.store");
             $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
