@@ -1,4 +1,5 @@
 let mix = require('laravel-mix');
+let eslint = require('eslint-webpack-plugin');
 
 mix
     .js('resources/js/app.js', 'resources/static/js')
@@ -10,15 +11,6 @@ mix
 mix.browserSync('127.0.0.1');
 mix.disableSuccessNotifications();
 
-mix.webpackConfig({
-    module: {
-        rules: [
-            {
-                enforce: 'pre',
-                exclude: /node_modules/,
-                loader: 'eslint-loader',
-                test: /\.(js)?$/
-            },
-        ]
-    }
-})
+module.exports = {
+    plugins: [new eslint(options)],
+};
