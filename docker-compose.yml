@@ -32,7 +32,16 @@ services:
       - ./storage/redis:/data
     networks:
       - meetup-dev
-
+  node:
+    image: "node:14"
+    tty: true
+    ports:
+      -  ${NODE_PORT}:3000
+    working_dir: /src
+    volumes:
+      - ./:/src
+    networks:
+      - meetup-dev
 networks:
   meetup-dev:
     driver: bridge
