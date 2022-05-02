@@ -10,6 +10,7 @@ use Blumilk\Meetup\Core\Services\Authentication\UserLoginService;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -19,7 +20,7 @@ class LoginController extends Controller
         return view("user.login");
     }
 
-    public function login(LoginUserRequest $request, UserLoginService $service): View
+    public function login(LoginUserRequest $request, UserLoginService $service): RedirectResponse|View
     {
         try {
             $service->loginUser($request->get("email"), $request->get("password"));
@@ -28,15 +29,15 @@ class LoginController extends Controller
                 ->with("error", $exception->getMessage());
         }
 
-        return view("user.dashboard");
+        return redirect()->route("home");
     }
 
-    public function logout(Request $request, AuthManager $auth): View
+    public function logout(Request $request, AuthManager $auth): RedirectResponse
     {
         $auth->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return view("user.logout");
+        return redirect()->route("home");
     }
 }
