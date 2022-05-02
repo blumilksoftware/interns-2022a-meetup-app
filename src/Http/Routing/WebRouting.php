@@ -102,6 +102,7 @@ class WebRouting extends Routing
             $this->router->get("/news", "index")->name("news");
             $this->router->get("/news/create", "create")->middleware("auth")->name("news.create");
             $this->router->post("/news", "store")->name("news.store");
+            $this->router->get("/news/{news}/show", "show")->name("news.show");
             $this->router->get("/news/{news}/edit", "edit")->middleware("auth")->name("news.edit");
             $this->router->put("/news/{news}", "update")->middleware("auth")->name("news.update");
             $this->router->delete("/news/{news}", "destroy")->middleware("auth")->name("news.destroy");
