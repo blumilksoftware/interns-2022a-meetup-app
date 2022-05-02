@@ -10,6 +10,7 @@ use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
 use Blumilk\Meetup\Core\Http\Controllers\ContactController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
+use Blumilk\Meetup\Core\Http\Controllers\NewsController;
 use Blumilk\Meetup\Core\Http\Controllers\NewsletterSubscriberController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationProfileController;
@@ -23,11 +24,16 @@ class WebRouting extends Routing
     {
         $this->router->get("/", fn(): View => view("home"))->name("home");
 
-        $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register");
-        $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register.store");
-        $this->router->get("/auth/login", [LoginController::class, "store"])->name("login");
-        $this->router->post("/auth/login", [LoginController::class, "login"])->name("login.store");
-        $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
+        $this->router->controller(RegisterController::class)->group(function (): void {
+            $this->router->get("/auth/register", "create")->name("register.form");
+            $this->router->post("/auth/register", "store")->name("register");
+        });
+
+        $this->router->controller(LoginController::class)->group(function (): void {
+            $this->router->get("/auth/login", "store")->name("login.form");
+            $this->router->post("/auth/login", "login")->name("login");
+            $this->router->get("/auth/logout", "logout")->name("logout")->middleware("auth");
+        });
 
         $this->router->controller(PasswordResetController::class)->group(function (): void {
             $this->router->get("/email/verify", "create")->middleware("auth")->name("verification.notice");
@@ -90,6 +96,15 @@ class WebRouting extends Routing
             $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
             $this->router->put("/speakers/{speaker}", "update")->name("speakers.update");
             $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
+        });
+
+        $this->router->controller(NewsController::class)->group(function (): void {
+            $this->router->get("/news", "index")->name("news");
+            $this->router->get("/news/create", "create")->middleware("auth")->name("news.create");
+            $this->router->post("/news", "store")->name("news.store");
+            $this->router->get("/news/{news}/edit", "edit")->middleware("auth")->name("news.edit");
+            $this->router->put("/news/{news}", "update")->middleware("auth")->name("news.update");
+            $this->router->delete("/news/{news}", "destroy")->middleware("auth")->name("news.destroy");
         });
 
         $this->router->controller(NewsletterSubscriberController::class)->group(function (): void {
