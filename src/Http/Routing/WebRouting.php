@@ -47,9 +47,9 @@ class WebRouting extends Routing
         });
 
         $this->router->controller(SocialiteController::class)->group(function (): void {
-            $this->router->get("/auth/google/redirect", "redirectToGoogle")->name("login.google");
+            $this->router->get("/auth/google/redirect", "redirectToGoogle")->middleware("guest")->name("login.google");
             $this->router->get("/auth/google/callback", "handleGoogleCallback");
-            $this->router->get("/auth/facebook/redirect", "redirectToFacebook")->name("login.facebook");
+            $this->router->get("/auth/facebook/redirect", "redirectToFacebook")->middleware("guest")->name("login.facebook");
             $this->router->get("/auth/facebook/callback", "handleFacebookCallback");
         });
 
