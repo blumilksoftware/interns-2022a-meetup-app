@@ -11,11 +11,17 @@ use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Models\Speaker;
 use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Services\StoreFileService;
+use Blumilk\Meetup\Core\Services\SyncSpeakersService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
 class MeetupController extends Controller
 {
+    public function __construct(
+        protected StoreFileService $storeFileService,
+        protected SyncSpeakersService $syncSpeakersService,
+    ) {}
+
     public function index(): View
     {
         $meetups = Meetup::query()->latest()->with(["user"])->paginate(20);
@@ -33,18 +39,16 @@ class MeetupController extends Controller
             ]);
     }
 
-    public function store(StoreMeetupRequest $request, StoreFileService $service): RedirectResponse
+    public function store(StoreMeetupRequest $request): RedirectResponse
     {
         $input = $request->validated();
         if ($request->hasFile("logo")) {
-            $input["logo_path"] = $service->storeFile(Constants::MEETUPS_LOGOS_PATH, $request->file("logo"));
+            $input["logo_path"] = $this->storeFileService->storeFile(Constants::MEETUPS_LOGOS_PATH, $request->file("logo"));
         }
 
         $meetup = $request->user()->meetups()->create($input);
 
-        if ($request->has("speakers")) {
-            $meetup->speakers()->attach($input["speakers"]);
-        }
+        $this->syncSpeakersService->syncSpeakers($meetup, $input["speakers"]);
 
         return redirect()->route("meetups");
     }
@@ -59,20 +63,16 @@ class MeetupController extends Controller
             ]);
     }
 
-    public function update(UpdateMeetupRequest $request, Meetup $meetup, StoreFileService $service): RedirectResponse
+    public function update(UpdateMeetupRequest $request, Meetup $meetup): RedirectResponse
     {
         $input = $request->validated();
         if ($request->hasFile("logo")) {
-            $input["logo_path"] = $service->storeFile(Constants::MEETUPS_LOGOS_PATH, $request->file("logo"));
+            $input["logo_path"] = $this->storeFileService->storeFile(Constants::MEETUPS_LOGOS_PATH, $request->file("logo"));
         }
 
         $meetup->update($input);
 
-        if ($request->has("speakers")) {
-            $meetup->speakers()->sync($input["speakers"]);
-        } else {
-            $meetup->speakers()->sync([]);
-        }
+        $this->syncSpeakersService->syncSpeakers($meetup, $input["speakers"]);
 
         return redirect()->route("meetups");
     }
