@@ -11,7 +11,9 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class StaticController extends Controller
 {
-    private const FILE_CSS_EXTENSION = "css";
+    private const FILE_EXTENSION = [
+        "css",
+    ];
     private const IGNORE_FILES = [
         ".gitignore",
     ];
@@ -24,7 +26,7 @@ class StaticController extends Controller
             abort(Response::HTTP_NOT_FOUND);
         }
         $headers = [
-            "Content-Type" => File::extension($path) === self::FILE_CSS_EXTENSION ? null : File::type($path),
+            "Content-Type" => in_array(File::extension($path), static::FILE_EXTENSION, true) ? null : File::type($path),
         ];
 
         return response()->file($path, $headers);
