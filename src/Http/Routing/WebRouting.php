@@ -22,14 +22,14 @@ class WebRouting extends Routing
     {
         $this->router->get("/", [MeetupController::class, "index"])->name("home");
 
-        $this->router->controller(RegisterController::class)->group(function (): void {
+        $this->router->controller(RegisterController::class)->middleware("guest")->group(function (): void {
             $this->router->get("/auth/register", "create")->name("register.form");
             $this->router->post("/auth/register", "store")->name("register");
         });
 
         $this->router->controller(LoginController::class)->group(function (): void {
-            $this->router->get("/auth/login", "store")->name("login.form");
-            $this->router->post("/auth/login", "login")->name("login");
+            $this->router->get("/auth/login", "store")->middleware("guest")->name("login.form");
+            $this->router->post("/auth/login", "login")->middleware("guest")->name("login");
             $this->router->get("/auth/logout", "logout")->middleware("auth")->name("logout");
         });
 
