@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="flex-1 flex items-center justify-center sm:items-stretch lg:justify-start">
-                <a href="{{ route('meetups') }}" class="flex-shrink-0 flex items-center">
+                <a href="{{ route('home') }}" class="flex-shrink-0 flex items-center">
                     <img class="block lg:hidden h-8 w-auto"
                         src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow" />
                     <img class="hidden lg:block h-8 w-auto"
@@ -19,7 +19,7 @@
                 </a>
                 <div class="hidden lg:block sm:ml-6">
                     <div class="flex space-x-4">
-                        <a href="{{ route('meetups') }}"
+                        <a href="{{ route('home') }}"
                             class="bg-indigo-600 text-white px-3 py-2 rounded-md text-sm font-medium"
                             aria-current="page">
                             Home
@@ -99,7 +99,7 @@
     </div>
     <div x-cloak x-show="navOpened" x-transition class="lg:hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="{{ route('meetups') }}"
+            <a href="{{ route('home') }}"
                 class="bg-indigo-600 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">
                 Home
             </a>
