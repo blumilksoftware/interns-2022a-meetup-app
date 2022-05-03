@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
 use Blumilk\Meetup\Core\Contracts\StoreFile;
+use Blumilk\Meetup\Core\Http\Requests\PaginationRequest;
 use Blumilk\Meetup\Core\Http\Requests\Speaker\UpdateSpeakerRequest;
 use Blumilk\Meetup\Core\Models\Speaker;
 use Blumilk\Meetup\Core\Models\Utils\Constants;
@@ -13,9 +14,10 @@ use Illuminate\Http\RedirectResponse;
 
 class SpeakersController extends Controller
 {
-    public function index(): View
+    public function index(PaginationRequest $request): View
     {
-        $speakers = Speaker::query()->latest()->paginate(20);
+        $paginationLimit = $request->input('limit');
+        $speakers = Speaker::query()->latest()->paginate($paginationLimit);
 
         return view("speakers.index")
             ->with("speakers", $speakers);
