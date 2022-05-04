@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
+use Blumilk\Meetup\Core\Exceptions\PasswordDoesMatchException;
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Http\Requests\PasswordReset\PasswordResetRequest;
 use Blumilk\Meetup\Core\Http\Requests\PasswordReset\PasswordUpdateRequest;
@@ -46,7 +47,12 @@ class PasswordResetController extends Controller
 
     public function edit(string $token): View
     {
-        return view("user.password.reset-password")->with("token", $token);
+        $email = request()->get("email");
+
+        return view("user.password.reset-password")->with([
+            "token" => $token,
+            "email" => $email,
+        ]);
     }
 
     /**
@@ -54,6 +60,17 @@ class PasswordResetController extends Controller
      */
     public function update(PasswordUpdateRequest $request, PasswordResetService $service): RedirectResponse|View
     {
+        try {
+            $service->validatePassword($request->get("password"), $request->get("email"));
+        } catch (PasswordDoesMatchException $exception) {
+            return view("user.password.reset-password")
+                ->with([
+                    "error" => $exception->getMessage(),
+                    "token" => $request->validated("token"),
+                    "email" => $request->validated("email"),
+                ]);
+        }
+
         $status = $service->resetPassword($request->validated());
 
         if ($status === PasswordBroker::PASSWORD_RESET) {

@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Observers;
 
 use Blumilk\Meetup\Core\Models\User;
-use Illuminate\Contracts\Hashing\Hasher;
+use Blumilk\Meetup\Core\Services\PasswordHashingService;
 
 class UserObserver
 {
     public function __construct(
-        protected Hasher $hasher,
+        protected PasswordHashingService $service,
     ) {}
 
     public function creating(User $user): void
     {
-        $user->password = $this->hasher->make($user->password);
+        $this->service->hash($user);
     }
 }
