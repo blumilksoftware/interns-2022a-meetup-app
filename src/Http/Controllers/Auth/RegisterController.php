@@ -7,7 +7,6 @@ namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Http\Requests\Authentication\RegisterUserRequest;
 use Blumilk\Meetup\Core\Models\User;
-use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Services\StoreFileService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\View;

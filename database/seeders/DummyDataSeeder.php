@@ -12,7 +12,6 @@ use Blumilk\Meetup\Core\Models\User;
 use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Hash;
 
 class DummyDataSeeder extends Seeder
 {

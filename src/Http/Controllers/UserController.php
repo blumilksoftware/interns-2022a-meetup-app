@@ -1,22 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
 use Blumilk\Meetup\Core\Contracts\StoreFile;
 use Blumilk\Meetup\Core\Exceptions\PasswordDoesMatchException;
 use Blumilk\Meetup\Core\Exceptions\PasswordDoesNotMatchException;
-use Blumilk\Meetup\Core\Http\Requests\UpdateUserAccountRequest;
 use Blumilk\Meetup\Core\Http\Requests\UpdateUserAvatarRequest;
 use Blumilk\Meetup\Core\Http\Requests\UpdateUserEmailRequest;
 use Blumilk\Meetup\Core\Http\Requests\UpdateUserNameRequest;
 use Blumilk\Meetup\Core\Http\Requests\UpdateUserPasswordRequest;
-use Blumilk\Meetup\Core\Models\User;
 use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Services\Authentication\ChangePasswordService;
-use Blumilk\Meetup\Core\Services\StoreFileService;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -24,13 +21,13 @@ class UserController extends Controller
 {
     public function index(): View
     {
-        return view("user.profile.index")->with(["user"=>Auth::user()]);
+        return view("user.profile.index")->with(["user" => Auth::user()]);
     }
+
     public function editName(): View
     {
         return view("user.profile.name")
             ->with("user", Auth::user());
-
     }
 
     public function updateName(UpdateUserNameRequest $request): RedirectResponse
@@ -44,7 +41,6 @@ class UserController extends Controller
     public function editPassword(): View
     {
         return view("user.profile.password");
-
     }
 
     public function updatePassword(UpdateUserPasswordRequest $request, ChangePasswordService $service): RedirectResponse|View
@@ -54,7 +50,7 @@ class UserController extends Controller
         try {
             $service->currentPassword($request->validated("password"), $user->password);
             $service->validatePassword($request->validated("newPassword"), $user->password);
-        }catch (PasswordDoesNotMatchException|PasswordDoesMatchException $exception){
+        } catch (PasswordDoesNotMatchException|PasswordDoesMatchException $exception) {
             return view("user.profile.password")
                 ->with("error", $exception->getMessage());
         }
@@ -68,7 +64,6 @@ class UserController extends Controller
     {
         return view("user.profile.avatar")
             ->with("user", Auth::user());
-
     }
 
     public function updateAvatar(UpdateUserAvatarRequest $request, StoreFile $service): RedirectResponse
@@ -88,7 +83,6 @@ class UserController extends Controller
     {
         return view("user.profile.email")
             ->with("user", Auth::user());
-
     }
 
     public function updateEmail(UpdateUserEmailRequest $request): RedirectResponse

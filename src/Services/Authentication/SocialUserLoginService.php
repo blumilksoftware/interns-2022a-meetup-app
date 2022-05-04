@@ -28,7 +28,7 @@ class SocialUserLoginService
                 "name" => $socialUser->getName(),
                 "email" => $socialUser->getEmail(),
                 "password" => $this->hasher->make($socialUser->getEmail()),
-                "avatar_path" =>$socialUser->avatar,
+                "avatar_path" => $socialUser->avatar,
             ],
         );
 

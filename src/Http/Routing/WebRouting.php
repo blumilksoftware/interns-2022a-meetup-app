@@ -56,15 +56,15 @@ class WebRouting extends Routing
         });
 
         $this->router->controller(UserController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/auth/profile","index")->name("user.profile");
-            $this->router->get("/auth/profile/name","editName")->name("user.profile.name");
-            $this->router->get("/auth/profile/avatar","editAvatar")->name("user.profile.avatar");
-            $this->router->get("/auth/profile/password","editPassword")->name("user.profile.password");
-            $this->router->get("/auth/profile/email","editEmail")->name("user.profile.email");
-            $this->router->put("/auth/profile/name","updateName")->name("user.profile.name.update");
-            $this->router->put("/auth/profile/avatar","updateAvatar")->name("user.profile.avatar.update");
-            $this->router->put("/auth/profile/password","updatePassword")->name("user.profile.password.update");
-            $this->router->put("/auth/profile/email","updateEmail")->name("user.profile.email.update");
+            $this->router->get("/auth/profile", "index")->name("user.profile");
+            $this->router->get("/auth/profile/name", "editName")->name("user.profile.name");
+            $this->router->get("/auth/profile/avatar", "editAvatar")->name("user.profile.avatar");
+            $this->router->get("/auth/profile/password", "editPassword")->name("user.profile.password");
+            $this->router->get("/auth/profile/email", "editEmail")->name("user.profile.email");
+            $this->router->put("/auth/profile/name", "updateName")->name("user.profile.name.update");
+            $this->router->put("/auth/profile/avatar", "updateAvatar")->name("user.profile.avatar.update");
+            $this->router->put("/auth/profile/password", "updatePassword")->name("user.profile.password.update");
+            $this->router->put("/auth/profile/email", "updateEmail")->name("user.profile.email.update");
         });
 
         $this->router->controller(MeetupController::class)->middleware("auth")->group(function (): void {
