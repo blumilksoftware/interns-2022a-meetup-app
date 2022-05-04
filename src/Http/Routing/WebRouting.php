@@ -23,11 +23,16 @@ class WebRouting extends Routing
     {
         $this->router->get("/", [MeetupController::class, "index"])->name("home");
 
-        $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register");
-        $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register.store");
-        $this->router->get("/auth/login", [LoginController::class, "store"])->middleware("guest")->name("login");
-        $this->router->post("/auth/login", [LoginController::class, "login"])->name("login.store");
-        $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
+        $this->router->controller(RegisterController::class)->middleware("guest")->group(function (): void {
+            $this->router->get("/auth/register", "create")->name("register.form");
+            $this->router->post("/auth/register", "store")->name("register");
+        });
+
+        $this->router->controller(LoginController::class)->group(function (): void {
+            $this->router->get("/auth/login", "store")->middleware("guest")->name("login.form");
+            $this->router->post("/auth/login", "login")->middleware("guest")->name("login");
+            $this->router->get("/auth/logout", "logout")->middleware("auth")->name("logout");
+        });
 
         $this->router->controller(EmailVerificationController::class)->group(function (): void {
             $this->router->get("/email/verify", "create")->middleware("auth")->name("verification.notice");
@@ -43,14 +48,14 @@ class WebRouting extends Routing
         });
 
         $this->router->controller(SocialiteController::class)->group(function (): void {
-            $this->router->get("/auth/google/redirect", "redirectToGoogle")->name("login.google");
+            $this->router->get("/auth/google/redirect", "redirectToGoogle")->middleware("guest")->name("login.google");
             $this->router->get("/auth/google/callback", "handleGoogleCallback");
-            $this->router->get("/auth/facebook/redirect", "redirectToFacebook")->name("login.facebook");
+            $this->router->get("/auth/facebook/redirect", "redirectToFacebook")->middleware("guest")->name("login.facebook");
             $this->router->get("/auth/facebook/callback", "handleFacebookCallback");
         });
 
         $this->router->controller(MeetupController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/meetups", "index")->name("meetups");
+            $this->router->get("/meetups", "index")->withoutMiddleware("auth")->name("meetups");
             $this->router->get("/meetups/create", "create")->name("meetups.create");
             $this->router->post("/meetups", "store")->name("meetups.store");
             $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
@@ -59,7 +64,7 @@ class WebRouting extends Routing
         });
 
         $this->router->controller(OrganizationController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/organizations", "index")->name("organizations");
+            $this->router->get("/organizations", "index")->withoutMiddleware("auth")->name("organizations");
             $this->router->get("/organizations/create", "create")->name("organizations.create");
             $this->router->post("/organizations", "store")->name("organizations.store");
             $this->router->get("/organizations/{organization}/edit", "edit")->name("organizations.edit");
@@ -80,8 +85,8 @@ class WebRouting extends Routing
             $this->router->post("/contact", "store")->name("contact.store");
         });
 
-        $this->router->controller(SpeakersController::class)->group(function (): void {
-            $this->router->get("/speakers", "index")->name("speakers");
+        $this->router->controller(SpeakersController::class)->middleware("auth")->group(function (): void {
+            $this->router->get("/speakers", "index")->withoutMiddleware("auth")->name("speakers");
             $this->router->post("/speakers", "store")->name("speakers.store");
             $this->router->get("/speakers/create", "create")->name("speakers.create");
             $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
