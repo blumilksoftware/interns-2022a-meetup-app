@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Services\Authentication;
 
+use Blumilk\Meetup\Core\Exceptions\PasswordDoesMatchException;
 use Blumilk\Meetup\Core\Models\User;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Passwords\PasswordBrokerManager;
@@ -18,14 +19,14 @@ class PasswordResetService
     ) {}
 
     /**
-     * @throws AuthenticationException
+     * @throws PasswordDoesMatchException
      */
     public function validatePassword(string $password, string $email): void
     {
         $user = User::query()->where("email", $email)->first();
 
         if ($this->hash->check($password, $user?->password)) {
-            throw new AuthenticationException("New password cannot be the same as the old password");
+            throw new PasswordDoesMatchException();
         }
     }
 

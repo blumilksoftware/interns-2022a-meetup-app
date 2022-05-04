@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
+use Blumilk\Meetup\Core\Exceptions\PasswordDoesMatchException;
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Http\Requests\PasswordReset\PasswordResetRequest;
 use Blumilk\Meetup\Core\Http\Requests\PasswordReset\PasswordUpdateRequest;
 use Blumilk\Meetup\Core\Services\Authentication\PasswordResetService;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Passwords\PasswordBrokerManager;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Contracts\Hashing\Hasher;
@@ -62,7 +62,7 @@ class PasswordResetController extends Controller
     {
         try {
             $service->validatePassword($request->get("password"), $request->get("email"));
-        } catch (AuthenticationException $exception) {
+        } catch (PasswordDoesMatchException $exception) {
             return view("user.password.reset-password")
                 ->with([
                     "error" => $exception->getMessage(),
