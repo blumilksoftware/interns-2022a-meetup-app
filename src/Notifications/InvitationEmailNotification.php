@@ -33,7 +33,6 @@ class InvitationEmailNotification extends Notification
                     "receiver" => $this->email,
                     "sender" => $this->sender,
                 ],
-            )
-    ;
+            );
     }
 }
