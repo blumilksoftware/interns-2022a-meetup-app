@@ -8,8 +8,5 @@ use Exception;
 
 class PasswordDoesMatchException extends Exception
 {
-    public function __construct()
-    {
-        parent::__construct("Password cannot be the same as old password");
-    }
+    protected $message = "Password cannot be the same as old password";
 }

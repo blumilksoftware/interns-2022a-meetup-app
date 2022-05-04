@@ -12,7 +12,8 @@
             </div>
             @if (!empty($error))
               <div class="relative text-red-500 -top-6 left-1/2 transform -translate-x-1/2">
-                {{ $error }}</div>
+                {{ $error }}
+              </div>
             @endif
             <div>
               <input type="string" id="token" hidden="hidden" name="token" value="{{ $token }}">
