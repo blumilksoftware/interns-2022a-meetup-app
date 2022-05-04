@@ -36,7 +36,7 @@ class PasswordResetController extends Controller
             return view("user.password.dashboard")
                 ->with([
                     "status" => __($status),
-                    "route" => route("meetups"),
+                    "route" => route("home"),
                     "page" => "home",
                 ]);
         }
