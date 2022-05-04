@@ -9,6 +9,7 @@ use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Models\OrganizationProfile;
 use Blumilk\Meetup\Core\Models\Speaker;
 use Blumilk\Meetup\Core\Models\User;
+use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -20,8 +21,9 @@ class DummyDataSeeder extends Seeder
         $user = User::factory([
             "name" => "Admin",
             "email" => "admin@example.com",
-            "password" => Hash::make("password"),
+            "password" => "password",
             "email_verified_at" => Carbon::createFromDate(2022, 01, 01),
+            "avatar_path" => Constants::USER_DEFAULT_AVATAR_PATH,
         ])->create();
 
         $organizations = Organization::factory(10)->create();
