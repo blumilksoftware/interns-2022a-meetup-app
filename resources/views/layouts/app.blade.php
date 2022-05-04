@@ -10,11 +10,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="{{ asset('/static/js/app.js') }}" defer></script>
     <title>Meetup app</title>
-    <style>
-        [x-cloak] {
-            display: none !important;
-        }
-    </style>
 </head>
 <body class="flex bg-gray-100 flex-col min-h-screen">
     @include('partials.navbar')

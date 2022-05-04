@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
-use Blumilk\Meetup\Core\Http\Requests\PasswordResetRequest;
-use Blumilk\Meetup\Core\Http\Requests\PasswordUpdateRequest;
+use Blumilk\Meetup\Core\Http\Requests\PasswordReset\PasswordResetRequest;
+use Blumilk\Meetup\Core\Http\Requests\PasswordReset\PasswordUpdateRequest;
 use Blumilk\Meetup\Core\Services\Authentication\PasswordResetService;
 use Illuminate\Auth\Passwords\PasswordBrokerManager;
 use Illuminate\Contracts\Auth\PasswordBroker;
@@ -33,7 +33,12 @@ class PasswordResetController extends Controller
         );
 
         if ($status === PasswordBroker::RESET_LINK_SENT) {
-            return view("user.password.dashboard")->with(["status" => __($status)]);
+            return view("user.password.dashboard")
+                ->with([
+                    "status" => __($status),
+                    "route" => route("home"),
+                    "page" => "home",
+                ]);
         }
 
         return back()->withErrors(["email" => __($status)]);
@@ -52,7 +57,13 @@ class PasswordResetController extends Controller
         $status = $service->resetPassword($request->validated());
 
         if ($status === PasswordBroker::PASSWORD_RESET) {
-            return view("user.password.dashboard")->with("status", __($status));
+            return view("user.password.dashboard")
+                ->with(
+                    [
+                        "status" => __($status),
+                        "route" => route("login"),
+                        "page" => "login", ],
+                );
         }
 
         return back()->withErrors(["email" => [__($status)]]);
