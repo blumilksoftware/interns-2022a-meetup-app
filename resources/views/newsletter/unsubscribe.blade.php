@@ -20,19 +20,19 @@
               <p class="mt-6 mx-auto max-w-2xl text-lg text-indigo-200">And start getting information about meetups and
                 news</p>
             </div>
-            <form x-data x-ref="form" action="{{ route('newsletter.store') }}" class="mt-12 sm:mx-auto sm:max-w-lg"
+            <form x-data x-ref="form" action="{{ route('newsletter.destroy') }}" class="mt-12 sm:mx-auto sm:max-w-lg"
               method="post">
               @csrf
               <div class="min-w-0 flex-1">
                 <label for="email" class="sr-only">Email address</label>
-                <input id="email" type="email" name="email" value="{{ old('email') }}"
+                <input id="email" type="email"  readonly="readonly" name="email" value="{{ $email }}"
                   class="block w-full border border-transparent rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600"
                   placeholder="Enter your email">
                 <x-input-error for="email" />
               </div>
               <div class="mt-5 flex justify-center">
-                <button name="Subscribe"
-                  class="block w-[45%] rounded-md border border-transparent px-5 py-3 bg-white text-base font-medium text-indigo-600 shadow hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10">Subscribe</button>
+                <button name="Unsubscribe"
+                  class="block w-[45%] rounded-md border border-transparent px-5 py-3 bg-white text-base font-medium text-indigo-600 shadow hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:px-10">Unsubscribe</button>
               </div>
             </form>
           </div>

@@ -42,6 +42,41 @@
               value="{{ old('place') }}" />
             <x-form-input id="language" field="language" label="Language" placeholder="Language" type="text"
               value="{{ old('language') }}" />
+            <div>
+              <label for="organization_id" class="block font-medium text-gray-700">
+                Organization
+              </label>
+              <div class="mt-1">
+                <select name="organization_id" id="organization_id"
+                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                  <option selected value="">Without organization</option>
+                  @foreach ($organizations as $organization)
+                    <option value="{{ $organization->id }}"
+                            @if ($organization->id === old('organization_id')) selected @endif>
+                      {{ $organization->name }}
+                    </option>
+                  @endforeach
+                </select>
+                <x-input-error for="organization_id"/>
+              </div>
+            </div>
+            <div>
+              <label for="speakers" class="block font-medium text-gray-700">
+                Speakers
+              </label>
+              <div class="mt-1">
+                <input type="hidden" name="speakers" value="" />
+                <select name="speakers[]" id="speakers"
+                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        multiple>
+                  @foreach ($speakers as $speaker)
+                    <option value="{{ $speaker->id }}" {{ (collect(old('speakers'))->contains($speaker->id)) ? 'selected':'' }}>
+                      {{ $speaker->name }}
+                    </option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
           </div>
         </div>
         <div class="pt-6">

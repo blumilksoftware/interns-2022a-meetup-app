@@ -40,6 +40,7 @@ class Meetup extends Model
         "place",
         "language",
         "logo_path",
+        "organization_id",
     ];
     protected $attributes = [
         "logo_path" => Constants::MEETUP_DEFAULT_LOGO_PATH,

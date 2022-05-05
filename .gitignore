@@ -23,4 +23,3 @@ storage/redis/dump.rdb
 /storage/src/*
 composer.lock
 package-lock.json
-yarn.lock
