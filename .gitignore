@@ -22,3 +22,4 @@ storage/redis/dump.rdb
 .editorconfig
 /storage/src/*
 composer.lock
+package-lock.json

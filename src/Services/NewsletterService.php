@@ -30,7 +30,6 @@ class NewsletterService
     public function unsubscribe(NewsletterSubscriber $subscriber): void
     {
         $subscriber->preferences()->delete();
-        $subscriber->subscribed = false;
-        $subscriber->saveOrFail();
+        $subscriber->deleteOrFail();
     }
 }
