@@ -12,7 +12,6 @@ use Blumilk\Meetup\Core\Models\Speaker;
 use Blumilk\Meetup\Core\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Hash;
 
 class DummyDataSeeder extends Seeder
 {
@@ -21,7 +20,7 @@ class DummyDataSeeder extends Seeder
         $user = User::factory([
             "name" => "Admin",
             "email" => "admin@example.com",
-            "password" => Hash::make("password"),
+            "password" => "password",
             "role" => Role::Administrator,
             "email_verified_at" => Carbon::createFromDate(2022, 01, 01),
         ])->create();
