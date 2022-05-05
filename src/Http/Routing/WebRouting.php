@@ -53,8 +53,8 @@ class WebRouting extends Routing
             $this->router->get("/auth/facebook/callback", "handleFacebookCallback");
         });
 
-        $this->router->controller(MeetupController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/meetups", "index")->withoutMiddleware("auth")->name("meetups");
+        $this->router->controller(MeetupController::class)->middleware("admin")->group(function (): void {
+            $this->router->get("/meetups", "index")->withoutMiddleware("admin")->name("meetups");
             $this->router->get("/meetups/create", "create")->name("meetups.create");
             $this->router->post("/meetups", "store")->name("meetups.store");
             $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
@@ -62,8 +62,8 @@ class WebRouting extends Routing
             $this->router->delete("/meetups/{meetup}", "destroy")->name("meetups.destroy");
         });
 
-        $this->router->controller(OrganizationController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/organizations", "index")->withoutMiddleware("auth")->name("organizations");
+        $this->router->controller(OrganizationController::class)->middleware("admin")->group(function (): void {
+            $this->router->get("/organizations", "index")->withoutMiddleware("admin")->name("organizations");
             $this->router->get("/organizations/create", "create")->name("organizations.create");
             $this->router->post("/organizations", "store")->name("organizations.store");
             $this->router->get("/organizations/{organization}/edit", "edit")->name("organizations.edit");
@@ -71,7 +71,7 @@ class WebRouting extends Routing
             $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");
         });
 
-        $this->router->controller(OrganizationProfileController::class)->middleware("auth")->group(function (): void {
+        $this->router->controller(OrganizationProfileController::class)->middleware("admin")->group(function (): void {
             $this->router->get("/organizations/{organization}/profiles/create", "create")->name("organizations.profiles.create");
             $this->router->post("/organizations/{organization}/profiles", "store")->name("organizations.profiles.store");
             $this->router->get("/organizations/{organization}/profiles/{profile}/edit", "edit")->name("organizations.profiles.edit");
@@ -84,8 +84,8 @@ class WebRouting extends Routing
             $this->router->post("/contact", "store")->name("contact.store");
         });
 
-        $this->router->controller(SpeakersController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/speakers", "index")->withoutMiddleware("auth")->name("speakers");
+        $this->router->controller(SpeakersController::class)->middleware("admin")->group(function (): void {
+            $this->router->get("/speakers", "index")->withoutMiddleware("admin")->name("speakers");
             $this->router->post("/speakers", "store")->name("speakers.store");
             $this->router->get("/speakers/create", "create")->name("speakers.create");
             $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
