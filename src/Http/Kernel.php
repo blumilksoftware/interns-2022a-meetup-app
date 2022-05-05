@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http;
 
+use Blumilk\Meetup\Core\Http\Middleware\IsAdmin;
 use Fruitcake\Cors\HandleCors;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
@@ -62,5 +63,6 @@ class Kernel extends HttpKernel
         "signed" => ValidateSignature::class,
         "throttle" => ThrottleRequests::class,
         "verified" => EnsureEmailIsVerified::class,
+        "admin" => IsAdmin::class,
     ];
 }
