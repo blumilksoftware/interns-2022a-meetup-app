@@ -22,7 +22,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                        onclick="return confirm('Delete meetup? This operation is irreversible.')">
+                                        onclick="return confirm('Delete organization? This operation is irreversible.')">
                                     Delete
                                 </button>
                             </form>
