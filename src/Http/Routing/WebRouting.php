@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Routing;
 
+use Blumilk\Meetup\Core\Http\Controllers\AdminController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\PasswordResetController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
@@ -21,6 +22,13 @@ class WebRouting extends Routing
     public function wire(): void
     {
         $this->router->get("/", [MeetupController::class, "index"])->name("home");
+
+        $this->router->controller(AdminController::class)->middleware("admin")->group(function (): void {
+            $this->router->get("/admin/users", "usersIndex")->name("admin.users");
+            $this->router->get("/admin/meetups", "meetupsIndex")->name("admin.meetups");
+            $this->router->get("/admin/organizations", "organizationsIndex")->name("admin.organizations");
+            $this->router->get("/admin/speakers", "speakersIndex")->name("admin.speakers");
+        });
 
         $this->router->controller(RegisterController::class)->middleware("guest")->group(function (): void {
             $this->router->get("/auth/register", "create")->name("register.form");
