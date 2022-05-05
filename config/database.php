@@ -12,6 +12,7 @@ return [
             "url" => env("DATABASE_URL"),
             "database" => env("DB_DATABASE", database_path("database.sqlite")),
             "prefix" => "",
+            "exec" => "PRAGMA foreign_keys = ON;",
         ],
         "mysql" => [
             "driver" => "mysql",

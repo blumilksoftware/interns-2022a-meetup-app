@@ -30,9 +30,9 @@ class DummyDataSeeder extends Seeder
         foreach ($speakers as $speaker) {
             Meetup::factory()->create([
                 "user_id" => $user,
-                "speaker_id" => $speakers->random(),
                 "organization_id" => $organizations->random(),
-            ]);
+            ])->speakers()->attach($speakers->random());
+
             OrganizationProfile::factory()->create([
                 "organization_id" => $organizations->random(),
             ]);
