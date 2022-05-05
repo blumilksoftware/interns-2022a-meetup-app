@@ -38,14 +38,14 @@ class MeetupEmailNotification extends Notification
 
         return (new MailMessage())
             ->replyTo($email)
-            ->greeting(__("Hi :user", [
-                "user" => $email,
-            ]))
             ->subject("New meetup has been created")
-            ->line("New meetup has been created")
-            ->line(__(":title ", [
-                "title" => $title,
-            ]))
-            ->action(__("Click here for details"), $url);
+            ->markdown(
+                "emails.newsletters.meetups",
+                [
+                    "url" => $url,
+                    "email" => $email,
+                    "title" => $title,
+                ],
+            );
     }
 }

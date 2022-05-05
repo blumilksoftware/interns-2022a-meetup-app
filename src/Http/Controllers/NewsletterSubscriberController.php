@@ -47,6 +47,11 @@ class NewsletterSubscriberController extends Controller
         return view("newsletter.dashboard")->with("message", "You are now subscribed.");
     }
 
+    public function delete(NewsletterStoreRequest $request): View
+    {
+        return view("newsletter.unsubscribe")->with("email", $request->validated("email"));
+    }
+
     public function destroy(NewsletterStoreRequest $request): View
     {
         $subscriber = NewsletterSubscriber::query()->firstOrCreate([
