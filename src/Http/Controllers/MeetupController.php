@@ -11,7 +11,6 @@ use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Models\Speaker;
 use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Services\StoreFileService;
-use Blumilk\Meetup\Core\Services\SyncSpeakersService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -19,7 +18,6 @@ class MeetupController extends Controller
 {
     public function __construct(
         protected StoreFileService $storeFileService,
-        protected SyncSpeakersService $syncSpeakersService,
     ) {}
 
     public function index(): View
@@ -48,7 +46,7 @@ class MeetupController extends Controller
 
         $meetup = $request->user()->meetups()->create($input);
 
-        $this->syncSpeakersService->syncSpeakers($meetup, $input["speakers"]);
+        $meetup->speakers()->sync($input["speakers"]);
 
         return redirect()->route("meetups");
     }
@@ -72,7 +70,7 @@ class MeetupController extends Controller
 
         $meetup->update($input);
 
-        $this->syncSpeakersService->syncSpeakers($meetup, $input["speakers"]);
+        $meetup->speakers()->sync($input["speakers"]);
 
         return redirect()->route("meetups");
     }
