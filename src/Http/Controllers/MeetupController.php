@@ -6,6 +6,7 @@ namespace Blumilk\Meetup\Core\Http\Controllers;
 
 use Blumilk\Meetup\Core\Http\Requests\Meetup\StoreMeetupRequest;
 use Blumilk\Meetup\Core\Http\Requests\Meetup\UpdateMeetupRequest;
+use Blumilk\Meetup\Core\Http\Requests\PaginationRequest;
 use Blumilk\Meetup\Core\Models\Meetup;
 use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Models\Speaker;
@@ -20,9 +21,10 @@ class MeetupController extends Controller
         protected StoreFileService $storeFileService,
     ) {}
 
-    public function index(): View
+    public function index(PaginationRequest $request): View
     {
-        $meetups = Meetup::query()->latest()->with(["user"])->paginate(20);
+        $paginationLimit = $request->input("limit");
+        $meetups = Meetup::query()->latest()->with(["user"])->paginate($paginationLimit);
 
         return view("home")
             ->with("meetups", $meetups);
