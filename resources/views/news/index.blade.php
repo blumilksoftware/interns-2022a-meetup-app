@@ -9,7 +9,7 @@
             @endauth
             @if ($news->count())
                 @forelse ($news as $singleNews)
-                    <a href="{{ route('meetups.show', $meetup) }}" class="w-[397px] h-[309px] rounded-2xl bg-white shadow-lg">
+                    <a href="{{ route('news.show', $singleNews) }}" class="w-[397px] h-[309px] rounded-2xl bg-white shadow-lg">
                         <div>
                             {{ $singleNews->title }}
                             {!! Str::markdown($singleNews->text) !!}
