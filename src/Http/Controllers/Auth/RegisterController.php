@@ -6,9 +6,7 @@ namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Http\Requests\Authentication\RegisterUserRequest;
-use Blumilk\Meetup\Core\Models\User;
 use Blumilk\Meetup\Core\Services\UserRegisterService;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\View;
 
 class RegisterController extends Controller
@@ -24,10 +22,7 @@ class RegisterController extends Controller
 
     public function store(RegisterUserRequest $request, UserRegisterService $service): View
     {
-        $input = $request->validated();
-        $input['password'] = $service->register($request->validated("password"));
-        $user = User::query()->create($input);
-        event(new Registered($user));
+        $service->register($request->validated("email"), $request->validated("name"), $request->validated("password"), );
 
         return view("user.registered");
     }
