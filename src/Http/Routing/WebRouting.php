@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Routing;
 
+use Blumilk\Meetup\Core\Http\Controllers\Auth\EmailVerificationController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\PasswordResetController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
 use Blumilk\Meetup\Core\Http\Controllers\ContactController;
+use Blumilk\Meetup\Core\Http\Controllers\InvitationController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
 use Blumilk\Meetup\Core\Http\Controllers\NewsController;
 use Blumilk\Meetup\Core\Http\Controllers\NewsletterSubscriberController;
@@ -34,7 +36,7 @@ class WebRouting extends Routing
             $this->router->get("/auth/logout", "logout")->middleware("auth")->name("logout");
         });
 
-        $this->router->controller(PasswordResetController::class)->group(function (): void {
+        $this->router->controller(EmailVerificationController::class)->group(function (): void {
             $this->router->get("/email/verify", "create")->middleware("auth")->name("verification.notice");
             $this->router->get("/email/verify/{id}/{hash}", "store")->middleware(["auth", "signed"])->name("verification.verify");
             $this->router->post("/email/verification-notification", "notification")->middleware(["auth", "throttle:web"])->name("verification.send");
@@ -114,6 +116,11 @@ class WebRouting extends Routing
             $this->router->post("/newsletter/subscribe/preference", "update")->name("newsletter.update");
             $this->router->get("/newsletter/unsubscribe", "delete")->name("newsletter.unsubscribe");
             $this->router->post("/newsletter/unsubscribe", "destroy")->name("newsletter.destroy");
+        });
+
+        $this->router->controller(InvitationController::class)->group(function (): void {
+            $this->router->get("/invitation", "create")->middleware("auth")->name("invitation");
+            $this->router->post("/invitation", "store")->name("invitation.store");
         });
 
         $this->router->controller(StaticController::class)->group(function (): void {
