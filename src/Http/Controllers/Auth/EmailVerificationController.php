@@ -21,7 +21,7 @@ class EmailVerificationController extends Controller
     {
         $request->fulfill();
 
-        return redirect()->route("home");
+        return redirect()->route("meetups");
     }
 
     public function notification(Request $request): RedirectResponse
