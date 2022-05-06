@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 
 /**
  * @property int $id
+ * @property int $userId
  * @property string $name
  * @property string|null $text
  * @property Carbon|null $createdAt
@@ -22,8 +23,9 @@ class News extends Model
 {
     use HasFactory;
 
+    public $incrementing = true;
+    protected $primaryKey = "id";
     protected $fillable = [
-        "author_id",
         "slug",
         "title",
         "name",
