@@ -37,6 +37,8 @@
     "eslint-plugin-tailwindcss": "^3.5.0"
   },
   "dependencies": {
+    "@toast-ui/editor": "^3.1.4",
+    "codemirror": "^5.65.2",
     "alpinejs": "^3.9.6",
     "cross-env": "^7.0.3",
     "tailwindcss": "^3.0.23",
