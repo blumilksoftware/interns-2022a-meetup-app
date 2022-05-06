@@ -15,7 +15,11 @@ class RegisterController extends Controller
 {
     public function create(): View
     {
-        return view("user.register");
+        if (request()->has("email")) {
+            return view("user.register")->with("email", request()->get("email"));
+        }
+
+        return view("user.register")->with("email", old("email"));
     }
 
     public function store(RegisterUserRequest $request, UserRegisterService $service): View

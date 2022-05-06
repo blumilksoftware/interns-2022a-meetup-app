@@ -38,14 +38,14 @@ class NewsEmailNotification extends Notification
 
         return (new MailMessage())
             ->replyTo($email)
-            ->greeting(__("Hi :user", [
-                "user" => $email,
-            ]))
             ->subject("New news has been created")
-            ->line("New news has been created")
-            ->line(__(":title ", [
-                "title" => $title,
-            ]))
-            ->action(__("Click here for details"), $url);
+            ->markdown(
+                "emails.newsletters.news",
+                [
+                    "email" => $email,
+                    "title" => $title,
+                    "url" => $url,
+                ],
+            );
     }
 }

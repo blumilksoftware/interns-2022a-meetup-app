@@ -10,7 +10,9 @@ use Blumilk\Meetup\Core\Http\Controllers\Auth\PasswordResetController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
 use Blumilk\Meetup\Core\Http\Controllers\ContactController;
+use Blumilk\Meetup\Core\Http\Controllers\InvitationController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
+use Blumilk\Meetup\Core\Http\Controllers\NewsController;
 use Blumilk\Meetup\Core\Http\Controllers\NewsletterSubscriberController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationProfileController;
@@ -94,12 +96,27 @@ class WebRouting extends Routing
             $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
         });
 
+        $this->router->controller(NewsController::class)->group(function (): void {
+            $this->router->get("/news", "index")->name("news");
+            $this->router->get("/news/create", "create")->middleware("auth")->name("news.create");
+            $this->router->post("/news", "store")->middleware("auth")->name("news.store");
+            $this->router->get("/news/{news}/edit", "edit")->middleware("auth")->name("news.edit");
+            $this->router->put("/news/{news}", "update")->middleware("auth")->name("news.update");
+            $this->router->delete("/news/{news}", "destroy")->middleware("auth")->name("news.destroy");
+        });
+
         $this->router->controller(NewsletterSubscriberController::class)->group(function (): void {
             $this->router->get("/newsletter", "create")->name("newsletter");
             $this->router->post("/newsletter/subscribe", "store")->name("newsletter.store");
             $this->router->get("/newsletter/subscribe/preference", "edit")->name("newsletter.edit");
             $this->router->post("/newsletter/subscribe/preference", "update")->name("newsletter.update");
+            $this->router->get("/newsletter/unsubscribe", "delete")->name("newsletter.unsubscribe");
             $this->router->post("/newsletter/unsubscribe", "destroy")->name("newsletter.destroy");
+        });
+
+        $this->router->controller(InvitationController::class)->group(function (): void {
+            $this->router->get("/invitation", "create")->middleware("auth")->name("invitation");
+            $this->router->post("/invitation", "store")->name("invitation.store");
         });
 
         $this->router->controller(StaticController::class)->group(function (): void {
