@@ -10,8 +10,12 @@
                 {{ $news->title }}
             </div>
             <div>
-                {{ $news->text }}
+                {!! Str::markdown($news->text) !!}
             </div>
+            <div>
+                Author: {{ $news->user->name }}
+            </div>
+
         </div>
     </div>
 @endsection
