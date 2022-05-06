@@ -99,14 +99,14 @@ class WebRouting extends Routing
             $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
         });
 
-        $this->router->controller(NewsController::class)->group(function (): void {
-            $this->router->get("/news", "index")->name("news");
-            $this->router->get("/news/create", "create")->middleware("auth")->name("news.create");
-            $this->router->post("/news", "store")->middleware("auth")->name("news.store");
-            $this->router->get("/news/{news}/show", "show")->name("news.show");
-            $this->router->get("/news/{news}/edit", "edit")->middleware("auth")->name("news.edit");
-            $this->router->put("/news/{news}", "update")->middleware("auth")->name("news.update");
-            $this->router->delete("/news/{news}", "destroy")->middleware("auth")->name("news.destroy");
+        $this->router->controller(NewsController::class)->middleware("auth")->group(function (): void {
+            $this->router->get("/news", "index")->withoutMiddleware("auth")->name("news");
+            $this->router->get("/news/create", "create")->name("news.create");
+            $this->router->post("/news", "store")->name("news.store");
+            $this->router->get("/news/{news}/show", "show")->withoutMiddleware("auth")->name("news.show");
+            $this->router->get("/news/{news}/edit", "edit")->name("news.edit");
+            $this->router->put("/news/{news}", "update")->name("news.update");
+            $this->router->delete("/news/{news}", "destroy")->name("news.destroy");
         });
 
         $this->router->controller(NewsletterSubscriberController::class)->group(function (): void {
