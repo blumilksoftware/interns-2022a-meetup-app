@@ -65,6 +65,7 @@ class WebRouting extends Routing
                 $this->router->get("/admin/meetups", "meetupsIndex")->name("admin.meetups");
                 $this->router->get("/admin/organizations", "organizationsIndex")->name("admin.organizations");
                 $this->router->get("/admin/speakers", "speakersIndex")->name("admin.speakers");
+                $this->router->get("/admin/news", "newsIndex")->name("admin.news");
             });
 
             $this->router->controller(UserController::class)->group(function (): void {

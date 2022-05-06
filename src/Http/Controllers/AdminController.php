@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
 use Blumilk\Meetup\Core\Models\Meetup;
+use Blumilk\Meetup\Core\Models\News;
 use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Models\Speaker;
 use Blumilk\Meetup\Core\Models\User;
@@ -47,5 +48,13 @@ class AdminController extends Controller
 
         return view("admin.speakers")
             ->with("speakers", $speakers);
+    }
+
+    public function newsIndex(): View
+    {
+        $news = News::query()->latest()->paginate(20);
+
+        return view("admin.news")
+            ->with("news", $news);
     }
 }

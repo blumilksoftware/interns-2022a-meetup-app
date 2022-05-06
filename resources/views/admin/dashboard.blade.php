@@ -8,6 +8,7 @@
             <a href="{{ route('admin.meetups') }}">Meetups</a>
             <a href="{{ route('admin.organizations') }}">Organizations</a>
             <a href="{{ route('admin.speakers') }}">Speakers</a>
+            <a href="{{ route('admin.news') }}">News</a>
         </div>
     </div>
 @endsection
