@@ -6,7 +6,7 @@ namespace Blumilk\Meetup\Core\Exceptions;
 
 use Exception;
 
-class PasswordDoesMatchException extends Exception
+class PasswordIsTheSameAsOldException extends Exception
 {
     protected $message = "Password cannot be the same as old password";
 }
