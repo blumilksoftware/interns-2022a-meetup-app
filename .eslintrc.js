@@ -12,5 +12,10 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
+    semi: [2, 'never'],
+    quotes: ['error', 'single'],
+    indent: ['error', 2],
+    'comma-dangle': ['error', 'always-multiline'],
+    'object-curly-spacing': ['error', 'always'],
   }
 }
