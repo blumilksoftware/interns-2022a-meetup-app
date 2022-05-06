@@ -6,7 +6,7 @@
         <div>
             <a href="{{ route('speakers.create') }}">Create new speaker</a>
             @if ($speakers->count())
-                @foreach ($speakers as $speaker)
+                @forelse ($speakers as $speaker)
                     <div>
                         Id: {{ $speaker->id }}
                         Name: {{ $speaker->name }}
@@ -27,11 +27,11 @@
                             </form>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <p>There are no speakers</p>
+                @endforelse
 
                 {{ $speakers->links('vendor.pagination.tailwind') }}
-            @else
-                <p>There are no speakers</p>
             @endif
         </div>
     </div>

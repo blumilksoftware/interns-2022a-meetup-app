@@ -6,7 +6,7 @@
         <div>
             <a href="{{ route('meetups.create') }}">Create new meetup</a>
             @if ($meetups->count())
-                @foreach ($meetups as $meetup)
+                @forelse ($meetups as $meetup)
                     <div>
                         Title: {{ $meetup->title }}
                         Description: {{ $meetup->description }}
@@ -25,11 +25,11 @@
                             </form>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <p>There are no meetups</p>
+                @endforelse
 
                 {{ $meetups->links('vendor.pagination.tailwind') }}
-            @else
-                <p>There are no meetups</p>
             @endif
         </div>
     </div>

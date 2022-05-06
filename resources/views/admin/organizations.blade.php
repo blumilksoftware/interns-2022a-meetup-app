@@ -6,7 +6,7 @@
         <div>
             <a href="{{ route('organizations.create') }}">Create new organization</a>
             @if ($organizations->count())
-                @foreach ($organizations as $organization)
+                @forelse ($organizations as $organization)
                     <div>
                         Id: {{ $organization->id }}
                         Name: {{ $organization->name }}
@@ -28,11 +28,11 @@
                             </form>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                        <p>There are no organizations</p>
+                @endforelse
 
                 {{ $organizations->links('vendor.pagination.tailwind') }}
-            @else
-                <p>There are no organizations</p>
             @endif
         </div>
     </div>
