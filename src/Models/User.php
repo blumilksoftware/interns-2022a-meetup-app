@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Models;
 
-use Blumilk\Meetup\Core\Enums\Role;
 use Database\Factories\UserFactory;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
@@ -30,7 +29,6 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property string $email
  * @property Carbon|null $emailVerifiedAt
  * @property string $password
- * @property Role $role
  * @property string|null $rememberToken
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
@@ -56,15 +54,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "email",
         "password",
     ];
-    protected $attributes = [
-        "role" => Role::User,
-    ];
     protected $hidden = [
         "password",
         "remember_token",
     ];
     protected $casts = [
-        "role" => Role::class,
         "email_verified_at" => "datetime",
     ];
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Blumilk\Meetup\Core\Enums\Role;
 use Blumilk\Meetup\Core\Models\Meetup;
 use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Models\OrganizationProfile;
@@ -21,7 +20,6 @@ class DummyDataSeeder extends Seeder
             "name" => "Admin",
             "email" => "admin@example.com",
             "password" => "password",
-            "role" => Role::Administrator,
             "email_verified_at" => Carbon::createFromDate(2022, 01, 01),
         ])->create();
 

@@ -10,7 +10,6 @@
                     Email: {{ $user->email }}
                     Created at: {{ $user->createdAt }}
                     Updated at: {{ $user->updatedAt }}
-                    Role: {{ $user->role->value }}
                 </div>
                 <div>
                     <form action="{{ route('users.destroy', $user) }}" method="post">
