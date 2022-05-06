@@ -29,6 +29,6 @@ if (document.querySelector('#editNews')) {
     });
 }
 
-window.Alpine = Alpine;
+window.Alpine = Alpine
 
-Alpine.start();
+Alpine.start()
