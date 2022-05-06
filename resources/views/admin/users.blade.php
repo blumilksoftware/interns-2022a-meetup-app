@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container sm:w-[1216px] mx-auto px-5 xl:px-0">
+        <h1>Users</h1>
         <div>
-            <h1>Users</h1>
             @foreach ($users as $user)
                 <div>
                     Id: {{ $user->id }}
@@ -11,6 +11,16 @@
                     Created at: {{ $user->createdAt }}
                     Updated at: {{ $user->updatedAt }}
                     Role: {{ $user->role->value }}
+                </div>
+                <div>
+                    <form action="{{ route('users.destroy', $user) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                                onclick="return confirm('Delete user? This operation is irreversible.')">
+                            Delete
+                        </button>
+                    </form>
                 </div>
             @endforeach
 

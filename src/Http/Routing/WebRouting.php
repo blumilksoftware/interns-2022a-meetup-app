@@ -16,6 +16,7 @@ use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationProfileController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
 use Blumilk\Meetup\Core\Http\Controllers\StaticController;
+use Blumilk\Meetup\Core\Http\Controllers\UserController;
 
 class WebRouting extends Routing
 {
@@ -59,6 +60,10 @@ class WebRouting extends Routing
             $this->router->get("/auth/google/callback", "handleGoogleCallback");
             $this->router->get("/auth/facebook/redirect", "redirectToFacebook")->middleware("guest")->name("login.facebook");
             $this->router->get("/auth/facebook/callback", "handleFacebookCallback");
+        });
+
+        $this->router->controller(UserController::class)->middleware("admin")->group(function (): void {
+            $this->router->delete("/users/{user}", "destroy")->name("users.destroy");
         });
 
         $this->router->controller(MeetupController::class)->middleware("admin")->group(function (): void {
