@@ -16,14 +16,12 @@ class UserRegisterService
 
     public function register(string $email, string $name, string $password): void
     {
-        if (!$this->hasher->info($password)["algo"]) {
-            $password = $this->hasher->make($password);
-        }
+        $hashedPassword = $this->hasher->make($password);
 
         $user = User::query()->firstOrCreate([
             "email" => $email,
             "name" => $name,
-            "password" => $password,
+            "password" => $hashedPassword,
         ]);
 
         event(new Registered($user));
