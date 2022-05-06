@@ -22,10 +22,12 @@
               aria-current="page">
               Home
             </a>
-            <a href="{{ route('admin.users') }}"
-              class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-              Admin
-            </a>
+            @hasrole('admin')
+              <a href="{{ route('admin.dashboard') }}"
+                class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                Admin
+              </a>
+            @endhasrole
             <a href="{{ route('organizations') }}"
               class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Organizations

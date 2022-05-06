@@ -12,6 +12,11 @@ use Illuminate\Contracts\View\View;
 
 class AdminController extends Controller
 {
+    public function dashboard(): View
+    {
+        return view("admin.dashboard");
+    }
+
     public function usersIndex(): View
     {
         $users = User::query()->latest()->paginate(20);

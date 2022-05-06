@@ -28,6 +28,7 @@ class WebRouting extends Routing
         $this->router->get("/", [MeetupController::class, "index"])->name("home");
 
         $this->router->controller(AdminController::class)->middleware("auth")->group(function (): void {
+            $this->router->get("/admin/dashboard", "dashboard")->name("admin.dashboard");
             $this->router->get("/admin/users", "usersIndex")->name("admin.users");
             $this->router->get("/admin/meetups", "meetupsIndex")->name("admin.meetups");
             $this->router->get("/admin/organizations", "organizationsIndex")->name("admin.organizations");
