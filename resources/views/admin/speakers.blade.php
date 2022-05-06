@@ -15,8 +15,8 @@
                     Created at: {{ $speaker->createdAt }}
                     Updated at: {{ $speaker->updatedAt }}
                     <div>
-                        <a href="{{ route('organizations.edit', $speaker) }}">Edit</a>
-                        <form action="{{ route('organizations.destroy', $speaker) }}" method="post">
+                        <a href="{{ route('speakers.edit', $speaker) }}">Edit</a>
+                        <form action="{{ route('speakers.destroy', $speaker) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit"
