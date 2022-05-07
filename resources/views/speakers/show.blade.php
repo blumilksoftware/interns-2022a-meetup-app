@@ -27,11 +27,7 @@
       </div>
       <h3 class="text-2xl font-bold mt-20">About Me</h3>
       <p class="leading-6">
-        I am ambitious and driven. I thrive on challenge and constantly set
-        goals for myself, so I have something to strive toward. I’m not
-        comfortable with settling, and I’m always looking for an opportunity
-        to do better and achieve greatness. In my previous role, I was
-        promoted three times in less than two years.
+        {{ $speaker->description }}
       </p>
       <div class="flex flex-col gap-7 mt-12">
         <div class="flex items-center gap-4">

@@ -16,7 +16,7 @@ class OrganizationFactory extends Factory
     {
         return [
             "name" => $this->faker->company(),
-            "description" => $this->faker->word(),
+            "description" => $this->faker->text(1000),
             "location" => $this->faker->country(),
             "organization_type" => $this->faker->word(),
             "foundation_date" => Carbon::createFromDate(2022, 01, 01),
