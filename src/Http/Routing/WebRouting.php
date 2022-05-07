@@ -58,7 +58,7 @@ class WebRouting extends Routing
             $this->router->get("/auth/facebook/callback", "handleFacebookCallback");
         });
 
-        $this->router->middleware(["role:admin"])->group(function (): void {
+        $this->router->middleware("role:admin")->group(function (): void {
             $this->router->controller(AdminController::class)->group(function (): void {
                 $this->router->get("/admin/dashboard", "dashboard")->name("admin.dashboard");
                 $this->router->get("/admin/users", "usersIndex")->name("admin.users");
