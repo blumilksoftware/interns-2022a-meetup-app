@@ -17,7 +17,7 @@
         </div>
         <div class="absolute w-full h-full inset-0 bg-gradient-to-t from-white to-black opacity-20"></div>
       </a>
-      <div class="w-1/2">
+      <div class="md:w-1/2">
         <a href="#" class="w-1/2 relative">
           <div class="relative">
             <img src="{{ asset('static/images/news_list.webp') }}" alt="news" class="w-full h-[225px] object-cover" />
