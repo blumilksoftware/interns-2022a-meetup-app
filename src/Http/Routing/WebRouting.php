@@ -4,32 +4,39 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Routing;
 
+use Blumilk\Meetup\Core\Http\Controllers\Auth\EmailVerificationController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\PasswordResetController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
 use Blumilk\Meetup\Core\Http\Controllers\ContactController;
+use Blumilk\Meetup\Core\Http\Controllers\InvitationController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
+use Blumilk\Meetup\Core\Http\Controllers\NewsController;
 use Blumilk\Meetup\Core\Http\Controllers\NewsletterSubscriberController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationProfileController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
 use Blumilk\Meetup\Core\Http\Controllers\StaticController;
-use Illuminate\View\View;
 
 class WebRouting extends Routing
 {
     public function wire(): void
     {
-        $this->router->get("/", fn(): View => view("home"))->name("home");
+        $this->router->get("/", [MeetupController::class, "index"])->name("home");
 
-        $this->router->get("/auth/register", [RegisterController::class, "create"])->name("register");
-        $this->router->post("/auth/register", [RegisterController::class, "store"])->name("register.store");
-        $this->router->get("/auth/login", [LoginController::class, "store"])->name("login");
-        $this->router->post("/auth/login", [LoginController::class, "login"])->name("login.store");
-        $this->router->get("/auth/logout", [LoginController::class, "logout"])->name("logout")->middleware("auth");
+        $this->router->controller(RegisterController::class)->middleware("guest")->group(function (): void {
+            $this->router->get("/auth/register", "create")->name("register.form");
+            $this->router->post("/auth/register", "store")->name("register");
+        });
 
-        $this->router->controller(PasswordResetController::class)->group(function (): void {
+        $this->router->controller(LoginController::class)->group(function (): void {
+            $this->router->get("/auth/login", "store")->middleware("guest")->name("login.form");
+            $this->router->post("/auth/login", "login")->middleware("guest")->name("login");
+            $this->router->get("/auth/logout", "logout")->middleware("auth")->name("logout");
+        });
+
+        $this->router->controller(EmailVerificationController::class)->group(function (): void {
             $this->router->get("/email/verify", "create")->middleware("auth")->name("verification.notice");
             $this->router->get("/email/verify/{id}/{hash}", "store")->middleware(["auth", "signed"])->name("verification.verify");
             $this->router->post("/email/verification-notification", "notification")->middleware(["auth", "throttle:web"])->name("verification.send");
@@ -43,14 +50,14 @@ class WebRouting extends Routing
         });
 
         $this->router->controller(SocialiteController::class)->group(function (): void {
-            $this->router->get("/auth/google/redirect", "redirectToGoogle")->name("login.google");
+            $this->router->get("/auth/google/redirect", "redirectToGoogle")->middleware("guest")->name("login.google");
             $this->router->get("/auth/google/callback", "handleGoogleCallback");
-            $this->router->get("/auth/facebook/redirect", "redirectToFacebook")->name("login.facebook");
+            $this->router->get("/auth/facebook/redirect", "redirectToFacebook")->middleware("guest")->name("login.facebook");
             $this->router->get("/auth/facebook/callback", "handleFacebookCallback");
         });
 
         $this->router->controller(MeetupController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/", "index")->name("meetups");
+            $this->router->get("/meetups", "index")->withoutMiddleware("auth")->name("meetups");
             $this->router->get("/meetups/create", "create")->name("meetups.create");
             $this->router->post("/meetups", "store")->name("meetups.store");
             $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
@@ -59,7 +66,7 @@ class WebRouting extends Routing
         });
 
         $this->router->controller(OrganizationController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/organizations", "index")->name("organizations");
+            $this->router->get("/organizations", "index")->withoutMiddleware("auth")->name("organizations");
             $this->router->get("/organizations/create", "create")->name("organizations.create");
             $this->router->post("/organizations", "store")->name("organizations.store");
             $this->router->get("/organizations/{organization}/edit", "edit")->name("organizations.edit");
@@ -80,8 +87,8 @@ class WebRouting extends Routing
             $this->router->post("/contact", "store")->name("contact.store");
         });
 
-        $this->router->controller(SpeakersController::class)->group(function (): void {
-            $this->router->get("/speakers", "index")->name("speakers");
+        $this->router->controller(SpeakersController::class)->middleware("auth")->group(function (): void {
+            $this->router->get("/speakers", "index")->withoutMiddleware("auth")->name("speakers");
             $this->router->post("/speakers", "store")->name("speakers.store");
             $this->router->get("/speakers/create", "create")->name("speakers.create");
             $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
@@ -89,12 +96,27 @@ class WebRouting extends Routing
             $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
         });
 
+        $this->router->controller(NewsController::class)->group(function (): void {
+            $this->router->get("/news", "index")->name("news");
+            $this->router->get("/news/create", "create")->middleware("auth")->name("news.create");
+            $this->router->post("/news", "store")->middleware("auth")->name("news.store");
+            $this->router->get("/news/{news}/edit", "edit")->middleware("auth")->name("news.edit");
+            $this->router->put("/news/{news}", "update")->middleware("auth")->name("news.update");
+            $this->router->delete("/news/{news}", "destroy")->middleware("auth")->name("news.destroy");
+        });
+
         $this->router->controller(NewsletterSubscriberController::class)->group(function (): void {
             $this->router->get("/newsletter", "create")->name("newsletter");
             $this->router->post("/newsletter/subscribe", "store")->name("newsletter.store");
             $this->router->get("/newsletter/subscribe/preference", "edit")->name("newsletter.edit");
             $this->router->post("/newsletter/subscribe/preference", "update")->name("newsletter.update");
+            $this->router->get("/newsletter/unsubscribe", "delete")->name("newsletter.unsubscribe");
             $this->router->post("/newsletter/unsubscribe", "destroy")->name("newsletter.destroy");
+        });
+
+        $this->router->controller(InvitationController::class)->group(function (): void {
+            $this->router->get("/invitation", "create")->middleware("auth")->name("invitation");
+            $this->router->post("/invitation", "store")->name("invitation.store");
         });
 
         $this->router->controller(StaticController::class)->group(function (): void {

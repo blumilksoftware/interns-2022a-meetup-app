@@ -36,7 +36,7 @@ class PasswordResetController extends Controller
             return view("user.password.dashboard")
                 ->with([
                     "status" => __($status),
-                    "route" => route("meetups"),
+                    "route" => route("home"),
                     "page" => "home",
                 ]);
         }
@@ -44,9 +44,9 @@ class PasswordResetController extends Controller
         return back()->withErrors(["email" => __($status)]);
     }
 
-    public function edit(string $token): View
+    public function edit(PasswordResetRequest $request, string $token): View
     {
-        return view("user.password.reset-password")->with("token", $token);
+        return view("user.password.reset-password")->with(["email" => $request->validated("email"), "token" => $token]);
     }
 
     /**

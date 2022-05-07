@@ -46,8 +46,19 @@ sqlite-create: ## Create file for sqlite
 key-generate: ## Create key for artisan
 	docker-compose exec php php artisan key:generate
 
+node-bash: ## Enter to bash a container node
+	docker-compose exec node bash
+
+node-install: ##  Install all dep for node
+	docker-compose exec node npm install
+
+node-build: ##  Build frontend for node
+	docker-compose exec node npm run dev
+
 init: ## First setup for project
 	$(MAKE) install
+	$(MAKE) node-install
+	$(MAKE) node-build
 	$(MAKE) sqlite-create
 	$(MAKE) start
 	$(MAKE) key-generate
