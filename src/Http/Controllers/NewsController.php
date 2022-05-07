@@ -33,6 +33,12 @@ class NewsController extends Controller
         return redirect()->route("news");
     }
 
+    public function show(News $news): View
+    {
+        return view("news.show")
+            ->with("news", $news);
+    }
+
     public function edit(News $news): View
     {
         return view("news.edit")

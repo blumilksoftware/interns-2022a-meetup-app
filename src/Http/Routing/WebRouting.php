@@ -60,6 +60,7 @@ class WebRouting extends Routing
             $this->router->get("/meetups", "index")->withoutMiddleware("auth")->name("meetups");
             $this->router->get("/meetups/create", "create")->name("meetups.create");
             $this->router->post("/meetups", "store")->name("meetups.store");
+            $this->router->get("/meetups/{meetup}/show", "show")->withoutMiddleware("auth")->name("meetups.show");
             $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
             $this->router->put("/meetups/{meetup}", "update")->name("meetups.update");
             $this->router->delete("/meetups/{meetup}", "destroy")->name("meetups.destroy");
@@ -69,6 +70,7 @@ class WebRouting extends Routing
             $this->router->get("/organizations", "index")->withoutMiddleware("auth")->name("organizations");
             $this->router->get("/organizations/create", "create")->name("organizations.create");
             $this->router->post("/organizations", "store")->name("organizations.store");
+            $this->router->get("/organizations/{organization}/show", "show")->withoutMiddleware("auth")->name("organizations.show");
             $this->router->get("/organizations/{organization}/edit", "edit")->name("organizations.edit");
             $this->router->put("/organizations/{organization}", "update")->name("organizations.update");
             $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");
@@ -91,18 +93,20 @@ class WebRouting extends Routing
             $this->router->get("/speakers", "index")->withoutMiddleware("auth")->name("speakers");
             $this->router->post("/speakers", "store")->name("speakers.store");
             $this->router->get("/speakers/create", "create")->name("speakers.create");
+            $this->router->get("/speakers/{speaker}/show", "show")->withoutMiddleware("auth")->name("speakers.show");
             $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
             $this->router->put("/speakers/{speaker}", "update")->name("speakers.update");
             $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
         });
 
-        $this->router->controller(NewsController::class)->group(function (): void {
-            $this->router->get("/news", "index")->name("news");
-            $this->router->get("/news/create", "create")->middleware("auth")->name("news.create");
-            $this->router->post("/news", "store")->middleware("auth")->name("news.store");
-            $this->router->get("/news/{news}/edit", "edit")->middleware("auth")->name("news.edit");
-            $this->router->put("/news/{news}", "update")->middleware("auth")->name("news.update");
-            $this->router->delete("/news/{news}", "destroy")->middleware("auth")->name("news.destroy");
+        $this->router->controller(NewsController::class)->middleware("auth")->group(function (): void {
+            $this->router->get("/news", "index")->withoutMiddleware("auth")->name("news");
+            $this->router->get("/news/create", "create")->name("news.create");
+            $this->router->post("/news", "store")->name("news.store");
+            $this->router->get("/news/{news}/show", "show")->withoutMiddleware("auth")->name("news.show");
+            $this->router->get("/news/{news}/edit", "edit")->name("news.edit");
+            $this->router->put("/news/{news}", "update")->name("news.update");
+            $this->router->delete("/news/{news}", "destroy")->name("news.destroy");
         });
 
         $this->router->controller(NewsletterSubscriberController::class)->group(function (): void {
