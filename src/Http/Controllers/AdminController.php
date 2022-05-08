@@ -9,6 +9,7 @@ use Blumilk\Meetup\Core\Models\News;
 use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Models\Speaker;
 use Blumilk\Meetup\Core\Models\User;
+use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Illuminate\Contracts\View\View;
 
 class AdminController extends Controller
@@ -20,7 +21,7 @@ class AdminController extends Controller
 
     public function usersIndex(): View
     {
-        $users = User::query()->latest()->paginate(20);
+        $users = User::query()->latest()->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("admin.users")
             ->with("users", $users);
@@ -28,7 +29,7 @@ class AdminController extends Controller
 
     public function meetupsIndex(): View
     {
-        $meetups = Meetup::query()->latest()->paginate(20);
+        $meetups = Meetup::query()->latest()->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("admin.meetups")
             ->with("meetups", $meetups);
@@ -36,7 +37,7 @@ class AdminController extends Controller
 
     public function organizationsIndex(): View
     {
-        $organizations = Organization::query()->latest()->paginate(20);
+        $organizations = Organization::query()->latest()->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("admin.organizations")
             ->with("organizations", $organizations);
@@ -44,7 +45,7 @@ class AdminController extends Controller
 
     public function speakersIndex(): View
     {
-        $speakers = Speaker::query()->latest()->paginate(20);
+        $speakers = Speaker::query()->latest()->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("admin.speakers")
             ->with("speakers", $speakers);
@@ -52,7 +53,7 @@ class AdminController extends Controller
 
     public function newsIndex(): View
     {
-        $news = News::query()->latest()->paginate(20);
+        $news = News::query()->latest()->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("admin.news")
             ->with("news", $news);

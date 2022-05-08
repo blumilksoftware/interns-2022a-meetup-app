@@ -7,8 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\PermissionRegistrar;
 
-class CreatePermissionTables extends Migration
-{
+return new class() extends Migration {
     public function up(): void
     {
         $tableNames = config("permission.table_names");
@@ -16,10 +15,10 @@ class CreatePermissionTables extends Migration
         $teams = config("permission.teams");
 
         if (empty($tableNames)) {
-            throw new \Exception("Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.");
+            throw new Exception("Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.");
         }
         if ($teams && empty($columnNames["team_foreign_key"] ?? null)) {
-            throw new \Exception("Error: team_foreign_key on config/permission.php not loaded. Run [php artisan config:clear] and try again.");
+            throw new Exception("Error: team_foreign_key on config/permission.php not loaded. Run [php artisan config:clear] and try again.");
         }
 
         Schema::create($tableNames["permissions"], function (Blueprint $table): void {
@@ -128,7 +127,7 @@ class CreatePermissionTables extends Migration
         $tableNames = config("permission.table_names");
 
         if (empty($tableNames)) {
-            throw new \Exception("Error: config/permission.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.");
+            throw new Exception("Error: config/permission.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.");
         }
 
         Schema::drop($tableNames["role_has_permissions"]);
@@ -137,4 +136,4 @@ class CreatePermissionTables extends Migration
         Schema::drop($tableNames["roles"]);
         Schema::drop($tableNames["permissions"]);
     }
-}
+};
