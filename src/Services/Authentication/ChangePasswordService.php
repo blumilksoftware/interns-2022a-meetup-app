@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Services\Authentication;
 
-use Blumilk\Meetup\Core\Exceptions\PasswordDoesMatchException;
-use Blumilk\Meetup\Core\Exceptions\PasswordDoesNotMatchException;
+use Blumilk\Meetup\Core\Exceptions\PasswordIsTheSameAsOldException;
+use Blumilk\Meetup\Core\Exceptions\PasswordIsNotTheSameAsOldException;
 use Illuminate\Auth\Passwords\PasswordBrokerManager;
 use Illuminate\Contracts\Hashing\Hasher;
 
@@ -17,22 +17,22 @@ class ChangePasswordService
     ) {}
 
     /**
-     * @throws PasswordDoesNotMatchException
+     * @throws PasswordIsNotTheSameAsOldException
      */
     public function currentPassword(string $password, string $databasePassword): void
     {
         if (!$this->hash->check($password, $databasePassword)) {
-            throw new PasswordDoesNotMatchException();
+            throw new PasswordIsNotTheSameAsOldException();
         }
     }
 
     /**
-     * @throws PasswordDoesMatchException
+     * @throws PasswordIsTheSameAsOldException
      */
     public function validatePassword(string $password, string $databasePassword): void
     {
         if ($this->hash->check($password, $databasePassword)) {
-            throw new PasswordDoesMatchException();
+            throw new PasswordIsTheSameAsOldException();
         }
     }
 }

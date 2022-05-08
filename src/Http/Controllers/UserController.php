@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
 use Blumilk\Meetup\Core\Contracts\StoreFile;
-use Blumilk\Meetup\Core\Exceptions\PasswordDoesMatchException;
-use Blumilk\Meetup\Core\Exceptions\PasswordDoesNotMatchException;
-use Blumilk\Meetup\Core\Http\Requests\UpdateUserAvatarRequest;
-use Blumilk\Meetup\Core\Http\Requests\UpdateUserEmailRequest;
-use Blumilk\Meetup\Core\Http\Requests\UpdateUserNameRequest;
+use Blumilk\Meetup\Core\Exceptions\PasswordIsTheSameAsOldException;
+use Blumilk\Meetup\Core\Exceptions\PasswordIsNotTheSameAsOldException;
+use Blumilk\Meetup\Core\Http\Requests\UpdateUserDataRequest;
 use Blumilk\Meetup\Core\Http\Requests\UpdateUserPasswordRequest;
 use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Services\Authentication\ChangePasswordService;
@@ -24,20 +22,6 @@ class UserController extends Controller
         return view("user.profile.index")->with(["user" => Auth::user()]);
     }
 
-    public function editName(): View
-    {
-        return view("user.profile.name")
-            ->with("user", Auth::user());
-    }
-
-    public function updateName(UpdateUserNameRequest $request): RedirectResponse
-    {
-        $user = Auth::user();
-        $user->update($request->validated());
-
-        return redirect()->route("user.profile");
-    }
-
     public function editPassword(): View
     {
         return view("user.profile.password");
@@ -50,7 +34,7 @@ class UserController extends Controller
         try {
             $service->currentPassword($request->validated("password"), $user->password);
             $service->validatePassword($request->validated("newPassword"), $user->password);
-        } catch (PasswordDoesNotMatchException|PasswordDoesMatchException $exception) {
+        } catch (PasswordIsNotTheSameAsOldException|PasswordIsTheSameAsOldException $exception) {
             return view("user.profile.password")
                 ->with("error", $exception->getMessage());
         }
@@ -60,13 +44,13 @@ class UserController extends Controller
         return redirect()->route("user.profile");
     }
 
-    public function editAvatar(): View
+    public function editData(): View
     {
-        return view("user.profile.avatar")
+        return view("user.profile.edit")
             ->with("user", Auth::user());
     }
 
-    public function updateAvatar(UpdateUserAvatarRequest $request, StoreFile $service): RedirectResponse
+    public function updateData(UpdateUserDataRequest $request, StoreFile $service): RedirectResponse
     {
         $user = Auth::user();
         $input = $request->validated();
@@ -75,20 +59,6 @@ class UserController extends Controller
         }
 
         $user->update($input);
-
-        return redirect()->route("user.profile");
-    }
-
-    public function editEmail(): View
-    {
-        return view("user.profile.email")
-            ->with("user", Auth::user());
-    }
-
-    public function updateEmail(UpdateUserEmailRequest $request): RedirectResponse
-    {
-        $user = Auth::user();
-        $user->update($request->validated());
 
         return redirect()->route("user.profile");
     }
