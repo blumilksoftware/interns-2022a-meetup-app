@@ -22,14 +22,14 @@
       @forelse ($organizations as $organization)
         <li class="mt-12">
           <a href="{{ route('organizations.show', $organization) }}">
-            <div class="bg-white flex flex-wrap md:flex-nowrap gap-9 shadow-lg h-[218px] rounded-20 overflow-hidden">
+            <div class="bg-white flex flex-wrap md:flex-nowrap gap-9 shadow-lg md:h-[218px] rounded-20 overflow-hidden">
               <img src="{{ $organization->logoPath }}" alt="{{ $organization->name }} image"
                 class="w-full rounded-t-20 md:w-[361px] md:h-[218px] md:rounded-l-20 md:rounded-tr-none object-cover" />
               <div class="w-[500px] px-8">
-                <h3 class="text-2xl mt-10 font-bold">
+                <h3 class="text-2xl md:mt-10 font-bold">
                   {{ $organization->name }}
                 </h3>
-                <div class="h-[110px] overflow-hidden">
+                <div class="h-60 md:h-[110px] overflow-hidden">
                   <p class="text-gray-400 mt-5">
                     {{ $organization->description }}
                   </p>
