@@ -13,7 +13,7 @@
         class="mt-8 w-full h-[337px] rounded-10 object-cover"
       />
       <p class="mt-16 leading-6">
-        {{ $news->text }}
+        {!! Str::markdown($news->text) !!}
       </p>
       <div class="mt-12 flex gap-10 gap-y-5 flex-wrap">
         <h3>Tags:</h3>
