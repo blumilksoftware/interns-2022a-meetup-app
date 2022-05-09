@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Controllers\Auth;
 
+use Blumilk\Meetup\Core\Exceptions\PasswordIsTheSameAsOldException;
 use Blumilk\Meetup\Core\Http\Controllers\Controller;
 use Blumilk\Meetup\Core\Http\Requests\PasswordReset\PasswordResetRequest;
 use Blumilk\Meetup\Core\Http\Requests\PasswordReset\PasswordUpdateRequest;
@@ -12,6 +13,7 @@ use Illuminate\Auth\Passwords\PasswordBrokerManager;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PasswordResetController extends Controller
@@ -44,9 +46,14 @@ class PasswordResetController extends Controller
         return back()->withErrors(["email" => __($status)]);
     }
 
-    public function edit(PasswordResetRequest $request, string $token): View
+    public function edit(string $token, Request $request): View
     {
-        return view("user.password.reset-password")->with(["email" => $request->validated("email"), "token" => $token]);
+        $email = $request->email;
+
+        return view("user.password.reset-password")->with([
+            "token" => $token,
+            "email" => $email,
+        ]);
     }
 
     /**
@@ -54,6 +61,17 @@ class PasswordResetController extends Controller
      */
     public function update(PasswordUpdateRequest $request, PasswordResetService $service): RedirectResponse|View
     {
+        try {
+            $service->validatePassword($request->get("password"), $request->get("email"));
+        } catch (PasswordIsTheSameAsOldException $exception) {
+            return view("user.password.reset-password")
+                ->with([
+                    "error" => $exception->getMessage(),
+                    "token" => $request->validated("token"),
+                    "email" => $request->validated("email"),
+                ]);
+        }
+
         $status = $service->resetPassword($request->validated());
 
         if ($status === PasswordBroker::PASSWORD_RESET) {

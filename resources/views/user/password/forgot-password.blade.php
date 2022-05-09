@@ -10,7 +10,7 @@
             <div>
               <h1 class="text-xl">Forgot your password?</h1>
               <p class="text-gray-400 text-sm mt-1">
-                Please enter the email adress and we will send you
+                Please enter the email address and we will send you
                 instructions to reset your password
               </p>
             </div>
