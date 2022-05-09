@@ -27,12 +27,21 @@ services:
     image: 'redis:6'
     command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD}"
     ports:
-      - ${REDIS_PORT}:6379
+      - ${EXTERNAL_REDIS_PORT}:6379
     volumes:
       - ./storage/redis:/data
     networks:
       - meetup-dev
-
+  node:
+    image: "node:14"
+    tty: true
+    ports:
+      -  ${EXTERNAL_NODE_PORT}:3000
+    working_dir: /src
+    volumes:
+      - ./:/src
+    networks:
+      - meetup-dev
 networks:
   meetup-dev:
     driver: bridge

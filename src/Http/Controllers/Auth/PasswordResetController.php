@@ -13,6 +13,7 @@ use Illuminate\Auth\Passwords\PasswordBrokerManager;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PasswordResetController extends Controller
@@ -45,9 +46,9 @@ class PasswordResetController extends Controller
         return back()->withErrors(["email" => __($status)]);
     }
 
-    public function edit(string $token): View
+    public function edit(string $token, Request $request): View
     {
-        $email = request()->get("email");
+        $email = $request->email;
 
         return view("user.password.reset-password")->with([
             "token" => $token,
