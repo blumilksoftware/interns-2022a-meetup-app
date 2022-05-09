@@ -10,6 +10,11 @@
             <div>
               <h1 class="text-xl">Reset Password</h1>
             </div>
+            @if (!empty($error))
+              <div class="relative text-red-500 -top-6 left-1/2 transform -translate-x-1/2">
+                {{ $error }}
+              </div>
+            @endif
             <div>
               <input type="string" id="token" hidden="hidden" name="token" value="{{ $token }}">
               <x-input-error for="token" />
@@ -19,8 +24,7 @@
                 Email
               </label>
               <div class="mt-1">
-                <input id="email" name="email" type="email" placeholder="example@example.com"
-                  value="{{ $_GET['email'] }}" required
+                <input id="email" name="email" type="email" placeholder="example@example.com" value="{{ $email }}" required
                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   readonly="readonly" />
                 <x-input-error for="email" />
