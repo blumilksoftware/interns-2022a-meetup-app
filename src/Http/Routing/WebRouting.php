@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Routing;
 
+use Blumilk\Meetup\Core\Http\Controllers\AccountController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\EmailVerificationController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\PasswordResetController;
@@ -54,6 +55,14 @@ class WebRouting extends Routing
             $this->router->get("/auth/google/callback", "handleGoogleCallback");
             $this->router->get("/auth/facebook/redirect", "redirectToFacebook")->middleware("guest")->name("login.facebook");
             $this->router->get("/auth/facebook/callback", "handleFacebookCallback");
+        });
+
+        $this->router->controller(AccountController::class)->middleware("auth")->group(function (): void {
+            $this->router->get("/auth/profile", "index")->name("user.profile");
+            $this->router->get("/auth/profile/password", "editPassword")->name("user.profile.password");
+            $this->router->get("/auth/profile/edit", "editData")->name("user.profile.edit");
+            $this->router->put("/auth/profile/password", "updatePassword")->name("user.profile.password.update");
+            $this->router->put("/auth/profile/edit", "updateData")->name("user.profile.update");
         });
 
         $this->router->controller(MeetupController::class)->middleware("auth")->group(function (): void {

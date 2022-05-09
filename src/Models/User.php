@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Models;
 
+use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Database\Factories\UserFactory;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
@@ -30,6 +31,7 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property Carbon|null $emailVerifiedAt
  * @property string $password
  * @property string|null $rememberToken
+ * @property string $avatarPath
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
  * @property-read Collection<Meetup> $meetups
@@ -53,6 +55,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "name",
         "email",
         "password",
+        "avatar_path",
+    ];
+    protected $attributes = [
+        "avatar_path" => Constants::SPEAKER_DEFAULT_AVATAR_PATH,
     ];
     protected $hidden = [
         "password",
