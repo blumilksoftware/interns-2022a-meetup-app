@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
 use Blumilk\Meetup\Core\Contracts\StoreFile;
-use Blumilk\Meetup\Core\Exceptions\PasswordIsTheSameAsOldException;
 use Blumilk\Meetup\Core\Exceptions\PasswordIsNotTheSameAsOldException;
-use Blumilk\Meetup\Core\Http\Requests\UpdateUserDataRequest;
-use Blumilk\Meetup\Core\Http\Requests\UpdateUserPasswordRequest;
+use Blumilk\Meetup\Core\Exceptions\PasswordIsTheSameAsOldException;
+use Blumilk\Meetup\Core\Http\Requests\Account\UpdateUserDataRequest;
+use Blumilk\Meetup\Core\Http\Requests\Account\UpdateUserPasswordRequest;
 use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Services\Authentication\ChangePasswordService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class UserController extends Controller
+class AccountController extends Controller
 {
     public function index(): View
     {

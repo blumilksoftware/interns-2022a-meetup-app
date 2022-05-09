@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Services\Authentication;
 
-use Blumilk\Meetup\Core\Exceptions\PasswordIsTheSameAsOldException;
 use Blumilk\Meetup\Core\Exceptions\PasswordIsNotTheSameAsOldException;
+use Blumilk\Meetup\Core\Exceptions\PasswordIsTheSameAsOldException;
 use Illuminate\Auth\Passwords\PasswordBrokerManager;
 use Illuminate\Contracts\Hashing\Hasher;
 
