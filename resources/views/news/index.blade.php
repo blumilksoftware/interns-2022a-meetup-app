@@ -78,7 +78,7 @@
           <li class="mt-7">
             <a href="#">
               <div class="bg-white flex flex-wrap md:flex-nowrap gap-9 shadow-lg rounded-20 md:h-56">
-                <img src="{{ asset('static/images/news_list.webp') }}" alt="news_image"
+                <img src="{{ $singleNews->logoPath }}" alt="{{ $singleNews->title }} logo"
                   class="w-full rounded-t-20 md:w-96 md:h-full md:rounded-l-20 md:rounded-tr-none object-cover" />
                 <div class="lg:w-[700px] px-8 pb-5 md:pb-0">
                   <h3 class="text-xl font-bold md:mt-10">
