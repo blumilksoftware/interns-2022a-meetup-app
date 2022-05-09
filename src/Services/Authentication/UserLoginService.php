@@ -24,9 +24,11 @@ class UserLoginService
     public function loginUser(string $email, string $password): void
     {
         $user = User::where("email", $email)->first();
+
         if (!$this->hasher->check($password, $user?->password)) {
             throw new AuthenticationException("Bad credentials");
         }
+
         $this->authManager->login($user);
         $this->session->regenerate();
     }
