@@ -22,7 +22,6 @@ class AccountController extends Controller
 
     public function index(): View
     {
-//        dd($this->auth->user());
         return view("user.profile.index")->with(["user" => $this->auth->user()]);
     }
 
