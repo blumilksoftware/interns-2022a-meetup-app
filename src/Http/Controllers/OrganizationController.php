@@ -36,7 +36,7 @@ class OrganizationController extends Controller
 
         Organization::query()->create($input);
 
-        return redirect()->route("organizations");
+        return redirect()->route("admin.organizations");
     }
 
     public function edit(Organization $organization): View
@@ -54,7 +54,7 @@ class OrganizationController extends Controller
 
         $organization->update($input);
 
-        return redirect()->route("organizations");
+        return redirect()->route("admin.organizations");
     }
 
     public function destroy(Organization $organization): RedirectResponse
