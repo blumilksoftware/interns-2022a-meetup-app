@@ -42,7 +42,7 @@
                     class="bg-indigo-600 hover:bg-indigo-700 text-sm px-2 py-0.5 rounded">
                     <i class="fa-solid fa-pen-to-square mr-2"></i>edit
                   </a>
-                  <form action="{{ route('users.destroy', $meetup) }}" method="post">
+                  <form action="{{ route('meetups.destroy', $meetup) }}" method="post">
                     @csrf
                     @method('delete')
                     <button class="bg-red-500 hover:bg-red-600 text-sm px-2 py-0.5 rounded text-white">
