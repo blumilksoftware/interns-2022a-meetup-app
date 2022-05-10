@@ -48,7 +48,7 @@ class MeetupController extends Controller
 
         $meetup->speakers()->sync($input["speakers"]);
 
-        return redirect()->route("meetups");
+        return redirect()->route("admin.meetups");
     }
 
     public function show(Meetup $meetup): View
@@ -78,7 +78,7 @@ class MeetupController extends Controller
 
         $meetup->speakers()->sync($input["speakers"]);
 
-        return redirect()->route("meetups");
+        return redirect()->route("admin.meetups");
     }
 
     public function destroy(Meetup $meetup): RedirectResponse
