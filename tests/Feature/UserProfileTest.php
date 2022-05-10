@@ -17,20 +17,20 @@ class UserProfileTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)
-            ->get(route('users.edit', $user))
+            ->get(route("users.edit", $user))
             ->assertOk();
 
         $this->actingAs($user)
-            ->put(route('users.update', $user), [
-                'name' => 'John Doe',
-                'email' => 'john.doe@example.com',
+            ->put(route("users.update", $user), [
+                "name" => "John Doe",
+                "email" => "john.doe@example.com",
             ])
             ->assertSessionHasNoErrors()
             ->assertRedirect();
 
-        $this->assertDatabaseHas('users', [
-            'name' => 'John Doe',
-            'email' => 'john.doe@example.com',
+        $this->assertDatabaseHas("users", [
+            "name" => "John Doe",
+            "email" => "john.doe@example.com",
         ]);
     }
 
@@ -41,11 +41,11 @@ class UserProfileTest extends TestCase
         $unauthorizedUser = User::factory()->create();
 
         $this->actingAs($user)
-            ->get(route('users.edit', $unauthorizedUser))
+            ->get(route("users.edit", $unauthorizedUser))
             ->assertForbidden();
 
         $this->actingAs($user)
-            ->put(route('users.update', $user))
+            ->put(route("users.update", $user))
             ->assertForbidden();
     }
 
@@ -54,7 +54,7 @@ class UserProfileTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)
-            ->put(route('users.update', $user))
+            ->put(route("users.update", $user))
             ->assertInvalid([
                 "name",
                 "email",
@@ -66,7 +66,7 @@ class UserProfileTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)
-            ->put(route('users.update', $user))
+            ->put(route("users.update", $user))
             ->assertInvalid([
                 "name",
                 "email",

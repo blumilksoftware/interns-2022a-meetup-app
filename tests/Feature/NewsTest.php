@@ -22,9 +22,9 @@ class NewsTest extends TestCase
             ->for($admin)
             ->create();
 
-        $this->assertDatabaseCount('news', 15);
+        $this->assertDatabaseCount("news", 15);
 
-        $response = $this->get(route('news'))
+        $response = $this->get(route("news"))
             ->assertOk();
 
         foreach ($news as $singleNews) {
@@ -46,9 +46,9 @@ class NewsTest extends TestCase
             ->skip(20)
             ->take(10);
 
-        $this->assertDatabaseCount('meetups', 30);
+        $this->assertDatabaseCount("meetups", 30);
 
-        $response = $this->get(route('news') . '?page=2')
+        $response = $this->get(route("news") . "?page=2")
             ->assertOk();
 
         foreach ($news as $singleNews) {
@@ -61,7 +61,7 @@ class NewsTest extends TestCase
         $admin = User::factory()->admin()->create();
         $news = News::factory()->for($admin)->create();
 
-        $this->get(route('news.show', $news))
+        $this->get(route("news.show", $news))
             ->assertOk()
             ->assertSee($news->title)
             ->assertSee($news->text);
@@ -77,16 +77,16 @@ class NewsTest extends TestCase
 
         $this->actingAs($admin)
             ->post(route("news.store"), [
-                "title" => 'Test news',
-                "text" => 'Test news content',
+                "title" => "Test news",
+                "text" => "Test news content",
             ])
             ->assertSessionHasNoErrors()
             ->assertRedirect(route("news.create"));
 
         $this->assertDatabaseHas("news", [
             "user_id" => $admin->id,
-            "title" => 'Test news',
-            "text" => 'Test news content',
+            "title" => "Test news",
+            "text" => "Test news content",
         ]);
     }
 
@@ -115,8 +115,8 @@ class NewsTest extends TestCase
 
         $this->actingAs($admin)
             ->put(route("news.update", $news), [
-                'title' => 'Test News',
-                'text' => 'Test News Content',
+                "title" => "Test News",
+                "text" => "Test News Content",
             ])
             ->assertSessionHasNoErrors()
             ->assertRedirect(route("news.edit", $news));

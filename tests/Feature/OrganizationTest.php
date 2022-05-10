@@ -19,9 +19,9 @@ class OrganizationTest extends TestCase
     {
         $organizations = Organization::factory()->count(10)->create();
 
-        $this->assertDatabaseCount('meetups', 10);
+        $this->assertDatabaseCount("meetups", 10);
 
-        $response = $this->get(route('organizations'))
+        $response = $this->get(route("organizations"))
             ->assertOk();
 
         foreach ($organizations as $organization) {
@@ -35,14 +35,14 @@ class OrganizationTest extends TestCase
     {
         Organization::factory()->count(30)->create();
 
-        $this->assertDatabaseCount('meetups', 30);
+        $this->assertDatabaseCount("meetups", 30);
 
         $organizations = Meetup::query()
             ->latest()
             ->skip(20)
             ->take(10);
 
-        $response = $this->get(route('organizations') . '?page=2')
+        $response = $this->get(route("organizations") . "?page=2")
             ->assertOk();
 
         foreach ($organizations as $organization) {
@@ -56,7 +56,7 @@ class OrganizationTest extends TestCase
     {
         $organization = Organization::factory()->create();
 
-        $this->get(route('organizations.show', $organization))
+        $this->get(route("organizations.show", $organization))
             ->assertOk()
             ->assertSee($organization->name)
             ->assertSee($organization->logo_path)
@@ -72,27 +72,27 @@ class OrganizationTest extends TestCase
         $admin = User::factory()->admin()->create();
 
         $this->actingAs($admin)
-            ->get(route('organizations.create'))
+            ->get(route("organizations.create"))
             ->assertOk();
 
         $this->actingAs($admin)
-            ->post(route('organizations.store'), [
-                "name" => 'Test organization',
-                "description" => 'Test organization description',
+            ->post(route("organizations.store"), [
+                "name" => "Test organization",
+                "description" => "Test organization description",
                 "location" => "Panama",
                 "organization_type" => "test",
-                "foundation_date" => Carbon::parse('2022-01-01 10:00:00'),
+                "foundation_date" => Carbon::parse("2022-01-01 10:00:00"),
                 "number_of_employees" => 1000,
                 "website_url" => "https://testorganization.info",
             ])
-            ->assertRedirect(route('organizations.create'));
+            ->assertRedirect(route("organizations.create"));
 
-        $this->assertDatabaseHas('organizations', [
-            "name" => 'Test organization',
-            "description" => 'Test organization description',
+        $this->assertDatabaseHas("organizations", [
+            "name" => "Test organization",
+            "description" => "Test organization description",
             "location" => "Panama",
             "organization_type" => "test",
-            "foundation_date" => Carbon::parse('2022-01-01 10:00:00'),
+            "foundation_date" => Carbon::parse("2022-01-01 10:00:00"),
             "number_of_employees" => 1000,
             "website_url" => "https://testorganization.info",
         ]);
@@ -103,11 +103,11 @@ class OrganizationTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)
-            ->get(route('organizations.create'))
+            ->get(route("organizations.create"))
             ->assertForbidden();
 
         $this->actingAs($user)
-            ->post(route('organizations.store'))
+            ->post(route("organizations.store"))
             ->assertForbidden();
     }
 
@@ -117,28 +117,28 @@ class OrganizationTest extends TestCase
         $organization = Organization::factory()->create();
 
         $this->actingAs($admin)
-            ->get(route('organizations.edit', $organization))
+            ->get(route("organizations.edit", $organization))
             ->assertOk();
 
         $this->actingAs($admin)
-            ->put(route('organizations.update', $organization), [
+            ->put(route("organizations.update", $organization), [
                 "name" => "Test organization",
                 "description" => "Test description",
                 "location" => "Panama",
                 "organization_type" => "test",
-                "foundation_date" => Carbon::parse('2022-01-01 10:00:00'),
+                "foundation_date" => Carbon::parse("2022-01-01 10:00:00"),
                 "number_of_employees" => 1000,
                 "website_url" => "https://testorganization.info",
             ])
             ->assertSessionHasNoErrors()
-            ->assertRedirect(route('organizations.edit', $organization));
+            ->assertRedirect(route("organizations.edit", $organization));
 
-        $this->assertDatabaseHas('organizations', [
+        $this->assertDatabaseHas("organizations", [
             "name" => "Test organization",
             "description" => "Test description",
             "location" => "Panama",
             "organization_type" => "test",
-            "foundation_date" => Carbon::parse('2022-01-01 10:00:00'),
+            "foundation_date" => Carbon::parse("2022-01-01 10:00:00"),
             "number_of_employees" => 1000,
             "website_url" => "https://testorganization.info",
         ]);
@@ -150,7 +150,7 @@ class OrganizationTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)
-            ->get(route('organizations.edit', $organization))
+            ->get(route("organizations.edit", $organization))
             ->assertForbidden();
     }
 

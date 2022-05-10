@@ -40,7 +40,7 @@ class SpeakerTest extends TestCase
             ->take(10);
 
         $response = $this->actingAs($user)
-            ->get(route("speakers") . '?page=2')
+            ->get(route("speakers") . "?page=2")
             ->assertOk();
 
         foreach ($speakers as $speaker) {
@@ -75,19 +75,19 @@ class SpeakerTest extends TestCase
 
         $this->actingAs($admin)
             ->post(route("speakers.store"), [
-                "name" => 'speaker',
-                "description" => 'speaker description',
-                "linkedin_url" => 'https://linkedin.com/example',
-                "github_url" => 'https://github.com/example',
+                "name" => "speaker",
+                "description" => "speaker description",
+                "linkedin_url" => "https://linkedin.com/example",
+                "github_url" => "https://github.com/example",
             ])
             ->assertSessionHasNoErrors()
             ->assertRedirect();
 
         $this->assertDatabaseHas("speakers", [
-            "name" => 'speaker',
-            "description" => 'speaker description',
-            "linkedin_url" => 'https://linkedin.com/example',
-            "github_url" => 'https://github.com/example',
+            "name" => "speaker",
+            "description" => "speaker description",
+            "linkedin_url" => "https://linkedin.com/example",
+            "github_url" => "https://github.com/example",
         ]);
     }
 
@@ -116,19 +116,19 @@ class SpeakerTest extends TestCase
 
         $this->actingAs($admin)
             ->put(route("speakers.update", $speaker), [
-                "name" => 'speaker',
-                "description" => 'speaker description',
-                "linkedin_url" => 'https://linkedin.com/',
-                "github_url" => 'https://github.com/',
+                "name" => "speaker",
+                "description" => "speaker description",
+                "linkedin_url" => "https://linkedin.com/",
+                "github_url" => "https://github.com/",
             ])
             ->assertSessionHasNoErrors()
             ->assertRedirect();
 
         $this->assertDatabaseHas("speakers", [
-            "name" => 'speaker',
-            "description" => 'speaker description',
-            "linkedin_url" => 'https://linkedin.com/',
-            "github_url" => 'https://github.com/',
+            "name" => "speaker",
+            "description" => "speaker description",
+            "linkedin_url" => "https://linkedin.com/",
+            "github_url" => "https://github.com/",
         ]);
     }
 

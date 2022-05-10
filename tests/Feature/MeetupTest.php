@@ -22,15 +22,15 @@ class MeetupTest extends TestCase
             ->for($admin)
             ->create();
 
-        $this->assertDatabaseCount('meetups', 15);
+        $this->assertDatabaseCount("meetups", 15);
 
-        $response = $this->get(route('meetups'))
+        $response = $this->get(route("meetups"))
             ->assertOk();
 
         foreach ($meetups as $meetup) {
             $response->assertSee($meetup->logo_path)
                 ->assertSee($meetup->title)
-                ->assertSee($meetup->date->format('Y-m-d h:i'))
+                ->assertSee($meetup->date->format("Y-m-d h:i"))
                 ->assertSee($meetup->place);
         }
     }
@@ -48,15 +48,15 @@ class MeetupTest extends TestCase
             ->skip(20)
             ->take(10);
 
-        $this->assertDatabaseCount('meetups', 30);
+        $this->assertDatabaseCount("meetups", 30);
 
-        $response = $this->get(route('meetups') . '?page=2')
+        $response = $this->get(route("meetups") . "?page=2")
             ->assertOk();
 
         foreach ($meetups as $meetup) {
             $response->assertSee($meetup->logo_path)
                 ->assertSee($meetup->title)
-                ->assertSee($meetup->date->format('Y-m-d h:i'))
+                ->assertSee($meetup->date->format("Y-m-d h:i"))
                 ->assertSee($meetup->place);
         }
     }
@@ -66,11 +66,11 @@ class MeetupTest extends TestCase
         $admin = User::factory()->admin()->create();
         $meetup = Meetup::factory()->for($admin)->create();
 
-        $this->get(route('meetups.show', $meetup))
+        $this->get(route("meetups.show", $meetup))
             ->assertOk()
             ->assertSee($meetup->logo_path)
             ->assertSee($meetup->title)
-            ->assertSee($meetup->date->format('Y-m-d h:i'))
+            ->assertSee($meetup->date->format("Y-m-d h:i"))
             ->assertSee($meetup->place)
             ->assertSee($meetup->language);
     }
@@ -87,7 +87,7 @@ class MeetupTest extends TestCase
             ->post(route("meetups.store"), [
                 "title" => "Test Meetup",
                 "description" => "Description",
-                "date" => Carbon::parse('2022-12-12 12:00:00'),
+                "date" => Carbon::parse("2022-12-12 12:00:00"),
                 "place" => "Place",
                 "language" => "en",
             ])
@@ -98,7 +98,7 @@ class MeetupTest extends TestCase
             "user_id" => $admin->id,
             "title" => "Test Meetup",
             "description" => "Description",
-            "date" => Carbon::parse('2022-12-12 12:00:00'),
+            "date" => Carbon::parse("2022-12-12 12:00:00"),
             "place" => "Place",
             "language" => "en",
         ]);
@@ -130,7 +130,7 @@ class MeetupTest extends TestCase
             ->put(route("meetups.update", $meetup), [
                 "title" => "Test Meetup",
                 "description" => "Description",
-                "date" => Carbon::parse('2022-12-12 12:00:00'),
+                "date" => Carbon::parse("2022-12-12 12:00:00"),
                 "place" => "Place",
                 "language" => "en",
             ])
@@ -141,7 +141,7 @@ class MeetupTest extends TestCase
             "user_id" => $admin->id,
             "title" => "Test Meetup",
             "description" => "Description",
-            "date" => Carbon::parse('2022-12-12 12:00:00'),
+            "date" => Carbon::parse("2022-12-12 12:00:00"),
             "place" => "Place",
             "language" => "en",
         ]);

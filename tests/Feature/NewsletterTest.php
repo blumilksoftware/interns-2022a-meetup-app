@@ -16,7 +16,7 @@ class NewsletterTest extends TestCase
 
     public function testGuestCanSeeNewsletterPage(): void
     {
-        $this->get('/newsletter')
+        $this->get("/newsletter")
             ->assertOk();
     }
 
@@ -24,14 +24,14 @@ class NewsletterTest extends TestCase
     {
         Notification::fake();
 
-        $this->post('/newsletter/subscribe', [
-            'email' => 'subscriber@example.com'
+        $this->post("/newsletter/subscribe", [
+            "email" => "subscriber@example.com",
         ])
             ->assertSessionHasNoErrors()
             ->assertOk();
 
         $subscriber = NewsletterSubscriber::query()
-            ->where('email', 'subscriber@example.com')
+            ->where("email", "subscriber@example.com")
             ->first();
 
         Notification::assertSentTo($subscriber, NewsletterNotification::class);

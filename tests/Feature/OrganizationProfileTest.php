@@ -21,21 +21,21 @@ class OrganizationProfileTest extends TestCase
         $organization = Organization::factory()->create();
 
         $this->actingAs($admin)
-            ->get(route('organizations.profiles.create', $organization))
+            ->get(route("organizations.profiles.create", $organization))
             ->assertOk();
 
         $this->actingAs($admin)
-            ->post(route('organizations.profiles.store', $organization), [
+            ->post(route("organizations.profiles.store", $organization), [
                 "label" => "Facebook",
-                "link" => "https://facebook.com"
+                "link" => "https://facebook.com",
             ])
             ->assertSessionHasNoErrors()
             ->assertRedirect();
 
-        $this->assertDatabaseHas('organization_profiles', [
+        $this->assertDatabaseHas("organization_profiles", [
             "organization_id" => $organization->id,
             "label" => "Facebook",
-            "link" => "https://facebook.com"
+            "link" => "https://facebook.com",
         ]);
     }
 
@@ -46,11 +46,11 @@ class OrganizationProfileTest extends TestCase
         $organization = Organization::factory()->create();
 
         $this->actingAs($user)
-            ->get(route('organizations.profiles.create', $organization))
+            ->get(route("organizations.profiles.create", $organization))
             ->assertForbidden();
 
         $this->actingAs($user)
-            ->post(route('organizations.profiles.store', $organization))
+            ->post(route("organizations.profiles.store", $organization))
             ->assertForbidden();
     }
 
@@ -76,7 +76,7 @@ class OrganizationProfileTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertRedirect();
 
-        $this->assertDatabaseHas('organization_profiles', [
+        $this->assertDatabaseHas("organization_profiles", [
             "organization_id" => $organization->id,
             "label" => "Twitter",
             "link" => "https://twitter.com",
@@ -94,11 +94,11 @@ class OrganizationProfileTest extends TestCase
             ->create();
 
         $this->actingAs($user)
-            ->get(route('organizations.profiles.edit', [$organization, $organizationProfile]))
+            ->get(route("organizations.profiles.edit", [$organization, $organizationProfile]))
             ->assertForbidden();
 
         $this->actingAs($user)
-            ->put(route('organizations.profiles.update', [$organization, $organizationProfile]))
+            ->put(route("organizations.profiles.update", [$organization, $organizationProfile]))
             ->assertForbidden();
     }
 
@@ -112,7 +112,7 @@ class OrganizationProfileTest extends TestCase
             ->for($organization)
             ->create();
 
-        $this->assertDatabaseCount('organization_profiles', 1);
+        $this->assertDatabaseCount("organization_profiles", 1);
 
         $this->actingAs($admin)
             ->delete(route("organizations.profiles.destroy", [$organization, $organizationProfile]))
@@ -132,7 +132,7 @@ class OrganizationProfileTest extends TestCase
             ->create();
 
         $this->actingAs($user)
-            ->delete(route('organizations.profiles.destroy', [$organization, $organizationProfile]))
+            ->delete(route("organizations.profiles.destroy", [$organization, $organizationProfile]))
             ->assertForbidden();
     }
 

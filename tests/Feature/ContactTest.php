@@ -16,7 +16,7 @@ class ContactTest extends TestCase
 
     public function testUserCanSeeContactPage(): void
     {
-        $this->get('/contact')
+        $this->get("/contact")
             ->assertOk();
     }
 
@@ -24,19 +24,19 @@ class ContactTest extends TestCase
     {
         Notification::fake();
 
-        $this->post('/contact', [
-            "name" => 'John',
-            "email" => 'john.doe@example.com',
-            "subject" => 'Test subject',
-            "message" => 'Test message',
+        $this->post("/contact", [
+            "name" => "John",
+            "email" => "john.doe@example.com",
+            "subject" => "Test subject",
+            "message" => "Test message",
         ])
             ->assertSessionHasNoErrors();
 
-        $this->assertDatabaseHas('contacts', [
-            "name" => 'John',
-            "email" => 'john.doe@example.com',
-            "subject" => 'Test subject',
-            "message" => 'Test message',
+        $this->assertDatabaseHas("contacts", [
+            "name" => "John",
+            "email" => "john.doe@example.com",
+            "subject" => "Test subject",
+            "message" => "Test message",
         ]);
 
         $contact = Contact::query()->first();
@@ -46,7 +46,7 @@ class ContactTest extends TestCase
 
     public function testContactFormDataIsRequired(): void
     {
-        $this->post('/contact')
+        $this->post("/contact")
             ->assertInvalid([
                 "name",
                 "email",

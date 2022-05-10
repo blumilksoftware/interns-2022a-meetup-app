@@ -19,7 +19,7 @@ class InviteAdminTest extends TestCase
         $admin = User::factory()->admin()->create();
 
         $this->actingAs($admin)
-            ->get('/invitation')
+            ->get("/invitation")
             ->assertOk();
     }
 
@@ -30,12 +30,12 @@ class InviteAdminTest extends TestCase
         $admin = User::factory()->admin()->create();
 
         $invitedUser = User::factory([
-            'email' => 'invited@example.com',
+            "email" => "invited@example.com",
         ])->make();
 
         $this->actingAs($admin)
-            ->post('/invitation', [
-                'email' => $invitedUser->email,
+            ->post("/invitation", [
+                "email" => $invitedUser->email,
             ])
             ->assertSessionHasNoErrors();
 
@@ -47,7 +47,7 @@ class InviteAdminTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)
-            ->get('/invitation')
+            ->get("/invitation")
             ->assertForbidden();
     }
 }
