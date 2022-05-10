@@ -15,25 +15,25 @@
       <table class="border border-collapse w-full mt-5">
         <thead class="text-left">
           <tr>
-            <th class="border pl-3">Id</th>
-            <th class="border pl-3">Email address</th>
-            <th class="border pl-3">Created at</th>
-            <th class="border pl-3">Updated at</th>
-            <th class="border pl-3">Actions</th>
+            <th class="border pl-3 py-1">Id</th>
+            <th class="border pl-3 py-1">Email address</th>
+            <th class="border pl-3 py-1">Created at</th>
+            <th class="border pl-3 py-1">Updated at</th>
+            <th class="border pl-3 py-1">Actions</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($users as $user)
-            <tr class="bg-gray-100">
+            <tr class="odd:bg-gray-100">
               <td class="border pl-3 py-1">{{ $user->id }}</td>
-              <td class="border pl-3">{{ $user->email }}</td>
-              <td class="border pl-3">{{ $user->createdAt }}</td>
-              <td class="border pl-3">{{ $user->updatedAt }}</td>
-              <td class="border pl-3 w-52">
+              <td class="border pl-3 py-1">{{ $user->email }}</td>
+              <td class="border pl-3 py-1">{{ $user->createdAt }}</td>
+              <td class="border pl-3 py-1">{{ $user->updatedAt }}</td>
+              <td class="border pl-3 py-1 w-52">
                 <form action="{{ route('users.destroy', $user) }}" method="post">
                   @csrf
                   @method('delete')
-                  <button href="#" class="bg-red-500 hover:bg-red-600 text-sm px-2 py-0.5 rounded text-white">
+                  <button class="bg-red-500 hover:bg-red-600 text-sm px-2 py-0.5 rounded text-white">
                     <i class="fa-solid fa-trash-can mr-2"></i>delete
                   </button>
                 </form>
