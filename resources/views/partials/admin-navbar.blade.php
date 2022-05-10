@@ -1,7 +1,7 @@
 <div class="h-screen bg-indigo-800 w-80 p-8 left-0 fixed">
  <ul class="text-white">
-   <li class="hover:bg-indigo-600 px-4 py-2 rounded-lg mt-3 hover:cursor-pointer">
-     <a href="#" class="text-lg">
+   <li class="{{ request()->routeIs('admin.dashboard') ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 px-4 py-2 rounded-lg mt-3 hover:cursor-pointer">
+     <a href="{{ route('admin.dashboard') }}" class="text-lg">
        <i class="fa-solid fa-table-columns fa-lg mr-6"></i>
        Dashboard
      </a>
