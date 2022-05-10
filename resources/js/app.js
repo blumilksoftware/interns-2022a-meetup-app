@@ -3,6 +3,9 @@ import Editor from '@toast-ui/editor'
 import 'codemirror/lib/codemirror.css'
 import '@toast-ui/editor/dist/toastui-editor.css'
 
+window.Alpine = Alpine
+Alpine.start()
+
 const editor = new Editor({
   el: document.querySelector('#editor'),
   height: '400px',
@@ -27,7 +30,3 @@ if (document.querySelector('#editNews')) {
     event.target.submit()
   })
 }
-
-window.Alpine = Alpine
-
-Alpine.start()

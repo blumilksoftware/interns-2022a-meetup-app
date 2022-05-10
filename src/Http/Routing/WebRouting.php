@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Routing;
 
+use Blumilk\Meetup\Core\Http\Controllers\AdminController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\EmailVerificationController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\PasswordResetController;
@@ -18,6 +19,7 @@ use Blumilk\Meetup\Core\Http\Controllers\OrganizationController;
 use Blumilk\Meetup\Core\Http\Controllers\OrganizationProfileController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
 use Blumilk\Meetup\Core\Http\Controllers\StaticController;
+use Blumilk\Meetup\Core\Http\Controllers\UserController;
 
 class WebRouting extends Routing
 {
@@ -56,53 +58,68 @@ class WebRouting extends Routing
             $this->router->get("/auth/facebook/callback", "handleFacebookCallback");
         });
 
-        $this->router->controller(MeetupController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/meetups", "index")->withoutMiddleware("auth")->name("meetups");
-            $this->router->get("/meetups/create", "create")->name("meetups.create");
-            $this->router->post("/meetups", "store")->name("meetups.store");
-            $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
-            $this->router->put("/meetups/{meetup}", "update")->name("meetups.update");
-            $this->router->delete("/meetups/{meetup}", "destroy")->name("meetups.destroy");
-        });
+        $this->router->middleware("role:admin")->group(function (): void {
+            $this->router->controller(AdminController::class)->group(function (): void {
+                $this->router->get("/admin/dashboard", "dashboard")->name("admin.dashboard");
+                $this->router->get("/admin/users", "usersIndex")->name("admin.users");
+                $this->router->get("/admin/meetups", "meetupsIndex")->name("admin.meetups");
+                $this->router->get("/admin/organizations", "organizationsIndex")->name("admin.organizations");
+                $this->router->get("/admin/speakers", "speakersIndex")->name("admin.speakers");
+                $this->router->get("/admin/news", "newsIndex")->name("admin.news");
+            });
 
-        $this->router->controller(OrganizationController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/organizations", "index")->withoutMiddleware("auth")->name("organizations");
-            $this->router->get("/organizations/create", "create")->name("organizations.create");
-            $this->router->post("/organizations", "store")->name("organizations.store");
-            $this->router->get("/organizations/{organization}/edit", "edit")->name("organizations.edit");
-            $this->router->put("/organizations/{organization}", "update")->name("organizations.update");
-            $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");
-        });
+            $this->router->controller(UserController::class)->group(function (): void {
+                $this->router->delete("/users/{user}", "destroy")->name("users.destroy");
+            });
 
-        $this->router->controller(OrganizationProfileController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/organizations/{organization}/profiles/create", "create")->name("organizations.profiles.create");
-            $this->router->post("/organizations/{organization}/profiles", "store")->name("organizations.profiles.store");
-            $this->router->get("/organizations/{organization}/profiles/{profile}/edit", "edit")->name("organizations.profiles.edit");
-            $this->router->put("/organizations/{organization}/profiles/{profile}", "update")->name("organizations.profiles.update");
-            $this->router->delete("/organizations/{organization}/profiles/{profile}", "destroy")->name("organizations.profiles.destroy");
+            $this->router->controller(MeetupController::class)->group(function (): void {
+                $this->router->get("/meetups", "index")->withoutMiddleware("role:admin")->name("meetups");
+                $this->router->get("/meetups/create", "create")->name("meetups.create");
+                $this->router->post("/meetups", "store")->name("meetups.store");
+                $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
+                $this->router->put("/meetups/{meetup}", "update")->name("meetups.update");
+                $this->router->delete("/meetups/{meetup}", "destroy")->name("meetups.destroy");
+            });
+
+            $this->router->controller(OrganizationController::class)->group(function (): void {
+                $this->router->get("/organizations", "index")->withoutMiddleware("role:admin")->name("organizations");
+                $this->router->get("/organizations/create", "create")->name("organizations.create");
+                $this->router->post("/organizations", "store")->name("organizations.store");
+                $this->router->get("/organizations/{organization}/edit", "edit")->name("organizations.edit");
+                $this->router->put("/organizations/{organization}", "update")->name("organizations.update");
+                $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");
+            });
+
+            $this->router->controller(OrganizationProfileController::class)->group(function (): void {
+                $this->router->get("/organizations/{organization}/profiles/create", "create")->name("organizations.profiles.create");
+                $this->router->post("/organizations/{organization}/profiles", "store")->name("organizations.profiles.store");
+                $this->router->get("/organizations/{organization}/profiles/{profile}/edit", "edit")->name("organizations.profiles.edit");
+                $this->router->put("/organizations/{organization}/profiles/{profile}", "update")->name("organizations.profiles.update");
+                $this->router->delete("/organizations/{organization}/profiles/{profile}", "destroy")->name("organizations.profiles.destroy");
+            });
+
+            $this->router->controller(SpeakersController::class)->group(function (): void {
+                $this->router->get("/speakers", "index")->withoutMiddleware("role:admin")->name("speakers");
+                $this->router->post("/speakers", "store")->name("speakers.store");
+                $this->router->get("/speakers/create", "create")->name("speakers.create");
+                $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
+                $this->router->put("/speakers/{speaker}", "update")->name("speakers.update");
+                $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
+            });
+
+            $this->router->controller(NewsController::class)->group(function (): void {
+                $this->router->get("/news", "index")->withoutMiddleware("role:admin")->name("news");
+                $this->router->get("/news/create", "create")->name("news.create");
+                $this->router->post("/news", "store")->name("news.store");
+                $this->router->get("/news/{news}/edit", "edit")->name("news.edit");
+                $this->router->put("/news/{news}", "update")->name("news.update");
+                $this->router->delete("/news/{news}", "destroy")->name("news.destroy");
+            });
         });
 
         $this->router->controller(ContactController::class)->group(function (): void {
             $this->router->get("/contact", "create")->name("contact");
             $this->router->post("/contact", "store")->name("contact.store");
-        });
-
-        $this->router->controller(SpeakersController::class)->middleware("auth")->group(function (): void {
-            $this->router->get("/speakers", "index")->withoutMiddleware("auth")->name("speakers");
-            $this->router->post("/speakers", "store")->name("speakers.store");
-            $this->router->get("/speakers/create", "create")->name("speakers.create");
-            $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
-            $this->router->put("/speakers/{speaker}", "update")->name("speakers.update");
-            $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
-        });
-
-        $this->router->controller(NewsController::class)->group(function (): void {
-            $this->router->get("/news", "index")->name("news");
-            $this->router->get("/news/create", "create")->middleware("auth")->name("news.create");
-            $this->router->post("/news", "store")->middleware("auth")->name("news.store");
-            $this->router->get("/news/{news}/edit", "edit")->middleware("auth")->name("news.edit");
-            $this->router->put("/news/{news}", "update")->middleware("auth")->name("news.update");
-            $this->router->delete("/news/{news}", "destroy")->middleware("auth")->name("news.destroy");
         });
 
         $this->router->controller(NewsletterSubscriberController::class)->group(function (): void {
