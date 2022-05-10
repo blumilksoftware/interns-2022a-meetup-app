@@ -83,6 +83,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->hasMany(News::class);
     }
 
+    public function getAvatarPathAttribute(): string
+    {
+        return asset($this->attributes["avatar_path"]);
+    }
+
     protected static function newFactory(): UserFactory
     {
         return UserFactory::new();

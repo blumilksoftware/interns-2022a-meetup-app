@@ -14,7 +14,8 @@
                             Avatar
                         </label>
                         <div class="mt-1">
-                            <img src="{{ $user->avatarPath }}" alt="avatar" />
+                            <img src="{{ $user->avatarPath }}" alt="avatar"
+                            class="w-[200px] h-[200px] rounded-t-20 object-cover"/>
                         </div>
                     </div>
                     <div>
