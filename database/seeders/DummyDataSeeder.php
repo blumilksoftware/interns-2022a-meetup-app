@@ -9,7 +9,6 @@ use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Models\OrganizationProfile;
 use Blumilk\Meetup\Core\Models\Speaker;
 use Blumilk\Meetup\Core\Models\User;
-use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;

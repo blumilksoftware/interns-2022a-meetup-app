@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Services;
 
 use Blumilk\Meetup\Core\Models\User;
-use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Hashing\Hasher;
 
