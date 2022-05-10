@@ -4,12 +4,7 @@
   <div class="flex justify-end relative">
     @include('partials.admin-navbar')
     <div class="bg-white w-[1432px] rounded-20 m-12 px-10 py-6">
-      <div class="flex justify-between">
-        <h3 class="text-2xl font-semibold">Users</h3>
-        <a href="#" class="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700">
-          Add user
-        </a>
-      </div>
+      <h3 class="text-2xl font-semibold">Users</h3>
       <div class="relative text-gray-600 mt-5">
         <input class="border-2 border-gray-300 bg-white h-10 px-10 pr-16 rounded-lg text-sm focus:outline-none w-80"
           type="search" name="search" placeholder="Search" />
