@@ -22,7 +22,8 @@ class AccountController extends Controller
 
     public function index(): View
     {
-        return view("user.profile.index")->with(["user" => $this->auth->user()]);
+        return view("user.profile.index")
+            ->with("user", $this->auth->user());
     }
 
     public function editPassword(): View

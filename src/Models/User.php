@@ -58,7 +58,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "avatar_path",
     ];
     protected $attributes = [
-        "avatar_path" => Constants::SPEAKER_DEFAULT_AVATAR_PATH,
+        "avatar_path" => Constants::USER_DEFAULT_AVATAR_PATH,
     ];
     protected $hidden = [
         "password",

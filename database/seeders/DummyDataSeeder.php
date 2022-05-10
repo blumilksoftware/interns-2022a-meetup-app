@@ -23,7 +23,6 @@ class DummyDataSeeder extends Seeder
             "email" => "admin@example.com",
             "password" => Hash::make("password"),
             "email_verified_at" => Carbon::createFromDate(2022, 01, 01),
-            "avatar_path" => Constants::USER_DEFAULT_AVATAR_PATH,
         ])->create();
 
         $organizations = Organization::factory(10)->create();

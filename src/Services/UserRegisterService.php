@@ -23,7 +23,6 @@ class UserRegisterService
             "email" => $email,
             "name" => $name,
             "password" => $hashedPassword,
-            "avatar" => Constants::USER_DEFAULT_AVATAR_PATH,
         ]);
 
         event(new Registered($user));
