@@ -81,13 +81,6 @@ class WebRouting extends Routing
                 $this->router->put("/meetups/{meetup}", "update")->name("meetups.update");
                 $this->router->delete("/meetups/{meetup}", "destroy")->name("meetups.destroy");
             });
-            $this->router->controller(AccountController::class)->middleware("auth")->group(function (): void {
-                $this->router->get("/auth/profile", "index")->name("user.profile");
-                $this->router->get("/auth/profile/password", "editPassword")->name("user.profile.password");
-                $this->router->get("/auth/profile/edit", "editData")->name("user.profile.edit");
-                $this->router->put("/auth/profile/password", "updatePassword")->name("user.profile.password.update");
-                $this->router->put("/auth/profile/edit", "updateData")->name("user.profile.update");
-            });
 
             $this->router->controller(OrganizationController::class)->group(function (): void {
                 $this->router->get("/organizations", "index")->withoutMiddleware("role:admin")->name("organizations");
@@ -123,6 +116,14 @@ class WebRouting extends Routing
                 $this->router->put("/news/{news}", "update")->name("news.update");
                 $this->router->delete("/news/{news}", "destroy")->name("news.destroy");
             });
+        });
+
+        $this->router->controller(AccountController::class)->middleware("auth")->group(function (): void {
+            $this->router->get("/auth/profile", "index")->name("user.profile");
+            $this->router->get("/auth/profile/password", "editPassword")->name("user.profile.password");
+            $this->router->get("/auth/profile/edit", "editData")->name("user.profile.edit");
+            $this->router->put("/auth/profile/password", "updatePassword")->name("user.profile.password.update");
+            $this->router->put("/auth/profile/edit", "updateData")->name("user.profile.update");
         });
 
         $this->router->controller(ContactController::class)->group(function (): void {
