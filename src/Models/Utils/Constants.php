@@ -16,4 +16,5 @@ class Constants
     public const SPEAKER_DEFAULT_AVATAR_PATH = "static/images/random_avatar.webp";
     public const NEWS_DEFAULT_LOGO_PATH = "static/images/news_list.webp";
     public const STORAGE_PATH = "storage/";
+    public const DEFAULT_PAGINATION = 20;
 }

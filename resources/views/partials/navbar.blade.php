@@ -23,6 +23,12 @@
               aria-current="page">
               Home
             </a>
+            @hasrole('admin')
+              <a href="{{ route('admin.dashboard') }}"
+                class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                Admin
+              </a>
+            @endhasrole
             <a href="{{ route('organizations') }}"
               class="text-white {{ request()->routeIs('organizations') ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Organizations

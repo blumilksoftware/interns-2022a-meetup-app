@@ -45,6 +45,7 @@ return [
         Blumilk\Meetup\Core\Providers\TelescopeServiceProvider::class,
         Blumilk\Meetup\Core\Providers\FileStorageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
     ],
     "aliases" => [
         ...Facade::defaultAliases()->toArray(),

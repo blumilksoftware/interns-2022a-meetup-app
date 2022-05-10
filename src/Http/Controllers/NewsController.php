@@ -35,7 +35,7 @@ class NewsController extends Controller
 
         $request->user()->news()->create($input);
 
-        return redirect()->route("news");
+        return redirect()->route("admin.news");
     }
 
     public function edit(News $news): View
@@ -53,7 +53,7 @@ class NewsController extends Controller
 
         $news->update($input);
 
-        return redirect()->route("news");
+        return redirect()->route("admin.news");
     }
 
     public function destroy(News $news): RedirectResponse

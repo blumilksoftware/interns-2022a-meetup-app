@@ -29,7 +29,3 @@ if (document.querySelector('#editor')) {
     })
   }
 }
-
-window.Alpine = Alpine
-
-Alpine.start()
