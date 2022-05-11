@@ -38,15 +38,13 @@ class InviteAdminTest extends TestCase
 
         $this->actingAs($this->admin)
             ->post("/invitation", [
-                "email" => "invited@example.com"
+                "email" => "invited@example.com",
             ])
             ->assertSessionHasNoErrors();
 
         Notification::assertSentOnDemand(
             InvitationEmailNotification::class,
-            function ($notification, $channels, $notifiable) {
-                return $notifiable->routes['mail'] === 'invited@example.com';
-            }
+            fn ($notification, $channels, $notifiable) => $notifiable->routes["mail"] === "invited@example.com",
         );
     }
 
