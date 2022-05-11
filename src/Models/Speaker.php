@@ -40,7 +40,7 @@ class Speaker extends Model
         "date:" . Formats::DATETIME,
     ];
 
-    public function meetup(): BelongsToMany
+    public function meetups(): BelongsToMany
     {
         return $this->belongsToMany(Meetup::class);
     }
