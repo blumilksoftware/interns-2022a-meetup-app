@@ -6,6 +6,7 @@ namespace Blumilk\Meetup\Core\Http\Controllers;
 
 use Blumilk\Meetup\Core\Http\Requests\Organization\StoreOrganizationRequest;
 use Blumilk\Meetup\Core\Http\Requests\Organization\UpdateOrganizationRequest;
+use Blumilk\Meetup\Core\Http\Requests\PaginationRequest;
 use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Services\StoreFileService;
@@ -14,9 +15,10 @@ use Illuminate\Http\RedirectResponse;
 
 class OrganizationController extends Controller
 {
-    public function index(): View
+    public function index(PaginationRequest $request): View
     {
-        $organizations = Organization::query()->orderBy("name")->paginate(20);
+        $paginationLimit = $request->input("limit");
+        $organizations = Organization::query()->orderBy("name")->paginate($paginationLimit);
 
         return view("organizations.index")
             ->with("organizations", $organizations);

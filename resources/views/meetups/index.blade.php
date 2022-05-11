@@ -7,8 +7,7 @@
             @auth
                 <a href="{{ route('meetups.create') }}">Create new meetup</a>
             @endauth
-            @if ($meetups->count())
-                @foreach ($meetups as $meetup)
+                @forelse ($meetups as $meetup)
                     <div>
                         {{ $meetup->title }}
                         {{ $meetup->description }}

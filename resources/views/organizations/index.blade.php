@@ -17,6 +17,7 @@
           <span><i class="fa-solid fa-chevron-down fa-lg ml-3"></i></span>
         </button>
       </div>
+      <x-input-limits-pagination />
     </div>
     <ul class="mt-11">
       @forelse ($organizations as $organization)

@@ -54,5 +54,6 @@ return [
         "Constants" => Blumilk\Meetup\Core\Models\Utils\Constants::class,
         "AvailableNewsletter" => Blumilk\Meetup\Core\Enums\AvailableNewsletter::class,
         "Str" => Illuminate\Support\Str::class,
+        "Route" => Illuminate\Support\Facades\Route::class,
     ],
 ];
