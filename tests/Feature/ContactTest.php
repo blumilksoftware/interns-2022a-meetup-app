@@ -6,13 +6,13 @@ namespace Tests\Feature;
 
 use Blumilk\Meetup\Core\Models\Contact;
 use Blumilk\Meetup\Core\Notifications\ContactEmailNotification;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class ContactTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testUserCanSeeContactPage(): void
     {

@@ -6,13 +6,13 @@ namespace Tests\Feature;
 
 use Blumilk\Meetup\Core\Models\NewsletterSubscriber;
 use Blumilk\Meetup\Core\Notifications\NewsletterNotification;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class NewsletterTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testGuestCanSeeNewsletterPage(): void
     {

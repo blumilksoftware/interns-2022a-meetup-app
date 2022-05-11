@@ -6,19 +6,28 @@ namespace Tests\Feature;
 
 use Blumilk\Meetup\Core\Models\User;
 use Blumilk\Meetup\Core\Notifications\InvitationEmailNotification;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class InviteAdminTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
+
+    public User $admin;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Role::create(["name" => "admin"]);
+        $this->admin = User::factory()->create()->assignRole("admin");
+    }
 
     public function testAdminCanSeeSendInvitationPage(): void
     {
-        $admin = User::factory()->admin()->create();
-
-        $this->actingAs($admin)
+        $this->actingAs($this->admin)
             ->get("/invitation")
             ->assertOk();
     }
@@ -27,13 +36,11 @@ class InviteAdminTest extends TestCase
     {
         Notification::fake();
 
-        $admin = User::factory()->admin()->create();
-
         $invitedUser = User::factory([
             "email" => "invited@example.com",
         ])->make();
 
-        $this->actingAs($admin)
+        $this->actingAs($this->admin)
             ->post("/invitation", [
                 "email" => $invitedUser->email,
             ])
@@ -48,6 +55,6 @@ class InviteAdminTest extends TestCase
 
         $this->actingAs($user)
             ->get("/invitation")
-            ->assertForbidden();
+            ->assertLocation("/");
     }
 }
