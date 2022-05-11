@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use Blumilk\Meetup\Core\Models\Meetup;
+use Blumilk\Meetup\Core\Models\News;
 use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Models\OrganizationProfile;
 use Blumilk\Meetup\Core\Models\Speaker;
@@ -27,6 +28,7 @@ class DummyDataSeeder extends Seeder
         $organizations = Organization::factory(10)->create();
         $speakers = Speaker::factory(25)->create();
 
+        News::factory(25)->for($user)->create();
         foreach ($speakers as $speaker) {
             Meetup::factory()->create([
                 "user_id" => $user,
