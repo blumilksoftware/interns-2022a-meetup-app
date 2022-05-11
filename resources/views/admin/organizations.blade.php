@@ -5,7 +5,7 @@
     @include('partials.admin-navbar')
     <div class="md:pl-64 flex flex-col flex-1">
       <main>
-        <div class="bg-white rounded-20 m-12 px-10 py-6">
+        <div class="bg-white rounded-20 m-12 px-10 py-6 shadow-xl">
           <div class="flex justify-between flex-wrap">
             <h3 class="text-2xl font-semibold">Organizations</h3>
             <a href="{{ route('organizations.create') }}"
@@ -35,9 +35,9 @@
                   <th class="border pl-3 py-1">Actions</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody x-data>
                 @foreach ($organizations as $organization)
-                  <tr class="odd:bg-gray-100">
+                  <tr @click="window.location.href='{{ route('organizations.show', $organization) }}'" class="odd:bg-gray-100 cursor-pointer">
                     <td class="border pl-3 py-1">{{ $organization->id }}</td>
                     <td class="border pl-3 py-1">{{ $organization->name }}</td>
                     <td class="border pl-3 py-1">{{ $organization->location }}</td>
