@@ -30,20 +30,15 @@ class OrganizationProfilesRequestTest extends TestCase
         $organization = Organization::factory()->create();
         $foreignOrganization = Organization::factory()->create();
 
-        $organizationProfile = OrganizationProfile::factory()
+        OrganizationProfile::factory()
             ->for($organization)
             ->create();
 
-        $this->actingAs($this->admin)
-            ->get(route("organizations.profiles.create", [$foreignOrganization, $organizationProfile]))
-            ->assertNotFound();
+        $this->assertDatabaseCount("organization_profiles", 1);
+        $organizationProfile = OrganizationProfile::query()->first();
 
         $this->actingAs($this->admin)
             ->get(route("organizations.profiles.edit", [$foreignOrganization, $organizationProfile]))
-            ->assertNotFound();
-
-        $this->actingAs($this->admin)
-            ->post(route("organizations.profiles.store", [$foreignOrganization, $organizationProfile]))
             ->assertNotFound();
 
         $this->actingAs($this->admin)

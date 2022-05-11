@@ -30,26 +30,26 @@ class OrganizationProfileController extends Controller
         return redirect()->route("organizations.edit", $organization);
     }
 
-    public function edit(Organization $organization, OrganizationProfile $profile): View
+    public function edit(Organization $organization, OrganizationProfile $organizationProfile): View
     {
         return view("organizations.profiles.edit")
             ->with([
                 "organization" => $organization,
-                "profile" => $profile,
+                "profile" => $organizationProfile,
                 "availableProfiles" => AvailableProfiles::casesToSelect(),
             ]);
     }
 
-    public function update(UpdateOrganizationProfileRequest $request, Organization $organization, OrganizationProfile $profile): RedirectResponse
+    public function update(UpdateOrganizationProfileRequest $request, Organization $organization, OrganizationProfile $organizationProfile): RedirectResponse
     {
-        $profile->update($request->validated());
+        $organizationProfile->update($request->validated());
 
         return redirect()->route("organizations.edit", $organization);
     }
 
-    public function destroy(Organization $organization, OrganizationProfile $profile): RedirectResponse
+    public function destroy(Organization $organization, OrganizationProfile $organizationProfile): RedirectResponse
     {
-        $profile->delete();
+        $organizationProfile->delete();
 
         return back();
     }
