@@ -36,17 +36,18 @@ class InviteAdminTest extends TestCase
     {
         Notification::fake();
 
-        $invitedUser = User::factory([
-            "email" => "invited@example.com",
-        ])->make();
-
         $this->actingAs($this->admin)
             ->post("/invitation", [
-                "email" => $invitedUser->email,
+                "email" => "invited@example.com"
             ])
             ->assertSessionHasNoErrors();
 
-        Notification::assertSentTo($invitedUser, InvitationEmailNotification::class);
+        Notification::assertSentOnDemand(
+            InvitationEmailNotification::class,
+            function ($notification, $channels, $notifiable) {
+                return $notifiable->routes['mail'] === 'invited@example.com';
+            }
+        );
     }
 
     public function testUserCannotSendInvitation(): void
