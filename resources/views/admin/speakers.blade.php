@@ -5,7 +5,7 @@
     @include('partials.admin-navbar')
     <div class="md:pl-64 flex flex-col flex-1">
       <main>
-        <div class="bg-white rounded-20 m-12 px-10 py-6">
+        <div class="bg-white rounded-20 m-12 px-10 py-6 shadow-xl">
           <div class="flex justify-between">
             <h3 class="text-2xl font-semibold">Speakers</h3>
             <a href="{{ route('speakers.create') }}"
@@ -34,9 +34,12 @@
                   <th class="border pl-3 py-1">Actions</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody x-data>
                 @foreach ($speakers as $speaker)
-                  <tr class="odd:bg-gray-100">
+                  <tr
+                    @click="if($event.target.tagName !== 'BUTTON') window.location.href='{{ route('speakers.show', $speaker) }}'"
+                    class=" 
+                    odd:bg-gray-100 cursor-pointer">
                     <td class="border pl-3 py-1">{{ $speaker->id }}</td>
                     <td class="border pl-3 py-1">{{ $speaker->name }}</td>
                     <td class="border pl-3 py-1 truncate">{{ $speaker->description }}</td>
@@ -50,7 +53,7 @@
                           class="bg-indigo-600 hover:bg-indigo-700 text-sm px-2 py-0.5 rounded">
                           <i class="fa-solid fa-pen-to-square mr-2"></i>edit
                         </a>
-                        <form action="{{ route('speakers.destroy', $speaker) }}" method="post">
+                        <form action="{{ route('speakers.destroy', $speaker) }}" method="post" onsubmit="return confirm('Delete this speaker? This operation is irreversible.')">
                           @csrf
                           @method('delete')
                           <button class="bg-red-500 hover:bg-red-600 text-sm px-2 py-0.5 rounded text-white">

@@ -5,7 +5,7 @@
     @include('partials.admin-navbar')
     <div class="md:pl-64 flex flex-col flex-1">
       <main>
-        <div class="bg-white rounded-20 m-12 px-10 py-6">
+        <div class="bg-white rounded-20 m-12 px-10 py-6 shadow-xl">
           <div class="flex justify-between">
             <h3 class="text-2xl font-semibold">News</h3>
             <a href="{{ route('news.create') }}" class="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700">
@@ -25,20 +25,26 @@
                 <tr>
                   <th class="border pl-3 py-1">Id</th>
                   <th class="border pl-3 py-1">Title</th>
+                  <th class="border pl-3 py-1">Description</th>
+                  <th class="border pl-3 py-1">Actions</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody x-data>
                 @foreach ($news as $singleNews)
-                  <tr class="odd:bg-gray-100">
+                  <tr
+                    @click="if($event.target.tagName !== 'BUTTON') window.location.href='{{ route('news.show', $singleNews) }}'"
+                    class="odd:bg-gray-100 cursor-pointer">
                     <td class="border pl-3 py-1">{{ $singleNews->id }}</td>
                     <td class="border pl-3 py-1">{{ $singleNews->title }}</td>
+                    <td class="border pl-3 py-1 truncate">{{ $singleNews->description }}</td>
                     <td class="border pl-3 py-1 w-52">
                       <div class="flex gap-3 text-white">
                         <a href="{{ route('news.edit', $singleNews) }}"
                           class="bg-indigo-600 hover:bg-indigo-700 text-sm px-2 py-0.5 rounded">
                           <i class="fa-solid fa-pen-to-square mr-2"></i>edit
                         </a>
-                        <form action="{{ route('news.destroy', $singleNews) }}" method="post">
+                        <form action="{{ route('news.destroy', $singleNews) }}" method="post"
+                          onsubmit="return confirm('Delete this news? This operation is irreversible.')">
                           @csrf
                           @method('delete')
                           <button class="bg-red-500 hover:bg-red-600 text-sm px-2 py-0.5 rounded text-white">

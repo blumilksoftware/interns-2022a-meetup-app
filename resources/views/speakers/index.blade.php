@@ -39,7 +39,7 @@
                         </a>
                     </li>
                 @empty
-                    <p class="text-xl text-center absolute top-4">There are no speakers</p>
+                    <p class="text-xl text-center">There are no speakers</p>
                 @endforelse
             </ul>
             <div class="py-5">
