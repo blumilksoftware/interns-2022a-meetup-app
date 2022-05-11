@@ -37,11 +37,4 @@ class NewsletterSubscriber extends Model
     {
         return $this->hasMany(NewsletterPreferences::class);
     }
-
-    public function routeNotificationForMail(): array
-    {
-        return [
-            config("mail.from.address") => config("mail.from.name"),
-        ];
-    }
 }
