@@ -36,7 +36,9 @@
               </thead>
               <tbody x-data>
                 @foreach ($speakers as $speaker)
-                  <tr @click="window.location.href='{{ route('speakers.show', $speaker) }}'" class="
+                  <tr
+                    @click="if($event.target.tagName !== 'BUTTON') window.location.href='{{ route('speakers.show', $speaker) }}'"
+                    class=" 
                     odd:bg-gray-100 cursor-pointer">
                     <td class="border pl-3 py-1">{{ $speaker->id }}</td>
                     <td class="border pl-3 py-1">{{ $speaker->name }}</td>
@@ -51,7 +53,7 @@
                           class="bg-indigo-600 hover:bg-indigo-700 text-sm px-2 py-0.5 rounded">
                           <i class="fa-solid fa-pen-to-square mr-2"></i>edit
                         </a>
-                        <form action="{{ route('speakers.destroy', $speaker) }}" method="post">
+                        <form action="{{ route('speakers.destroy', $speaker) }}" method="post" onsubmit="return confirm('Delete this speaker? This operation is irreversible.')">
                           @csrf
                           @method('delete')
                           <button class="bg-red-500 hover:bg-red-600 text-sm px-2 py-0.5 rounded text-white">

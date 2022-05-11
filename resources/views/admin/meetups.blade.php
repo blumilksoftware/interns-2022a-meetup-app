@@ -34,7 +34,7 @@
               </thead>
               <tbody x-data>
                 @foreach ($meetups as $meetup)
-                  <tr @click="window.location.href='{{ route('meetups.show', $meetup) }}'"
+                  <tr @click="if($event.target.tagName !== 'BUTTON') window.location.href='{{ route('meetups.show', $meetup) }}'"
                     class="odd:bg-gray-100 cursor-pointer">
                     <td class="border pl-3 py-1">{{ $meetup->id }}</td>
                     <td class="border pl-3 py-1 truncate">{{ $meetup->description }}</td>
@@ -47,7 +47,7 @@
                           class="bg-indigo-600 hover:bg-indigo-700 text-sm px-2 py-0.5 rounded">
                           <i class="fa-solid fa-pen-to-square mr-2"></i>edit
                         </a>
-                        <form action="{{ route('meetups.destroy', $meetup) }}" method="post">
+                        <form action="{{ route('meetups.destroy', $meetup) }}" method="post" onsubmit="return confirm('Delete this meetup? This operation is irreversible.')">
                           @csrf
                           @method('delete')
                           <button class="bg-red-500 hover:bg-red-600 text-sm px-2 py-0.5 rounded text-white">

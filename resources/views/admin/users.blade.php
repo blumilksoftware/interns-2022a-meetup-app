@@ -33,7 +33,8 @@
                     <td class="border pl-3 py-1">{{ $user->createdAt }}</td>
                     <td class="border pl-3 py-1">{{ $user->updatedAt }}</td>
                     <td class="border pl-3 py-1 w-52">
-                      <form action="{{ route('users.destroy', $user) }}" method="post">
+                      <form action="{{ route('users.destroy', $user) }}" method="post"
+                        onsubmit="return confirm('Delete this user? This operation is irreversible.')">
                         @csrf
                         @method('delete')
                         <button class="bg-red-500 hover:bg-red-600 text-sm px-2 py-0.5 rounded text-white">
