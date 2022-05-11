@@ -36,7 +36,7 @@
               class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Speakers
             </a>
-            <a href="#"
+            <a href="{{ route('news') }}"
               class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               News
             </a>
