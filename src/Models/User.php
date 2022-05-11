@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Models;
 
+use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Database\Factories\UserFactory;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
@@ -31,6 +32,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon|null $emailVerifiedAt
  * @property string $password
  * @property string|null $rememberToken
+ * @property string $avatarPath
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
  * @property-read Collection<Meetup> $meetups
@@ -55,6 +57,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "name",
         "email",
         "password",
+        "avatar_path",
+    ];
+    protected $attributes = [
+        "avatar_path" => Constants::USER_DEFAULT_AVATAR_PATH,
     ];
     protected $hidden = [
         "password",
@@ -77,6 +83,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function news(): HasMany
     {
         return $this->hasMany(News::class);
+    }
+
+    public function getAvatarPathAttribute(): string
+    {
+        return asset($this->attributes["avatar_path"]);
     }
 
     protected static function newFactory(): UserFactory

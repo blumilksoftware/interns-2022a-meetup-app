@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Routing;
 
+use Blumilk\Meetup\Core\Http\Controllers\AccountController;
 use Blumilk\Meetup\Core\Http\Controllers\AdminController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\EmailVerificationController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
@@ -124,6 +125,14 @@ class WebRouting extends Routing
                 $this->router->get("/invitation", "create")->name("invitation");
                 $this->router->post("/invitation", "store")->name("invitation.store");
             });
+        });
+
+        $this->router->controller(AccountController::class)->middleware("auth")->group(function (): void {
+            $this->router->get("/auth/profile", "index")->name("user.profile");
+            $this->router->get("/auth/profile/password", "editPassword")->name("user.profile.password");
+            $this->router->get("/auth/profile/edit", "editData")->name("user.profile.edit");
+            $this->router->put("/auth/profile/password", "updatePassword")->name("user.profile.password.update");
+            $this->router->put("/auth/profile/edit", "updateData")->name("user.profile.update");
         });
 
         $this->router->controller(ContactController::class)->group(function (): void {
