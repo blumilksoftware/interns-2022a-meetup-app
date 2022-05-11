@@ -13,6 +13,7 @@ class NewsRequest extends FormRequest
         return [
             "title" => ["required", "string"],
             "text" => ["required", "string"],
+            "logo" => ["image", "max:2048"],
         ];
     }
 

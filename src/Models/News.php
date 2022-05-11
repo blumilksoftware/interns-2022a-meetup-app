@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Models;
 
+use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Models\Utils\Formats;
 use Database\Factories\NewsFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,6 +17,7 @@ use Illuminate\Support\Str;
  * @property int $userId
  * @property string $name
  * @property string|null $text
+ * @property string $logoPath
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
  * @property-read User $user
@@ -31,6 +33,10 @@ class News extends Model
         "title",
         "name",
         "text",
+        "logo_path",
+    ];
+    protected $attributes = [
+        "logo_path" => Constants::NEWS_DEFAULT_LOGO_PATH,
     ];
     protected $casts = [
         "date:" . Formats::DATETIME,
@@ -39,6 +45,11 @@ class News extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getLogoPathAttribute(): string
+    {
+        return asset($this->attributes["logo_path"]);
     }
 
     protected static function boot(): void
