@@ -45,12 +45,6 @@ class OrganizationController extends Controller
             ->with("organization", $organization);
     }
 
-    public function show(Organization $organization): View
-    {
-        return view("organizations.show")
-            ->with("organization", $organization);
-    }
-
     public function edit(Organization $organization): View
     {
         return view("organizations.edit")
