@@ -3,7 +3,7 @@
     <div class="relative flex items-center justify-between h-16">
       <div class="absolute inset-y-0 left-0 flex items-center lg:hidden">
         <button @click="navOpened = !navOpened" type="button" id="mobile-menu-button"
-          class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white z-10"
           aria-controls="mobile-menu" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
           <span><i class="fa-solid fa-bars fa-xl"></i></span>
@@ -25,7 +25,7 @@
             </a>
             @hasrole('admin')
               <a href="{{ route('admin.dashboard') }}"
-                class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                class="text-white {{ request()->routeIs('admin.dashboard') ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                 Admin
               </a>
             @endhasrole
@@ -97,7 +97,7 @@
     </div>
   </div>
   <div x-cloak x-show="navOpened" x-transition class="lg:hidden" id="mobile-menu">
-    <div class="px-2 pt-2 pb-3 space-y-1">
+    <div class="px-2 pt-2 pb-3 space-y-1 z-20">
       <a href="{{ route('home') }}" class="text-white {{ (request()->routeIs('home')) ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium"
         aria-current="page">
         Home
