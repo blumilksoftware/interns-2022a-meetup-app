@@ -41,7 +41,13 @@ class SpeakersController extends Controller
 
         Speaker::query()->create($input);
 
-        return redirect()->route("speakers");
+        return redirect()->route("admin.speakers");
+    }
+
+    public function show(Speaker $speaker): View
+    {
+        return view("speakers.show")
+            ->with("speaker", $speaker);
     }
 
     public function show(Speaker $speaker): View
@@ -59,7 +65,7 @@ class SpeakersController extends Controller
 
         $speaker->update($input);
 
-        return redirect()->route("speakers");
+        return redirect()->route("admin.speakers");
     }
 
     public function destroy(Speaker $speaker): RedirectResponse
