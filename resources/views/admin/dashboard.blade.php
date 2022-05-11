@@ -1,10 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="flex justify-end relative">
-    @include('partials.admin-navbar')
-    <div class="bg-white w-[1432px] rounded-20 m-12 px-10 py-6">
+<div>
+  @include('partials.admin-navbar')
+  <div class="md:pl-64 flex flex-col flex-1">
+    <main>
+      <div class="bg-white rounded-20 m-12 px-10 py-6">
         <h3 class="text-2xl font-semibold">Dashboard</h3>
-    </div>
+      </div>
+    </main>
   </div>
+</div>
 @endsection

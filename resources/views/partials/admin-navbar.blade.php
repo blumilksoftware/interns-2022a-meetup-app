@@ -56,7 +56,7 @@
     <div class="mt-12 flex-1 flex flex-col">
       <nav class="flex-1 px-2 pb-4 space-y-1">
         <a href="{{ route('admin.dashboard') }}"
-          class="{{ request()->routeIs('admin.users') ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+          class="{{ request()->routeIs('admin.dashboard') ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
           <i class="fa-solid fa-table-columns fa-lg mr-6"></i>
           Dashboard
         </a>
