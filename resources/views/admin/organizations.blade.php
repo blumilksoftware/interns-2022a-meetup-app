@@ -6,7 +6,7 @@
   <div class="md:pl-64 flex flex-col flex-1">
     <main>
       <div class="bg-white rounded-20 m-12 px-10 py-6">
-        <div class="flex justify-between">
+        <div class="flex justify-between flex-wrap">
           <h3 class="text-2xl font-semibold">Organizations</h3>
           <a href="{{ route('organizations.create') }}"
             class="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700">
