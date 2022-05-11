@@ -60,6 +60,9 @@
               </tbody>
             </table>
           </div>
+          <div class="mt-5">
+            {{ $meetups->links('vendor.pagination.tailwind') }}
+          </div>
         </div>
       </main>
     </div>
