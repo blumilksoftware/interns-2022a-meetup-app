@@ -18,7 +18,8 @@
         </a>
         <div class="hidden lg:block sm:ml-6">
           <div class="flex space-x-4">
-            <a href="{{ route('home') }}" class="bg-indigo-600 text-white px-3 py-2 rounded-md text-sm font-medium"
+            <a href="{{ route('home') }}"
+              class="text-white {{ request()->routeIs('home') ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
               aria-current="page">
               Home
             </a>
@@ -29,19 +30,19 @@
               </a>
             @endhasrole
             <a href="{{ route('organizations') }}"
-              class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              class="text-white {{ request()->routeIs('organizations') ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Organizations
             </a>
             <a href="{{ route('speakers') }}"
-              class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              class="text-white {{ request()->routeIs('speakers') ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Speakers
             </a>
-            <a href="#"
-              class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+            <a href="{{ route('news') }}"
+              class="text-white {{ request()->routeIs('news') ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               News
             </a>
             <a href="{{ route('newsletter') }}"
-              class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              class="text-white {{ request()->routeIs('newsletter') ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Newsletter
             </a>
             <a href="#"
@@ -49,7 +50,7 @@
               About
             </a>
             <a href="{{ route('contact') }}"
-              class="text-white hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              class="text-white {{ request()->routeIs('contact') ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Contact
             </a>
           </div>
@@ -97,24 +98,24 @@
   </div>
   <div x-cloak x-show="navOpened" x-transition class="lg:hidden" id="mobile-menu">
     <div class="px-2 pt-2 pb-3 space-y-1">
-      <a href="{{ route('home') }}" class="bg-indigo-600 text-white block px-3 py-2 rounded-md text-base font-medium"
+      <a href="{{ route('home') }}" class="text-white {{ (request()->routeIs('home')) ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium"
         aria-current="page">
         Home
       </a>
       <a href="{{ route('organizations') }}"
-        class="text-white hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+        class="text-white {{ (request()->routeIs('organizations')) ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
         Organizations
       </a>
       <a href="{{ route('speakers') }}"
-        class="text-white hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+        class="text-white {{ (request()->routeIs('speakers')) ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
         Speakers
       </a>
-      <a href="#"
-        class="text-white hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+      <a href="{{ route('news') }}"
+        class="text-white {{ (request()->routeIs('news')) ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
         News
       </a>
       <a href="{{ route('newsletter') }}"
-        class="text-white hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+        class="text-white {{ (request()->routeIs('newsletter')) ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
         News
       </a>
       <a href="#"
@@ -122,7 +123,7 @@
         About
       </a>
       <a href="{{ route('contact') }}"
-        class="text-white hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+        class="text-white {{ (request()->routeIs('contact')) ? 'bg-indigo-600' : '' }} hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
         Contact
       </a>
     </div>

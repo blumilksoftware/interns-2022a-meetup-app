@@ -77,6 +77,7 @@ class WebRouting extends Routing
                 $this->router->get("/meetups", "index")->withoutMiddleware("role:admin")->name("meetups");
                 $this->router->get("/meetups/create", "create")->name("meetups.create");
                 $this->router->post("/meetups", "store")->name("meetups.store");
+                $this->router->get("/meetups/{meetup}/show", "show")->withoutMiddleware("role:admin")->name("meetups.show");
                 $this->router->get("/meetups/{meetup}/edit", "edit")->name("meetups.edit");
                 $this->router->put("/meetups/{meetup}", "update")->name("meetups.update");
                 $this->router->delete("/meetups/{meetup}", "destroy")->name("meetups.destroy");
@@ -86,6 +87,7 @@ class WebRouting extends Routing
                 $this->router->get("/organizations", "index")->withoutMiddleware("role:admin")->name("organizations");
                 $this->router->get("/organizations/create", "create")->name("organizations.create");
                 $this->router->post("/organizations", "store")->name("organizations.store");
+                $this->router->get("/organizations/{organization}/show", "show")->withoutMiddleware("role:admin")->name("organizations.show");
                 $this->router->get("/organizations/{organization}/edit", "edit")->name("organizations.edit");
                 $this->router->put("/organizations/{organization}", "update")->name("organizations.update");
                 $this->router->delete("/organizations/{organization}", "destroy")->name("organizations.destroy");
@@ -103,6 +105,7 @@ class WebRouting extends Routing
                 $this->router->get("/speakers", "index")->withoutMiddleware("role:admin")->name("speakers");
                 $this->router->post("/speakers", "store")->name("speakers.store");
                 $this->router->get("/speakers/create", "create")->name("speakers.create");
+                $this->router->get("/speakers/{speaker}/show", "show")->withoutMiddleware("role:admin")->name("speakers.show");
                 $this->router->get("/speakers/{speaker}/edit", "edit")->name("speakers.edit");
                 $this->router->put("/speakers/{speaker}", "update")->name("speakers.update");
                 $this->router->delete("/speakers/{speaker}", "destroy")->name("speakers.destroy");
@@ -112,9 +115,15 @@ class WebRouting extends Routing
                 $this->router->get("/news", "index")->withoutMiddleware("role:admin")->name("news");
                 $this->router->get("/news/create", "create")->name("news.create");
                 $this->router->post("/news", "store")->name("news.store");
+                $this->router->get("/news/{news}/show", "show")->withoutMiddleware("role:admin")->name("news.show");
                 $this->router->get("/news/{news}/edit", "edit")->name("news.edit");
                 $this->router->put("/news/{news}", "update")->name("news.update");
                 $this->router->delete("/news/{news}", "destroy")->name("news.destroy");
+            });
+
+            $this->router->controller(InvitationController::class)->group(function (): void {
+                $this->router->get("/invitation", "create")->name("invitation");
+                $this->router->post("/invitation", "store")->name("invitation.store");
             });
         });
 
@@ -138,11 +147,6 @@ class WebRouting extends Routing
             $this->router->post("/newsletter/subscribe/preference", "update")->name("newsletter.update");
             $this->router->get("/newsletter/unsubscribe", "delete")->name("newsletter.unsubscribe");
             $this->router->post("/newsletter/unsubscribe", "destroy")->name("newsletter.destroy");
-        });
-
-        $this->router->controller(InvitationController::class)->group(function (): void {
-            $this->router->get("/invitation", "create")->middleware("auth")->name("invitation");
-            $this->router->post("/invitation", "store")->name("invitation.store");
         });
 
         $this->router->controller(StaticController::class)->group(function (): void {

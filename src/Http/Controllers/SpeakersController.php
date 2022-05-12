@@ -44,6 +44,12 @@ class SpeakersController extends Controller
         return redirect()->route("admin.speakers");
     }
 
+    public function show(Speaker $speaker): View
+    {
+        return view("speakers.show")
+            ->with("speaker", $speaker);
+    }
+
     public function update(UpdateSpeakerRequest $request, StoreFile $service, Speaker $speaker): RedirectResponse
     {
         $input = $request->validated();

@@ -72,7 +72,7 @@
         </div>
         <div class="grid place-items-center md:grid-cols-2 xl:grid-cols-3 gap-y-12 gap-x-10 mt-8 relative">
             @forelse ($meetups as $meetup)
-                <a href="#" class="w-[397px] h-[309px] rounded-2xl bg-white shadow-lg">
+                <a href="{{ route('meetups.show', $meetup) }}" class="w-[397px] h-[309px] rounded-2xl bg-white shadow-lg">
                     <img src="{{ $meetup->logoPath }}" alt="{{ $meetup->title }} logo"
                         class="w-[397px] h-[167px] rounded-t-20" />
                     <div class="flex justify-between px-7 mt-1">
