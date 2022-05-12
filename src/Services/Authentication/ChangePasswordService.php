@@ -24,4 +24,9 @@ class ChangePasswordService
             throw new PasswordIsTheSameAsOldException();
         }
     }
+
+    public function hashPassword(string $password): string
+    {
+        return $this->hash->make($password);
+    }
 }

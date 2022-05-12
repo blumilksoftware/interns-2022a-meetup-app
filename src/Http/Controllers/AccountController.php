@@ -42,7 +42,10 @@ class AccountController extends Controller
                 ->with("error", $exception->getMessage());
         }
 
-        $user->update($request->validated());
+        $input = $request->validated();
+        $input["password"] = $service->hashPassword($request->validated("newPassword"));
+
+        $user->update($input);
 
         return redirect()->route("user.profile");
     }
