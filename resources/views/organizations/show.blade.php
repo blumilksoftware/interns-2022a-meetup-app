@@ -13,9 +13,9 @@
               {{ $organization->name }}
             </h2>
             <div class="flex items-center gap-5">
-              <a href="#" class="text-gray-600"><i class="fa-solid fa-earth-americas fa-xl"></i></a>
-              <a href="#" class="text-blue-500"><i class="fa-brands fa-facebook-square fa-xl"></i></a>
-              <a href="#" class="text-sky-700"><i class="fa-brands fa-linkedin fa-xl"></i></a>
+              @foreach ($organization->organizationProfiles as $profile)
+                <a href="{{ $profile->link }}" class="text-gray-600"><i class="{{ $profile->getIconPath() }} fa-xl"></i></a>
+              @endforeach
             </div>
           </div>
           <div class="flex justify-between gap-x-9 gap-y-4 text-gray-500 mt-5 flex-wrap">
