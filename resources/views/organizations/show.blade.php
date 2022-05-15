@@ -14,7 +14,8 @@
             </h2>
             <div class="flex items-center gap-5">
               @foreach ($organization->organizationProfiles as $profile)
-                <a href="{{ $profile->link }}" class="text-gray-600"><i class="{{ $profile->getIconPath() }} fa-xl"></i></a>
+                <a href="{{ $profile->link }}" class="text-gray-600" target="_blank"><i
+                    class="{{ $profile->getIconPath() }} fa-xl"></i></a>
               @endforeach
             </div>
           </div>
@@ -84,7 +85,8 @@
         <div class="grid md:grid-cols-2 lg:grid-cols-3 mt-10 gap-y-8">
           @forelse ($organization->meetups as $meetup)
             <a href="{{ route('meetups.show', $meetup) }}" class="w-[229px] h-[194px] rounded-2xl bg-white shadow-lg">
-              <img src="{{ $meetup->logoPath }}" alt="{{ $meetup->title }} meetup" class="h-[105px] w-full object-cover rounded-t-20" />
+              <img src="{{ $meetup->logoPath }}" alt="{{ $meetup->title }} meetup"
+                class="h-[105px] w-full object-cover rounded-t-20" />
               <div class="flex justify-between px-5">
                 <div class="flex flex-col h-[100px] justify-around">
                   <p class="text-sm w-40">{{ $meetup->title }}</p>
