@@ -16,7 +16,7 @@
                         {{ $meetup->language }}
 
                         <a href="{{ route('meetups.edit', $meetup) }}">Edit</a>
-                        <form action="{{ route('meetups.destroy', $meetup) }}" method="post">
+                        <form action="{{ route('meetups.destroy', $meetup) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit"  onclick="return confirm('Delete meetup? This operation is irreversible.')">Delete</button>

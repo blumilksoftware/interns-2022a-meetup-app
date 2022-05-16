@@ -24,7 +24,7 @@
             <ul class="mt-10">
                 @forelse ($speakers as $speaker)
                     <li class="border-b border-gray-300 py-6">
-                        <a href="#">
+                        <a href="{{ route('speakers.show', $speaker) }}">
                             <div class="flex justify-between items-center">
                                 <div class="flex gap-6">
                                     <img src="{{ $speaker->avatarPath }}" alt="avatar"

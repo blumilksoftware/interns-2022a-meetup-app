@@ -45,6 +45,7 @@ return [
         Blumilk\Meetup\Core\Providers\TelescopeServiceProvider::class,
         Blumilk\Meetup\Core\Providers\FileStorageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
     ],
     "aliases" => [
         ...Facade::defaultAliases()->toArray(),
@@ -53,5 +54,6 @@ return [
         "Constants" => Blumilk\Meetup\Core\Models\Utils\Constants::class,
         "AvailableNewsletter" => Blumilk\Meetup\Core\Enums\AvailableNewsletter::class,
         "Route" => Illuminate\Support\Facades\Route::class,
+        "Str" => Illuminate\Support\Str::class,
     ],
 ];

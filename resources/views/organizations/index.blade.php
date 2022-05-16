@@ -22,7 +22,7 @@
     <ul class="mt-11">
       @forelse ($organizations as $organization)
         <li class="mt-12">
-          <a href="#">
+          <a href="{{ route('organizations.show', $organization) }}">
             <div class="bg-white flex items-center flex-wrap md:flex-nowrap gap-9 shadow-lg rounded-20">
               <img src="{{ $organization->logoPath }}" alt="{{ $organization->name }} image"
                 class="w-full rounded-t-20 md:w-[361px] md:h-[218px] md:rounded-l-20 md:rounded-tr-none object-cover" />
