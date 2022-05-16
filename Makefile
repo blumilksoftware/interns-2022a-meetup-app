@@ -12,6 +12,10 @@ db-seed: ## Run db seeders
 db-fresh: ## Refresh db migrate
 	docker-compose exec php php artisan migrate:fresh
 
+db-admin: ## Refresh db and run seeder
+	$(MAKE) db-fresh
+	$(MAKE) db-seed
+
 start: ## Run server http
 	docker-compose up -d
 
@@ -54,6 +58,9 @@ node-install: ##  Install all dep for node
 
 node-build: ##  Build frontend for node
 	docker-compose exec node npm run dev
+
+eslint: ##  Run eslint
+	docker-compose exec node npm run eslint --fix
 
 init: ## First setup for project
 	$(MAKE) install
