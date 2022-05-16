@@ -36,14 +36,14 @@ class AccountController extends Controller
         $user = $this->auth->user();
 
         try {
-            $service->validatePassword($request->validated("newPassword"), $user->password);
+            $service->validatePassword($request->validated("new_password"), $user->password);
         } catch (PasswordIsTheSameAsOldException $exception) {
             return view("user.profile.password")
                 ->with("error", $exception->getMessage());
         }
 
         $input = $request->validated();
-        $input["password"] = $service->hashPassword($request->validated("newPassword"));
+        $input["password"] = $service->hashPassword($request->validated("new_password"));
 
         $user->update($input);
 

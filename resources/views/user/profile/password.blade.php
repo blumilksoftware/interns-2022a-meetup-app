@@ -30,31 +30,30 @@
                                 </div>
                             </div>
                             <div>
-                                <label for="newPassword" class="block text-sm font-medium text-gray-700">
+                                <label for="new_password" class="block text-sm font-medium text-gray-700">
                                     New Password
                                 </label>
                                 <div class="mt-1">
-                                    <input id="newPassword" name="newPassword" type="password" value="{{ old('newPassword') }}"
+                                    <input id="new_password" name="new_password" type="password" value="{{ old('new_password') }}"
                                            required
                                            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                                    <x-input-error for="newPassword" />
+                                    <x-input-error for="new_password" />
                                 </div>
                             </div>
 
                             <div>
-                                <label for="newPassword_confirmation" class="block text-sm font-medium text-gray-700">
+                                <label for="new_password_confirmation" class="block text-sm font-medium text-gray-700">
                                     Confirm New Password
                                 </label>
                                 <div class="mt-1">
-                                    <input id="newPassword_confirmation" name="newPassword_confirmation" type="password" required
-                                           value="{{ old('newPassword_confirmation') }}"
+                                    <input id="new_password_confirmation" name="new_password_confirmation" type="password" required
+                                           value="{{ old('new_password_confirmation') }}"
                                            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                                    <x-input-error for="newPassword_confirmation" />
+                                    <x-input-error for="new_password_confirmation" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 <div class="pt-6">
                     <div class="flex justify-end">
                         <a href="{{ route('user.profile') }}"
