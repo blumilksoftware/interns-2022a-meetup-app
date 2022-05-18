@@ -37,7 +37,8 @@
                   <tr @click="if($event.target.tagName !== 'BUTTON') window.location.href='{{ route('meetups.show', $meetup) }}'"
                     class="odd:bg-gray-100 cursor-pointer">
                     <td class="border pl-3 py-1">{{ $meetup->id }}</td>
-                    <td class="border pl-3 py-1 truncate">{{ $meetup->description }}</td>
+                    <td class="border pl-3 py-1 lg:w-1/2 max-w-0 overflow-hidden truncate">
+                     <p className="">{{ $meetup->description }}</p> </td>
                     <td class="border pl-3 py-1">{{ $meetup->date }}</td>
                     <td class="border pl-3 py-1">{{ $meetup->place }}</td>
                     <td class="border pl-3 py-1">{{ $meetup->language }}</td>

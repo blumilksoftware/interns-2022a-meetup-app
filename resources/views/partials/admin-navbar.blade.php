@@ -1,7 +1,7 @@
 <div x-data="{ navOpened: false }">
   <button @click="navOpened = !navOpened" class="fixed w-10 h-screen bg-indigo-800 inset-0">
     <span class="text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"><i
-        class="fa-solid fa-caret-right fa-xl"></i></span>
+        class="fa-solid fa-caret-right fa-xl z-10"></i></span>
   </button>
   <div x-show="navOpened" class="relative z-40 md:hidden" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
