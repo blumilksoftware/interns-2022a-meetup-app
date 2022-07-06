@@ -60,7 +60,7 @@
                 @endforelse
             </ul>
             <div class="py-5">
-                {{ $speakers->appends(Request::except('page'))->render() }}
+                {{ $speakers->appends(Request::except('page'))->links('vendor.pagination.tailwind') }}
             </div>
         </div>
     </div>

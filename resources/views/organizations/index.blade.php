@@ -73,7 +73,7 @@
       @endforelse
     </ul>
     <div class="mt-10">
-      {{ $organizations->appends(Request::except('page')) }}
+      {{ $organizations->appends(Request::except('page'))->links('vendor.pagination.tailwind') }}
     </div>
   </div>
 @endsection

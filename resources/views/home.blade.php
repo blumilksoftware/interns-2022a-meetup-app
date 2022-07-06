@@ -126,7 +126,7 @@
             @endforelse
         </div>
         <div class="mt-10">
-            {{ $meetups->appends(Request::except('page'))->render() }}
+            {{ $meetups->appends(Request::except('page'))->links('vendor.pagination.tailwind') }}
         </div>
     </div>
 @endsection
