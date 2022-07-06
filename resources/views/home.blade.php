@@ -69,15 +69,15 @@
                 <div>
                     <button @click="sortDropdownOpened = !sortDropdownOpened"
                             class="bg-white drop-shadow-filter p-2 rounded-lg flex">
-                        <p>Sort by: {{ ucfirst(Request::get('sort')) }}
-                            <i class="fa-solid fa-sort-{{ Request::get('direction') }}"></i>
+                        <p>Sort by:
+                            @sortablelink(Request::get("sort"), str_replace("_"," ", Request::get("sort")))
                         </p>
                         <span><i class="fa-solid fa-chevron-down fa-lg ml-3"></i></span>
                     </button>
                 </div>
                 <div x-show="sortDropdownOpened" x-cloak x-transition
-                     class="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
-                     id="user-menu" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
+                     class="origin-top-right absolute right-0 mt-2 w-auto rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
+                     id="meetups-sort-menu" role="menu" aria-orientation="vertical" aria-labelledby="meetups-sort-menu-button"
                      tabindex="-1">
                     <span class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
                        role="menuitem" tabindex="-1" id="sort-menu-item-0">
