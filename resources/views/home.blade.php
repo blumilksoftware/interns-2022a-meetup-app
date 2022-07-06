@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-    <div class="container xl:w-[1280px] mx-auto px-8 md:px-0">
+    <div class="container xl:w-[1280px] mx-auto px-8 md:px-0" x-data="{ sortDropdownOpened: false }">
         <div class="flex flex-col items-center">
             <h1 class="mt-10 text-4xl">Explore</h1>
             <div class="pt-2 mt-5 relative text-gray-600">
@@ -65,10 +65,38 @@
                 <p>Any language</p>
                 <span><i class="fa-solid fa-chevron-down fa-lg ml-3"></i></span>
             </button>
-            <button class="bg-white drop-shadow-filter p-2 rounded-lg flex">
-                <p>Any Sort by: Date</p>
-                <span><i class="fa-solid fa-chevron-down fa-lg ml-3"></i></span>
-            </button>
+            <div class="relative">
+                <div>
+                    <button @click="sortDropdownOpened = !sortDropdownOpened"
+                            class="bg-white drop-shadow-filter p-2 rounded-lg flex">
+                        <p>Sort by: {{ ucfirst(Request::get('sort')) }}
+                            <i class="fa-solid fa-sort-{{ Request::get('direction') }}"></i>
+                        </p>
+                        <span><i class="fa-solid fa-chevron-down fa-lg ml-3"></i></span>
+                    </button>
+                </div>
+                <div x-show="sortDropdownOpened" x-cloak x-transition
+                     class="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
+                     id="user-menu" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
+                     tabindex="-1">
+                    <span class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+                       role="menuitem" tabindex="-1" id="sort-menu-item-0">
+                        @sortablelink('date')
+                    </span>
+                    <span class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+                       role="menuitem" tabindex="-1" id="sort-menu-item-1">
+                        @sortablelink('title')
+                    </span>
+                    <span class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+                       role="menuitem" tabindex="-1" id="sort-menu-item-2">
+                        @sortablelink('place')
+                    </span>
+                    <span class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+                       role="menuitem" tabindex="-1" id="sort-menu-item-3">
+                        @sortablelink('language')
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="grid place-items-center md:grid-cols-2 xl:grid-cols-3 gap-y-12 gap-x-10 mt-8 relative">
             @forelse ($meetups as $meetup)
@@ -98,7 +126,7 @@
             @endforelse
         </div>
         <div class="mt-10">
-            {{ $meetups->links('vendor.pagination.tailwind') }}
+            {{ $meetups->appends(Request::except('page'))->render() }}
         </div>
     </div>
 @endsection
