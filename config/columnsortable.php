@@ -13,7 +13,7 @@ return [
             "class" => "fa fa-sort-amount",
         ],
         "numeric" => [
-            "rows" => ["created_at", "updated_at", "level", "id", "phone_number", "number_of_employees"],
+            "rows" => ["created_at", "updated_at", "level", "id", "phone_number", "number_of_employees", "meetups_count"],
             "class" => "fa fa-sort-numeric",
         ],
     ],

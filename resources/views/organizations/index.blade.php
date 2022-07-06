@@ -35,7 +35,7 @@
              </span>
              <span class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
                 role="menuitem" tabindex="-1" id="sort-menu-item-2">
-                 @sortablelink('organization_type', 'Type')
+                 @sortablelink('organization_type', 'Organization type')
              </span>
              <span class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
                 role="menuitem" tabindex="-1" id="sort-menu-item-3">
