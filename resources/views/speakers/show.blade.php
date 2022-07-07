@@ -3,17 +3,13 @@
 @section('content')
   <div class="container lg:w-[860px] mx-auto mt-16 px-5 md:px-0">
     <div class="bg-white px-12 pt-8 pb-16 rounded-20 shadow-xl">
-      <x-back-button name="speaker list" url="{{ route('speakers') }}" />
+      <x-back-button name="speakers list" url="{{ route('speakers') }}" />
       <div class="flex gap-9 items-start mt-8">
         <img src="{{ $speaker->avatarPath }}" alt="{{ $speaker->name }} avatar" class="w-32 h-32 rounded-full" />
         <div class="">
           <p class="text-3xl">{{ $speaker->name }}</p>
           <p class="mt-1">Frontend developer</p>
           <div class="flex gap-x-16 gap-y-3 text-gray-500 mt-2 flex-wrap">
-            <a href="#" class="flex items-center gap-3">
-              <i class="fa-brands fa-facebook-f fa-lg"></i>
-              <p>{{ $speaker->name }}</p>
-            </a>
             <a href="{{ $speaker->linkedinUrl }}" class="flex items-center gap-2">
               <i class="fa-brands fa-linkedin fa-lg"></i>
               <p>{{ $speaker->name }}</p>
