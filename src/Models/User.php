@@ -60,7 +60,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "email",
         "password",
         "avatar_path",
-        "is_2fa_enable"
+        "is_2fa_enable",
     ];
     protected $attributes = [
         "avatar_path" => Constants::USER_DEFAULT_AVATAR_PATH,

@@ -62,6 +62,10 @@ node-build: ##  Build frontend for node
 eslint: ##  Run eslint
 	docker-compose exec node npm run eslint --fix
 
+git-fix: ## Run cs-fin and eslint
+	$(MAKE) cs-fix
+	$(MAKE) eslint
+
 init: ## First setup for project
 	$(MAKE) install
 	$(MAKE) node-install

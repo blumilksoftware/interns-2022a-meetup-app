@@ -12,7 +12,7 @@ class Login2FaUserCodeRequest extends FormRequest
     {
         return [
             "email" => ["required", "string", "email", "max:255"],
-            "code" => ["required", "string", "numeric", "max:6"],
+            "code" => ["required", "string", "numeric", "max:999999"],
         ];
     }
 }

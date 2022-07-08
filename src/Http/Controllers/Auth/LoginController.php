@@ -29,7 +29,7 @@ class LoginController extends Controller
                 ->with("error", $exception->getMessage());
         }
 
-        return redirect()->route("2fa.index")->with(["email"=>$request->get("email")]);
+        return redirect()->route("2fa.index")->with(["email" => $request->get("email")]);
     }
 
     public function logout(Request $request, AuthManager $auth): RedirectResponse

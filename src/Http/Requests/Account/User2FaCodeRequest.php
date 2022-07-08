@@ -11,7 +11,7 @@ class User2FaCodeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "code" => ["required", "string", "numeric", "max:6"],
+            "code" => ["required", "string", "numeric", "max:999999"],
         ];
     }
 }

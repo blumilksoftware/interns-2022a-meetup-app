@@ -5,13 +5,10 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Services\Authentication;
 
 use Blumilk\Meetup\Core\Models\User;
-use Blumilk\Meetup\Core\Models\User2FaCode;
 use Blumilk\Meetup\Core\Notifications\TwoStepVerificationNotification;
-use Blumilk\Meetup\Core\Services\User2FaCodesService;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Hashing\Hasher;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Session\Store;
 
 class UserLoginService
@@ -29,19 +26,20 @@ class UserLoginService
         if (!$this->hasher->check($password, $user?->password)) {
             throw new AuthenticationException("Bad credentials");
         }
-        if ($user->is_2fa_enable){
+        if ($user->is_2fa_enable) {
             $this->generateCode($user);
+        } else {
+            $this->loginUser($user);
         }
-        else $this->loginUser($user);
     }
 
-    public function generateCode(User $user)
+    public function generateCode(User $user): void
     {
         $code = rand(100000, 999999);
 
         $user->codes()->updateOrCreate(
-            ['user_id' => $user->id],
-            ['code' => $code]
+            ["user_id" => $user->id],
+            ["code" => $code],
         );
         $user->notify(new TwoStepVerificationNotification($user, $code));
     }
