@@ -11,7 +11,9 @@ return new class() extends Migration {
     {
         Schema::create("user_2fa_codes", function (Blueprint $table): void {
             $table->id();
-            $table->integer("user_id");
+            $table->foreignId("user_id")
+                ->references("id")->on("users")
+                ->onDelete("cascade");
             $table->string("code");
             $table->timestamps();
         });
