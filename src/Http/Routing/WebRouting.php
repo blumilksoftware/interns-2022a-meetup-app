@@ -11,6 +11,7 @@ use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\PasswordResetController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
+use Blumilk\Meetup\Core\Http\Controllers\Auth\TwoFactorController;
 use Blumilk\Meetup\Core\Http\Controllers\ContactController;
 use Blumilk\Meetup\Core\Http\Controllers\InvitationController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
@@ -21,6 +22,8 @@ use Blumilk\Meetup\Core\Http\Controllers\OrganizationProfileController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
 use Blumilk\Meetup\Core\Http\Controllers\StaticController;
 use Blumilk\Meetup\Core\Http\Controllers\UserController;
+use Blumilk\Meetup\Core\Http\Controllers\UserSettingsController;
+use phpDocumentor\Reflection\Types\Void_;
 
 class WebRouting extends Routing
 {
@@ -57,6 +60,11 @@ class WebRouting extends Routing
             $this->router->get("/auth/google/callback", "handleGoogleCallback");
             $this->router->get("/auth/facebook/redirect", "redirectToFacebook")->middleware("guest")->name("login.facebook");
             $this->router->get("/auth/facebook/callback", "handleFacebookCallback");
+        });
+
+        $this->router->controller(TwoFactorController::class)->group(function(): void {
+            $this->router->get("auth/two","index")->middleware("guest")->name("2fa.index");
+            $this->router->post("auth/two","login")->middleware("guest")->name("2fa.login");
         });
 
         $this->router->middleware("role:admin")->group(function (): void {
@@ -124,6 +132,14 @@ class WebRouting extends Routing
             $this->router->controller(InvitationController::class)->group(function (): void {
                 $this->router->get("/invitation", "create")->name("invitation");
                 $this->router->post("/invitation", "store")->name("invitation.store");
+            });
+
+            $this->router->controller(UserSettingsController::class)->group(function ():void{
+                $this->router->get("/settings","index")->name("settings");
+                $this->router->post("/settings","enable2Fa")->name("enable2fa");
+                $this->router->post("/settings/disable","disable2Fa")->name("disable2fa");
+                $this->router->get("/settings/disable","disable2FaConfirm")->name("disable2fa.confirm");
+                $this->router->post("/settings/disabled","disable2FaStore")->name("disable2fa.store");
             });
         });
 
