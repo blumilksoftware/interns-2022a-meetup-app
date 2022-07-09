@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container lg:w-[800px] mx-auto">
+  <div class="container lg:w-[800px] mx-auto shadow-xl">
     <div class="bg-white mt-20 px-8 md:px-12 lg:px-16 py-8 rounded-2xl">
       <div class="flex justify-between items-center">
         <h3 class="text-xl font-semibold">General</h3>
