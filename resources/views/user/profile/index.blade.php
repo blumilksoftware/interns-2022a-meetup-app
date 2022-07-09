@@ -5,10 +5,16 @@
     <div class="bg-white mt-20 px-8 md:px-12 lg:px-16 py-8 rounded-2xl">
       <div class="flex justify-between items-center">
         <h3 class="text-xl font-semibold">General</h3>
-        <a href="{{ route('user.profile.edit') }}"
-          class="text-sm text-white py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700">
-          Edit Profile
-        </a>
+        <div>
+          <a href="{{ route('user.profile.edit') }}"
+            class="text-sm text-white py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 mr-3">
+            Edit Profile
+          </a>
+          <a href="{{ route('user.profile.password') }}"
+            class="text-sm text-white py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700">
+            Change password
+          </a>
+        </div>
       </div>
       <div class="flex flex-col md:flex-row justify-around items-center border-y-2 py-3 mt-3">
         <div class="w-1/2">
@@ -36,6 +42,12 @@
             <p>Male</p>
           </div>
         </div>
+      </div>
+      <div class="mt-5 -mb-5">
+        <a href="{{ route('user.profile.password') }}"
+          class="text-sm text-white py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700">
+          Change password
+        </a>
       </div>
       <h3 class="text-xl font-semibold mt-10 pb-3 border-b-2">Interests</h3>
       <form action="#" method="post">
