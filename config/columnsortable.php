@@ -34,6 +34,6 @@ return [
     "allow_request_modification" => true,
     "default_direction" => "asc",
     "default_direction_unsorted" => "asc",
-    "default_first_column" => true,
+    "default_first_column" => false,
     "join_type" => "leftJoin",
 ];
