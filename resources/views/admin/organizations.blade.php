@@ -24,14 +24,14 @@
             <table class="border border-collapse w-full mt-5">
               <thead class="text-left">
                 <tr>
-                  <th class="border pl-3 py-1">Id</th>
-                  <th class="border pl-3 py-1">Name</th>
-                  <th class="border pl-3 py-1">Location</th>
-                  <th class="border pl-3 py-1">Organization type</th>
-                  <th class="border pl-3 py-1">Foundation Date</th>
-                  <th class="border pl-3 py-1">Number of employees</th>
-                  <th class="border pl-3 py-1">Created at</th>
-                  <th class="border pl-3 py-1">Updated at</th>
+                  <th class="border pl-3 py-1">@sortablelink('id')</th>
+                  <th class="border pl-3 py-1">@sortablelink('name')</th>
+                  <th class="border pl-3 py-1">@sortablelink('location')</th>
+                  <th class="border pl-3 py-1">@sortablelink('organization_type', 'Organization type')</th>
+                  <th class="border pl-3 py-1">@sortablelink('foundation_date', 'Foundation Date')</th>
+                  <th class="border pl-3 py-1">@sortablelink('number_of_employees', 'Number of employees')</th>
+                  <th class="border pl-3 py-1">@sortablelink('created_at', 'Created at')</th>
+                  <th class="border pl-3 py-1">@sortablelink('updated_at', 'Updated at')</th>
                   <th class="border pl-3 py-1">Actions</th>
                 </tr>
               </thead>

@@ -24,11 +24,11 @@
             <table class="border border-collapse w-full mt-5">
               <thead class="text-left">
                 <tr>
-                  <th class="border pl-3 py-1">Id</th>
-                  <th class="border pl-3 py-1">Title</th>
-                  <th class="border pl-3 py-1">Date</th>
-                  <th class="border pl-3 py-1">Place</th>
-                  <th class="border pl-3 py-1">Language</th>
+                  <th class="border pl-3 py-1">@sortablelink('id')</th>
+                  <th class="border pl-3 py-1">@sortablelink('title')</th>
+                  <th class="border pl-3 py-1">@sortablelink('date')</th>
+                  <th class="border pl-3 py-1">@sortablelink('place')</th>
+                  <th class="border pl-3 py-1">@sortablelink('language')</th>
                   <th class="border pl-3 py-1">Actions</th>
                 </tr>
               </thead>

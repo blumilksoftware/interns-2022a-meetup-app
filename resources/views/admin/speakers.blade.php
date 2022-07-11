@@ -24,12 +24,12 @@
             <table class="border border-collapse w-full mt-5">
               <thead class="text-left">
                 <tr>
-                  <th class="border pl-3 py-1">Id</th>
-                  <th class="border pl-3 py-1">Name</th>
-                  <th class="border pl-3 py-1">Linkedin</th>
-                  <th class="border pl-3 py-1">Github</th>
-                  <th class="border pl-3 py-1">Created at</th>
-                  <th class="border pl-3 py-1">Updated at</th>
+                  <th class="border pl-3 py-1">@sortablelink('id')</th>
+                  <th class="border pl-3 py-1">@sortablelink('name')</th>
+                  <th class="border pl-3 py-1">@sortablelink('linkedin_url', 'Linkedin')</th>
+                  <th class="border pl-3 py-1">@sortablelink('github_url', 'GitHub')</th>
+                  <th class="border pl-3 py-1">@sortablelink('created_at', 'Created at')</th>
+                  <th class="border pl-3 py-1">@sortablelink('updated_at', 'Updated at')</th>
                   <th class="border pl-3 py-1">Actions</th>
                 </tr>
               </thead>
