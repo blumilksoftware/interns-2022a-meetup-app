@@ -36,7 +36,12 @@ class Speaker extends Model
         "github_url",
     ];
     protected $sortable = [
+        "id",
         "name",
+        "linkedin_url",
+        "github_url",
+        "created_at",
+        "updated_at",
     ];
     protected $sortableAs = ["meetups_count"];
     protected $attributes = [
