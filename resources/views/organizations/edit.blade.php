@@ -15,8 +15,8 @@
             </div>
             <div class="mt-6 flex flex-col gap-7">
               <div x-data class="sm:flex items-center">
-                <img x-ref="image" id="image" src="{{ $organization->logoPath }}"
-                  alt="{{ $organization->name }} logo" class="w-full sm:w-[400px] h-[200px]">
+                <img x-ref="image" id="image" src="{{ $organization->logoPath }}" alt="{{ $organization->name }} logo"
+                  class="w-full sm:w-[400px] h-[200px]">
                 <input @change="image.src = URL.createObjectURL($event.target.files[0])" type="file" accept="image/*"
                   id="logo" name="logo" class="hidden">
                 <label for="logo"
@@ -26,7 +26,7 @@
                 </label>
               </div>
               <x-form-input id="name" field="name" label="Name" placeholder="Name" type="text"
-              value="{{ old('name', $organization->name) }}" />
+                value="{{ old('name', $organization->name) }}" />
               <div>
                 <label for="description" class="block font-medium text-gray-700">
                   Description
@@ -76,7 +76,8 @@
             <div>
               <p> <i class="{{ $profile->getIconPath() }} text-gray-600 text-lg mr-2 rounded-full"></i>
                 {{ $profile->label }}:</p>
-              <a href="{{ $profile->link }}" class="text-blue-500 hover:text-blue-600">{{ $profile->link }}</a>
+              <a href="{{ $profile->link }}" class="text-blue-500 hover:text-blue-600"
+                target="_blank">{{ $profile->link }}</a>
             </div>
             <div class="flex">
               <a href="{{ route('organizations.profiles.edit', [$organization, $profile]) }}"

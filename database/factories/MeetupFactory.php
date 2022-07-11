@@ -16,7 +16,7 @@ class MeetupFactory extends Factory
     {
         return [
             "title" => $this->faker->word() . " Meetup",
-            "description" => $this->faker->word() . " Meetup",
+            "description" => $this->faker->text(1000),
             "date" => Carbon::createFromDate(2022, 01, 01),
             "place" => $this->faker->city(),
             "language" => $this->faker->languageCode(),

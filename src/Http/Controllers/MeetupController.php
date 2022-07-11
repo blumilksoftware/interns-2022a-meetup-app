@@ -22,7 +22,7 @@ class MeetupController extends Controller
 
     public function index(): View
     {
-        $meetups = Meetup::query()->latest()->with(["user"])->paginate(20);
+        $meetups = Meetup::query()->sortable()->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("home")
             ->with("meetups", $meetups);

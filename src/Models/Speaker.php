@@ -10,6 +10,7 @@ use Database\Factories\SpeakerFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Kyslik\ColumnSortable\Sortable;
 
 /**
  * @property int $id
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Speaker extends Model
 {
     use HasFactory;
+    use Sortable;
 
     public $incrementing = true;
     protected $primaryKey = "id";
@@ -33,6 +35,10 @@ class Speaker extends Model
         "linkedin_url",
         "github_url",
     ];
+    protected $sortable = [
+        "name",
+    ];
+    protected $sortableAs = ["meetups_count"];
     protected $attributes = [
         "avatar_path" => Constants::SPEAKER_DEFAULT_AVATAR_PATH,
     ];
