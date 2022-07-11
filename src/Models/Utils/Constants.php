@@ -19,4 +19,5 @@ class Constants
     public const NEWS_DEFAULT_LOGO_PATH = "static/images/news_list.webp";
     public const STORAGE_PATH = "storage/";
     public const DEFAULT_PAGINATION = 20;
+    public const DEFAULT_ADMIN_SORTING = ["id" => "desc"];
 }
