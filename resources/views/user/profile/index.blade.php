@@ -7,12 +7,8 @@
         <h3 class="text-xl font-semibold">General</h3>
         <div>
           <a href="{{ route('user.profile.edit') }}"
-            class="text-sm text-white py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 mr-3">
-            Edit Profile
-          </a>
-          <a href="{{ route('user.profile.password') }}"
             class="text-sm text-white py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700">
-            Change password
+            Edit Profile
           </a>
         </div>
       </div>
