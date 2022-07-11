@@ -25,7 +25,7 @@
               <thead class="text-left">
                 <tr>
                   <th class="border pl-3 py-1">Id</th>
-                  <th class="border pl-3 py-1">Description</th>
+                  <th class="border pl-3 py-1">Title</th>
                   <th class="border pl-3 py-1">Date</th>
                   <th class="border pl-3 py-1">Place</th>
                   <th class="border pl-3 py-1">Language</th>
@@ -37,8 +37,8 @@
                   <tr @click="if($event.target.tagName !== 'BUTTON') window.location.href='{{ route('meetups.show', $meetup) }}'"
                     class="odd:bg-gray-100 cursor-pointer">
                     <td class="border pl-3 py-1">{{ $meetup->id }}</td>
-                    <td class="border pl-3 py-1 lg:w-1/2 max-w-0 overflow-hidden truncate">
-                     <p className="">{{ $meetup->description }}</p> </td>
+                    <td class="border pl-3 py-1">
+                     <p className="">{{ $meetup->title }}</p> </td>
                     <td class="border pl-3 py-1">{{ $meetup->date }}</td>
                     <td class="border pl-3 py-1">{{ $meetup->place }}</td>
                     <td class="border pl-3 py-1">{{ $meetup->language }}</td>

@@ -19,6 +19,7 @@
               <thead class="text-left">
                 <tr>
                   <th class="border pl-3 py-1">Id</th>
+                  <th class="border pl-3 py-1">Name</th>
                   <th class="border pl-3 py-1">Email address</th>
                   <th class="border pl-3 py-1">Created at</th>
                   <th class="border pl-3 py-1">Updated at</th>
@@ -29,6 +30,7 @@
                 @foreach ($users as $user)
                   <tr class="odd:bg-gray-100">
                     <td class="border pl-3 py-1">{{ $user->id }}</td>
+                    <td class="border pl-3 py-1">{{ $user->name }}</td>
                     <td class="border pl-3 py-1">{{ $user->email }}</td>
                     <td class="border pl-3 py-1">{{ $user->createdAt }}</td>
                     <td class="border pl-3 py-1">{{ $user->updatedAt }}</td>

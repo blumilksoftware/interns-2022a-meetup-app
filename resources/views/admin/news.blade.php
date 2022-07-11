@@ -25,7 +25,6 @@
                 <tr>
                   <th class="border pl-3 py-1">Id</th>
                   <th class="border pl-3 py-1">Title</th>
-                  <th class="border pl-3 py-1">Description</th>
                   <th class="border pl-3 py-1">Actions</th>
                 </tr>
               </thead>
@@ -36,7 +35,6 @@
                     class="odd:bg-gray-100 cursor-pointer">
                     <td class="border pl-3 py-1">{{ $singleNews->id }}</td>
                     <td class="border pl-3 py-1">{{ $singleNews->title }}</td>
-                    <td class="border pl-3 py-1 truncate">{{ $singleNews->description }}</td>
                     <td class="border pl-3 py-1 w-52">
                       <div class="flex gap-3 text-white">
                         <a href="{{ route('news.edit', $singleNews) }}"
