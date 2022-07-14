@@ -55,7 +55,7 @@ class UserSettingsController extends Controller
     {
         $user = User::query()->where("email", $this->authManager->user()->email)->first();
         try {
-            $codesService->checkCode($user->id, $request->get("code"));
+            $codesService->checkCode($user->id, (int)$request->get("code"));
         } catch (AuthenticationException $exception) {
             return view("user.2faDisable")
                 ->with("error", $exception->getMessage());

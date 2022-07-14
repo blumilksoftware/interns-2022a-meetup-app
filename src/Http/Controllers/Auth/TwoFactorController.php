@@ -27,7 +27,7 @@ class TwoFactorController extends Controller
     {
         $user = User::query()->where("email", $request->get("email"))->first();
         try {
-            $codeService->checkCode($user->id, $request->get("code"));
+            $codeService->checkCode($user->id, (int)$request->get("code"));
         } catch (AuthenticationException $exception) {
             return view("user.2fa")
                 ->with([

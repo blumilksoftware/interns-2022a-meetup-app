@@ -30,10 +30,10 @@ class User2FaCodesService
     /**
      * @throws AuthenticationException
      */
-    public function checkCode(string $id, string $code): void
+    public function checkCode(string $id, int $code): void
     {
         $userCode = User2FaCode::query()->where("user_id", $id)->first();
-        if ($code !== $userCode->code) {
+        if ($code !== (int)$userCode->code) {
             throw new AuthenticationException("Wrong code");
         }
     }
