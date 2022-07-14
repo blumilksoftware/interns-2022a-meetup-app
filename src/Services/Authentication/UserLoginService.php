@@ -19,6 +19,9 @@ class UserLoginService
         protected Store $session,
     ) {}
 
+    /**
+     * @throws AuthenticationException
+     */
     public function checkUser(string $email, string $password): string
     {
         $user = User::query()->where("email", $email)->first();

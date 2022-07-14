@@ -27,6 +27,9 @@ class User2FaCodesService
         $user->notify(new TwoStepVerificationNotification($user, $code));
     }
 
+    /**
+     * @throws AuthenticationException
+     */
     public function checkCode(string $id, string $code): void
     {
         $userCode = User2FaCode::query()->where("user_id", $id)->first();
