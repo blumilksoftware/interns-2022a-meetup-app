@@ -23,13 +23,13 @@ class LoginController extends Controller
     public function login(LoginUserRequest $request, UserLoginService $service): RedirectResponse|View
     {
         try {
-            $service->checkUser($request->get("email"), $request->get("password"));
+            $route = $service->checkUser($request->get("email"), $request->get("password"));
         } catch (AuthenticationException $exception) {
             return view("user.login")
                 ->with("error", $exception->getMessage());
         }
 
-        return redirect()->route("2fa.index")->with(["email" => $request->get("email")]);
+        return redirect()->route($route)->with(["email" => $request->get("email")]);
     }
 
     public function logout(Request $request, AuthManager $auth): RedirectResponse

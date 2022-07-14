@@ -20,7 +20,7 @@ class User2FaCodesService
     {
         $code = rand(100000, 999999);
 
-        User2FaCode::updateOrCreate(
+        User2FaCode::query()->updateOrCreate(
             ["user_id" => $user->id],
             ["code" => $code],
         );

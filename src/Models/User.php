@@ -93,7 +93,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return asset($this->attributes["avatar_path"]);
     }
 
-    public function codes(): HasOne
+    public function code(): HasOne
     {
         return $this->hasOne(User2FaCode::class);
     }

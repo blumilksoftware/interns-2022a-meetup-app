@@ -19,25 +19,26 @@ class UserLoginService
         protected Store $session,
     ) {}
 
-    public function checkUser(string $email, string $password): void
+    public function checkUser(string $email, string $password): string
     {
-        $user = User::where("email", $email)->first();
+        $user = User::query()->where("email", $email)->first();
 
         if (!$this->hasher->check($password, $user?->password)) {
             throw new AuthenticationException("Bad credentials");
         }
-        if ($user->is_2fa_enable) {
+        if ($user->get("is2FaEnable")) {
             $this->generateCode($user);
-        } else {
-            $this->loginUser($user);
-        }
+            return "2fa.index";
+        }  
+        $this->loginUser($user);
+        return "home";
     }
 
     public function generateCode(User $user): void
     {
         $code = rand(100000, 999999);
 
-        $user->codes()->updateOrCreate(
+        $user->code()->updateOrCreate(
             ["user_id" => $user->id],
             ["code" => $code],
         );

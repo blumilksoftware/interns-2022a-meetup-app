@@ -27,6 +27,7 @@ class TwoStepVerificationNotification extends Notification
     {
         return (new MailMessage())
             ->replyTo($this->user->email)
+            ->line("It's your verification code:")
             ->line(
                 $this->code,
             );

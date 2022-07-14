@@ -23,11 +23,11 @@ class TwoFactorController extends Controller
             ->with("email", $email);
     }
 
-    public function login(Login2FaUserCodeRequest $request, User2FaCodesService $codesService, UserLoginService $loginService): RedirectResponse|View
+    public function login(Login2FaUserCodeRequest $request, User2FaCodesService $codeService, UserLoginService $loginService): RedirectResponse|View
     {
         $user = User::query()->where("email", $request->get("email"))->first();
         try {
-            $codesService->checkCode($user->id, $request->get("code"));
+            $codeService->checkCode($user->id, $request->get("code"));
         } catch (AuthenticationException $exception) {
             return view("user.2fa")
                 ->with([

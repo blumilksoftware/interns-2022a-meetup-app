@@ -132,14 +132,13 @@ class WebRouting extends Routing
                 $this->router->get("/invitation", "create")->name("invitation");
                 $this->router->post("/invitation", "store")->name("invitation.store");
             });
-
-            $this->router->controller(UserSettingsController::class)->group(function (): void {
-                $this->router->get("/settings", "index")->name("settings");
-                $this->router->post("/settings", "enable2Fa")->name("enable2fa");
-                $this->router->post("/settings/disable", "disable2Fa")->name("disable2fa");
-                $this->router->get("/settings/disable", "disable2FaConfirm")->name("disable2fa.confirm");
-                $this->router->post("/settings/disabled", "disable2FaStore")->name("disable2fa.store");
-            });
+        });
+        $this->router->controller(UserSettingsController::class)->middleware("auth")->group(function (): void {
+            $this->router->get("/settings", "index")->name("settings");
+            $this->router->post("/settings", "enable2Fa")->name("enable2fa");
+            $this->router->post("/settings/disable", "disable2Fa")->name("disable2fa");
+            $this->router->get("/settings/disable", "disable2FaConfirm")->name("disable2fa.confirm");
+            $this->router->post("/settings/disabled", "disable2FaStore")->name("disable2fa.store");
         });
 
         $this->router->controller(AccountController::class)->middleware("auth")->group(function (): void {
