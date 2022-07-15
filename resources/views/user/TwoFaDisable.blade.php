@@ -4,7 +4,7 @@
     <div class="container lg:w-[933px] mx-auto">
         <div class="md:flex mt-12 px-10 sm:mx-auto sm:w-full sm:max-w-md md:px-0 md:max-w-none">
             </div>
-                        <form action="{{ route('disable2fa.store') }}" class="space-y-6 mt-12 relative" action="#" method="POST">
+                        <form action="{{ route('disableTwoFa.store') }}" class="space-y-6 mt-12 relative" action="#" method="POST">
                             @csrf
                             @if (!empty($error))
                                 <div class="absolute text-red-500 -top-6 left-1/2 transform -translate-x-1/2">

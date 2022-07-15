@@ -25,14 +25,13 @@ class UserLoginService
     public function checkUser(string $email, string $password): string
     {
         $user = User::query()->where("email", $email)->first();
-
         if (!$this->hasher->check($password, $user?->password)) {
             throw new AuthenticationException("Bad credentials");
         }
-        if ($user->get("is2FaEnable")) {
+        if ($user->isTwoFaEnable) {
             $this->generateCode($user);
-            return "2fa.index";
-        }  
+            return "TwoFa.index";
+        }
         $this->loginUser($user);
         return "home";
     }

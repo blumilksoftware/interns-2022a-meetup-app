@@ -62,8 +62,8 @@ class WebRouting extends Routing
         });
 
         $this->router->controller(TwoFactorController::class)->group(function (): void {
-            $this->router->get("auth/two", "index")->middleware("guest")->name("2fa.index");
-            $this->router->post("auth/two", "login")->middleware("guest")->name("2fa.login");
+            $this->router->get("auth/two", "index")->middleware("guest")->name("TwoFa.index");
+            $this->router->post("auth/two", "login")->middleware("guest")->name("TwoFa.login");
         });
 
         $this->router->middleware("role:admin")->group(function (): void {
@@ -135,10 +135,10 @@ class WebRouting extends Routing
         });
         $this->router->controller(UserSettingsController::class)->middleware("auth")->group(function (): void {
             $this->router->get("/settings", "index")->name("settings");
-            $this->router->post("/settings", "enable2Fa")->name("enable2fa");
-            $this->router->post("/settings/disable", "disable2Fa")->name("disable2fa");
-            $this->router->get("/settings/disable", "disable2FaConfirm")->name("disable2fa.confirm");
-            $this->router->post("/settings/disabled", "disable2FaStore")->name("disable2fa.store");
+            $this->router->post("/settings", "enableTwoFa")->name("enableTwoFa");
+            $this->router->post("/settings/disable", "disableTwoFa")->name("disableTwoFa");
+            $this->router->get("/settings/disable", "disableTwoFaConfirm")->name("disableTwoFa.confirm");
+            $this->router->post("/settings/disabled", "disableTwoFaStore")->name("disableTwoFa.store");
         });
 
         $this->router->controller(AccountController::class)->middleware("auth")->group(function (): void {

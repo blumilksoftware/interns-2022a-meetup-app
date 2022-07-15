@@ -6,7 +6,7 @@ namespace Blumilk\Meetup\Core\Http\Requests\Account;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Login2FaUserCodeRequest extends FormRequest
+class LoginTwoFaUserCodeRequest extends FormRequest
 {
     public function rules(): array
     {

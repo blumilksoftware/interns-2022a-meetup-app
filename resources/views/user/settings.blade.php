@@ -15,7 +15,7 @@
                                         <label for="code" class="block text-sm font-medium text-gray-700">
                                             Two factor is enabled
                                         </label>
-                                        <form action="{{route('disable2fa')}}" class="space-y-6 mt-12 relative" action="#" method="POST">
+                                        <form action="{{route('disableTwoFa')}}" class="space-y-6 mt-12 relative" action="#" method="POST">
                                             @csrf
                                             <button value="Disable" type="submit"
                                                     class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -28,7 +28,7 @@
                                         <label for="code" class="block text-sm font-medium text-gray-700">
                                             Two factor is disabled
                                         </label>
-                                        <form action="{{route('enable2fa')}}" class="space-y-6 mt-12 relative" action="#" method="POST">
+                                        <form action="{{route('enableTwoFa')}}" class="space-y-6 mt-12 relative" action="#" method="POST">
                                             @csrf
                                             <button value="Enable" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                 Enable

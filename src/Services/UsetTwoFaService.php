@@ -10,7 +10,7 @@ use Blumilk\Meetup\Core\Notifications\TwoStepVerificationNotification;
 use Blumilk\Meetup\Core\Services\Authentication\UserLoginService;
 use Illuminate\Auth\AuthenticationException;
 
-class User2FaCodesService
+class UsetTwoFaService
 {
     public function __construct(
         protected UserLoginService $loginService,
