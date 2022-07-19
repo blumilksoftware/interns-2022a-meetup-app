@@ -94,7 +94,7 @@
             </a>
           </li>
         @empty
-          <li class="text-xl left-1/2 transform -translate-x-1/2 absolute top-4">There is no news!</li>
+          <li class="text-xl text-center">There is no news!</li>
         @endforelse
       </ul>
       <div class="mt-10">
