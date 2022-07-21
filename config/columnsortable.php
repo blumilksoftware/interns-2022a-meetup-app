@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
     "columns" => [
         "alpha" => [
-            "rows" => ["description", "email", "name", "slug", "title", "place", "language", "location", "organization_type"],
+            "rows" => ["email", "name", "slug", "title", "place", "language", "location", "organization_type", "linkedin_url", "github_url"],
             "class" => "fa fa-sort-alpha",
         ],
         "amount" => [
@@ -13,7 +13,7 @@ return [
             "class" => "fa fa-sort-amount",
         ],
         "numeric" => [
-            "rows" => ["created_at", "updated_at", "level", "id", "phone_number", "number_of_employees", "meetups_count"],
+            "rows" => ["created_at", "updated_at", "id", "number_of_employees", "meetups_count", "foundation_date"],
             "class" => "fa fa-sort-numeric",
         ],
     ],
@@ -34,6 +34,6 @@ return [
     "allow_request_modification" => true,
     "default_direction" => "asc",
     "default_direction_unsorted" => "asc",
-    "default_first_column" => true,
+    "default_first_column" => false,
     "join_type" => "leftJoin",
 ];

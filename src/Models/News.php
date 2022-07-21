@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Kyslik\ColumnSortable\Sortable;
 
 /**
  * @property int $id
@@ -24,6 +25,7 @@ use Illuminate\Support\Str;
 class News extends Model
 {
     use HasFactory;
+    use Sortable;
 
     public $incrementing = true;
     protected $primaryKey = "id";
@@ -33,6 +35,10 @@ class News extends Model
         "name",
         "text",
         "logo_path",
+    ];
+    protected array $sortable = [
+        "id",
+        "title",
     ];
     protected $attributes = [
         "logo_path" => Constants::NEWS_DEFAULT_LOGO_PATH,

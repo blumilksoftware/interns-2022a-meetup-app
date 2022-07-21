@@ -16,7 +16,7 @@ class OrganizationController extends Controller
 {
     public function index(): View
     {
-        $organizations = Organization::query()->sortable()->paginate(Constants::DEFAULT_PAGINATION);
+        $organizations = Organization::query()->sortable("name")->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("organizations.index")
             ->with("organizations", $organizations);
