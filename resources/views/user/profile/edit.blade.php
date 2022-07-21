@@ -38,6 +38,31 @@
               <x-form-input id="name" field="name" label="Name" placeholder="name" type="text"
                 value="{{ old('name', $user->name) }}" />
             </div>
+            <div class="mt-5">
+              <x-form-input id="location" field="location" label="Location" placeholder="location" type="text"
+                            value="{{ old('location', $user->location) }}" />
+            </div>
+            <div class="mt-5">
+              <x-form-input id="birthday" field="birthday" label="Birthday" placeholder="birthday" type="date"
+                            value="{{ old('birthday', $user->birthday->toDateString()) }}" />
+            </div>
+            <div class="mt-5">
+              <label for="label" class="block font-medium text-gray-700">
+                Gender
+              </label>
+              <div class="mt-1">
+                <select name="gender" id="gender"
+                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                  <option selected value="">-</option>
+                  @foreach ($genders as $gender)
+                    <option value="{{ $gender['label'] }}" @if ($gender['label'] === old('label', $user->gender)) selected @endif>
+                      {{ $gender['label'] }}
+                    </option>
+                  @endforeach
+                </select>
+                <x-input-error for="gender" />
+              </div>
+            </div>
           </div>
           <div class="pt-6">
             <div class="flex justify-end">
@@ -51,7 +76,6 @@
               </button>
             </div>
           </div>
-      </div>
       </form>
     </div>
   @endauth

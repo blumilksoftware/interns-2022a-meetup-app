@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
 use Blumilk\Meetup\Core\Contracts\StoreFile;
+use Blumilk\Meetup\Core\Enums\AvailableGenders;
 use Blumilk\Meetup\Core\Exceptions\PasswordIsTheSameAsOldException;
 use Blumilk\Meetup\Core\Http\Requests\Account\UpdateUserDataRequest;
 use Blumilk\Meetup\Core\Http\Requests\Account\UpdateUserPasswordRequest;
@@ -53,7 +54,10 @@ class AccountController extends Controller
     public function editData(): View
     {
         return view("user.profile.edit")
-            ->with("user", $this->auth->user());
+            ->with([
+                "user" => $this->auth->user(),
+                "genders" => AvailableGenders::casesToSelect(),
+            ]);
     }
 
     public function updateData(UpdateUserDataRequest $request, StoreFile $service): RedirectResponse

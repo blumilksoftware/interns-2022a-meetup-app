@@ -27,15 +27,15 @@
           </div>
           <div class="flex gap-5 py-3 border-b-2">
             <p class="font-semibold">Location:</p>
-            <p>London, England</p>
+            <p>{{ $user->location }}</p>
           </div>
           <div class="flex gap-5 py-3 border-b-2">
             <p class="font-semibold">Birthday:</p>
-            <p>30.02.2022</p>
+            <p>{{ $user->birthday->toDateString() }}</p>
           </div>
           <div class="flex gap-5 py-3">
             <p class="font-semibold">Gender:</p>
-            <p>Male</p>
+            <p>{{ $user->gender }}</p>
           </div>
         </div>
       </div>
