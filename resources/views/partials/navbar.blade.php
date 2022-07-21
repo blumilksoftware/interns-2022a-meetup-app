@@ -65,7 +65,7 @@
                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                 <span class="sr-only">Open user menu</span>
                 <img class="h-8 w-8 rounded-full"
-                  src="{{ Auth::user()->avatarPath }}"
+                  src="{{ Auth::user()->profile->avatarPath }}"
                   alt="">
               </button>
             </div>

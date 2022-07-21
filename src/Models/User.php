@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Models;
 
-use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Database\Factories\UserFactory;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
@@ -16,6 +15,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -33,12 +33,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon|null $emailVerifiedAt
  * @property string $password
  * @property string|null $rememberToken
- * @property string $avatarPath
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
- * @property string|null $location
- * @property Carbon|null $birthday
- * @property string|null $gender
  * @property-read Collection<Meetup> $meetups
  * @property-read DatabaseNotificationCollection<DatabaseNotification> $notifications
  * @property-read Collection<SocialAccount> $socialAccounts
@@ -62,23 +58,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "name",
         "email",
         "password",
-        "avatar_path",
-        "location",
-        "birthday",
-        "gender",
     ];
     protected array $sortable = [
         "id",
         "name",
         "email",
-        "location",
-        "birthday",
-        "gender",
         "created_at",
         "updated_at",
-    ];
-    protected $attributes = [
-        "avatar_path" => Constants::USER_DEFAULT_AVATAR_PATH,
     ];
     protected $hidden = [
         "password",
@@ -88,6 +74,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "email_verified_at" => "datetime",
         "birthday" => "date",
     ];
+    protected $with = [
+        "profile",
+    ];
+
+    public function profile(): HasOne
+    {
+        return $this->hasOne(Profile::class);
+    }
 
     public function meetups(): HasMany
     {
@@ -102,11 +96,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function news(): HasMany
     {
         return $this->hasMany(News::class);
-    }
-
-    public function getAvatarPathAttribute(): string
-    {
-        return asset($this->attributes["avatar_path"]);
     }
 
     protected static function newFactory(): UserFactory

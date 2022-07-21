@@ -10,18 +10,14 @@ return new class() extends Migration {
     public function up(): void
     {
         Schema::table("users", function (Blueprint $table): void {
-            $table->string("location")->nullable();
-            $table->date("birthday")->nullable();
-            $table->string("gender")->nullable();
+            $table->dropColumn("avatar_path");
         });
     }
 
     public function down(): void
     {
         Schema::table("users", function (Blueprint $table): void {
-            $table->dropColumn("location");
-            $table->dropColumn("birthday");
-            $table->dropColumn("gender");
+            $table->string("avatar_path")->nullable();
         });
     }
 };

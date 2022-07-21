@@ -4,7 +4,7 @@
   <div class="container md:w-[800px] mx-auto">
     @auth
       <div class="bg-white p-6 mt-20 rounded-20 shadow-xl">
-        <form method="post" action="#" enctype="multipart/form-data">
+        <form method="post" action="{{ route('user.profile.update') }}" enctype="multipart/form-data">
           @method('PUT')
           @csrf
           <div>
@@ -18,7 +18,7 @@
                 Avatar
               </label>
               <div x-data class="flex items-center gap-12 mt-4">
-                <img x-ref="image" id="image" src="{{ $user->avatarPath }}" alt="{{ $user->name }} avatar"
+                <img x-ref="image" id="image" src="{{ $user->profile->avatarPath }}" alt="{{ $user->name }} avatar"
                   class="w-full sm:w-[100px] h-[100px] rounded-full object-cover">
                 <input @change="image.src = URL.createObjectURL($event.target.files[0])" type="file" accept="image/*"
                   id="avatar" name="avatar" class="hidden">
@@ -40,11 +40,11 @@
             </div>
             <div class="mt-5">
               <x-form-input id="location" field="location" label="Location" placeholder="location" type="text"
-                            value="{{ old('location', $user->location) }}" />
+                            value="{{ old('location', $user->profile->location) }}" />
             </div>
             <div class="mt-5">
               <x-form-input id="birthday" field="birthday" label="Birthday" placeholder="birthday" type="date"
-                            value="{{ old('birthday', $user->birthday?->toDateString()) }}" />
+                            value="{{ old('birthday', $user->profile->birthday?->toDateString()) }}" />
             </div>
             <div class="mt-5">
               <label for="label" class="block font-medium text-gray-700">
@@ -55,7 +55,7 @@
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                   <option selected value="">-</option>
                   @foreach ($genders as $gender)
-                    <option value="{{ $gender['label'] }}" @if ($gender['label'] === old('label', $user->gender)) selected @endif>
+                    <option value="{{ $gender['label'] }}" @if ($gender['label'] === old('label', $user->profile->gender)) selected @endif>
                       {{ $gender['label'] }}
                     </option>
                   @endforeach

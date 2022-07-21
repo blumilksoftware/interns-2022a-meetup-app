@@ -11,6 +11,7 @@ use Blumilk\Meetup\Core\Http\Requests\Account\UpdateUserDataRequest;
 use Blumilk\Meetup\Core\Http\Requests\Account\UpdateUserPasswordRequest;
 use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Services\Authentication\ChangePasswordService;
+use Blumilk\Meetup\Core\Services\UserProfileService;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -60,14 +61,15 @@ class AccountController extends Controller
             ]);
     }
 
-    public function updateData(UpdateUserDataRequest $request, StoreFile $service): RedirectResponse
+    public function updateData(UpdateUserDataRequest $request, StoreFile $service, UserProfileService $userProfileService): RedirectResponse
     {
-        $user = $this->auth->user();
-        $input = $request->validated();
+        $profileData = $request->profileData();
+
         if ($request->hasFile("avatar")) {
-            $input["avatar_path"] = $service->storeFile(Constants::USERS_AVATARS_PATH, $request->file("avatar"));
+            $profileData["avatar_path"] = $service->storeFile(Constants::USERS_AVATARS_PATH, $request->file("avatar"));
         }
-        $user->update($input);
+
+        $userProfileService->update($request->user(), $request->userData(), $profileData);
 
         return redirect()->route("user.profile");
     }

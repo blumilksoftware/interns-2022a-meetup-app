@@ -24,4 +24,21 @@ class UpdateUserDataRequest extends FormRequest
             "gender" => ["nullable", new Enum(AvailableGenders::class)],
         ];
     }
+
+    public function userData(): array
+    {
+        return [
+            "email" => $this->get("email"),
+            "name" => $this->get("name"),
+        ];
+    }
+
+    public function profileData(): array
+    {
+        return [
+            "location" => $this->get("location"),
+            "birthday" => $this->get("birthday"),
+            "gender" => $this->get("gender"),
+        ];
+    }
 }

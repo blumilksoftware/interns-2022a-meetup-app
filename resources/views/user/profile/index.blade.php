@@ -14,7 +14,7 @@
       </div>
       <div class="flex flex-col md:flex-row justify-around items-center border-y-2 py-3 mt-3">
         <div class="w-1/2">
-          <img src="{{ $user->avatarPath }}" alt="avatar" class="w-52 h-52 rounded-full object-cover mx-auto" />
+          <img src="{{ $user->profile->avatarPath }}" alt="avatar" class="w-52 h-52 rounded-full object-cover mx-auto" />
         </div>
         <div class="md:w-1/2">
           <div class="flex gap-5 py-3 border-b-2">
@@ -27,15 +27,15 @@
           </div>
           <div class="flex gap-5 py-3 border-b-2">
             <p class="font-semibold">Location:</p>
-            <p>{{ $user->location }}</p>
+            <p>{{ $user->profile->location }}</p>
           </div>
           <div class="flex gap-5 py-3 border-b-2">
             <p class="font-semibold">Birthday:</p>
-            <p>{{ $user->birthday?->toDateString() }}</p>
+            <p>{{ $user->profile->birthday?->toDateString() }}</p>
           </div>
           <div class="flex gap-5 py-3">
             <p class="font-semibold">Gender:</p>
-            <p>{{ $user->gender }}</p>
+            <p>{{ $user->profile->gender }}</p>
           </div>
         </div>
       </div>

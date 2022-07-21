@@ -25,6 +25,8 @@ class DummyDataSeeder extends Seeder
             "email_verified_at" => Carbon::createFromDate(2022, 01, 01),
         ])->create()->assignRole("admin");
 
+        $user->profile()->create();
+
         $organizations = Organization::factory(10)->create();
         $speakers = Speaker::factory(25)->create();
 
