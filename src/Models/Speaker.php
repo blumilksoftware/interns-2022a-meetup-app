@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Models;
 
 use Blumilk\Meetup\Core\Models\Utils\Constants;
-use Blumilk\Meetup\Core\Models\Utils\Formats;
 use Database\Factories\SpeakerFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -41,9 +40,6 @@ class Speaker extends Model
     protected $sortableAs = ["meetups_count"];
     protected $attributes = [
         "avatar_path" => Constants::SPEAKER_DEFAULT_AVATAR_PATH,
-    ];
-    protected $casts = [
-        "date:" . Formats::DATETIME,
     ];
 
     public function meetups(): BelongsToMany

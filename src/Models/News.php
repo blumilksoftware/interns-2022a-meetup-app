@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Models;
 
 use Blumilk\Meetup\Core\Models\Utils\Constants;
-use Blumilk\Meetup\Core\Models\Utils\Formats;
 use Database\Factories\NewsFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,9 +36,6 @@ class News extends Model
     ];
     protected $attributes = [
         "logo_path" => Constants::NEWS_DEFAULT_LOGO_PATH,
-    ];
-    protected $casts = [
-        "date:" . Formats::DATETIME,
     ];
 
     public function user(): BelongsTo

@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Models;
 
 use Blumilk\Meetup\Core\Models\Utils\Constants;
-use Blumilk\Meetup\Core\Models\Utils\Formats;
 use Database\Factories\OrganizationFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
@@ -18,7 +18,7 @@ use Kyslik\ColumnSortable\Sortable;
  * @property string|null $description
  * @property string $location
  * @property string $organizationType
- * @property string $foundationDate
+ * @property Carbon $foundationDate
  * @property int $numberOfEmployees
  * @property string $logoPath
  * @property-read Collection<Meetup> $meetups
@@ -52,7 +52,7 @@ class Organization extends Model
         "logo_path" => Constants::ORGANIZATION_DEFAULT_LOGO_PATH,
     ];
     protected $casts = [
-        "foundation_date:" . Formats::DATETIME,
+        "foundation_date" => "datetime",
     ];
 
     public function meetups(): HasMany
