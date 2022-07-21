@@ -44,7 +44,7 @@
             </div>
             <div class="mt-5">
               <x-form-input id="birthday" field="birthday" label="Birthday" placeholder="birthday" type="date"
-                            value="{{ old('birthday', $user->birthday->toDateString()) }}" />
+                            value="{{ old('birthday', $user->birthday?->toDateString()) }}" />
             </div>
             <div class="mt-5">
               <label for="label" class="block font-medium text-gray-700">

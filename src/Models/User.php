@@ -71,6 +71,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "id",
         "name",
         "email",
+        "location",
+        "birthday",
+        "gender",
         "created_at",
         "updated_at",
     ];

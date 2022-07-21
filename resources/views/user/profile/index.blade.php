@@ -31,7 +31,7 @@
           </div>
           <div class="flex gap-5 py-3 border-b-2">
             <p class="font-semibold">Birthday:</p>
-            <p>{{ $user->birthday->toDateString() }}</p>
+            <p>{{ $user->birthday?->toDateString() }}</p>
           </div>
           <div class="flex gap-5 py-3">
             <p class="font-semibold">Gender:</p>
