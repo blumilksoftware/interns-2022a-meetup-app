@@ -35,6 +35,9 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $avatarPath
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
+ * @property string|null $location
+ * @property Carbon|null $birthday
+ * @property string|null $gender
  * @property-read Collection<Meetup> $meetups
  * @property-read DatabaseNotificationCollection<DatabaseNotification> $notifications
  * @property-read Collection<SocialAccount> $socialAccounts
@@ -58,6 +61,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "email",
         "password",
         "avatar_path",
+        "location",
+        "birthday",
+        "gender",
     ];
     protected $attributes = [
         "avatar_path" => Constants::USER_DEFAULT_AVATAR_PATH,
@@ -68,6 +74,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
     protected $casts = [
         "email_verified_at" => "datetime",
+        "birthday" => "date",
     ];
 
     public function meetups(): HasMany
