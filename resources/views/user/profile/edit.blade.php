@@ -40,11 +40,11 @@
             </div>
             <div class="mt-5">
               <x-form-input id="location" field="location" label="Location" placeholder="location" type="text"
-                            value="{{ old('location', $user->profile->location) }}" />
+                value="{{ old('location', $user->profile->location) }}" />
             </div>
             <div class="mt-5">
               <x-form-input id="birthday" field="birthday" label="Birthday" placeholder="birthday" type="date"
-                            value="{{ old('birthday', $user->profile->birthday?->toDateString()) }}" />
+                value="{{ old('birthday', $user->profile->birthday?->toDateString()) }}" />
             </div>
             <div class="mt-5">
               <label for="label" class="block font-medium text-gray-700">

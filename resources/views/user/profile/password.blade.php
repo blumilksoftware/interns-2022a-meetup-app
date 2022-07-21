@@ -4,7 +4,7 @@
   <div class="container md:w-[800px] mx-auto">
     @auth
       <form method="post" action="" enctype="multipart/form-data" class="bg-white p-6 mt-20 rounded-20 shadow-xl">
-        @method('PUT')
+        @method('PATCH')
         @csrf
         <div>
           <div>
