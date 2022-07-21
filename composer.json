@@ -17,6 +17,7 @@
     "laravel/socialite": "^5.5",
     "laravel/telescope": "^4.7",
     "laravel/tinker": "^2.7",
+    "spatie/laravel-options": "^1.0",
     "spatie/laravel-permission": "^5.5"
   },
   "require-dev": {

@@ -15,6 +15,7 @@ use Blumilk\Meetup\Core\Services\UserProfileService;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Spatie\LaravelOptions\Options;
 
 class AccountController extends Controller
 {
@@ -57,7 +58,7 @@ class AccountController extends Controller
         return view("user.profile.edit")
             ->with([
                 "user" => $this->auth->user(),
-                "genders" => AvailableGenders::casesToSelect(),
+                "genders" => Options::forEnum(AvailableGenders::class)->toArray(),
             ]);
     }
 
