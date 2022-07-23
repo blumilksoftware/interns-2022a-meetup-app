@@ -36,7 +36,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $avatarPath
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
- * @property boolean $isTwoFaEnable
+ * @property boolean $hasTwoFaEnable
  * @property-read Collection<Meetup> $meetups
  * @property-read DatabaseNotificationCollection<DatabaseNotification> $notifications
  * @property-read Collection<SocialAccount> $socialAccounts
@@ -60,7 +60,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "email",
         "password",
         "avatar_path",
-        "is_two_fa_enable",
+        "has_two_fa_enable",
     ];
     protected $attributes = [
         "avatar_path" => Constants::USER_DEFAULT_AVATAR_PATH,
@@ -95,7 +95,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function code(): HasOne
     {
-        return $this->hasOne(User2FaCode::class);
+        return $this->hasOne(UserTwoFaCode::class);
     }
 
     protected static function newFactory(): UserFactory
