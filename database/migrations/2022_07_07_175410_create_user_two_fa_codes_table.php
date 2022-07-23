@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Schema;
 return new class() extends Migration {
     public function up(): void
     {
-        Schema::create("user_2fa_codes", function (Blueprint $table): void {
+        Schema::create("user_two_fa_codes", function (Blueprint $table): void {
             $table->id();
             $table->foreignId("user_id")
                 ->references("id")->on("users")
@@ -21,6 +21,6 @@ return new class() extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists("user_2fa_codes");
+        Schema::dropIfExists("user_two_fa_codes");
     }
 };

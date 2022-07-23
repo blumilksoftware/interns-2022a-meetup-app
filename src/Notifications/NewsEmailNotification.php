@@ -21,7 +21,7 @@ class NewsEmailNotification extends Notification
 
     public function via(): array
     {
-        return ["mail"];
+        return [Channels::MAIL];
     }
 
     public function toMail(): MailMessage
