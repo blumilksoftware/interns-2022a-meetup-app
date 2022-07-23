@@ -10,14 +10,14 @@ return new class() extends Migration {
     public function up(): void
     {
         Schema::table("users", function (Blueprint $table): void {
-            $table->boolean("is_two_fa_enable")->default(false);
+            $table->boolean("has_two_fa_enable")->default(false);
         });
     }
 
     public function down(): void
     {
         Schema::table("users", function (Blueprint $table): void {
-            $table->dropColumn("is_two_fa_enable");
+            $table->dropColumn("has_two_fa_enable");
         });
     }
 };
