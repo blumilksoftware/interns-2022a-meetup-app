@@ -62,8 +62,8 @@ class WebRouting extends Routing
         });
 
         $this->router->controller(TwoFactorController::class)->group(function (): void {
-            $this->router->get("auth/two", "index")->middleware("guest")->name("TwoFa.index");
-            $this->router->post("auth/two", "login")->middleware("guest")->name("TwoFa.login");
+            $this->router->get("auth/two", "index")->middleware("guest")->name("twoFa.index");
+            $this->router->post("auth/two", "login")->middleware("guest")->name("twoFa.login");
         });
 
         $this->router->middleware("role:admin")->group(function (): void {
