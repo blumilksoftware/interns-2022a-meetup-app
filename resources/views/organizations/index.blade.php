@@ -69,7 +69,7 @@
           </a>
         </li>
       @empty
-        <p class="text-xl text-center absolute top-4">There are no organizations</p>
+        <p class="text-xl text-center">There are no organizations</p>
       @endforelse
     </ul>
     <div class="mt-10">

@@ -15,7 +15,7 @@ class SpeakersController extends Controller
 {
     public function index(): View
     {
-        $speakers = Speaker::query()->withCount("meetups")->sortable()->paginate(Constants::DEFAULT_PAGINATION);
+        $speakers = Speaker::query()->withCount("meetups")->sortable("name")->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("speakers.index")
             ->with("speakers", $speakers);

@@ -42,11 +42,14 @@ class Organization extends Model
         "website_url",
     ];
     protected array $sortable = [
+        "id",
         "name",
         "location",
         "organization_type",
         "foundation_date",
         "number_of_employees",
+        "created_at",
+        "updated_at",
     ];
     protected $attributes = [
         "logo_path" => Constants::ORGANIZATION_DEFAULT_LOGO_PATH,

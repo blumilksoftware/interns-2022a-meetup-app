@@ -45,6 +45,7 @@ class Meetup extends Model
         "organization_id",
     ];
     protected array $sortable = [
+        "id",
         "date",
         "title",
         "place",

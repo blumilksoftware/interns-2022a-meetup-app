@@ -22,6 +22,7 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use Kyslik\ColumnSortable\Sortable;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\PersonalAccessToken;
 use Spatie\Permission\Traits\HasRoles;
@@ -52,6 +53,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use Notifiable;
     use HasFactory;
     use HasRoles;
+    use Sortable;
 
     public $incrementing = true;
     protected $primaryKey = "id";
@@ -61,6 +63,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "password",
         "avatar_path",
         "has_two_fa_enable",
+    ];
+    protected array $sortable = [
+        "id",
+        "name",
+        "email",
+        "created_at",
+        "updated_at",
     ];
     protected $attributes = [
         "avatar_path" => Constants::USER_DEFAULT_AVATAR_PATH,
