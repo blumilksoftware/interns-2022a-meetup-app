@@ -62,7 +62,7 @@ node-build: ##  Build frontend for node
 eslint: ##  Run eslint
 	docker-compose exec node npm run eslint --fix
 
-git-fix: ## Run cs-fin and eslint
+git-fix: ## Run cs-fix and eslint
 	$(MAKE) cs-fix
 	$(MAKE) eslint
 
