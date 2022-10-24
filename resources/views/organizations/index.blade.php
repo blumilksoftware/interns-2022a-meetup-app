@@ -47,6 +47,7 @@
              </span>
         </div>
       </div>
+      <x-input-limits-pagination />
     </div>
     <ul class="mt-11">
       @forelse ($organizations as $organization)

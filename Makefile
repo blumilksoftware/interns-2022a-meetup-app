@@ -62,15 +62,33 @@ node-build: ##  Build frontend for node
 eslint: ##  Run eslint
 	docker-compose exec node npm run eslint --fix
 
-init: ## First setup for project
+git-fix: ## Run cs-fix and eslint
+	$(MAKE) cs-fix
+	$(MAKE) eslint
+
+init-sqllite: ## First setup for project (sqllite)
 	$(MAKE) install
 	$(MAKE) node-install
 	$(MAKE) node-build
 	$(MAKE) sqlite-create
 	$(MAKE) start
+	$(MAKE) composer-install
 	$(MAKE) key-generate
-	$(MAKE) sqlite-create
 	$(MAKE) db-create
+	$(MAKE) db-seed
+
+init-postgres: ## First setup for project (postgres)
+	$(MAKE) install
+	$(MAKE) node-install
+	$(MAKE) node-build
+	$(MAKE) start
+	$(MAKE) composer-install
+	$(MAKE) key-generate
+	$(MAKE) db-create
+	$(MAKE) db-seed
+
+kill-all: ## Kill all running containers
+	docker container kill $$(docker container ls -q)
 
 .PHONY: help
 help:

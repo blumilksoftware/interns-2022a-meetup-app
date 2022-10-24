@@ -35,6 +35,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string|null $rememberToken
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
+ * @property boolean $hasTwoFaEnable
  * @property-read Collection<Meetup> $meetups
  * @property-read DatabaseNotificationCollection<DatabaseNotification> $notifications
  * @property-read Collection<SocialAccount> $socialAccounts
@@ -58,6 +59,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "name",
         "email",
         "password",
+        "avatar_path",
+        "has_two_fa_enable",
     ];
     protected array $sortable = [
         "id",
@@ -96,6 +99,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function news(): HasMany
     {
         return $this->hasMany(News::class);
+    }
+
+    public function getAvatarPathAttribute(): string
+    {
+        return asset($this->attributes["avatar_path"]);
+    }
+
+    public function code(): HasOne
+    {
+        return $this->hasOne(UserTwoFaCode::class);
     }
 
     protected static function newFactory(): UserFactory

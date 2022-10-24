@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Services\Authentication;
 
+use Blumilk\Meetup\Core\Exceptions\UserHasTwoFactorException;
 use Blumilk\Meetup\Core\Models\User;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\AuthManager;
@@ -20,15 +21,22 @@ class UserLoginService
 
     /**
      * @throws AuthenticationException
+     * @throws UserHasTwoFactorException
      */
-    public function loginUser(string $email, string $password): void
+    public function checkUser(string $email, string $password): void
     {
-        $user = User::where("email", $email)->first();
-
+        $user = User::query()->where("email", $email)->first();
         if (!$this->hasher->check($password, $user?->password)) {
             throw new AuthenticationException("Bad credentials");
         }
+        if ($user->hasTwoFaEnable) {
+            throw new UserHasTwoFactorException();
+        }
+        $this->loginUser($user);
+    }
 
+    public function loginUser(User $user): void
+    {
         $this->authManager->login($user);
         $this->session->regenerate();
     }

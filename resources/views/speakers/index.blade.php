@@ -37,6 +37,7 @@
                         </span>
                     </div>
                 </div>
+                <x-input-limits-pagination />
             </div>
             <ul class="mt-10">
                 @forelse ($speakers as $speaker)

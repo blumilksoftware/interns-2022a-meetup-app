@@ -53,6 +53,7 @@ return [
         "Auth" => Illuminate\Support\Facades\Auth::class,
         "Constants" => Blumilk\Meetup\Core\Models\Utils\Constants::class,
         "AvailableNewsletter" => Blumilk\Meetup\Core\Enums\AvailableNewsletter::class,
+        "Route" => Illuminate\Support\Facades\Route::class,
         "Str" => Illuminate\Support\Str::class,
     ],
 ];
