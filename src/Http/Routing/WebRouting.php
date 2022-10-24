@@ -103,9 +103,9 @@ class WebRouting extends Routing
             $this->router->controller(OrganizationProfileController::class)->group(function (): void {
                 $this->router->get("/organizations/{organization}/profiles/create", "create")->name("organizations.profiles.create");
                 $this->router->post("/organizations/{organization}/profiles", "store")->name("organizations.profiles.store");
-                $this->router->get("/organizations/{organization}/profiles/{profile}/edit", "edit")->name("organizations.profiles.edit");
-                $this->router->put("/organizations/{organization}/profiles/{profile}", "update")->name("organizations.profiles.update");
-                $this->router->delete("/organizations/{organization}/profiles/{profile}", "destroy")->name("organizations.profiles.destroy");
+                $this->router->get("/organizations/{organization}/profiles/{organizationProfile}/edit", "edit")->name("organizations.profiles.edit")->scopeBindings();
+                $this->router->put("/organizations/{organization}/profiles/{organizationProfile}", "update")->name("organizations.profiles.update")->scopeBindings();
+                $this->router->delete("/organizations/{organization}/profiles/{organizationProfile}", "destroy")->name("organizations.profiles.destroy")->scopeBindings();
             });
 
             $this->router->controller(SpeakersController::class)->group(function (): void {
