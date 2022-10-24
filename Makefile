@@ -74,7 +74,6 @@ init-sqllite: ## First setup for project (sqllite)
 	$(MAKE) start
 	$(MAKE) composer-install
 	$(MAKE) key-generate
-	$(MAKE) sqlite-create
 	$(MAKE) db-create
 	$(MAKE) db-seed
 
