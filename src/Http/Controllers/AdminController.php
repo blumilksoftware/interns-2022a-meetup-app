@@ -21,7 +21,7 @@ class AdminController extends Controller
 
     public function usersIndex(): View
     {
-        $users = User::query()->latest()->paginate(Constants::DEFAULT_PAGINATION);
+        $users = User::query()->sortable(Constants::DEFAULT_ADMIN_SORTING)->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("admin.users")
             ->with("users", $users);
@@ -29,7 +29,7 @@ class AdminController extends Controller
 
     public function meetupsIndex(): View
     {
-        $meetups = Meetup::query()->latest()->paginate(Constants::DEFAULT_PAGINATION);
+        $meetups = Meetup::query()->sortable(Constants::DEFAULT_ADMIN_SORTING)->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("admin.meetups")
             ->with("meetups", $meetups);
@@ -37,7 +37,7 @@ class AdminController extends Controller
 
     public function organizationsIndex(): View
     {
-        $organizations = Organization::query()->latest()->paginate(Constants::DEFAULT_PAGINATION);
+        $organizations = Organization::query()->sortable(Constants::DEFAULT_ADMIN_SORTING)->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("admin.organizations")
             ->with("organizations", $organizations);
@@ -45,7 +45,7 @@ class AdminController extends Controller
 
     public function speakersIndex(): View
     {
-        $speakers = Speaker::query()->latest()->paginate(Constants::DEFAULT_PAGINATION);
+        $speakers = Speaker::query()->sortable(Constants::DEFAULT_ADMIN_SORTING)->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("admin.speakers")
             ->with("speakers", $speakers);
@@ -53,7 +53,7 @@ class AdminController extends Controller
 
     public function newsIndex(): View
     {
-        $news = News::query()->latest()->paginate(Constants::DEFAULT_PAGINATION);
+        $news = News::query()->sortable(Constants::DEFAULT_ADMIN_SORTING)->paginate(Constants::DEFAULT_PAGINATION);
 
         return view("admin.news")
             ->with("news", $news);

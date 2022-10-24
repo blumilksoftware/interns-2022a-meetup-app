@@ -11,6 +11,7 @@ use Blumilk\Meetup\Core\Http\Controllers\Auth\LoginController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\PasswordResetController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\RegisterController;
 use Blumilk\Meetup\Core\Http\Controllers\Auth\SocialiteController;
+use Blumilk\Meetup\Core\Http\Controllers\Auth\TwoFactorController;
 use Blumilk\Meetup\Core\Http\Controllers\ContactController;
 use Blumilk\Meetup\Core\Http\Controllers\InvitationController;
 use Blumilk\Meetup\Core\Http\Controllers\MeetupController;
@@ -21,6 +22,7 @@ use Blumilk\Meetup\Core\Http\Controllers\OrganizationProfileController;
 use Blumilk\Meetup\Core\Http\Controllers\SpeakersController;
 use Blumilk\Meetup\Core\Http\Controllers\StaticController;
 use Blumilk\Meetup\Core\Http\Controllers\UserController;
+use Blumilk\Meetup\Core\Http\Controllers\UserSettingsController;
 
 class WebRouting extends Routing
 {
@@ -57,6 +59,11 @@ class WebRouting extends Routing
             $this->router->get("/auth/google/callback", "handleGoogleCallback");
             $this->router->get("/auth/facebook/redirect", "redirectToFacebook")->middleware("guest")->name("login.facebook");
             $this->router->get("/auth/facebook/callback", "handleFacebookCallback");
+        });
+
+        $this->router->controller(TwoFactorController::class)->group(function (): void {
+            $this->router->get("auth/two", "index")->middleware("guest")->name("twoFa.index");
+            $this->router->post("auth/two", "login")->middleware("guest")->name("twoFa.login");
         });
 
         $this->router->middleware("role:admin")->group(function (): void {
@@ -125,6 +132,13 @@ class WebRouting extends Routing
                 $this->router->get("/invitation", "create")->name("invitation");
                 $this->router->post("/invitation", "store")->name("invitation.store");
             });
+        });
+        $this->router->controller(UserSettingsController::class)->middleware("auth")->group(function (): void {
+            $this->router->get("/settings", "index")->name("settings");
+            $this->router->post("/settings", "enableTwoFa")->name("enableTwoFa");
+            $this->router->post("/settings/disable", "disableTwoFa")->name("disableTwoFa");
+            $this->router->get("/settings/disable", "disableTwoFaConfirm")->name("disableTwoFa.confirm");
+            $this->router->post("/settings/disabled", "disableTwoFaStore")->name("disableTwoFa.store");
         });
 
         $this->router->controller(AccountController::class)->middleware("auth")->group(function (): void {

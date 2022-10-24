@@ -76,7 +76,7 @@
       <ul class="mt-12 relative">
         @forelse ($news as $singleNews)
           <li class="mt-7">
-            <a href="#">
+            <a href="{{ route('news.show', $singleNews) }}">
               <div class="bg-white flex flex-wrap md:flex-nowrap gap-9 shadow-lg rounded-20 md:h-56">
                 <img src="{{ $singleNews->logoPath }}" alt="{{ $singleNews->title }} logo"
                   class="w-full rounded-t-20 md:w-96 md:h-full md:rounded-l-20 md:rounded-tr-none object-cover" />
@@ -94,7 +94,7 @@
             </a>
           </li>
         @empty
-          <li class="text-xl left-1/2 transform -translate-x-1/2 absolute top-4">There is no news!</li>
+          <li class="text-xl text-center">There is no news!</li>
         @endforelse
       </ul>
       <div class="mt-10">

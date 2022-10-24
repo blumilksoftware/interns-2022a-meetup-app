@@ -46,6 +46,7 @@ return [
         Blumilk\Meetup\Core\Providers\FileStorageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
     ],
     "aliases" => [
         ...Facade::defaultAliases()->toArray(),

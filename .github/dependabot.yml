@@ -7,6 +7,6 @@ updates:
       interval: monthly
       time: "07:30"
     commit-message:
-      prefix: "- (php) "
+      prefix: "#26 - (php) "
     target-branch: main
     open-pull-requests-limit: 1

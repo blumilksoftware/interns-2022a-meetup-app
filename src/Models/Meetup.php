@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Kyslik\ColumnSortable\Sortable;
 
 /**
  * @property int $id
@@ -30,6 +31,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Meetup extends Model
 {
     use HasFactory;
+    use Sortable;
 
     public $incrementing = true;
     protected $primaryKey = "id";
@@ -41,6 +43,13 @@ class Meetup extends Model
         "language",
         "logo_path",
         "organization_id",
+    ];
+    protected array $sortable = [
+        "id",
+        "date",
+        "title",
+        "place",
+        "language",
     ];
     protected $attributes = [
         "logo_path" => Constants::MEETUP_DEFAULT_LOGO_PATH,

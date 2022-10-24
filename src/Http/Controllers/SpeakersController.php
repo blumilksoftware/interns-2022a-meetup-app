@@ -17,7 +17,7 @@ class SpeakersController extends Controller
     public function index(PaginationRequest $request): View
     {
         $paginationLimit = $request->input("limit");
-        $speakers = Speaker::query()->latest()->paginate($paginationLimit);
+        $speakers = Speaker::query()->withCount("meetups")->sortable("name")->paginate($paginationLimit);
 
         return view("speakers.index")
             ->with("speakers", $speakers);

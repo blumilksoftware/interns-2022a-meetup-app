@@ -10,6 +10,7 @@ use Database\Factories\OrganizationFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Kyslik\ColumnSortable\Sortable;
 
 /**
  * @property int $id
@@ -26,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Organization extends Model
 {
     use HasFactory;
+    use Sortable;
 
     public $incrementing = true;
     protected $primaryKey = "id";
@@ -38,6 +40,16 @@ class Organization extends Model
         "number_of_employees",
         "logo_path",
         "website_url",
+    ];
+    protected array $sortable = [
+        "id",
+        "name",
+        "location",
+        "organization_type",
+        "foundation_date",
+        "number_of_employees",
+        "created_at",
+        "updated_at",
     ];
     protected $attributes = [
         "logo_path" => Constants::ORGANIZATION_DEFAULT_LOGO_PATH,
