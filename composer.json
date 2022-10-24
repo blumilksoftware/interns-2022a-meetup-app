@@ -13,7 +13,7 @@
     "guzzlehttp/guzzle": "^7.4.5",
     "kyslik/column-sortable": "^6.4.2",
     "laravel/framework": "^9.23",
-    "laravel/sanctum": "^3.0.1",
+    "laravel/sanctum": "^2.14 || ^3.0",
     "laravel/socialite": "^5.5.3",
     "laravel/telescope": "^4.9.1",
     "laravel/tinker": "^2.7.2",
@@ -21,7 +21,7 @@
   },
   "require-dev": {
     "blumilksoftware/blt": "dev-main",
-    "blumilksoftware/codestyle": "1.7.0",
+    "blumilksoftware/codestyle": "1.8.0",
     "fakerphp/faker": "^1.20",
     "mockery/mockery": "^1.5",
     "nunomaduro/collision": "^6.2",

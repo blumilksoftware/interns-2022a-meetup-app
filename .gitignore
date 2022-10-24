@@ -21,5 +21,6 @@ storage/redis/dump.rdb
 /public/*
 .editorconfig
 /storage/src/*
+composer.lock
 package-lock.json
 yarn.lock
