@@ -1,18 +1,25 @@
 version: '3'
 
 services:
-
+  www:
+    image: nginx
+    volumes:
+      - ./:/application/www
+      - ./environment/dev/nginx/:/etc/nginx/conf.d/
+    ports:
+      - ${EXTERNAL_WWW_PORT:-80}:80
+    networks:
+      - meetup-dev
   php:
     build:
       context: environment/dev/php
       args:
         INSTALL_XDEBUG: ${DOCKER_INSTALL_XDEBUG:-false}
     ports:
-      - ${EXTERNAL_PHP_PORT}:8000
+      - ${EXTERNAL_PHP_PORT:-9000}:9000
     container_name: meetup-php
     working_dir: /application
     user: ${CURRENT_UID:-1000}
-    entrypoint: environment/dev/php/bin/entrypoint.sh
     volumes:
       -  ./tests/manual/public:/application/public
       - .:/application
@@ -27,7 +34,7 @@ services:
     image: 'redis:6'
     command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD}"
     ports:
-      - ${EXTERNAL_REDIS_PORT}:6379
+      - ${EXTERNAL_REDIS_PORT:-6379}:6379
     volumes:
       - ./storage/redis:/data
     networks:
@@ -36,12 +43,27 @@ services:
     image: "node:14"
     tty: true
     ports:
-      -  ${EXTERNAL_NODE_PORT}:3000
+      -  ${EXTERNAL_NODE_PORT:-3000}:3000
     working_dir: /src
     volumes:
       - ./:/src
     networks:
       - meetup-dev
+  database:
+    image: postgres:14
+    container_name: meetup-db
+    environment:
+      - PGPASSWORD=${DOCKER_DEV_DB_ROOT_PASSWORD}
+      - POSTGRES_DB=${DOCKER_DEV_DB_DATABASE}
+      - POSTGRES_USER=${DOCKER_DEV_DB_USERNAME}
+      - POSTGRES_PASSWORD=${DOCKER_DEV_DB_PASSWORD}
+    ports:
+      - ${DOCKER_DEV_DB_EXTERNAL_PORT:-5432}:5432
+    volumes:
+      - ./meetup-pgsql-data:/var/lib/postgresql/data
+    networks:
+      - meetup-dev
+    restart: unless-stopped
 networks:
   meetup-dev:
     driver: bridge
