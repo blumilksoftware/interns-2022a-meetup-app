@@ -1,4 +1,4 @@
-FROM ghcr.io/blumilksoftware/php:8.1.5
+FROM ghcr.io/blumilksoftware/php:8.1.9
 
 ARG XDEBUG_VERSION=3.1.2
 ARG INSTALL_XDEBUG=false
