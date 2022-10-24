@@ -9,30 +9,30 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InvitationEmailNotification extends Notification
+class TwoStepVerificationNotification extends Notification
 {
     use Queueable;
 
     public function __construct(
-        protected User $sender,
-        protected string $email,
+        protected User $user,
+        protected int $code,
     ) {}
 
-    public function via(): array
+    public function via()
     {
         return [Channels::MAIL];
     }
 
     public function toMail(): MailMessage
     {
+        return $this->buildMessage();
+    }
+
+    protected function buildMessage(): MailMessage
+    {
         return (new MailMessage())
-            ->replyTo($this->email)
-            ->markdown(
-                "emails.invitation",
-                [
-                    "receiver" => $this->email,
-                    "sender" => $this->sender,
-                ],
-            );
+            ->replyTo($this->user->email)
+            ->line("It's your verification code:")
+            ->line($this->code);
     }
 }
