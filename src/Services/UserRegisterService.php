@@ -12,6 +12,7 @@ class UserRegisterService
 {
     public function __construct(
         protected Hasher $hasher,
+        protected UserProfileService $userProfileService,
     ) {}
 
     public function register(string $email, string $name, string $password): void
@@ -23,6 +24,8 @@ class UserRegisterService
             "name" => $name,
             "password" => $hashedPassword,
         ]);
+
+        $this->userProfileService->create($user);
 
         event(new Registered($user));
     }

@@ -1,56 +1,82 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container lg:w-[1141px] mx-auto">
-        <div class="md:flex mt-8 px-10 sm:mx-auto sm:w-full sm:max-w-md md:px-0 md:max-w-none">
-            <div>
-                <h1>
-                    User Profile
-                </h1>
-                <div>
-                    @csrf
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700">
-                            Avatar
-                        </label>
-                        <div class="mt-1">
-                            <img src="{{ $user->avatarPath }}" alt="avatar"
-                            class="w-[200px] h-[200px] rounded-t-20 object-cover"/>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700">
-                            UserName
-                        </label>
-                        <div class="mt-1">
-                            <input id="name" name="name" readonly type="text" value="{{ $user->name }}"
-                                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700">
-                            Email address
-                        </label>
-                        <div class="mt-1">
-                            <input id="email" name="email" readonly type="email" value="{{ $user->email }}"
-                                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                        </div>
-                    </div>
-                    <div>
-                        <a href="{{ route("user.profile.edit") }}">
-                        <button type="submit"
-                                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Edit profile
-                        </button></a>
-                        <a href="{{ route("user.profile.password") }}">
-                            <button type="submit"
-                                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Change password
-                            </button></a>
-                    </div>
-                </div>
-            </div>
+  <div class="container lg:w-[800px] mx-auto shadow-xl">
+    <div class="bg-white mt-20 px-8 md:px-12 lg:px-16 py-8 rounded-2xl">
+      <div class="flex justify-between items-center">
+        <h3 class="text-xl font-semibold">General</h3>
+        <div>
+          <a href="{{ route('user.profile.edit') }}"
+            class="text-sm text-white py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700">
+            Edit Profile
+          </a>
         </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-around items-center border-y-2 py-3 mt-3">
+        <div class="w-1/2">
+          <img src="{{ $user->profile->avatarPath }}" alt="avatar" class="w-52 h-52 rounded-full object-cover mx-auto" />
+        </div>
+        <div class="md:w-1/2">
+          <div class="flex gap-5 py-3 border-b-2">
+            <p class="font-semibold">Name:</p>
+            <p>{{ $user->name }}</p>
+          </div>
+          <div class="flex gap-5 py-3 border-b-2">
+            <p class="font-semibold">Email address:</p>
+            <p>{{ $user->email }}</p>
+          </div>
+          <div class="flex gap-5 py-3 border-b-2">
+            <p class="font-semibold">Location:</p>
+            <p>{{ $user->profile->location }}</p>
+          </div>
+          <div class="flex gap-5 py-3 border-b-2">
+            <p class="font-semibold">Birthday:</p>
+            <p>{{ $user->profile->birthday?->toDateString() }}</p>
+          </div>
+          <div class="flex gap-5 py-3">
+            <p class="font-semibold">Gender:</p>
+            <p>{{ $user->profile->gender }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 -mb-5">
+        <a href="{{ route('user.profile.password') }}"
+          class="text-sm text-white py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700">
+          Change password
+        </a>
+      </div>
+      <h3 class="text-xl font-semibold mt-10 pb-3 border-b-2">Interests</h3>
+      <form action="#" method="post">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-20 gap-y-5 py-5 whitespace-nowrap">
+          <div class="flex items-center gap-4">
+            <input type="checkbox" class="text-indigo-600 rounded" />
+            <p>Agile Project management</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <input type="checkbox" class="text-indigo-600 rounded" />
+            <p>Javascript</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <input type="checkbox" class="text-indigo-600 rounded" />
+            <p>Web technology</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <input type="checkbox" class="text-indigo-600 rounded" />
+            <p>Javascript</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <input type="checkbox" class="text-indigo-600 rounded" />
+            <p>Web development</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <input type="checkbox" class="text-indigo-600 rounded" />
+            <p>Web design</p>
+          </div>
+        </div>
+        <button class="text-sm text-white py-2 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700">
+          Save
+        </button>
+      </form>
     </div>
+  </div>
 @endsection

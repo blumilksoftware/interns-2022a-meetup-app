@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Models;
 
-use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Database\Factories\UserFactory;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
@@ -34,7 +33,6 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon|null $emailVerifiedAt
  * @property string $password
  * @property string|null $rememberToken
- * @property string $avatarPath
  * @property Carbon|null $createdAt
  * @property Carbon|null $updatedAt
  * @property boolean $hasTwoFaEnable
@@ -71,16 +69,22 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         "created_at",
         "updated_at",
     ];
-    protected $attributes = [
-        "avatar_path" => Constants::USER_DEFAULT_AVATAR_PATH,
-    ];
     protected $hidden = [
         "password",
         "remember_token",
     ];
     protected $casts = [
         "email_verified_at" => "datetime",
+        "birthday" => "date",
     ];
+    protected $with = [
+        "profile",
+    ];
+
+    public function profile(): HasOne
+    {
+        return $this->hasOne(Profile::class);
+    }
 
     public function meetups(): HasMany
     {

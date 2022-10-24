@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Models;
 
 use Blumilk\Meetup\Core\Models\Utils\Constants;
-use Blumilk\Meetup\Core\Models\Utils\Formats;
 use Database\Factories\MeetupFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Carbon;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
@@ -20,7 +20,7 @@ use Kyslik\ColumnSortable\Sortable;
  * @property int|null $speakerId
  * @property string $title
  * @property string|null $description
- * @property string $date
+ * @property Carbon $date
  * @property string $place
  * @property string $language
  * @property string $logoPath
@@ -55,7 +55,7 @@ class Meetup extends Model
         "logo_path" => Constants::MEETUP_DEFAULT_LOGO_PATH,
     ];
     protected $casts = [
-        "date:" . Formats::DATETIME,
+        "date" => "datetime",
     ];
 
     public function user(): BelongsTo

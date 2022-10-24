@@ -21,6 +21,9 @@
                   <th class="border pl-3 py-1">@sortablelink('id')</th>
                   <th class="border pl-3 py-1">@sortablelink('name')</th>
                   <th class="border pl-3 py-1">@sortablelink('email')</th>
+                  <th class="border pl-3 py-1">@sortablelink('profile.location')</th>
+                  <th class="border pl-3 py-1">@sortablelink('profile.birthday')</th>
+                  <th class="border pl-3 py-1">@sortablelink('profile.gender')</th>
                   <th class="border pl-3 py-1">@sortablelink('created_at', 'Created at')</th>
                   <th class="border pl-3 py-1">@sortablelink('updated_at', 'Updated at')</th>
                   <th class="border pl-3 py-1">Actions</th>
@@ -32,6 +35,9 @@
                     <td class="border pl-3 py-1">{{ $user->id }}</td>
                     <td class="border pl-3 py-1">{{ $user->name }}</td>
                     <td class="border pl-3 py-1">{{ $user->email }}</td>
+                    <td class="border pl-3 py-1">{{ $user->profile->location }}</td>
+                    <td class="border pl-3 py-1">{{ $user->profile->birthday?->toDateString() }}</td>
+                    <td class="border pl-3 py-1">{{ $user->profile->gender }}</td>
                     <td class="border pl-3 py-1">{{ $user->createdAt }}</td>
                     <td class="border pl-3 py-1">{{ $user->updatedAt }}</td>
                     <td class="border pl-3 py-1 w-52">

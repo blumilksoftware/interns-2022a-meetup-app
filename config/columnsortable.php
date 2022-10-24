@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
     "columns" => [
         "alpha" => [
-            "rows" => ["email", "name", "slug", "title", "place", "language", "location", "organization_type", "linkedin_url", "github_url"],
+            "rows" => ["email", "name", "slug", "title", "place", "language", "location", "organization_type", "linkedin_url", "github_url", "gender"],
             "class" => "fa fa-sort-alpha",
         ],
         "amount" => [
@@ -13,7 +13,7 @@ return [
             "class" => "fa fa-sort-amount",
         ],
         "numeric" => [
-            "rows" => ["created_at", "updated_at", "id", "number_of_employees", "meetups_count", "foundation_date"],
+            "rows" => ["created_at", "updated_at", "id", "number_of_employees", "meetups_count", "foundation_date", "birthday"],
             "class" => "fa fa-sort-numeric",
         ],
     ],

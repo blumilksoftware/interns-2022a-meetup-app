@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Blumilk\Meetup\Core\Http\Requests\Account;
 
+use Blumilk\Meetup\Core\Enums\AvailableGenders;
 use Blumilk\Meetup\Core\Http\Requests\Speaker\Rules\AvatarFileRules;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class UpdateUserDataRequest extends FormRequest
 {
@@ -17,6 +19,26 @@ class UpdateUserDataRequest extends FormRequest
             "email" => ["required", "string", "email", "max:255", "unique:users,email,{$userId},id"],
             "name" => ["required", "string", "max:255"],
             "avatar" => AvatarFileRules::rules(),
+            "location" => ["nullable", "string", "max:255"],
+            "birthday" => ["nullable", "date"],
+            "gender" => ["nullable", new Enum(AvailableGenders::class)],
+        ];
+    }
+
+    public function userData(): array
+    {
+        return [
+            "email" => $this->get("email"),
+            "name" => $this->get("name"),
+        ];
+    }
+
+    public function profileData(): array
+    {
+        return [
+            "location" => $this->get("location"),
+            "birthday" => $this->get("birthday"),
+            "gender" => $this->get("gender"),
         ];
     }
 }

@@ -145,7 +145,7 @@ class WebRouting extends Routing
             $this->router->get("/auth/profile", "index")->name("user.profile");
             $this->router->get("/auth/profile/password", "editPassword")->name("user.profile.password");
             $this->router->get("/auth/profile/edit", "editData")->name("user.profile.edit");
-            $this->router->put("/auth/profile/password", "updatePassword")->name("user.profile.password.update");
+            $this->router->patch("/auth/profile/password", "updatePassword")->name("user.profile.password.update");
             $this->router->put("/auth/profile/edit", "updateData")->name("user.profile.update");
         });
 

@@ -5,14 +5,17 @@ declare(strict_types=1);
 namespace Blumilk\Meetup\Core\Http\Controllers;
 
 use Blumilk\Meetup\Core\Contracts\StoreFile;
+use Blumilk\Meetup\Core\Enums\AvailableGenders;
 use Blumilk\Meetup\Core\Exceptions\PasswordIsTheSameAsOldException;
 use Blumilk\Meetup\Core\Http\Requests\Account\UpdateUserDataRequest;
 use Blumilk\Meetup\Core\Http\Requests\Account\UpdateUserPasswordRequest;
 use Blumilk\Meetup\Core\Models\Utils\Constants;
 use Blumilk\Meetup\Core\Services\Authentication\ChangePasswordService;
+use Blumilk\Meetup\Core\Services\UserProfileService;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Spatie\LaravelOptions\Options;
 
 class AccountController extends Controller
 {
@@ -53,17 +56,21 @@ class AccountController extends Controller
     public function editData(): View
     {
         return view("user.profile.edit")
-            ->with("user", $this->auth->user());
+            ->with([
+                "user" => $this->auth->user(),
+                "genders" => Options::forEnum(AvailableGenders::class)->toArray(),
+            ]);
     }
 
-    public function updateData(UpdateUserDataRequest $request, StoreFile $service): RedirectResponse
+    public function updateData(UpdateUserDataRequest $request, StoreFile $service, UserProfileService $userProfileService): RedirectResponse
     {
-        $user = $this->auth->user();
-        $input = $request->validated();
+        $profileData = $request->profileData();
+
         if ($request->hasFile("avatar")) {
-            $input["avatar_path"] = $service->storeFile(Constants::USERS_AVATARS_PATH, $request->file("avatar"));
+            $profileData["avatar_path"] = $service->storeFile(Constants::USERS_AVATARS_PATH, $request->file("avatar"));
         }
-        $user->update($input);
+
+        $userProfileService->update($request->user(), $request->userData(), $profileData);
 
         return redirect()->route("user.profile");
     }

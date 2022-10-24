@@ -11,6 +11,7 @@ use Blumilk\Meetup\Core\Models\Organization;
 use Blumilk\Meetup\Core\Models\OrganizationProfile;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Spatie\LaravelOptions\Options;
 
 class OrganizationProfileController extends Controller
 {
@@ -19,7 +20,7 @@ class OrganizationProfileController extends Controller
         return view("organizations.profiles.create")
             ->with([
                 "organization" => $organization,
-                "availableProfiles" => AvailableProfiles::casesToSelect(),
+                "availableProfiles" => Options::forEnum(AvailableProfiles::class)->toArray(),
             ]);
     }
 
@@ -36,7 +37,7 @@ class OrganizationProfileController extends Controller
             ->with([
                 "organization" => $organization,
                 "profile" => $profile,
-                "availableProfiles" => AvailableProfiles::casesToSelect(),
+                "availableProfiles" => Options::forEnum(AvailableProfiles::class)->toArray(),
             ]);
     }
 
