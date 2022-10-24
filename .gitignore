@@ -24,3 +24,5 @@ storage/redis/dump.rdb
 composer.lock
 package-lock.json
 yarn.lock
+meetup-pgsql-data
+meetup
