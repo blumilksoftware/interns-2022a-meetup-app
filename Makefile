@@ -25,9 +25,6 @@ stop: ## Stop server http
 bash: ## Enter to bash a container php
 	docker-compose exec php ash
 
-composer-install: ## Run composer install a container php
-	docker-compose exec php composer install
-
 phpunit: ## Run tests
 	docker-compose exec php composer test
 
@@ -79,7 +76,7 @@ init-sqllite: ## First setup for project (sqllite)
 	$(MAKE) key-generate
 	$(MAKE) sqlite-create
 	$(MAKE) db-create
-    $(MAKE) db-seed
+	$(MAKE) db-seed
 
 init-postgres: ## First setup for project (postgres)
 	$(MAKE) install
