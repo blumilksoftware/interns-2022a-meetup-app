@@ -8,6 +8,9 @@ services:
       - ./environment/dev/nginx/:/etc/nginx/conf.d/
     ports:
       - ${EXTERNAL_WWW_PORT:-80}:80
+    depends_on:
+      - php
+      - database
     networks:
       - meetup-dev
   php:

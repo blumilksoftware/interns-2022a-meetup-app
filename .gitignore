@@ -25,3 +25,5 @@ composer.lock
 package-lock.json
 yarn.lock
 meetup-pgsql-data
+meetup
+resources/static/mix-manifest.json
