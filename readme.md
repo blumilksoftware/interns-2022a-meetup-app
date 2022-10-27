@@ -1,3 +1,5 @@
+> This was an application created by Witelon Collegium State University students during their internships.
+
 ## Meetup core
 
 ### Development
